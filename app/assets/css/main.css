@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 213 29% 6.1%; /* #0b0f14 */
+    --foreground: 0 0% 100%; /* #ffffff */
+
+    --muted: 213 25% 12%;
+    --muted-foreground: 0 0% 60%; /* #999999 */
+
+    --popover: 210 33% 4.7%; /* #080c10 */
+    --popover-foreground: 0 0% 100%;
+
+    --card: 214 30% 8.5%; /* #0f161f */
+    --card-foreground: 0 0% 100%;
+
+    --border: 215 25% 15%;
+    --input: 215 25% 15%;
+
+    --primary: 160 84% 39%; /* #10b981 */
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 213 26% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 156 73% 52%; /* #34d399 */
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 160 84% 39%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-brand/20 selection:text-brand;
+    min-height: 100vh;
+    background-color: #0b0f14;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #e2e8f0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Elegant Editorial & Brand Utility Classes */
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-ui {
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.glow-emerald-subtle {
+  box-shadow: 0 4px 24px -4px rgba(16, 185, 129, 0.18);
+}
+
+.glow-emerald-sm {
+  box-shadow: 0 2px 12px -2px rgba(16, 185, 129, 0.15);
+}
+
+.glow-emerald-lg {
+  box-shadow: 0 8px 36px -6px rgba(16, 185, 129, 0.25);
+}
+
+.border-subtle-emerald {
+  border-color: rgba(16, 185, 129, 0.18);
+}
+
+.border-subtle-white {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.bg-cinematic-radial {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -10%,
+    rgba(16, 185, 129, 0.1) 0%,
+    rgba(11, 15, 20, 0) 70%
+  );
+}
+
+.bg-editorial-card {
+  background: linear-gradient(180deg, rgba(17, 26, 36, 0.75) 0%, rgba(12, 18, 25, 0.85) 100%);
+  backdrop-filter: blur(12px);
+}
+
+/* Media zoom with dark gradient scrim */
+.img-editorial-zoom {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+.group:hover .img-editorial-zoom {
+  transform: scale(1.04);
+}
+
+/* Restrained pulse animation */
+@keyframes emerald-pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: emerald-pulse-dot 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Subtle Technical Straight-Line Grid Pattern for Dark/Black Sections
+   - Strictly thin straight horizontal and vertical lines (CSS linear-gradient)
+   - Low-opacity dark-gray lines with subtle emerald-green tinted accents
+   - Zero circles, curved lines, circular rings, arcs, or radial patterns
+   ========================================================================== */
+.bg-technical-grid,
+.bg-tech-grid,
+section[class*="bg-[#0b0f14]"]:not(.hero-cinematic-bg),
+section[class*="bg-[#080c10]"]:not(.hero-cinematic-bg),
+section[class*="bg-[#070b0f]"]:not(.hero-cinematic-bg),
+section[class*="bg-[#070D10]"]:not(.hero-cinematic-bg),
+div[id="enterprise-capabilities"],
+footer.bg-\[\#070b0f\] {
+  background-image: 
+    /* Subtle emerald-green tinted vertical & horizontal straight accent lines (192px cadence) */
+    linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    /* Fine dark-gray straight vertical & horizontal grid lines (48px cadence) */
+    linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 192px 192px, 192px 192px, 48px 48px, 48px 48px;
+  background-position: 0 0;
+}
+
+/* Explicit exclusion to ensure hero photographic visual is never overlaid with grid */
+.hero-cinematic-bg {
+  background-image: none !important;
+}
+
+
+/* Precise corner crosshairs */
+.corner-crosshair {
+  position: relative;
+}
+.corner-crosshair::before,
+.corner-crosshair::after {
+  content: '+';
+  position: absolute;
+  font-family: monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 1;
+}
+.corner-crosshair::before {
+  top: -6px;
+  left: -5px;
+}
+.corner-crosshair::after {
+  bottom: -6px;
+  right: -5px;
+}
+
+.glass-surface {
+  background: rgba(15, 22, 31, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-surface-elevated {
+  background: rgba(18, 27, 38, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.hairline-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.text-balance-editorial {
+  text-wrap: balance;
+}
+
+/* Custom dark scrollbar for sleek desktop viewing */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080c10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a2533;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

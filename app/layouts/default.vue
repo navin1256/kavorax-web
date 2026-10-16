@@ -1,0 +1,16 @@
+<script setup lang="ts">
+import AppHeader from '~/components/layout/AppHeader.vue'
+import AppFooter from '~/components/layout/AppFooter.vue'
+</script>
+
+<template>
+  <div
+    class="min-h-screen flex flex-col bg-[#0b0f14] text-foreground selection:bg-brand/20 selection:text-brand relative"
+  >
+    <AppHeader />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <AppFooter />
+  </div>
+</template>

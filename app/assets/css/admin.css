@@ -1,0 +1,95 @@
+/**
+ * KavoraX Global — Enterprise Admin Panel Styles
+ * Scoped specifically to admin layouts and components.
+ * Ensures strict isolation from public website editorial typography and styles.
+ */
+
+/* Force clean modern sans-serif typography for all admin elements */
+.admin-shell,
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4,
+.admin-shell h5,
+.admin-shell h6,
+.admin-shell button,
+.admin-shell input,
+.admin-shell select,
+.admin-shell textarea {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Base admin surfaces */
+.admin-bg-base {
+  background-color: #0b0f14;
+}
+
+.admin-bg-secondary {
+  background-color: #080c10;
+}
+
+.admin-card-surface {
+  background-color: #0f161f;
+  border-color: #26313d;
+}
+
+.admin-border {
+  border-color: #26313d;
+}
+
+.admin-border-subtle {
+  border-color: rgba(38, 49, 61, 0.7);
+}
+
+/* Subtle straight technical grid for dashboard canvas */
+.admin-grid-lines {
+  background-image: 
+    linear-gradient(to right, rgba(38, 49, 61, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(38, 49, 61, 0.35) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+}
+
+/* Subtle emerald indicator accent line */
+.admin-nav-indicator {
+  position: relative;
+}
+
+.admin-nav-indicator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
+  background-color: #10b981;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Admin Custom Scrollbar */
+.admin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: #0b0f14;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: #26313d;
+  border-radius: 3px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+/* Accessible visible focus states */
+.admin-shell button:focus-visible,
+.admin-shell a:focus-visible,
+.admin-shell input:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
