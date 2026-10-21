@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   Building2,
   Landmark,
@@ -8,6 +11,12 @@ import {
   Truck,
   ArrowRight
 } from 'lucide-vue-next'
+
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const gridRef = ref<HTMLElement | null>(null)
+const { isRevealed: isGridRevealed } = useScrollReveal(gridRef, { threshold: 0.12 })
 
 const industries = [
   {
@@ -48,20 +57,24 @@ const industries = [
 <template>
   <section class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08]">
+      <div
+        ref="headerRef"
+        class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08] reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <div class="max-w-2xl space-y-4">
           <ChapterLabel
             index="CHAPTER 05"
             label="DOMAIN ALIGNMENT"
             sublabel="SECTOR-SPECIFIC FRAMEWORKS"
           />
-          <h2
+          <WordReveal
+            as="h2"
+            text="Connected Across Operating Domains."
+            :italic-words="['Operating', 'Domains.']"
             class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
-          >
-            Connected Across
-            <span class="italic font-light text-brand">Operating Domains</span>.
-          </h2>
-          <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed">
+          />
+          <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
             Different sectors face distinct operational rhythms, data sensitivities, and compliance boundaries. Explore how connected architecture addresses industry-specific requirements.
           </p>
         </div>
@@ -79,12 +92,13 @@ const industries = [
       </div>
 
       <!-- 4 Verified Industry Visual Photographic Panels -->
-      <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-ui">
+      <div ref="gridRef" class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-ui">
         <NuxtLink
-          v-for="item in industries"
+          v-for="(item, idx) in industries"
           :key="item.name"
           :to="item.anchor"
-          class="rounded-2xl border border-white/[0.08] bg-[#0d141e] overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-xl relative"
+          class="rounded-2xl border border-white/[0.08] bg-[#0d141e] overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-xl relative reveal-card transition-editorial duration-700"
+          :class="[{ 'is-revealed': isGridRevealed }, 'stagger-' + (idx + 1)]"
         >
           <!-- Corner Crosshair -->
           <div class="absolute top-2.5 right-2.5 font-mono text-xs text-brand/50 select-none pointer-events-none z-10" aria-hidden="true">+</div>

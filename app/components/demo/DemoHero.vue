@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { Button } from '~/components/ui/button'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import { ArrowDown, Layers, Cpu, BarChart3, Network, ShieldCheck } from 'lucide-vue-next'
+
+const isHeroMounted = ref(false)
+
+onMounted(() => {
+  isHeroMounted.value = true
+})
 </script>
 
 <template>
@@ -16,28 +24,37 @@ import { ArrowDown, Layers, Cpu, BarChart3, Network, ShieldCheck } from 'lucide-
         <div class="lg:col-span-6 xl:col-span-7 space-y-6">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-75"
+            :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-2 w-2 rounded-full bg-brand" />
             <span>BOOK A DEMO</span>
           </div>
 
-          <!-- Hero Headline (Exact requested copy) -->
-          <h1
-            class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-medium tracking-tight text-white leading-[1.12]"
-          >
-            See What Better-Connected
-            <span class="italic font-light text-brand">Business Looks Like</span>.
-          </h1>
+          <!-- Hero Headline with WordReveal -->
+          <WordReveal
+            text="See What Better-Connected Business Looks Like."
+            as="h1"
+            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words"
+            :italic-words="['Business', 'Looks', 'Like.']"
+            :delay="240"
+            :immediate="true"
+          />
 
-          <!-- Hero Supporting Text (Exact requested copy) -->
-          <p class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed">
+          <!-- Hero Supporting Text -->
+          <p
+            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             Tell us a little about your business and what you want to achieve. We’ll use that context
             to help guide the conversation.
           </p>
 
           <!-- Dual CTAs -->
-          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-5 font-ui">
+          <div
+            class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-5 font-ui reveal-base transition-editorial duration-700 delay-700"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             <a href="#demo-form" class="w-full sm:w-auto">
               <Button
                 size="lg"
@@ -61,7 +78,10 @@ import { ArrowDown, Layers, Cpu, BarChart3, Network, ShieldCheck } from 'lucide-
           </div>
 
           <!-- Consultation Principles Strip -->
-          <div class="pt-8 border-t border-white/[0.07] grid grid-cols-3 gap-6 max-w-lg font-ui">
+          <div
+            class="pt-8 border-t border-white/[0.07] grid grid-cols-3 gap-6 max-w-lg font-ui reveal-base transition-editorial duration-700 delay-800"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             <div>
               <div class="font-editorial text-2xl font-semibold text-white">Contextual</div>
               <div class="text-xs text-zinc-400 mt-0.5">Guided Discussion</div>
@@ -78,7 +98,10 @@ import { ArrowDown, Layers, Cpu, BarChart3, Network, ShieldCheck } from 'lucide-
         </div>
 
         <!-- Right Column: Demonstration Architectural Topology Panel -->
-        <div class="lg:col-span-6 xl:col-span-5 relative">
+        <div
+          class="lg:col-span-6 xl:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isHeroMounted }"
+        >
           <!-- Subtle Glow Backplate -->
           <div
             class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-60 pointer-events-none"

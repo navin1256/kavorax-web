@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   Landmark,
   Activity,
@@ -9,6 +10,8 @@ import {
   ArrowRight,
   Check
 } from 'lucide-vue-next'
+
+const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
 
 const selectedIndex = ref(0)
 
@@ -61,10 +64,16 @@ const industries = [
 </script>
 
 <template>
-  <section class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden">
+  <section
+    ref="targetRef"
+    class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+  >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Chapter Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08]">
+      <div
+        class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08] reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <div class="max-w-3xl space-y-4">
           <ChapterLabel index="05" label="SECTOR ARCHITECTURES" sublabel="CRITICAL INDUSTRIES" />
           <h2 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
@@ -86,7 +95,10 @@ const industries = [
       <!-- Asymmetrical Interactive Showcase: Left Tab Selector + Right Photographic Stage -->
       <div class="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch font-ui">
         <!-- Left: Sector Navigators -->
-        <div class="lg:col-span-5 space-y-3 flex flex-col justify-between">
+        <div
+          class="lg:col-span-5 space-y-3 flex flex-col justify-between reveal-base transition-editorial duration-700 delay-150"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <div
             v-for="(ind, index) in industries"
             :key="ind.id"
@@ -133,7 +145,10 @@ const industries = [
         </div>
 
         <!-- Right: Immersive Photographic Stage with Editorial Details -->
-        <div class="lg:col-span-7 relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl corner-crosshair flex flex-col justify-between">
+        <div
+          class="lg:col-span-7 relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl corner-crosshair flex flex-col justify-between reveal-base transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <!-- Active Photographic Background -->
           <div class="absolute inset-0 z-0">
             <img
@@ -161,7 +176,7 @@ const industries = [
                 {{ industries[selectedIndex]?.headline }}
               </h3>
 
-              <p class="font-editorial text-lg sm:text-xl text-zinc-200 leading-relaxed max-w-xl font-normal">
+              <p class="font-ui text-base text-zinc-200 leading-relaxed max-w-xl font-normal">
                 {{ industries[selectedIndex]?.description }}
               </p>
 

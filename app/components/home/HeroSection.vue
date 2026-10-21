@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
+import { useScrollReveal } from '~/composables/useScrollReveal'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -10,6 +13,14 @@ import {
   Activity,
   ShieldCheck
 } from 'lucide-vue-next'
+
+const heroRef = ref<HTMLElement | null>(null)
+const capRef = ref<HTMLElement | null>(null)
+
+// Cinematic immediate reveal for hero elements on page entry
+const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: true })
+// Viewport-triggered scroll reveal for enterprise capabilities section
+const { isRevealed: isCapRevealed } = useScrollReveal(capRef, { threshold: 0.15 })
 
 const enterpriseCapabilities = [
   {
@@ -50,16 +61,17 @@ const scrollToContent = () => {
   <div class="relative bg-[#070D10] text-white">
     <!-- 1. CINEMATIC OPENING HERO SECTION (WITH RESTORED SKYSCRAPER ARCHITECTURE BACKGROUND) -->
     <section
+      ref="heroRef"
       class="hero-cinematic-bg relative min-h-[660px] sm:min-h-[700px] md:min-h-[740px] lg:min-h-[780px] xl:min-h-[820px] flex flex-col justify-between overflow-hidden bg-[#070D10] text-white selection:bg-brand/20 selection:text-brand"
     >
       <!-- Background Architectural Skyscraper Photography Visual with Atmospheric Dark Charcoal Linear Overlays -->
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <!-- Authentic Architectural Skyscraper Photography Asset -->
+        <!-- Authentic Architectural Skyscraper Photography Asset with Ultra-Slow Cinematic Drift -->
         <img
           src="/images/fintech-headquarters.jpg"
           alt="KavoraX modern enterprise corporate headquarters architecture"
           loading="eager"
-          class="h-full w-full object-cover object-[center_32%] md:object-[center_28%] lg:object-[center_25%] opacity-40 filter brightness-[0.75] contrast-[1.10] scale-[1.01]"
+          class="h-full w-full object-cover object-[center_32%] md:object-[center_28%] lg:object-[center_25%] opacity-40 filter brightness-[0.75] contrast-[1.10] scale-[1.01] animate-hero-drift"
         >
 
         <!-- Layered Dark Black/Charcoal Linear Gradients (Zero curves, arcs, rings, or radial patterns) -->
@@ -74,10 +86,16 @@ const scrollToContent = () => {
 
         <!-- 4. Bottom fade cleanly transitioning into following section -->
         <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#070D10] via-[#070D10]/95 to-transparent" />
+
+        <!-- 5. Atmospheric subtle emerald radial beam drift -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none animate-ambient-drift" />
       </div>
 
       <!-- Top Metadata Ribbon (Clean Enterprise Identity) -->
-      <div class="relative z-10 pt-7 sm:pt-9">
+      <div
+        class="relative z-10 pt-7 sm:pt-9 reveal-base delay-75"
+        :class="{ 'is-revealed': isHeroRevealed }"
+      >
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             class="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-3.5 font-mono text-xs text-zinc-400"
@@ -89,9 +107,9 @@ const scrollToContent = () => {
               </span>
             </div>
 
-            <div class="flex items-center gap-4 text-[11px] text-zinc-400">
-              <span class="hidden sm:inline">ENTERPRISE TECHNOLOGY CONSULTANCY</span>
-              <span class="text-zinc-600 hidden sm:inline">|</span>
+            <div class="hidden sm:flex items-center gap-4 text-[11px] text-zinc-400">
+              <span class="hidden md:inline">ENTERPRISE TECHNOLOGY CONSULTANCY</span>
+              <span class="text-zinc-600 hidden md:inline">|</span>
               <span class="text-brand font-mono">CONNECTED SOLUTIONS</span>
             </div>
           </div>
@@ -102,7 +120,8 @@ const scrollToContent = () => {
       <div class="relative z-10 container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-12 sm:pb-16 text-center my-auto">
         <!-- Eyebrow Pill -->
         <div
-          class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 backdrop-blur-md shadow-sm"
+          class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 backdrop-blur-md shadow-sm reveal-base delay-100"
+          :class="{ 'is-revealed': isHeroRevealed }"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-brand" />
           <span class="font-semibold text-brand tracking-widest uppercase text-[11px]">
@@ -110,24 +129,32 @@ const scrollToContent = () => {
           </span>
         </div>
 
-        <!-- Headline: Reduced by ~8% on desktop for balanced proportion, preserving serif italic "forward" -->
-        <h1
-          class="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[5.75rem] font-normal tracking-[-0.025em] text-white leading-[1.05] text-balance mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
-        >
-          Technology that moves business
-          <span class="italic font-light text-brand">forward</span>.
-        </h1>
+        <!-- Headline: Word-by-word reveal with italic emerald flourish (responsive wrapping without clipping) -->
+        <WordReveal
+          text="Technology that moves business forward."
+          as="h1"
+          highlight="forward"
+          highlight-class="italic font-light text-brand"
+          :base-delay-ms="200"
+          :stagger-ms="55"
+          :immediate="true"
+          class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-normal tracking-[-0.025em] text-white leading-[1.08] text-balance max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
+        />
 
         <!-- Supporting Text: Preserved exact copy with harmonious spacing and high contrast -->
         <p
-          class="mt-5 sm:mt-6 font-editorial text-lg sm:text-xl md:text-[1.45rem] lg:text-[1.55rem] text-zinc-200 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed text-pretty font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]"
+          class="mt-5 sm:mt-6 font-ui text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed text-pretty font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] reveal-base delay-500"
+          :class="{ 'is-revealed': isHeroRevealed }"
         >
           KavoraX builds connected business solutions that help organisations operate smarter,
           serve customers better and scale with confidence.
         </p>
 
         <!-- Prominent Dual CTAs with balanced vertical spacing and comfortable targets -->
-        <div class="mt-8 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
+        <div
+          class="mt-8 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui reveal-base delay-700"
+          :class="{ 'is-revealed': isHeroRevealed }"
+        >
           <NuxtLink to="/demo" class="w-full sm:w-auto">
             <Button
               size="lg"
@@ -154,7 +181,10 @@ const scrollToContent = () => {
       </div>
 
       <!-- Functional, Intentional Scroll Cue Indicator -->
-      <div class="relative z-10 pb-6 sm:pb-8 flex justify-center">
+      <div
+        class="relative z-10 pb-6 sm:pb-8 flex justify-center reveal-base delay-800"
+        :class="{ 'is-revealed': isHeroRevealed }"
+      >
         <button
           type="button"
           class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/50 hover:bg-black/75 hover:border-brand/40 backdrop-blur-md font-mono text-[11px] text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand/50 group"
@@ -169,11 +199,16 @@ const scrollToContent = () => {
 
     <!-- 2. REUSED SECTION BELOW HERO: ENTERPRISE ARCHITECTURE SHOWCASE & 3 CAPABILITY CARDS -->
     <!-- (Replaces old duplicate building image with an authentic architectural visual and preserved capability pillars) -->
-    <section id="enterprise-capabilities" class="relative z-10 pt-4 pb-16 sm:pb-20 border-b border-white/[0.08] bg-[#070D10] bg-technical-grid">
+    <section
+      id="enterprise-capabilities"
+      ref="capRef"
+      class="relative z-10 pt-4 pb-16 sm:pb-20 border-b border-white/[0.08] bg-[#070D10] bg-technical-grid"
+    >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Visual Architecture System Stage (Meaningful Enterprise Architecture Overview) -->
         <div
-          class="relative rounded-2xl border border-white/[0.09] bg-[#0c131d]/90 p-6 sm:p-8 md:p-10 overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)] mb-8"
+          class="relative rounded-2xl border border-white/[0.09] bg-[#0c131d]/90 p-6 sm:p-8 md:p-10 overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)] mb-8 reveal-base"
+          :class="{ 'is-revealed': isCapRevealed }"
         >
           <!-- Active Theory Corner Crosshairs -->
           <div class="absolute top-3 left-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -282,9 +317,13 @@ const scrollToContent = () => {
         <!-- 3 PRESERVED ENTERPRISE CAPABILITY CARDS (Equal Height & Aligned Metrics) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-ui items-stretch">
           <div
-            v-for="cap in enterpriseCapabilities"
+            v-for="(cap, cIdx) in enterpriseCapabilities"
             :key="cap.id"
-            class="rounded-xl border border-white/[0.08] bg-[#0c131d]/85 p-6 flex flex-col justify-between h-full hover:border-brand/40 hover:bg-[#0e1622] transition-all duration-300 group relative"
+            class="rounded-xl border border-white/[0.08] bg-[#0c131d]/85 p-6 flex flex-col justify-between h-full hover:border-brand/40 hover:bg-[#0e1622] transition-all duration-300 group relative reveal-base"
+            :class="[
+              isCapRevealed ? 'is-revealed' : '',
+              cIdx === 0 ? 'delay-100' : cIdx === 1 ? 'delay-200' : 'delay-300'
+            ]"
           >
             <div class="space-y-3">
               <div class="flex items-center justify-between">

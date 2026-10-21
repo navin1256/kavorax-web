@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   ArrowRight,
   Layers,
@@ -10,17 +13,23 @@ import {
   Radio,
   CheckCircle2
 } from 'lucide-vue-next'
+
+const heroRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: true })
 </script>
 
 <template>
-  <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
-    <!-- Atmospheric Ambient Lighting & Tech Grid Overlay -->
+  <section
+    ref="heroRef"
+    class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]"
+  >
+    <!-- Atmospheric Ambient Lighting & Tech Grid Overlay with Organic Drift -->
     <div
-      class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
     <div
-      class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-brand/[0.04] blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-brand/[0.04] blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
     <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none -z-10" aria-hidden="true" />
@@ -28,7 +37,8 @@ import {
     <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Top HUD Telemetry Metadata Bar -->
       <div
-        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400"
+        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
+        :class="{ 'is-revealed': isHeroRevealed }"
       >
         <div class="flex items-center gap-3">
           <ChapterLabel
@@ -56,28 +66,37 @@ import {
         <div class="lg:col-span-7 space-y-7">
           <!-- Eyebrow Tag -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            :class="{ 'is-revealed': isHeroRevealed }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
             <span>OUR SOLUTIONS</span>
           </div>
 
-          <!-- Hero Headline (Exact requested copy with bold scale) -->
-          <h1
-            class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-normal tracking-[-0.03em] text-white leading-[1.02] text-balance-editorial"
-          >
-            Connected Solutions.
-            <span class="italic font-light text-brand">Meaningful Business Progress</span>.
-          </h1>
+          <!-- Hero Headline with WordReveal -->
+          <WordReveal
+            text="Connected Solutions. Meaningful Business Progress."
+            as="h1"
+            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
+            :italic-words="['Meaningful', 'Business', 'Progress.']"
+            :delay="240"
+            :immediate="true"
+          />
 
-          <!-- Hero Supporting Copy (Exact requested copy) -->
-          <p class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl leading-relaxed">
+          <!-- Hero Supporting Copy (Standardized to Inter font-ui) -->
+          <p
+            class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
+            :class="{ 'is-revealed': isHeroRevealed }"
+          >
             Explore how connected technology can help businesses simplify operations, improve
             visibility, and move forward with greater confidence.
           </p>
 
           <!-- Dual Action CTAs -->
-          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui">
+          <div
+            class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
+            :class="{ 'is-revealed': isHeroRevealed }"
+          >
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
                 size="lg"
@@ -102,7 +121,10 @@ import {
           </div>
 
           <!-- Strategic Principles Strip -->
-          <div class="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-6 max-w-lg font-ui">
+          <div
+            class="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-6 max-w-lg font-ui reveal-base transition-editorial duration-700 delay-800"
+            :class="{ 'is-revealed': isHeroRevealed }"
+          >
             <div>
               <div class="font-editorial text-2xl sm:text-3xl font-semibold text-white">Pragmatic</div>
               <div class="text-xs text-zinc-400 mt-1">Business-First Fit</div>
@@ -119,7 +141,10 @@ import {
         </div>
 
         <!-- Right: Photographic Architecture Canvas with Selective Workplace/Technology Imagery -->
-        <div class="lg:col-span-5 relative">
+        <div
+          class="lg:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isHeroRevealed }"
+        >
           <!-- Ambient Halo -->
           <div
             class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-70 pointer-events-none"

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   Cpu,
   BarChart3,
@@ -15,6 +17,15 @@ import {
 } from 'lucide-vue-next'
 
 const activePhase = ref(1)
+
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const schematicRef = ref<HTMLElement | null>(null)
+const { isRevealed: isSchematicRevealed } = useScrollReveal(schematicRef, { threshold: 0.12 })
+
+const areasRef = ref<HTMLElement | null>(null)
+const { isRevealed: isAreasRevealed } = useScrollReveal(areasRef, { threshold: 0.12 })
 
 const solutionAreas = [
   {
@@ -103,25 +114,31 @@ const processSteps = [
 
 <template>
   <section class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] overflow-hidden">
-    <!-- Ambient emerald atmospheric glow -->
+    <!-- Ambient emerald atmospheric glow with Organic Drift -->
     <div
-      class="absolute top-1/3 right-1/4 w-[650px] h-[650px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/3 right-1/4 w-[650px] h-[650px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="max-w-3xl space-y-4">
+      <!-- Section Header with Scroll Reveal -->
+      <div
+        ref="headerRef"
+        class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 03"
           label="CONNECTED METHODOLOGY"
           sublabel="SYSTEMIC ARCHITECTURE"
         />
-        <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">
-          Architected for
-          <span class="italic font-light text-brand">Organizational Coherence</span>.
-        </h2>
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
+        <WordReveal
+          as="h2"
+          text="Architected for Organizational Coherence."
+          :italic-words="['Organizational', 'Coherence.']"
+          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+        />
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
           KavoraX solutions are structured across three interconnected capabilities designed to address practical operational challenges in modern enterprise environments.
         </p>
       </div>
@@ -129,7 +146,11 @@ const processSteps = [
       <!-- ======================================================== -->
       <!-- PART 1: CUSTOM SVG CONNECTED WORKFLOW DIAGRAM            -->
       <!-- ======================================================== -->
-      <div class="mt-16 rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-12 shadow-2xl backdrop-blur-xl relative">
+      <div
+        ref="schematicRef"
+        class="mt-16 rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-12 shadow-2xl backdrop-blur-xl relative reveal-card transition-editorial duration-700"
+        :class="{ 'is-revealed': isSchematicRevealed }"
+      >
         <!-- Corner Crosshairs -->
         <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
         <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -162,20 +183,33 @@ const processSteps = [
           <svg class="w-full h-12" viewBox="0 0 900 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!-- Background Static Track -->
             <path d="M 150 24 L 750 24" stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-dasharray="4 4" />
-            <!-- Animated Flowing Beam -->
-            <path d="M 150 24 L 750 24" stroke="url(#flowGradient)" stroke-width="2" stroke-linecap="round" />
+            <!-- Animated Flowing Beam (Self-drawing line) -->
+            <path
+              d="M 150 24 L 750 24"
+              stroke="url(#flowGradient)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              class="draw-path-primary drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]"
+              :class="{ 'is-revealed': isSchematicRevealed }"
+            />
             
             <!-- Stage 1 Node -->
-            <circle cx="150" cy="24" r="10" fill="#0c141e" stroke="#10b981" stroke-width="2" />
-            <circle cx="150" cy="24" r="4" fill="#10b981" />
+            <g class="draw-node" :class="{ 'is-revealed': isSchematicRevealed }">
+              <circle cx="150" cy="24" r="10" fill="#0c141e" stroke="#10b981" stroke-width="2" />
+              <circle cx="150" cy="24" r="4" fill="#10b981" />
+            </g>
             
             <!-- Stage 2 Node -->
-            <circle cx="450" cy="24" r="10" fill="#0c141e" stroke="#06b6d4" stroke-width="2" />
-            <circle cx="450" cy="24" r="4" fill="#06b6d4" />
+            <g class="draw-node" :class="{ 'is-revealed': isSchematicRevealed }">
+              <circle cx="450" cy="24" r="10" fill="#0c141e" stroke="#06b6d4" stroke-width="2" />
+              <circle cx="450" cy="24" r="4" fill="#06b6d4" />
+            </g>
             
             <!-- Stage 3 Node -->
-            <circle cx="750" cy="24" r="10" fill="#0c141e" stroke="#34d399" stroke-width="2" />
-            <circle cx="750" cy="24" r="4" fill="#34d399" />
+            <g class="draw-node" :class="{ 'is-revealed': isSchematicRevealed }">
+              <circle cx="750" cy="24" r="10" fill="#0c141e" stroke="#34d399" stroke-width="2" />
+              <circle cx="750" cy="24" r="4" fill="#34d399" />
+            </g>
 
             <defs>
               <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -192,7 +226,7 @@ const processSteps = [
           <div
             v-for="(step, idx) in processSteps"
             :key="step.number"
-            class="p-6 sm:p-7 rounded-xl border transition-all duration-300 relative group cursor-pointer"
+            class="p-6 sm:p-7 rounded-xl border transition-all duration-200 ease-out relative group cursor-pointer"
             :class="[
               activePhase === idx
                 ? 'border-brand/50 bg-[#121c2a] shadow-[0_4px_24px_rgba(16,185,129,0.18)] scale-[1.01]'
@@ -251,7 +285,7 @@ const processSteps = [
       <!-- ======================================================== -->
       <!-- PART 2: CORE SOLUTION AREAS WITH PRODUCT INTEGRATION    -->
       <!-- ======================================================== -->
-      <div class="mt-20">
+      <div ref="areasRef" class="mt-20">
         <div class="flex items-center justify-between pb-6 border-b border-white/[0.08] font-mono text-xs text-zinc-400">
           <span class="text-brand font-semibold">[ 04 // CAPABILITY APPLICATION ]</span>
           <span class="text-zinc-400">CONNECTED SOLUTIONS MATRIX</span>
@@ -260,9 +294,10 @@ const processSteps = [
         <!-- Asymmetric 3-Column Solution Cards with Direct Product Deep Links -->
         <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8 font-ui">
           <div
-            v-for="area in solutionAreas"
+            v-for="(area, i) in solutionAreas"
             :key="area.id"
-            class="p-8 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-300 flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)]"
+            class="p-8 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-300 flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)] reveal-card transition-editorial duration-700"
+            :class="[{ 'is-revealed': isAreasRevealed }, 'stagger-' + (i + 1)]"
           >
             <!-- Corner Crosshair -->
             <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>

@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import ScrollTextReveal from '~/components/visual/ScrollTextReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { ArrowUpRight } from 'lucide-vue-next'
+
+const sectionRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
 
 const principles = [
   {
@@ -30,6 +36,7 @@ const principles = [
 <template>
   <section
     id="editorial-intro"
+    ref="sectionRef"
     class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Subtle Background Ambient Glow -->
@@ -40,7 +47,10 @@ const principles = [
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Chapter Eyebrow -->
-      <div class="pb-8 border-b border-white/[0.08] mb-16 flex items-center justify-between">
+      <div
+        class="pb-8 border-b border-white/[0.08] mb-16 flex items-center justify-between reveal-base"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <ChapterLabel index="01" label="THE CONNECTED MANDATE" sublabel="COHERENCE OVER FRAGMENTATION" />
         <div class="hidden sm:block font-mono text-xs text-zinc-400">
           KAVORAX OPERATIONAL PARADIGM
@@ -51,27 +61,36 @@ const principles = [
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         <!-- Left: Oversized Typographic Manifesto & Context -->
         <div class="lg:col-span-7 space-y-8">
-          <h2
+          <ScrollTextReveal
+            text="The modern enterprise cannot afford disconnected systems. We construct unified technological backbones that allow operations, data, and people to move in synchronized harmony."
+            as="h2"
+            :highlight="['operations', 'data', 'and', 'people']"
+            highlight-class="italic font-light text-brand"
+            :start-offset="0.88"
+            :end-offset="0.32"
             class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.08] tracking-[-0.02em] text-balance"
-          >
-            The modern enterprise cannot afford
-            <span class="text-zinc-500">disconnected systems</span>.
-            We construct unified technological backbones that allow
-            <span class="italic font-light text-brand">operations, data, and people</span>
-            to move in synchronized harmony.
-          </h2>
+          />
 
-          <div class="border-l-2 border-brand/40 pl-5 sm:pl-6 py-1 space-y-4 font-editorial text-lg sm:text-xl md:text-2xl text-zinc-300 leading-relaxed">
+          <div
+            class="border-l-2 border-brand/40 pl-5 sm:pl-6 py-1 space-y-4 font-editorial text-lg sm:text-xl md:text-2xl text-zinc-300 leading-relaxed reveal-paragraph delay-200"
+            :class="{ 'is-revealed': isRevealed }"
+          >
             <p>
               Organizations frequently struggle not from a lack of software, but from an overwhelming sprawl of incompatible platforms and siloed handoffs.
             </p>
           </div>
 
-          <p class="font-ui text-base text-zinc-300 leading-relaxed max-w-xl font-normal">
+          <p
+            class="font-ui text-base text-zinc-300 leading-relaxed max-w-xl font-normal reveal-paragraph delay-300"
+            :class="{ 'is-revealed': isRevealed }"
+          >
             KavoraX bridges the gaps between operational planning, real-time analytics, and cross-enterprise integration. By engineering interoperable solutions from the ground up, we help business leaders replace friction with decisive action.
           </p>
 
-          <div class="pt-2">
+          <div
+            class="pt-2 reveal-base delay-400"
+            :class="{ 'is-revealed': isRevealed }"
+          >
             <NuxtLink
               to="/about"
               class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors group font-ui uppercase tracking-wider"
@@ -86,9 +105,13 @@ const principles = [
         <div class="lg:col-span-5 space-y-8 font-ui">
           <div class="space-y-8">
             <div
-              v-for="item in principles"
+              v-for="(item, pIdx) in principles"
               :key="item.number"
-              class="relative group space-y-2 pb-8 border-b border-white/[0.06] last:border-b-0 last:pb-0"
+              class="relative group space-y-2 pb-8 border-b border-white/[0.06] last:border-b-0 last:pb-0 reveal-card"
+              :class="[
+                isRevealed ? 'is-revealed' : '',
+                pIdx === 0 ? 'delay-150' : pIdx === 1 ? 'delay-250' : 'delay-350'
+              ]"
             >
               <div class="flex items-center justify-between">
                 <span class="font-mono text-xs font-semibold text-brand tracking-widest">

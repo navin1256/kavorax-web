@@ -1,6 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Target, Server, TrendingUp, CheckCircle2, ArrowRight } from 'lucide-vue-next'
+
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const ledgerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isLedgerRevealed } = useScrollReveal(ledgerRef, { threshold: 0.12 })
+
+const footnoteRef = ref<HTMLElement | null>(null)
+const { isRevealed: isFootnoteRevealed } = useScrollReveal(footnoteRef, { threshold: 0.12 })
 
 const considerations = [
   {
@@ -36,28 +48,35 @@ const considerations = [
 <template>
   <section class="py-24 md:py-36 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="max-w-3xl space-y-4">
+      <!-- Section Header with Scroll Reveal -->
+      <div
+        ref="headerRef"
+        class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 04"
           label="EVALUATION FRAMEWORK"
           sublabel="OBJECTIVE SCOPING AXES"
         />
-        <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">
-          How to Evaluate the
-          <span class="italic font-light text-brand">Right Solution</span>.
-        </h2>
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
+        <WordReveal
+          as="h2"
+          text="How to Evaluate the Right Solution."
+          :italic-words="['Right', 'Solution.']"
+          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+        />
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
           Selecting the appropriate technology scope requires evaluating current operational objectives against established systems and future organizational growth.
         </p>
       </div>
 
       <!-- Editorial Evaluation Ledger (3 Horizontal/Asymmetric Diagnostic Bands) -->
-      <div class="mt-16 space-y-6 font-ui">
+      <div ref="ledgerRef" class="mt-16 space-y-6 font-ui">
         <div
-          v-for="item in considerations"
+          v-for="(item, idx) in considerations"
           :key="item.title"
-          class="p-8 sm:p-10 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative hover:border-brand/40 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.5)] group"
+          class="p-8 sm:p-10 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative hover:border-brand/40 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.5)] group reveal-card transition-editorial duration-700"
+          :class="[{ 'is-revealed': isLedgerRevealed }, 'stagger-' + (idx + 1)]"
         >
           <!-- Corner Crosshair -->
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -87,7 +106,7 @@ const considerations = [
               <div class="font-editorial text-xl sm:text-2xl text-white italic leading-snug">
                 “{{ item.question }}”
               </div>
-              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
                 {{ item.description }}
               </p>
 
@@ -100,9 +119,11 @@ const considerations = [
         </div>
       </div>
 
-      <!-- Consultative Guidance Footnote -->
+      <!-- Consultative Guidance Footnote with Scroll Reveal -->
       <div
-        class="mt-12 rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-ui relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+        ref="footnoteRef"
+        class="mt-12 rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-ui relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isFootnoteRevealed }"
       >
         <div class="space-y-1.5">
           <span class="text-xs font-mono text-brand uppercase tracking-wider font-semibold">

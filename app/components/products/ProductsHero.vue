@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import {
   ArrowRight,
   ArrowDown,
@@ -14,6 +15,7 @@ import {
   CheckCircle2
 } from 'lucide-vue-next'
 
+const isHeroMounted = ref(false)
 const activeOrb = ref(0)
 
 const productTiers = [
@@ -58,6 +60,7 @@ const productTiers = [
 let timer: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
+  isHeroMounted.value = true
   timer = setInterval(() => {
     activeOrb.value = (activeOrb.value + 1) % productTiers.length
   }, 4500)
@@ -80,11 +83,11 @@ const scrollToSection = (id: string) => {
   <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
     <!-- Ambient Atmospheric Lighting -->
     <div
-      class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] bg-brand/[0.08] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] bg-brand/[0.08] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
     <div
-      class="absolute bottom-10 right-10 w-[420px] h-[420px] bg-brand/[0.04] blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute bottom-10 right-10 w-[420px] h-[420px] bg-brand/[0.04] blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
@@ -94,13 +97,14 @@ const scrollToSection = (id: string) => {
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Top HUD Telemetry Metadata Strip -->
       <div
-        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400"
+        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
+        :class="{ 'is-revealed': isHeroMounted }"
       >
         <div class="flex items-center gap-3">
           <ChapterLabel
-            index="KX // 02"
-            label="PRODUCT DISCOVERY CONSOLE"
-            sublabel="INTERCONNECTED ARCHITECTURE"
+            index="CHAPTER 01"
+            label="PORTFOLIO ARCHIVE"
+            sublabel="PRODUCT DISCOVERY CONSOLE"
           />
         </div>
 
@@ -121,28 +125,37 @@ const scrollToSection = (id: string) => {
         <div class="lg:col-span-6 xl:col-span-7 space-y-7">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
             <span>OUR PRODUCTS &amp; SOLUTIONS</span>
           </div>
 
-          <!-- Hero Headline (Exact requested copy) -->
-          <h1
-            class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-normal tracking-[-0.03em] text-white leading-[1.02] text-balance-editorial"
-          >
-            Connected Solutions for
-            <span class="italic font-light text-brand">Modern Businesses</span>.
-          </h1>
+          <!-- Hero Headline with WordReveal -->
+          <WordReveal
+            text="Connected Solutions for Modern Businesses."
+            as="h1"
+            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
+            :italic-words="['Modern', 'Businesses.']"
+            :delay="240"
+            :immediate="true"
+          />
 
-          <!-- Hero Supporting Copy (Exact requested copy) -->
-          <p class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed">
+          <!-- Hero Supporting Copy -->
+          <p
+            class="font-ui text-base sm:text-lg text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             Explore connected business solutions designed to simplify operations, improve visibility
             and help your organisation scale with confidence.
           </p>
 
           <!-- Dual CTAs -->
-          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui">
+          <div
+            class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
                 size="lg"
@@ -164,7 +177,10 @@ const scrollToSection = (id: string) => {
           </div>
 
           <!-- Editorial Architecture Overview Indicators -->
-          <div class="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-6 max-w-lg font-ui">
+          <div
+            class="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-6 max-w-lg font-ui reveal-base transition-editorial duration-700 delay-800"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             <div>
               <div class="font-editorial text-2xl sm:text-3xl font-semibold text-white">Modular</div>
               <div class="text-xs text-zinc-400 mt-1">Solution Foundations</div>
@@ -181,7 +197,10 @@ const scrollToSection = (id: string) => {
         </div>
 
         <!-- Right Column: Bespoke Product Fabric Matrix Console -->
-        <div class="lg:col-span-6 xl:col-span-5 relative">
+        <div
+          class="lg:col-span-6 xl:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isHeroMounted }"
+        >
           <!-- Ambient Halo -->
           <div
             class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/20 via-transparent to-brand/10 blur-2xl opacity-75 pointer-events-none"
@@ -272,31 +291,34 @@ const scrollToSection = (id: string) => {
                   </div>
                 </div>
 
-                <!-- Expanded Telemetry Panel when Active -->
-                <div
-                  v-if="activeOrb === index"
-                  class="mt-3 pt-3 border-t border-white/[0.08] space-y-2.5 text-[11px] font-mono"
-                >
-                  <p class="text-zinc-300 font-sans text-xs leading-relaxed">
-                    {{ tier.headline }}
-                  </p>
+                <!-- Expanded Telemetry Panel when Active with Smooth Crossfade -->
+                <Transition name="tier-fade" mode="out-in">
+                  <div
+                    v-if="activeOrb === index"
+                    :key="tier.id"
+                    class="mt-3 pt-3 border-t border-white/[0.08] space-y-2.5 text-[11px] font-mono"
+                  >
+                    <p class="text-zinc-300 font-sans text-xs leading-relaxed">
+                      {{ tier.headline }}
+                    </p>
 
-                  <div class="flex items-center justify-between text-[10px] text-zinc-400 pt-1">
-                    <span class="flex items-center gap-1.5 text-zinc-400">
-                      <ShieldCheck class="h-3 w-3 text-brand" />
-                      <span>{{ tier.latency }}</span>
-                    </span>
+                    <div class="flex items-center justify-between text-[10px] text-zinc-400 pt-1">
+                      <span class="flex items-center gap-1.5 text-zinc-400">
+                        <ShieldCheck class="h-3 w-3 text-brand" />
+                        <span>{{ tier.latency }}</span>
+                      </span>
 
-                    <button
-                      type="button"
-                      class="inline-flex items-center gap-1.5 text-brand hover:text-white font-mono transition-colors cursor-pointer group"
-                      @click.stop="scrollToSection(tier.id)"
-                    >
-                      <span>INSPECT SPEC</span>
-                      <ExternalLink class="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
+                      <button
+                        type="button"
+                        class="inline-flex items-center gap-1.5 text-brand hover:text-white font-mono transition-colors cursor-pointer group"
+                        @click.stop="scrollToSection(tier.id)"
+                      >
+                        <span>INSPECT SPEC</span>
+                        <ExternalLink class="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </Transition>
               </div>
             </div>
 
@@ -324,3 +346,24 @@ const scrollToSection = (id: string) => {
     </div>
   </section>
 </template>
+
+<style scoped>
+.tier-fade-enter-active,
+.tier-fade-leave-active {
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tier-fade-enter-from {
+  opacity: 0;
+  transform: translateY(4px);
+}
+.tier-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tier-fade-enter-active,
+  .tier-fade-leave-active {
+    transition: none !important;
+  }
+}
+</style>

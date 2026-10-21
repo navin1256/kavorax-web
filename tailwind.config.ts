@@ -104,6 +104,17 @@ export default {
           'monospace'
         ]
       },
+      transitionTimingFunction: {
+        editorial: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'editorial-out': 'cubic-bezier(0.22, 1, 0.36, 1)'
+      },
+      transitionDuration: {
+        '400': '400ms',
+        '600': '600ms',
+        '700': '700ms',
+        '800': '800ms',
+        '900': '900ms'
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
@@ -116,12 +127,22 @@ export default {
         'float-slow': {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-6px)' }
+        },
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'float-slow': 'float-slow 6s ease-in-out infinite'
+        'float-slow': 'float-slow 6s ease-in-out infinite',
+        'fade-up': 'fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in': 'fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards'
       }
     }
   },

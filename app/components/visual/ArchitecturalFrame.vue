@@ -52,7 +52,7 @@ const aspectClasses = {
       <!-- Floating HUD Coordinate Strip -->
       <div
         v-if="props.badgeText || props.coordinate"
-        class="absolute top-5 left-5 right-5 z-10 flex items-center justify-between font-mono text-[10px] text-zinc-300"
+        class="absolute top-3 sm:top-5 left-3 sm:left-5 right-3 sm:right-5 z-10 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-zinc-300"
       >
         <span
           v-if="props.badgeText"

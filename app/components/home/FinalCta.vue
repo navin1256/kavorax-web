@@ -1,11 +1,19 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { ArrowRight, Mail, ShieldCheck } from 'lucide-vue-next'
+
+const ctaRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.15 })
 </script>
 
 <template>
   <section
+    id="final-cta"
+    ref="ctaRef"
     class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Cinematic Emerald Lighting Halo -->
@@ -16,30 +24,39 @@ import { ArrowRight, Mail, ShieldCheck } from 'lucide-vue-next'
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-6 sm:p-12 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] corner-crosshair group"
+        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-6 sm:p-12 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] corner-crosshair group reveal-base"
+        :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Chapter Eyebrow -->
-        <div class="flex justify-center mb-8">
+        <div class="flex justify-center mb-8 reveal-base delay-75" :class="{ 'is-revealed': isRevealed }">
           <ChapterLabel index="07" label="INITIATE COLLABORATION" sublabel="ENTERPRISE ADVISORY" />
         </div>
 
-        <!-- Headline -->
-        <h2
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-medium tracking-tight text-white leading-[1.08]"
-        >
-          Ready to move your business
-          <span class="italic font-light text-brand">forward</span>?
-        </h2>
+        <!-- Headline: Expressive closing typography reveal -->
+        <WordReveal
+          text="Ready to move your business forward?"
+          as="h2"
+          highlight="forward"
+          highlight-class="italic font-light text-brand"
+          :threshold="0.15"
+          :base-delay-ms="180"
+          :stagger-ms="55"
+          class="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-medium tracking-tight text-white leading-[1.08] max-w-3xl mx-auto text-balance"
+        />
 
         <!-- Subheading -->
         <p
-          class="mt-6 font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
+          class="mt-6 font-ui text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal reveal-base delay-250"
+          :class="{ 'is-revealed': isRevealed }"
         >
           Schedule an architectural walkthrough with KavoraX technology leaders to examine our connected solutions, system topology, and deployment roadmaps.
         </p>
 
         <!-- CTAs -->
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
+        <div
+          class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui reveal-base delay-350"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <NuxtLink to="/demo" class="w-full sm:w-auto">
             <Button
               size="lg"
@@ -62,7 +79,10 @@ import { ArrowRight, Mail, ShieldCheck } from 'lucide-vue-next'
           </NuxtLink>
         </div>
 
-        <div class="mt-10 pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-zinc-400">
+        <div
+          class="mt-10 pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-zinc-400 reveal-base delay-400"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <div class="flex items-center gap-2">
             <ShieldCheck class="h-3.5 w-3.5 text-brand" />
             <span>CONFIDENTIAL ARCHITECTURAL BRIEFING</span>

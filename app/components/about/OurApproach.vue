@@ -1,19 +1,33 @@
 <script setup lang="ts">
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Database, GitMerge } from 'lucide-vue-next'
+
+const { isRevealed: isHeaderRevealed, targetRef: headerRef } = useScrollReveal({ threshold: 0.12 })
+const { isRevealed: isPhase1Revealed, targetRef: phase1Ref } = useScrollReveal({ threshold: 0.15 })
+const { isRevealed: isPhase2Revealed, targetRef: phase2Ref } = useScrollReveal({ threshold: 0.15 })
+const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({ threshold: 0.15 })
 </script>
 
 <template>
-  <section id="our-approach" class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.06] overflow-hidden">
+  <section
+    id="our-approach"
+    ref="headerRef"
+    class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.06] overflow-hidden"
+  >
     <!-- Ambient backlight glow -->
     <div
-      class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header with ChapterLabel -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 03"
           label="OUR METHODOLOGY"
@@ -29,13 +43,17 @@ import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Dat
       </div>
 
       <!-- Section Title Area -->
-      <div class="max-w-3xl space-y-4 mb-20">
-        <h2
+      <div
+        class="max-w-3xl space-y-4 mb-20 reveal-base transition-editorial duration-700 delay-100"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
+        <WordReveal
+          text="Connected thinking. Practical solutions."
+          as="h2"
           class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-        >
-          Connected thinking.
-          <span class="italic font-light text-brand">Practical solutions</span>.
-        </h2>
+          :italic-words="['Practical', 'solutions.']"
+          :delay="100"
+        />
         <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
           Meaningful technological progress requires understanding business realities first.
           Our approach connects workflows, information, and people to build clarity without unnecessary complexity.
@@ -47,7 +65,9 @@ import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Dat
 
         <!-- Phase 01: Left Narrative + Right Architectural Photo Frame -->
         <div
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+          ref="phase1Ref"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          :class="{ 'is-revealed': isPhase1Revealed }"
         >
           <!-- Corner Crosshairs -->
           <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -139,7 +159,9 @@ import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Dat
 
         <!-- Phase 02: Inverted Composition (Left Visual Diagram + Right Narrative) -->
         <div
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+          ref="phase2Ref"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          :class="{ 'is-revealed': isPhase2Revealed }"
         >
           <!-- Corner Crosshairs -->
           <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -161,7 +183,7 @@ import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Dat
                   </span>
                 </div>
 
-                <!-- 3 Interconnected Stream Layers -->
+                <!-- 3 Interconnected Stream Layers with Self-Drawing SVG Conduits -->
                 <div class="space-y-2.5 font-mono text-[11px]">
                   <div class="rounded-lg border border-white/5 bg-[#142030] p-3 flex items-center justify-between">
                     <div class="flex items-center gap-2 text-zinc-300">
@@ -171,11 +193,28 @@ import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Dat
                     <span class="text-[10px] text-brand font-semibold">SYNCHRONIZED</span>
                   </div>
 
-                  <div class="flex items-center justify-center my-0.5">
-                    <div class="h-4 w-px bg-brand/50" />
+                  <!-- Self-Drawing SVG Connector 1 -->
+                  <div class="flex items-center justify-center my-0.5" aria-hidden="true">
+                    <svg width="2" height="18" viewBox="0 0 2 18" fill="none" class="overflow-visible">
+                      <line x1="1" y1="0" x2="1" y2="18" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+                      <line
+                        x1="1"
+                        y1="0"
+                        x2="1"
+                        y2="18"
+                        stroke="#10b981"
+                        stroke-width="1.5"
+                        stroke-dasharray="18"
+                        :stroke-dashoffset="isPhase2Revealed ? '0' : '18'"
+                        class="transition-all duration-700 delay-300 ease-out"
+                      />
+                    </svg>
                   </div>
 
-                  <div class="rounded-lg border border-brand/30 bg-brand/10 p-3 flex items-center justify-between">
+                  <div
+                    class="rounded-lg border border-brand/30 bg-brand/10 p-3 flex items-center justify-between transition-all duration-700 delay-500"
+                    :class="{ 'shadow-[0_0_20px_-3px_rgba(16,185,129,0.22)]': isPhase2Revealed }"
+                  >
                     <div class="flex items-center gap-2 text-white font-medium">
                       <GitMerge class="h-3.5 w-3.5 text-brand" />
                       <span>KavoraX Event Engine</span>
@@ -183,8 +222,22 @@ import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Dat
                     <span class="text-[10px] text-brand font-semibold">COORDINATED</span>
                   </div>
 
-                  <div class="flex items-center justify-center my-0.5">
-                    <div class="h-4 w-px bg-brand/50" />
+                  <!-- Self-Drawing SVG Connector 2 -->
+                  <div class="flex items-center justify-center my-0.5" aria-hidden="true">
+                    <svg width="2" height="18" viewBox="0 0 2 18" fill="none" class="overflow-visible">
+                      <line x1="1" y1="0" x2="1" y2="18" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+                      <line
+                        x1="1"
+                        y1="0"
+                        x2="1"
+                        y2="18"
+                        stroke="#10b981"
+                        stroke-width="1.5"
+                        stroke-dasharray="18"
+                        :stroke-dashoffset="isPhase2Revealed ? '0' : '18'"
+                        class="transition-all duration-700 delay-700 ease-out"
+                      />
+                    </svg>
                   </div>
 
                   <div class="rounded-lg border border-white/5 bg-[#142030] p-3 flex items-center justify-between">
@@ -258,7 +311,9 @@ import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Dat
 
         <!-- Phase 03: Distinct Asymmetric Architecture Ledger -->
         <div
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+          ref="phase3Ref"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          :class="{ 'is-revealed': isPhase3Revealed }"
         >
           <!-- Corner Crosshairs -->
           <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>

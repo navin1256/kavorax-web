@@ -43,6 +43,8 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   body {
@@ -53,6 +55,9 @@
     font-size: 1rem;
     line-height: 1.65;
     color: #e2e8f0;
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
   }
 
   h1,
@@ -136,6 +141,41 @@
   animation: emerald-pulse-dot 3s ease-in-out infinite;
 }
 
+/* Cinematic Hero Background Drift (Ken Burns effect: ultra-slow 16s ease-in-out) */
+@keyframes hero-cinematic-drift {
+  0% {
+    transform: scale(1.01) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.045) translate3d(-0.6%, -0.4%, 0);
+  }
+  100% {
+    transform: scale(1.01) translate3d(0, 0, 0);
+  }
+}
+
+.animate-hero-drift {
+  animation: hero-cinematic-drift 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Subtle ambient emerald light drift */
+@keyframes ambient-glow-drift {
+  0%, 100% {
+    opacity: 0.04;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.08;
+    transform: translate3d(1%, -1%, 0) scale(1.04);
+  }
+}
+
+.animate-ambient-drift {
+  animation: ambient-glow-drift 12s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
 /* ==========================================================================
    Subtle Technical Straight-Line Grid Pattern for Dark/Black Sections
    - Strictly thin straight horizontal and vertical lines (CSS linear-gradient)
@@ -212,6 +252,123 @@ footer.bg-\[\#070b0f\] {
   text-wrap: balance;
 }
 
+/* ==========================================================================
+   Editorial Motion Design System & Reveal Classes
+   - Easing: cubic-bezier(0.16, 1, 0.3, 1)
+   - Vertical offset: 20px - 26px
+   - Accessible reduced-motion guarantees
+   ========================================================================== */
+:root {
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-editorial-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-base {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 650ms var(--ease-editorial), transform 650ms var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+.reveal-base.is-revealed,
+.is-revealed .reveal-base,
+.is-revealed.reveal-base {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Granular Editorial Reveal Utilities */
+.reveal-heading {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 650ms var(--ease-editorial), transform 650ms var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+.reveal-paragraph,
+.reveal-body {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 480ms var(--ease-editorial), transform 480ms var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+.reveal-card {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 600ms var(--ease-editorial), transform 600ms var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+.reveal-heading.is-revealed,
+.reveal-paragraph.is-revealed,
+.reveal-body.is-revealed,
+.reveal-card.is-revealed,
+.is-revealed .reveal-heading,
+.is-revealed .reveal-paragraph,
+.is-revealed .reveal-body,
+.is-revealed .reveal-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger transition delay utilities */
+.stagger-1, .delay-75 { transition-delay: 75ms; }
+.stagger-2, .delay-100 { transition-delay: 100ms; }
+.stagger-3, .delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.stagger-4, .delay-250 { transition-delay: 250ms; }
+.delay-300 { transition-delay: 300ms; }
+.stagger-5, .delay-350 { transition-delay: 350ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Self-Drawing Technical Line Animation System (Priority 3) */
+.draw-path-primary {
+  stroke-dasharray: 850;
+  stroke-dashoffset: 850;
+  transition: stroke-dashoffset 1100ms var(--ease-editorial);
+  will-change: stroke-dashoffset;
+}
+
+.draw-path-primary.is-revealed,
+.is-revealed .draw-path-primary {
+  stroke-dashoffset: 0;
+}
+
+.draw-path-secondary {
+  stroke-dasharray: 850;
+  stroke-dashoffset: 850;
+  transition: stroke-dashoffset 750ms var(--ease-editorial);
+  transition-delay: 450ms;
+  will-change: stroke-dashoffset;
+}
+
+.draw-path-secondary.is-revealed,
+.is-revealed .draw-path-secondary {
+  stroke-dashoffset: 0;
+}
+
+.draw-node {
+  opacity: 0;
+  transform: scale(0.65);
+  transform-origin: center;
+  transition: opacity 400ms var(--ease-editorial), transform 400ms var(--ease-editorial);
+  transition-delay: 950ms;
+}
+
+.draw-node.is-revealed,
+.is-revealed .draw-node {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Micro-interaction button press */
+.btn-press:active {
+  transform: scale(0.985);
+  transition: transform 0.1s ease-out;
+}
+
 /* Custom dark scrollbar for sleek desktop viewing */
 ::-webkit-scrollbar {
   width: 8px;
@@ -240,4 +397,41 @@ footer.bg-\[\#070b0f\] {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .reveal-base,
+  .reveal-heading,
+  .reveal-paragraph,
+  .reveal-body,
+  .reveal-card,
+  .draw-node,
+  .is-revealed,
+  [data-reveal-element] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Accessible fallback for typography word reveals */
+  .font-editorial span,
+  [aria-hidden="true"] span {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Accessible fallback for self-drawing SVG technical lines */
+  .draw-path-primary,
+  .draw-path-secondary,
+  path[stroke-dasharray] {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+
+  /* Accessible fallback for cinematic background drift */
+  .animate-hero-drift,
+  .animate-ambient-drift {
+    animation: none !important;
+    transform: none !important;
+  }
 }
+

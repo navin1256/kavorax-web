@@ -15,8 +15,10 @@ import {
   ShieldCheck,
   Calendar,
   Building2,
-  Lock
+  Lock,
+  RotateCcw
 } from 'lucide-vue-next'
+import { useKavoraxApi } from '~/composables/useKavoraxApi'
 
 // Validation Schema using existing Zod library
 const contactSchema = z.object({
@@ -38,10 +40,12 @@ const contactSchema = z.object({
     .string()
     .trim()
     .min(10, { message: 'Message must be at least 10 characters long.' })
-    .max(3000, { message: 'Message cannot exceed 3000 characters.' })
+    .max(2000, { message: 'Message cannot exceed 2000 characters.' })
 })
 
 type ContactFormData = z.infer<typeof contactSchema>
+
+const { isSubmitting, submitContactMessage } = useKavoraxApi()
 
 const formData = reactive<ContactFormData>({
   fullName: '',
@@ -52,8 +56,10 @@ const formData = reactive<ContactFormData>({
 })
 
 const errors = ref<Record<string, string>>({})
-const isSubmitting = ref(false)
-const submissionStatus = ref<'idle' | 'validated'>('idle')
+const apiError = ref<string | null>(null)
+const submittedId = ref<number | null>(null)
+const submittedName = ref('')
+const submissionStatus = ref<'idle' | 'success'>('idle')
 
 const inquiryOptions = [
   { value: 'General Inquiry', label: 'General Inquiry' },
@@ -99,6 +105,7 @@ const handleInput = (field: keyof ContactFormData) => {
 
 const handleSubmit = async () => {
   errors.value = {}
+  apiError.value = null
 
   const result = contactSchema.safeParse(formData)
 
@@ -123,12 +130,53 @@ const handleSubmit = async () => {
     return
   }
 
-  isSubmitting.value = true
+  // Build subject incorporating inquiry type and company name if present
+  const subject = formData.companyName
+    ? `[${formData.inquiryType}] ${formData.companyName}`
+    : formData.inquiryType
 
-  // Short realistic validation transition
-  await new Promise((resolve) => setTimeout(resolve, 600))
-  isSubmitting.value = false
-  submissionStatus.value = 'validated'
+  const response = await submitContactMessage({
+    name: formData.fullName,
+    email: formData.workEmail,
+    subject,
+    message: formData.message
+  })
+
+  if (response.success && response.data) {
+    submittedId.value = response.data.id
+    submittedName.value = formData.fullName
+    submissionStatus.value = 'success'
+    // Form data reset ONLY upon confirmed backend persistence
+    formData.fullName = ''
+    formData.workEmail = ''
+    formData.companyName = ''
+    formData.inquiryType = ''
+    formData.message = ''
+    errors.value = {}
+  } else {
+    // Preserve all entered form data for user retry
+    if (response.validationErrors) {
+      const backendErrors: Record<string, string> = {}
+      if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
+      if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
+      if (response.validationErrors.message) backendErrors.message = response.validationErrors.message
+      if (response.validationErrors.subject) backendErrors.inquiryType = response.validationErrors.subject
+      errors.value = { ...errors.value, ...backendErrors }
+    }
+    apiError.value = response.error || 'Unable to submit your inquiry. Please try again.'
+    nextTick(() => {
+      const errorEl = document.getElementById('contact-api-error')
+      if (errorEl) {
+        errorEl.focus()
+      }
+    })
+  }
+}
+
+const handleReset = () => {
+  submissionStatus.value = 'idle'
+  apiError.value = null
+  submittedId.value = null
 }
 </script>
 
@@ -319,38 +367,59 @@ const handleSubmit = async () => {
               </p>
             </div>
 
-            <!-- Honest Validated Staging Notice (Zero Fake Submissions) -->
+            <!-- Real Backend Success Notice -->
             <div
-              v-if="submissionStatus === 'validated'"
-              class="mt-6 rounded-2xl border border-brand/35 bg-brand/[0.08] p-6 font-ui space-y-3 shadow-[0_0_30px_rgba(16,185,129,0.15)] animate-fade-in"
+              v-if="submissionStatus === 'success'"
+              class="mt-6 rounded-2xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4 shadow-[0_0_30px_rgba(16,185,129,0.18)]"
               role="status"
             >
               <div class="flex items-start gap-3.5">
                 <CheckCircle2 class="h-6 w-6 text-brand shrink-0 mt-0.5" />
-                <div class="space-y-1.5">
-                  <h4 class="text-base font-semibold text-white">Inquiry Information Validated</h4>
+                <div class="space-y-2">
+                  <h4 class="text-base font-semibold text-white">Inquiry Successfully Registered</h4>
                   <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">
-                    Your details have been verified locally. Automated web-form dispatch is currently pending backend mailer configuration in this environment.
+                    Thank you, <span class="font-medium text-white">{{ submittedName }}</span>. Your inquiry has been securely stored in our system and assigned reference <span class="font-mono text-brand font-semibold">#KX-C{{ submittedId }}</span>.
                   </p>
-                  <p class="text-xs text-zinc-300 leading-relaxed pt-1">
-                    Please reach out directly to our advisory desk at
-                    <a
-                      href="mailto:contact@kavorax.com"
-                      class="text-brand font-semibold underline hover:text-white"
+                  <p class="text-xs text-zinc-300 leading-relaxed">
+                    Our technical solutions team reviews incoming requests continuously and will reach out to you within one business day.
+                  </p>
+                  <div class="pt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#0e1622] hover:bg-[#142030]"
+                      @click="handleReset"
                     >
-                      contact@kavorax.com
-                    </a>
-                    or arrange an executive walkthrough via our
-                    <NuxtLink to="/demo" class="text-brand font-semibold underline hover:text-white">
-                      Demo page
-                    </NuxtLink>.
-                  </p>
+                      <RotateCcw class="mr-1.5 h-3.5 w-3.5" />
+                      Send Another Inquiry
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- The Form -->
-            <form class="mt-8 space-y-8 font-ui" novalidate @submit.prevent="handleSubmit">
+            <!-- Backend Error Alert Banner -->
+            <div
+              v-if="apiError"
+              id="contact-api-error"
+              tabindex="-1"
+              class="mt-6 rounded-2xl border border-red-500/40 bg-red-500/[0.08] p-5 font-ui text-xs sm:text-sm text-red-200 flex items-start gap-3.5 focus:outline-none focus:ring-1 focus:ring-red-500"
+              role="alert"
+            >
+              <AlertCircle class="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+              <div class="space-y-1">
+                <div class="font-semibold text-white">Submission Notice</div>
+                <p>{{ apiError }}</p>
+              </div>
+            </div>
+
+            <!-- The Form (Hidden upon confirmed success) -->
+            <form
+              v-if="submissionStatus !== 'success'"
+              class="mt-8 space-y-8 font-ui"
+              novalidate
+              @submit.prevent="handleSubmit"
+            >
 
               <!-- Group 1: Contact Details -->
               <div class="space-y-5">
@@ -520,7 +589,7 @@ const handleSubmit = async () => {
               <div class="space-y-5">
                 <div class="flex items-center justify-between pb-2 border-b border-white/[0.06]">
                   <span class="font-mono text-[11px] text-brand tracking-widest uppercase">03 // PROJECT CONTEXT</span>
-                  <span class="font-mono text-[10px] text-zinc-500">{{ formData.message.length }} / 3000 chars</span>
+                  <span class="font-mono text-[10px] text-zinc-500">{{ formData.message.length }} / 2000 chars</span>
                 </div>
 
                 <div class="space-y-2">
@@ -571,7 +640,7 @@ const handleSubmit = async () => {
                 >
                   <Loader2 v-if="isSubmitting" class="mr-2.5 h-5 w-5 animate-spin text-black" />
                   <Send v-else class="mr-2.5 h-4 w-4 group-hover/btn:translate-x-0.5 transition-transform" />
-                  <span>{{ isSubmitting ? 'Validating Inquiry...' : 'Send Inquiry' }}</span>
+                  <span>{{ isSubmitting ? 'Submitting to KavoraX...' : 'Send Inquiry' }}</span>
                 </Button>
               </div>
 

@@ -1,7 +1,19 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { ArrowRight, ShieldCheck } from 'lucide-vue-next'
+
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const scenariosRef = ref<HTMLElement | null>(null)
+const { isRevealed: isScenariosRevealed } = useScrollReveal(scenariosRef, { threshold: 0.12 })
+
+const advisoryRef = ref<HTMLElement | null>(null)
+const { isRevealed: isAdvisoryRevealed } = useScrollReveal(advisoryRef, { threshold: 0.12 })
 
 const scenarios = [
   {
@@ -29,30 +41,50 @@ const scenarios = [
 </script>
 
 <template>
-  <section class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.08] relative">
+  <section class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
+    <!-- Ambient Depth Lighting with Drift -->
+    <div
+      class="absolute top-1/3 left-10 w-[550px] h-[450px] bg-brand/[0.03] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      aria-hidden="true"
+    />
+
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="max-w-3xl space-y-4">
+      <!-- Section Header with Scroll Reveal -->
+      <div
+        ref="headerRef"
+        class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 05"
           label="GUIDANCE & PLANNING"
           sublabel="ENTERPRISE FIT MATRIX"
         />
-        <h2 class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">
-          Identifying the right starting point for <span class="italic font-light text-brand">your enterprise</span>.
-        </h2>
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
+        <WordReveal
+          as="h2"
+          text="Identifying the right starting point for your enterprise."
+          :italic-words="['your', 'enterprise.']"
+          class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+        />
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
           KavoraX solutions are modular by design. Organizations can deploy a focused solution to
           resolve immediate challenges, then interconnect additional layers over time.
         </p>
       </div>
 
-      <!-- Scenarios List -->
-      <div class="mt-14 space-y-5">
+      <!-- Scenarios List with Staggered Card Entrance -->
+      <div
+        ref="scenariosRef"
+        class="mt-14 space-y-5"
+      >
         <div
-          v-for="item in scenarios"
+          v-for="(item, index) in scenarios"
           :key="item.recommendation"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/80 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-brand/35 transition-colors relative group backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.4)]"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/80 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-brand/35 transition-all relative group backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] reveal-card"
+          :class="[
+            `stagger-${index + 1}`,
+            isScenariosRevealed ? 'is-revealed' : ''
+          ]"
         >
           <!-- Corner Crosshair -->
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -93,9 +125,11 @@ const scenarios = [
         </div>
       </div>
 
-      <!-- Bottom Advisory Banner -->
+      <!-- Bottom Advisory Banner with Scroll Reveal -->
       <div
-        class="mt-14 rounded-2xl border border-white/[0.1] bg-[#0e1622]/90 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl"
+        ref="advisoryRef"
+        class="mt-14 rounded-2xl border border-white/[0.1] bg-[#0e1622]/90 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isAdvisoryRevealed }"
       >
         <!-- Top Glow Accent -->
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand to-transparent opacity-80" />

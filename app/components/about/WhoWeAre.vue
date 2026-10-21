@@ -1,19 +1,33 @@
 <script setup lang="ts">
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import ScrollTextReveal from '~/components/visual/ScrollTextReveal.vue'
+import { ref } from 'vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Building2, Layers, ShieldCheck, ArrowRight, GitCommit, CheckCircle2, Split } from 'lucide-vue-next'
+
+const sectionRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.05 })
 </script>
 
 <template>
-  <section id="who-we-are" class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.06] overflow-hidden">
+  <section
+    id="who-we-are"
+    ref="sectionRef"
+    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.06] overflow-hidden"
+  >
     <!-- Ambient ambient glow -->
     <div
-      class="absolute top-1/2 -left-48 w-96 h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 -left-48 w-96 h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Tag & Coordinate Metadata Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 02"
           label="IDENTITY & PURPOSE"
@@ -31,19 +45,29 @@ import { Building2, Layers, ShieldCheck, ArrowRight, GitCommit, CheckCircle2, Sp
       <!-- Main Asymmetric Spread -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         <!-- Left: Oversized Typographic Statement & Human Narrative -->
-        <div class="lg:col-span-7 space-y-8">
-          <h2
+        <div
+          class="lg:col-span-7 space-y-8 reveal-base transition-editorial duration-700 delay-75"
+          :class="{ 'is-revealed': isRevealed }"
+        >
+          <WordReveal
+            text="Technology with business at its core."
+            as="h2"
             class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.12]"
-          >
-            Technology with <span class="italic font-light text-brand">business at its core</span>.
-          </h2>
+            :italic-words="['business', 'at', 'its', 'core.']"
+            :delay="100"
+          />
 
-          <div class="space-y-6 font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
-            <p class="border-l-2 border-brand/40 pl-6 italic text-white/95">
-              "Modern enterprises frequently struggle with fragmented software landscapes where
-              critical workflows, operational telemetry, and cross-departmental handoffs remain
-              trapped in disconnected tools."
-            </p>
+          <div class="space-y-6">
+            <div class="border-l-2 border-brand/40 pl-6">
+              <ScrollTextReveal
+                text="Modern enterprises frequently struggle with fragmented software landscapes where critical workflows, operational telemetry, and cross-departmental handoffs remain trapped in disconnected tools."
+                as="blockquote"
+                class="font-editorial text-xl sm:text-2xl leading-relaxed italic"
+                :highlight="['fragmented', 'software', 'landscapes', 'disconnected', 'tools.']"
+                :start-offset="0.88"
+                :end-offset="0.32"
+              />
+            </div>
             <p class="font-ui text-base sm:text-lg text-zinc-300 font-normal leading-relaxed">
               KavoraX Global Private Limited develops enterprise technological systems engineered to
               help organisations operate smarter, serve customers better, and scale with sustainable
@@ -103,7 +127,10 @@ import { Building2, Layers, ShieldCheck, ArrowRight, GitCommit, CheckCircle2, Sp
         </div>
 
         <!-- Right: Photographic Environment Frame + Convergence Schematic -->
-        <div class="lg:col-span-5 space-y-6">
+        <div
+          class="lg:col-span-5 space-y-6 reveal-base transition-editorial duration-700 delay-200"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <!-- Architectural Environment Photography Frame -->
           <div class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group">
             <!-- Active Theory Corner Crosshairs -->
@@ -175,13 +202,29 @@ import { Building2, Layers, ShieldCheck, ArrowRight, GitCommit, CheckCircle2, Sp
                 </p>
               </div>
 
-              <!-- Connecting Line with Pulse -->
-              <div class="flex items-center justify-center my-0.5">
-                <div class="h-5 w-px bg-gradient-to-b from-white/20 via-brand to-brand" />
+              <!-- Connecting Self-Drawing SVG Conduit 1 -->
+              <div class="flex items-center justify-center my-0.5" aria-hidden="true">
+                <svg width="2" height="20" viewBox="0 0 2 20" fill="none" class="overflow-visible">
+                  <line x1="1" y1="0" x2="1" y2="20" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+                  <line
+                    x1="1"
+                    y1="0"
+                    x2="1"
+                    y2="20"
+                    stroke="#10b981"
+                    stroke-width="1.5"
+                    stroke-dasharray="20"
+                    :stroke-dashoffset="isRevealed ? '0' : '20'"
+                    class="transition-all duration-700 delay-300 ease-out"
+                  />
+                </svg>
               </div>
 
               <!-- KavoraX Connected Fabric Node -->
-              <div class="rounded-xl border border-brand/35 bg-brand/[0.06] p-3.5 space-y-1.5 relative overflow-hidden">
+              <div
+                class="rounded-xl border border-brand/35 bg-brand/[0.06] p-3.5 space-y-1.5 relative overflow-hidden transition-all duration-700 delay-500"
+                :class="{ 'shadow-[0_0_24px_-4px_rgba(16,185,129,0.25)]': isRevealed }"
+              >
                 <div class="flex items-center justify-between text-brand font-semibold text-xs">
                   <span class="flex items-center gap-2">
                     <Layers class="h-4 w-4 text-brand" />
@@ -196,9 +239,22 @@ import { Building2, Layers, ShieldCheck, ArrowRight, GitCommit, CheckCircle2, Sp
                 </p>
               </div>
 
-              <!-- Connecting Line with Pulse -->
-              <div class="flex items-center justify-center my-0.5">
-                <div class="h-5 w-px bg-gradient-to-b from-brand via-brand to-white/20" />
+              <!-- Connecting Self-Drawing SVG Conduit 2 -->
+              <div class="flex items-center justify-center my-0.5" aria-hidden="true">
+                <svg width="2" height="20" viewBox="0 0 2 20" fill="none" class="overflow-visible">
+                  <line x1="1" y1="0" x2="1" y2="20" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+                  <line
+                    x1="1"
+                    y1="0"
+                    x2="1"
+                    y2="20"
+                    stroke="#10b981"
+                    stroke-width="1.5"
+                    stroke-dasharray="20"
+                    :stroke-dashoffset="isRevealed ? '0' : '20'"
+                    class="transition-all duration-700 delay-700 ease-out"
+                  />
+                </svg>
               </div>
 
               <!-- Resulting Value -->

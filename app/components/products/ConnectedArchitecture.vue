@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Cpu, BarChart3, Network, ShieldCheck, Zap, ArrowRightLeft, CheckCircle2 } from 'lucide-vue-next'
 
 const selectedNode = ref(0)
+
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const matrixRef = ref<HTMLElement | null>(null)
+const { isRevealed: isMatrixRevealed } = useScrollReveal(matrixRef, { threshold: 0.12 })
 
 const nodes = [
   {
@@ -51,25 +59,32 @@ const nodes = [
 
 <template>
   <section class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
-    <!-- Ambient Depth Lighting -->
+    <!-- Ambient Depth Lighting with Drift -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="max-w-3xl mx-auto text-center space-y-4">
+      <!-- Section Header with Scroll Reveal -->
+      <div
+        ref="headerRef"
+        class="max-w-3xl mx-auto text-center space-y-4 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 03"
           label="ARCHITECTURAL INTERCONNECTION"
           sublabel="SYSTEM TOPOLOGY"
         />
-        <h2 class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">
-          One Connected Foundation. <span class="italic font-light text-brand">Multiple Business Possibilities</span>.
-        </h2>
+        <WordReveal
+          as="h2"
+          text="One Connected Foundation. Multiple Business Possibilities."
+          :italic-words="['Multiple', 'Business', 'Possibilities.']"
+          class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+        />
         <p
-          class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl mx-auto"
+          class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal"
         >
           Rather than functioning as isolated products, KavoraX solutions share a common operational
           fabric—enabling organizations to deploy what they need today and connect additional
@@ -77,8 +92,12 @@ const nodes = [
         </p>
       </div>
 
-      <!-- Architectural Matrix Diagram Container -->
-      <div class="mt-16 max-w-5xl mx-auto">
+      <!-- Architectural Matrix Diagram Container with Scroll Reveal -->
+      <div
+        ref="matrixRef"
+        class="mt-16 max-w-5xl mx-auto reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isMatrixRevealed }"
+      >
         <div
           class="rounded-2xl border border-white/[0.1] bg-[#0c131c]/90 p-6 sm:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl relative"
         >
@@ -102,13 +121,15 @@ const nodes = [
             </div>
           </div>
 
-          <!-- Central Architectural Quad Matrix -->
+          <!-- Central Architectural Quad Matrix with Staggered Entrance -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
             <div
               v-for="(node, index) in nodes"
               :key="node.title"
-              class="rounded-xl border p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between relative group"
+              class="rounded-xl border p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between relative group reveal-card"
               :class="[
+                `stagger-${index + 1}`,
+                isMatrixRevealed ? 'is-revealed' : '',
                 selectedNode === index
                   ? 'border-brand/50 bg-[#121c2a] shadow-[0_4px_24px_rgba(16,185,129,0.18)] scale-[1.01]'
                   : 'border-white/[0.08] bg-[#0e1622]/80 hover:border-white/20 hover:bg-[#101926]'
