@@ -1,6 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-vue-next'
+
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const stickyRef = ref<HTMLElement | null>(null)
+const { isRevealed: isStickyRevealed } = useScrollReveal(stickyRef, { threshold: 0.12 })
+
+const cardsRef = ref<HTMLElement | null>(null)
+const { isRevealed: isCardsRevealed } = useScrollReveal(cardsRef, { threshold: 0.12 })
 
 const storytellingPairs = [
   {
@@ -53,18 +65,24 @@ const storytellingPairs = [
 <template>
   <section class="py-24 md:py-36 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Editorial Header -->
-      <div class="max-w-3xl space-y-4">
+      <!-- Section Editorial Header with Scroll Reveal -->
+      <div
+        ref="headerRef"
+        class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 02"
           label="OPERATIONAL REALITIES"
           sublabel="PROBLEM-TO-SOLUTION CONTINUUM"
         />
-        <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">
-          Technology Should Work
-          <span class="italic font-light text-brand">Around Your Business</span>.
-        </h2>
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
+        <WordReveal
+          as="h2"
+          text="Technology Should Work Around Your Business."
+          :italic-words="['Around', 'Your', 'Business.']"
+          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+        />
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
           As modern organizations scale, their technology landscape often fragments across standalone applications, distinct departmental toolchains, and legacy platforms. We contrast these critical friction points with connected architectural solutions.
         </p>
       </div>
@@ -72,7 +90,11 @@ const storytellingPairs = [
       <!-- Asymmetrical Narrative Storytelling Layout (Image on Left, Comparative Progression on Right) -->
       <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start font-ui">
         <!-- Left: Realistic High-Resolution Technology Photography with Contextual Annotation -->
-        <div class="lg:col-span-5 sticky top-28 space-y-6">
+        <div
+          ref="stickyRef"
+          class="lg:col-span-5 sticky top-28 space-y-6 reveal-base transition-editorial duration-700"
+          :class="{ 'is-revealed': isStickyRevealed }"
+        >
           <div class="rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl relative group">
             <!-- Corner Crosshairs -->
             <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
@@ -116,11 +138,12 @@ const storytellingPairs = [
         </div>
 
         <!-- Right: Business Problem vs. Connected Solution Storytelling Cards -->
-        <div class="lg:col-span-7 space-y-6">
+        <div ref="cardsRef" class="lg:col-span-7 space-y-6">
           <div
             v-for="(item, idx) in storytellingPairs"
             :key="idx"
-            class="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 backdrop-blur-xl relative hover:border-brand/40 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.5)] group"
+            class="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 backdrop-blur-xl relative hover:border-brand/40 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.5)] group reveal-card transition-editorial duration-700"
+            :class="[{ 'is-revealed': isCardsRevealed }, 'stagger-' + (idx + 1)]"
           >
             <!-- Corner Crosshair -->
             <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>

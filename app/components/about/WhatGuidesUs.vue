@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Eye, Layers, RefreshCw, ShieldCheck, CheckCircle2 } from 'lucide-vue-next'
+
+const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
 
 const principles = [
   {
@@ -55,10 +59,23 @@ const principles = [
 </script>
 
 <template>
-  <section id="guiding-principles" class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.06] overflow-hidden">
+  <section
+    id="guiding-principles"
+    ref="targetRef"
+    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.06] overflow-hidden"
+  >
+    <!-- Ambient ambient glow -->
+    <div
+      class="absolute top-1/2 right-0 w-96 h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      aria-hidden="true"
+    />
+
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header with ChapterLabel -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 05"
           label="GUIDING ETHICS"
@@ -74,13 +91,17 @@ const principles = [
       </div>
 
       <!-- Section Title Area -->
-      <div class="max-w-3xl space-y-4 mb-20">
-        <h2
+      <div
+        class="max-w-3xl space-y-4 mb-20 reveal-base transition-editorial duration-700 delay-100"
+        :class="{ 'is-revealed': isRevealed }"
+      >
+        <WordReveal
+          text="What guides us: Pragmatic values."
+          as="h2"
           class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-        >
-          What guides us:
-          <span class="italic font-light text-brand">Pragmatic values</span>.
-        </h2>
+          :italic-words="['Pragmatic', 'values.']"
+          :delay="100"
+        />
         <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
           Four foundational principles inform our engineering decisions, client collaborations,
           and long-term architectural standards.
@@ -90,9 +111,11 @@ const principles = [
       <!-- 4 Principles Editorial 2x2 Ledger with Restrained Composition -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-ui">
         <div
-          v-for="item in principles"
+          v-for="(item, pIdx) in principles"
           :key="item.id"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131e]/90 p-8 sm:p-10 backdrop-blur-xl hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131e]/90 p-8 sm:p-10 backdrop-blur-xl hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative reveal-base transition-editorial duration-700"
+          :class="{ 'is-revealed': isRevealed }"
+          :style="{ transitionDelay: isRevealed ? `${pIdx * 90 + 100}ms` : '0ms' }"
         >
           <!-- Corner Crosshairs -->
           <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>

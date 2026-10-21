@@ -12,8 +12,10 @@ import {
   CheckCircle2,
   ShieldCheck,
   HelpCircle,
-  RotateCcw
+  RotateCcw,
+  AlertCircle
 } from 'lucide-vue-next'
+import { useKavoraxApi } from '~/composables/useKavoraxApi'
 
 // Validation Schema using Zod
 const demoSchema = z.object({
@@ -43,10 +45,12 @@ const demoSchema = z.object({
     .string()
     .trim()
     .min(10, { message: 'Please describe your business challenge or goals (minimum 10 characters).' })
-    .max(3000, { message: 'Description cannot exceed 3000 characters.' })
+    .max(800, { message: 'Description cannot exceed 800 characters.' })
 })
 
 type DemoFormData = z.infer<typeof demoSchema>
+
+const { isSubmitting, submitDemoRequest } = useKavoraxApi()
 
 const formData = reactive<DemoFormData>({
   fullName: '',
@@ -59,8 +63,11 @@ const formData = reactive<DemoFormData>({
 })
 
 const errors = ref<Record<string, string>>({})
-const isSubmitting = ref(false)
-const submissionStatus = ref<'idle' | 'validated'>('idle')
+const apiError = ref<string | null>(null)
+const submittedReference = ref<number | null>(null)
+const submittedName = ref('')
+const submittedCompany = ref('')
+const submissionStatus = ref<'idle' | 'success'>('idle')
 
 // Industry options with verified industry sectors from the project + "Other"
 const industryOptions = [
@@ -118,6 +125,7 @@ const validateField = (field: keyof DemoFormData) => {
 
 const handleSubmit = async () => {
   errors.value = {}
+  apiError.value = null
 
   const result = demoSchema.safeParse(formData)
 
@@ -134,12 +142,48 @@ const handleSubmit = async () => {
     return
   }
 
-  isSubmitting.value = true
+  // Format structured requirements preserving industry, interest area, job role and challenge
+  const reqsFormatted = `[${formData.industry}] [${formData.areaOfInterest}]${formData.jobTitle ? ` Role: ${formData.jobTitle} |` : ''} ${formData.businessChallenge}`.slice(0, 1000)
 
-  // Short processing simulation for local client-side validation
-  await new Promise((resolve) => setTimeout(resolve, 600))
-  isSubmitting.value = false
-  submissionStatus.value = 'validated'
+  const response = await submitDemoRequest({
+    name: formData.fullName,
+    email: formData.workEmail,
+    company: formData.companyName,
+    reqs: reqsFormatted
+  })
+
+  if (response.success && response.data) {
+    submittedReference.value = response.data.id
+    submittedName.value = formData.fullName
+    submittedCompany.value = formData.companyName
+    submissionStatus.value = 'success'
+    // Clear form inputs only upon confirmed persistence
+    formData.fullName = ''
+    formData.workEmail = ''
+    formData.companyName = ''
+    formData.jobTitle = ''
+    formData.industry = ''
+    formData.areaOfInterest = ''
+    formData.businessChallenge = ''
+    errors.value = {}
+  } else {
+    // Preserve form data for retry
+    if (response.validationErrors) {
+      const backendErrors: Record<string, string> = {}
+      if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
+      if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
+      if (response.validationErrors.company) backendErrors.companyName = response.validationErrors.company
+      if (response.validationErrors.reqs) backendErrors.businessChallenge = response.validationErrors.reqs
+      errors.value = { ...errors.value, ...backendErrors }
+    }
+    apiError.value = response.error || 'Failed to submit demonstration request. Please try again.'
+    nextTick(() => {
+      const errorEl = document.getElementById('demo-api-error')
+      if (errorEl) {
+        errorEl.focus()
+      }
+    })
+  }
 }
 
 const handleReset = () => {
@@ -151,6 +195,8 @@ const handleReset = () => {
   formData.areaOfInterest = ''
   formData.businessChallenge = ''
   errors.value = {}
+  apiError.value = null
+  submittedReference.value = null
   submissionStatus.value = 'idle'
 }
 </script>
@@ -285,46 +331,24 @@ const handleReset = () => {
               </div>
             </div>
 
-            <!-- Staging & Integration Notice (Truth in Messaging) -->
+            <!-- Real Backend Success Confirmation Notice -->
             <div
-              v-if="submissionStatus === 'validated'"
-              class="mt-6 rounded-xl border border-brand/30 bg-brand/[0.06] p-5 font-ui space-y-4"
+              v-if="submissionStatus === 'success'"
+              class="mt-6 rounded-xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4 shadow-[0_0_25px_rgba(16,185,129,0.18)]"
+              role="status"
             >
-              <div class="flex items-start gap-3">
-                <CheckCircle2 class="h-5 w-5 text-brand shrink-0 mt-0.5" />
-                <div class="space-y-1.5">
-                  <h4 class="text-sm font-semibold text-white">
-                    Demo Request Successfully Validated
+              <div class="flex items-start gap-3.5">
+                <CheckCircle2 class="h-6 w-6 text-brand shrink-0 mt-0.5" />
+                <div class="space-y-2">
+                  <h4 class="text-base font-semibold text-white">
+                    Demo Request Registered
                   </h4>
-                  <p class="text-xs text-zinc-300 leading-relaxed">
-                    Thank you, {{ formData.fullName }}. Your demo request payload has been verified
-                    against the demonstration criteria.
+                  <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">
+                    Thank you, <span class="font-medium text-white">{{ submittedName }}</span>. Your product demonstration request for <span class="font-medium text-white">{{ submittedCompany }}</span> has been assigned reference <span class="font-mono text-brand font-semibold">#KX-D{{ submittedReference }}</span>.
                   </p>
-                  <div
-                    class="rounded-lg border border-white/10 bg-[#0a0f16] p-3 text-xs text-zinc-400 space-y-1"
-                  >
-                    <div class="text-zinc-300 font-medium">Staging Status Note:</div>
-                    <p class="leading-relaxed">
-                      Automated calendar scheduling and CRM dispatch are currently in staging mode
-                      for this deployment. No calendar slots were booked automatically.
-                    </p>
-                    <p class="leading-relaxed pt-1">
-                      To coordinate your walkthrough directly, please email our advisory team at
-                      <a
-                        href="mailto:contact@kavorax.com"
-                        class="text-brand underline hover:text-white"
-                      >
-                        contact@kavorax.com
-                      </a>
-                      referencing company
-                      <span class="text-white font-mono">“{{ formData.companyName }}”</span>, or
-                      visit our
-                      <NuxtLink to="/contact" class="text-brand underline hover:text-white">
-                        Contact Page
-                      </NuxtLink>
-                      .
-                    </p>
-                  </div>
+                  <p class="text-xs text-zinc-300 leading-relaxed">
+                    Our technical solutions architects will review your evaluation scope and contact you within one business day to coordinate the live walkthrough.
+                  </p>
                 </div>
               </div>
 
@@ -332,18 +356,33 @@ const handleReset = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  class="border-white/10 text-xs text-zinc-300 hover:text-white"
+                  class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#0e1622] hover:bg-[#142030]"
                   @click="handleReset"
                 >
                   <RotateCcw class="mr-1.5 h-3.5 w-3.5" />
-                  Submit Another Request
+                  Request Another Demonstration
                 </Button>
+              </div>
+            </div>
+
+            <!-- Backend Error Alert Banner -->
+            <div
+              v-if="apiError"
+              id="demo-api-error"
+              tabindex="-1"
+              class="mt-6 rounded-xl border border-red-500/40 bg-red-500/[0.08] p-5 font-ui text-xs sm:text-sm text-red-200 flex items-start gap-3.5 focus:outline-none focus:ring-1 focus:ring-red-500"
+              role="alert"
+            >
+              <AlertCircle class="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+              <div class="space-y-1">
+                <div class="font-semibold text-white">Submission Notice</div>
+                <p>{{ apiError }}</p>
               </div>
             </div>
 
             <!-- Demo Form -->
             <form
-              v-if="submissionStatus !== 'validated'"
+              v-if="submissionStatus !== 'success'"
               class="mt-6 space-y-5 font-ui"
               novalidate
               @submit.prevent="handleSubmit"
@@ -609,7 +648,7 @@ const handleReset = () => {
                 >
                   <Loader2 v-if="isSubmitting" class="mr-2 h-4 w-4 animate-spin text-black" />
                   <Send v-else class="mr-2 h-4 w-4" />
-                  <span>{{ isSubmitting ? 'Validating Demo Request...' : 'Request a Demo' }}</span>
+                  <span>{{ isSubmitting ? 'Submitting to KavoraX...' : 'Request a Demo' }}</span>
                 </Button>
               </div>
 

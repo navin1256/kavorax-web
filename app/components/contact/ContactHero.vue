@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import {
   ArrowDown,
   Calendar,
@@ -8,6 +10,12 @@ import {
   UserCheck,
   Cpu
 } from 'lucide-vue-next'
+
+const isHeroMounted = ref(false)
+
+onMounted(() => {
+  isHeroMounted.value = true
+})
 </script>
 
 <template>
@@ -21,7 +29,10 @@ import {
 
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Editorial Eyebrow & Corporate Coordinate Header -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-14 font-mono text-xs text-zinc-400">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-14 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
+        :class="{ 'is-revealed': isHeroMounted }"
+      >
         <ChapterLabel
           index="CHAPTER 01"
           label="DIRECT ENGAGEMENT"
@@ -40,35 +51,47 @@ import {
       <div class="max-w-4xl space-y-7">
         <!-- Badge -->
         <div
-          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm"
+          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+          :class="{ 'is-revealed': isHeroMounted }"
         >
           <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
           <span>START A CONVERSATION</span>
         </div>
 
-        <!-- Headline -->
-        <h1
-          class="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] font-normal tracking-[-0.03em] text-white leading-[1.02] text-balance-editorial"
-        >
-          Let’s Start a
-          <span class="italic font-light text-brand">Conversation</span>.
-        </h1>
+        <!-- Headline with WordReveal -->
+        <WordReveal
+          text="Let’s Start a Conversation."
+          as="h1"
+          class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
+          :italic-words="['Conversation.']"
+          :delay="240"
+          :immediate="true"
+        />
 
         <!-- Supporting Text -->
-        <p class="font-editorial text-xl sm:text-2xl md:text-3xl text-zinc-300 leading-relaxed font-normal">
+        <p
+          class="font-editorial text-xl sm:text-2xl md:text-3xl text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
+          :class="{ 'is-revealed': isHeroMounted }"
+        >
           Tell us about your business, your challenges, and what you’re looking to achieve.
           Let’s explore how KavoraX can help move your business forward.
         </p>
 
         <!-- Narrative Context -->
-        <p class="font-ui text-base sm:text-lg text-zinc-400 max-w-3xl leading-relaxed">
+        <p
+          class="font-ui text-base sm:text-lg text-zinc-400 max-w-3xl leading-relaxed reveal-base transition-editorial duration-700 delay-600"
+          :class="{ 'is-revealed': isHeroMounted }"
+        >
           Enterprise technology discussions should be straightforward, thoughtful, and grounded in operational reality.
           We operate without high-pressure sales funnels—connecting you directly with solution specialists who understand
           interoperable systems, data governance, and long-term business objectives.
         </p>
 
         <!-- Action CTAs -->
-        <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui">
+        <div
+          class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
+          :class="{ 'is-revealed': isHeroMounted }"
+        >
           <a href="#inquiry-form" class="w-full sm:w-auto">
             <Button
               size="lg"
@@ -92,7 +115,10 @@ import {
         </div>
 
         <!-- 3 Approachable Principles Strip with Corner Crosshairs -->
-        <div class="pt-12 mt-12 border-t border-white/[0.08] grid grid-cols-1 md:grid-cols-3 gap-6 font-ui">
+        <div
+          class="pt-12 mt-12 border-t border-white/[0.08] grid grid-cols-1 md:grid-cols-3 gap-6 font-ui reveal-base transition-editorial duration-700 delay-800"
+          :class="{ 'is-revealed': isHeroMounted }"
+        >
           <div class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors">
             <div class="flex items-center gap-2.5 text-white font-medium text-sm">
               <UserCheck class="h-4 w-4 text-brand shrink-0" />

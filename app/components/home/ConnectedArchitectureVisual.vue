@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   Workflow,
   BarChart3,
@@ -9,6 +11,8 @@ import {
   CheckCircle2,
   ArrowRight
 } from 'lucide-vue-next'
+
+const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
 
 const activeLayerId = ref<'operations' | 'telemetry' | 'integration' | 'governance'>('operations')
 
@@ -77,7 +81,10 @@ const currentLayer = computed(() => {
 </script>
 
 <template>
-  <section class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden">
+  <section
+    ref="targetRef"
+    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+  >
     <!-- Ambient emerald atmospheric glows -->
     <div
       class="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none"
@@ -86,22 +93,122 @@ const currentLayer = computed(() => {
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Chapter Header -->
-      <div class="pb-8 border-b border-white/[0.08] mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div
+        class="pb-8 border-b border-white/[0.08] mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <div>
           <ChapterLabel index="02" label="CONNECTED SYSTEMS BLUEPRINT" sublabel="INTERCONNECTED ARCHITECTURE" />
-          <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mt-4">
-            How connected systems function in unison.
-          </h2>
+          <WordReveal
+            text="How connected systems function in unison."
+            as="h2"
+            highlight="unison."
+            highlight-class="italic font-light text-brand"
+            :threshold="0.12"
+            :base-delay-ms="100"
+            :stagger-ms="55"
+            class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mt-4"
+          />
         </div>
         <p class="font-editorial text-lg sm:text-xl text-zinc-300 max-w-md leading-relaxed font-normal">
           KavoraX architecture replaces fragmented point tools with a layered, synchronized digital fabric engineered for business resilience.
         </p>
       </div>
 
+      <!-- Self-Drawing Technical Architecture Interconnect Bus (Priority 3) -->
+      <div
+        class="mb-12 rounded-2xl border border-white/10 bg-[#0c1420]/80 backdrop-blur-md p-5 sm:p-7 relative overflow-hidden reveal-card transition-editorial duration-700 delay-100"
+        :class="{ 'is-revealed': isRevealed }"
+      >
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.06] font-mono text-xs gap-2">
+          <div class="flex items-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand" />
+            <span class="text-white font-medium tracking-wider uppercase text-[11px]">INTER-LAYER DATA SYNCHRONIZATION BUS</span>
+          </div>
+          <div class="flex items-center gap-4 text-[10px] text-zinc-400">
+            <span class="flex items-center gap-1.5"><span class="h-1.5 w-3 rounded-full bg-brand inline-block" /> Primary Backbone</span>
+            <span class="flex items-center gap-1.5"><span class="h-1.5 w-3 rounded-full bg-zinc-500 inline-block" /> Secondary Telemetry Link</span>
+            <span class="text-brand font-semibold hidden sm:inline">STATE SYNCHRONIZED</span>
+          </div>
+        </div>
+
+        <!-- SVG Technical Connection Canvas -->
+        <div class="relative w-full overflow-hidden">
+          <svg
+            viewBox="0 0 960 70"
+            class="w-full h-16 sm:h-20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="KavoraX Interconnected Systems Architecture Schematic"
+          >
+            <!-- 1. Background static guide tracks (fine dotted hairline) -->
+            <line x1="80" y1="35" x2="880" y2="35" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="4 6" />
+            <line x1="80" y1="52" x2="880" y2="52" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+
+            <!-- 2. Secondary telemetry paths (muted gray, draws after 450ms delay, duration 750ms) -->
+            <path
+              d="M 80 52 L 320 52 L 320 35 M 320 52 L 600 52 L 600 35 M 600 52 L 880 52 L 880 35"
+              stroke="#64748b"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="draw-path-secondary"
+              :class="{ 'is-revealed': isRevealed }"
+            />
+
+            <!-- 3. Primary Connection Backbone (Emerald #10b981, draws progressively 0-1100ms) -->
+            <path
+              d="M 80 35 L 880 35"
+              stroke="#10b981"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              class="draw-path-primary drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+              :class="{ 'is-revealed': isRevealed }"
+            />
+
+            <!-- 4. Interactive Layer Nodes (Fade and scale in at 950ms after lines arrive) -->
+            <!-- Node 01: Workflows & Operations -->
+            <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isRevealed }" @click="activeLayerId = 'operations'">
+              <circle v-if="activeLayerId === 'operations'" cx="80" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
+              <circle cx="80" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'operations' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
+              <circle cx="80" cy="35" r="5" :fill="activeLayerId === 'operations' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
+              <text x="80" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 01</text>
+            </g>
+
+            <!-- Node 02: Data & Telemetry -->
+            <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isRevealed }" @click="activeLayerId = 'telemetry'">
+              <circle v-if="activeLayerId === 'telemetry'" cx="320" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
+              <circle cx="320" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'telemetry' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
+              <circle cx="320" cy="35" r="5" :fill="activeLayerId === 'telemetry' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
+              <text x="320" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 02</text>
+            </g>
+
+            <!-- Node 03: Universal Integration -->
+            <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isRevealed }" @click="activeLayerId = 'integration'">
+              <circle v-if="activeLayerId === 'integration'" cx="600" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
+              <circle cx="600" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'integration' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
+              <circle cx="600" cy="35" r="5" :fill="activeLayerId === 'integration' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
+              <text x="600" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 03</text>
+            </g>
+
+            <!-- Node 04: Governance & Security -->
+            <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isRevealed }" @click="activeLayerId = 'governance'">
+              <circle v-if="activeLayerId === 'governance'" cx="880" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
+              <circle cx="880" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'governance' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
+              <circle cx="880" cy="35" r="5" :fill="activeLayerId === 'governance' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
+              <text x="880" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 04</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
       <!-- Custom Interactive Architecture Schematic -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start font-ui">
         <!-- Left: Interactive Layer Navigator Stack -->
-        <div class="lg:col-span-5 space-y-3">
+        <div
+          class="lg:col-span-5 space-y-3 reveal-base transition-editorial duration-700 delay-150"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <div
             v-for="layer in layers"
             :key="layer.id"
@@ -144,7 +251,10 @@ const currentLayer = computed(() => {
         </div>
 
         <!-- Right: Layer Details View -->
-        <div class="lg:col-span-7 relative">
+        <div
+          class="lg:col-span-7 relative reveal-base transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <div
             class="rounded-2xl border border-white/10 bg-[#0c1420]/95 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] relative overflow-hidden group"
           >

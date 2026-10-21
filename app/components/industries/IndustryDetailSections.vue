@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
 import { Button } from '~/components/ui/button'
 import {
   Building2,
@@ -21,7 +22,7 @@ interface IndustryItem {
   category: string
   name: string
   subtitle: string
-  icon: any
+  icon: Component
   image: string
   imageAlt: string
   imageBadge: string
@@ -31,7 +32,7 @@ interface IndustryItem {
   solutionTitle: string
   solutionDesc: string
   solutionLink: string
-  solutionIcon: any
+  solutionIcon: Component
   capabilities: string[]
   primaryCta: string
   secondaryCta: string

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import {
   ArrowRight,
   ArrowDown,
@@ -11,6 +13,12 @@ import {
   Radio,
   ShieldCheck
 } from 'lucide-vue-next'
+
+const isHeroMounted = ref(false)
+
+onMounted(() => {
+  isHeroMounted.value = true
+})
 
 const scrollToSectors = () => {
   const el = document.getElementById('industry-overview')
@@ -38,7 +46,8 @@ const scrollToSectors = () => {
     <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- HUD Telemetry Header Bar -->
       <div
-        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400"
+        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
+        :class="{ 'is-revealed': isHeroMounted }"
       >
         <div class="flex items-center gap-3">
           <ChapterLabel
@@ -65,29 +74,38 @@ const scrollToSectors = () => {
         <div class="lg:col-span-7 space-y-7">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
             <span>INDUSTRIES</span>
           </div>
 
-          <!-- Hero Headline (Exact requested copy) -->
-          <h1
-            class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-normal tracking-[-0.03em] text-white leading-[1.02] text-balance-editorial"
-          >
-            Technology for the Industries
-            <span class="italic font-light text-brand">Moving Business Forward</span>.
-          </h1>
+          <!-- Hero Headline with WordReveal -->
+          <WordReveal
+            text="Technology for the Industries Moving Business Forward."
+            as="h1"
+            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
+            :italic-words="['Moving', 'Business', 'Forward.']"
+            :delay="240"
+            :immediate="true"
+          />
 
-          <!-- Hero Supporting Copy (Exact requested copy) -->
-          <p class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl leading-relaxed">
+          <!-- Hero Supporting Copy -->
+          <p
+            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             Every industry has distinct operational needs. KavoraX builds connected business solutions
             designed to help organisations improve visibility, streamline operations and adapt as
             they grow.
           </p>
 
           <!-- Dual CTAs -->
-          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui">
+          <div
+            class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
                 size="lg"
@@ -109,7 +127,10 @@ const scrollToSectors = () => {
           </div>
 
           <!-- Quick Sector Navigation Chips -->
-          <div class="pt-8 border-t border-white/[0.08] flex flex-wrap items-center gap-3 font-mono text-xs text-zinc-400">
+          <div
+            class="pt-8 border-t border-white/[0.08] flex flex-wrap items-center gap-3 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-800"
+            :class="{ 'is-revealed': isHeroMounted }"
+          >
             <a href="#enterprise-tech" class="px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] hover:border-brand/40 hover:text-white transition-colors flex items-center gap-2">
               <Building2 class="h-3.5 w-3.5 text-brand" />
               <span>Technology &amp; SaaS</span>
@@ -130,7 +151,10 @@ const scrollToSectors = () => {
         </div>
 
         <!-- Right: Asymmetric Mosaic / Photographic Hero Canvas -->
-        <div class="lg:col-span-5 relative">
+        <div
+          class="lg:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isHeroMounted }"
+        >
           <!-- Ambient Halo -->
           <div
             class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-70 pointer-events-none"

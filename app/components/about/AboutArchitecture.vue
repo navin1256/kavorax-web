@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Workflow, Network, BarChart3, ShieldCheck, ArrowRight, Layers } from 'lucide-vue-next'
+
+const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
 
 const architecturalDimensions = [
   {
@@ -60,17 +64,21 @@ function selectDimension(id: string) {
 <template>
   <section
     id="connected-architecture"
+    ref="targetRef"
     class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.06] overflow-hidden"
   >
-    <!-- Ambient emerald glow -->
+    <!-- Ambient emerald glow with subtle drift -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Tag & Coordinate Metadata Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 04"
           label="CONNECTED ARCHITECTURE"
@@ -86,13 +94,17 @@ function selectDimension(id: string) {
       </div>
 
       <!-- Section Header -->
-      <div class="max-w-3xl space-y-4 mb-16">
-        <h2
+      <div
+        class="max-w-3xl space-y-4 mb-16 reveal-base transition-editorial duration-700 delay-100"
+        :class="{ 'is-revealed': isRevealed }"
+      >
+        <WordReveal
+          text="A More Connected View of Business."
+          as="h2"
           class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-        >
-          A More Connected
-          <span class="italic font-light text-brand">View of Business</span>.
-        </h2>
+          :italic-words="['View', 'of', 'Business.']"
+          :delay="100"
+        />
 
         <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
           When operations, systems, data, and governance function as unified elements, organisations
@@ -103,7 +115,8 @@ function selectDimension(id: string) {
 
       <!-- Bespoke Conceptual Blueprint Frame with Corner Crosshairs -->
       <div
-        class="relative rounded-2xl border border-white/10 bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] group"
+        class="relative rounded-2xl border border-white/10 bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] group reveal-base transition-editorial duration-700 delay-200"
+        :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Active Theory Corner Crosshairs -->
         <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -213,23 +226,27 @@ function selectDimension(id: string) {
           </div>
         </div>
 
-        <!-- Dynamic Detailed View of Selected Dimension -->
+        <!-- Dynamic Detailed View of Selected Dimension with Smooth Crossfade -->
         <div class="mt-8 rounded-xl border border-white/[0.08] bg-[#090e15] p-5 sm:p-6 font-ui">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
-            <div class="flex items-center gap-2">
-              <span class="font-mono text-xs text-brand font-semibold">SELECTED VIEW:</span>
-              <span class="text-sm text-white font-medium">
-                {{ architecturalDimensions.find(d => d.id === activeDimId)?.title }}
-              </span>
+          <Transition name="dimension-fade" mode="out-in">
+            <div :key="activeDimId">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-xs text-brand font-semibold">SELECTED VIEW:</span>
+                  <span class="text-sm text-white font-medium">
+                    {{ architecturalDimensions.find(d => d.id === activeDimId)?.title }}
+                  </span>
+                </div>
+                <div class="font-mono text-[11px] text-zinc-400 flex items-center gap-2">
+                  <span>INTERFACE BUS:</span>
+                  <span class="text-brand">INTERCONNECTED & MONITORED</span>
+                </div>
+              </div>
+              <p class="mt-3 text-xs sm:text-sm text-zinc-300 leading-relaxed font-editorial italic">
+                "In a mature enterprise, no single dimension operates as an island. Operational processes trigger data records, software systems capture transactions, and governance rules continuously ensure auditable integrity."
+              </p>
             </div>
-            <div class="font-mono text-[11px] text-zinc-400 flex items-center gap-2">
-              <span>INTERFACE BUS:</span>
-              <span class="text-brand">INTERCONNECTED & MONITORED</span>
-            </div>
-          </div>
-          <p class="mt-3 text-xs sm:text-sm text-zinc-300 leading-relaxed font-editorial italic">
-            "In a mature enterprise, no single dimension operates as an island. Operational processes trigger data records, software systems capture transactions, and governance rules continuously ensure auditable integrity."
-          </p>
+          </Transition>
         </div>
 
         <!-- Bottom Visual Conduit Bar -->
@@ -252,3 +269,24 @@ function selectDimension(id: string) {
     </div>
   </section>
 </template>
+
+<style scoped>
+.dimension-fade-enter-active,
+.dimension-fade-leave-active {
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+.dimension-fade-enter-from {
+  opacity: 0;
+  transform: translateY(4px);
+}
+.dimension-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dimension-fade-enter-active,
+  .dimension-fade-leave-active {
+    transition: none !important;
+  }
+}
+</style>

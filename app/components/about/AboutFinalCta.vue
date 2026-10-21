@@ -1,22 +1,28 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { ArrowRight, Layers, ShieldCheck, Cpu } from 'lucide-vue-next'
+
+const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.15 })
 </script>
 
 <template>
   <section
+    ref="targetRef"
     class="py-24 md:py-36 bg-[#0b0f14] border-t border-white/[0.06] relative overflow-hidden"
   >
     <!-- Subtle Ambient Glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group"
+        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Active Theory Corner Crosshairs -->
         <div class="absolute top-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -34,16 +40,17 @@ import { ArrowRight, Layers, ShieldCheck, Cpu } from 'lucide-vue-next'
         </div>
 
         <!-- Headline -->
-        <h2
+        <WordReveal
+          text="Let's Move Your Business Forward."
+          as="h2"
           class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-        >
-          Let's Move Your
-          <span class="italic font-light text-brand">Business Forward</span>.
-        </h2>
+          :italic-words="['Business', 'Forward.']"
+          :delay="120"
+        />
 
         <!-- Supporting Copy -->
         <p
-          class="mt-6 font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed"
+          class="mt-6 font-ui text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
         >
           Explore how connected business solutions could support your organisation's needs.
         </p>

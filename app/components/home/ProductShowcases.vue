@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   BarChart3,
   Network,
@@ -10,13 +11,34 @@ import {
   Database,
   GitBranch
 } from 'lucide-vue-next'
+
+const { isRevealed: isHeaderRevealed, targetRef: headerRef } = useScrollReveal({ threshold: 0.15 })
+const { isRevealed: isCard1Revealed, targetRef: card1Ref } = useScrollReveal({ threshold: 0.12 })
+const { isRevealed: isCards23Revealed, targetRef: cards23Ref } = useScrollReveal({ threshold: 0.12 })
+
+const telemetryBars = [
+  { height: '40%', brandShade: 'bg-white/[0.06] hover:bg-brand/40' },
+  { height: '55%', brandShade: 'bg-white/[0.06] hover:bg-brand/40' },
+  { height: '70%', brandShade: 'bg-white/[0.06] hover:bg-brand/40' },
+  { height: '65%', brandShade: 'bg-white/[0.06] hover:bg-brand/40' },
+  { height: '80%', brandShade: 'bg-brand/40 hover:bg-brand/60' },
+  { height: '88%', brandShade: 'bg-brand/60 hover:bg-brand/80' },
+  { height: '94%', highlight: true },
+  { height: '85%', brandShade: 'bg-brand/70 hover:bg-brand/80' },
+  { height: '72%', brandShade: 'bg-brand/50 hover:bg-brand/60' },
+  { height: '58%', brandShade: 'bg-white/[0.06] hover:bg-brand/40' }
+]
 </script>
 
 <template>
-  <section class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden">
+  <section id="product-showcases" class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Chapter Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08]">
+      <div
+        ref="headerRef"
+        class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08] reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <div class="max-w-3xl space-y-4">
           <ChapterLabel index="03" label="PRODUCT SHOWCASE" sublabel="UNIFIED PLATFORM ENGINES" />
           <h2 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
@@ -36,7 +58,11 @@ import {
       </div>
 
       <!-- SHOWCASE 1: Operations Platform (Wide Asymmetrical Editorial Canvas) -->
-      <div class="mt-16 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-12 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 corner-crosshair">
+      <div
+        ref="card1Ref"
+        class="mt-16 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-12 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 corner-crosshair reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isCard1Revealed }"
+      >
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center font-ui">
           <div class="lg:col-span-6 space-y-6">
             <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-mono text-brand">
@@ -48,7 +74,7 @@ import {
               Continuous workflow orchestration across distributed teams.
             </h3>
 
-            <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal">
+            <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
               Eliminate operational friction with deterministic process routing, automated escalation triggers, and real-time handoff visibility.
             </p>
 
@@ -136,9 +162,15 @@ import {
       </div>
 
       <!-- SHOWCASES 2 & 3: 2-Column Split (Analytics vs Integration) -->
-      <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 font-ui items-stretch">
+      <div
+        ref="cards23Ref"
+        class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 font-ui items-stretch"
+      >
         <!-- Showcase 2: Analytics & Intelligence -->
-        <div class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full">
+        <div
+          class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700"
+          :class="{ 'is-revealed': isCards23Revealed }"
+        >
           <div class="space-y-6">
             <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-mono text-brand">
               <BarChart3 class="h-3.5 w-3.5" />
@@ -149,29 +181,31 @@ import {
               Real-time operational telemetry and predictive foresight.
             </h3>
 
-            <p class="font-editorial text-lg text-zinc-300 leading-relaxed font-normal">
+            <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
               Transform continuous business signals into immediate visibility. Identify anomalies and forecast operational capacity before bottlenecks emerge.
             </p>
 
-            <!-- Bespoke Visual Treatment 2: Clean Telemetry Distribution -->
+            <!-- Bespoke Visual Treatment 2: Clean Telemetry Distribution with Surge Animation -->
             <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-mono text-xs space-y-4">
               <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
                 <span class="font-semibold">OPERATIONAL THROUGHPUT OVERVIEW</span>
                 <span class="text-brand font-medium">REAL-TIME TELEMETRY</span>
               </div>
 
-              <!-- Bar chart visualization -->
+              <!-- Bar chart visualization with progressive surge reveal -->
               <div class="h-20 flex items-end gap-2 pt-2">
-                <div class="w-full bg-white/[0.06] rounded-t hover:bg-brand/40 transition-colors h-[40%]" />
-                <div class="w-full bg-white/[0.06] rounded-t hover:bg-brand/40 transition-colors h-[55%]" />
-                <div class="w-full bg-white/[0.06] rounded-t hover:bg-brand/40 transition-colors h-[70%]" />
-                <div class="w-full bg-white/[0.06] rounded-t hover:bg-brand/40 transition-colors h-[65%]" />
-                <div class="w-full bg-brand/40 rounded-t hover:bg-brand/60 transition-colors h-[80%]" />
-                <div class="w-full bg-brand/60 rounded-t hover:bg-brand/80 transition-colors h-[88%]" />
-                <div class="w-full bg-brand rounded-t shadow-[0_0_12px_rgba(16,185,129,0.5)] h-[94%]" />
-                <div class="w-full bg-brand/70 rounded-t hover:bg-brand/80 transition-colors h-[85%]" />
-                <div class="w-full bg-brand/50 rounded-t hover:bg-brand/60 transition-colors h-[72%]" />
-                <div class="w-full bg-white/[0.06] rounded-t hover:bg-brand/40 transition-colors h-[58%]" />
+                <div
+                  v-for="(bar, bIdx) in telemetryBars"
+                  :key="bIdx"
+                  class="w-full rounded-t transition-[height,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  :class="[
+                    bar.highlight ? 'bg-brand shadow-[0_0_12px_rgba(16,185,129,0.5)]' : bar.brandShade
+                  ]"
+                  :style="{
+                    height: isCards23Revealed ? bar.height : '8%',
+                    transitionDelay: isCards23Revealed ? `${bIdx * 45}ms` : '0ms'
+                  }"
+                />
               </div>
 
               <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-400">
@@ -193,7 +227,10 @@ import {
         </div>
 
         <!-- Showcase 3: Integration Architecture -->
-        <div class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full">
+        <div
+          class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700 delay-150"
+          :class="{ 'is-revealed': isCards23Revealed }"
+        >
           <div class="space-y-6">
             <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-mono text-brand">
               <Network class="h-3.5 w-3.5" />
@@ -204,19 +241,19 @@ import {
               Interoperable protocol fabric connecting any system.
             </h3>
 
-            <p class="font-editorial text-lg text-zinc-300 leading-relaxed font-normal">
+            <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
               Standardize disparate protocols, legacy ERPs, databases, and modern cloud endpoints into a single, high-throughput integration pipeline.
             </p>
 
-            <!-- Bespoke Visual Treatment 3: Clean Multi-System Bridge Map -->
+            <!-- Bespoke Visual Treatment 3: Clean Multi-System Bridge Map with Flow Indicators -->
             <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-mono text-xs space-y-3.5">
               <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
                 <span class="font-semibold">INTEROPERABILITY PROTOCOL FABRIC</span>
                 <span class="text-brand font-medium">SECURE TLS</span>
               </div>
 
-              <!-- Integration Map Nodes -->
-              <div class="space-y-2.5 font-ui">
+              <!-- Integration Map Nodes with Connected Data Path -->
+              <div class="space-y-2 font-ui">
                 <div class="p-3 rounded-lg bg-[#0e1622] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
                   <span class="flex items-center gap-2">
                     <Database class="h-3.5 w-3.5 text-zinc-400" />
@@ -225,12 +262,20 @@ import {
                   <span class="font-mono text-brand text-[11px]">CONNECTED</span>
                 </div>
 
-                <div class="p-3 rounded-lg bg-brand/[0.08] border border-brand/30 flex items-center justify-between text-xs text-white font-medium">
+                <div class="flex justify-center -my-1 py-0.5">
+                  <div class="w-px h-3 bg-gradient-to-b from-white/20 to-brand/40" />
+                </div>
+
+                <div class="p-3 rounded-lg bg-brand/[0.08] border border-brand/30 flex items-center justify-between text-xs text-white font-medium shadow-[0_0_16px_-4px_rgba(16,185,129,0.25)]">
                   <span class="flex items-center gap-2">
                     <GitBranch class="h-3.5 w-3.5 text-brand" />
                     KavoraX Unified Interoperability Bus
                   </span>
                   <span class="font-mono text-brand text-[11px]">ACTIVE SYNCHRONY</span>
+                </div>
+
+                <div class="flex justify-center -my-1 py-0.5">
+                  <div class="w-px h-3 bg-gradient-to-b from-brand/40 to-white/20" />
                 </div>
 
                 <div class="p-3 rounded-lg bg-[#0e1622] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">

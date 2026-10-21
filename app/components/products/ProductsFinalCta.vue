@@ -1,20 +1,26 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { ArrowRight, Mail, ShieldCheck, CheckCircle2 } from 'lucide-vue-next'
+
+const ctaCardRef = ref<HTMLElement | null>(null)
+const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0.12 })
 </script>
 
 <template>
   <section
     class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
   >
-    <!-- Cinematic Ambient Depth Lighting -->
+    <!-- Cinematic Ambient Depth Lighting with Drift -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
     <div
-      class="absolute bottom-0 right-1/4 w-[360px] h-[360px] bg-cyan-500/[0.04] blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute bottom-0 right-1/4 w-[360px] h-[360px] bg-cyan-500/[0.04] blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
@@ -23,7 +29,9 @@ import { ArrowRight, Mail, ShieldCheck, CheckCircle2 } from 'lucide-vue-next'
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+        ref="ctaCardRef"
+        class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isCtaRevealed }"
       >
         <!-- Corner Crosshairs inspired by Active Theory -->
         <div class="absolute top-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -40,16 +48,17 @@ import { ArrowRight, Mail, ShieldCheck, CheckCircle2 } from 'lucide-vue-next'
           />
         </div>
 
-        <!-- Headline (Exact requested text) -->
-        <h2
+        <!-- Headline with WordReveal -->
+        <WordReveal
+          as="h2"
+          text="Let's Build a More Connected Business."
+          :italic-words="['Connected', 'Business.']"
           class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.08] text-balance-editorial max-w-3xl mx-auto"
-        >
-          Let's Build a More <span class="italic font-light text-brand">Connected Business</span>.
-        </h2>
+        />
 
-        <!-- Supporting Copy (Exact requested text) -->
+        <!-- Supporting Copy -->
         <p
-          class="mt-6 font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed"
+          class="mt-6 font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
         >
           Tell us about your requirements and start a conversation with KavoraX.
         </p>

@@ -1,6 +1,15 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Gauge, Eye, TrendingUp, CheckCircle2 } from 'lucide-vue-next'
+
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const gridRef = ref<HTMLElement | null>(null)
+const { isRevealed: isGridRevealed } = useScrollReveal(gridRef, { threshold: 0.12 })
 
 const values = [
   {
@@ -37,31 +46,51 @@ const values = [
 </script>
 
 <template>
-  <section class="py-24 md:py-32 bg-[#0b0f14] border-t border-white/[0.08] relative">
+  <section class="py-24 md:py-32 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
+    <!-- Ambient Depth Lighting with Drift -->
+    <div
+      class="absolute top-1/2 right-10 -translate-y-1/2 w-[500px] h-[400px] bg-brand/[0.03] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      aria-hidden="true"
+    />
+
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="max-w-3xl space-y-4">
+      <!-- Section Header with Scroll Reveal -->
+      <div
+        ref="headerRef"
+        class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 04"
           label="ORGANIZATIONAL VALUE"
           sublabel="CORE ENGINEERING PRINCIPLES"
         />
-        <h2 class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">
-          Designed Around the Way <span class="italic font-light text-brand">Businesses Work</span>.
-        </h2>
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
+        <WordReveal
+          as="h2"
+          text="Designed Around the Way Businesses Work."
+          :italic-words="['Businesses', 'Work.']"
+          class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+        />
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
           Enterprise software should reduce complexity rather than create it. KavoraX solutions are
           crafted around real-world business dynamics to deliver tangible, sustainable operational
           value.
         </p>
       </div>
 
-      <!-- Architectural Value Continuum Ledger -->
-      <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Architectural Value Continuum Ledger with Staggered Card Reveals -->
+      <div
+        ref="gridRef"
+        class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8"
+      >
         <div
-          v-for="item in values"
+          v-for="(item, index) in values"
           :key="item.title"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/90 p-8 sm:p-10 flex flex-col justify-between hover:border-brand/35 transition-all duration-300 relative group shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/90 p-8 sm:p-10 flex flex-col justify-between hover:border-brand/35 transition-all duration-300 relative group shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl reveal-card"
+          :class="[
+            `stagger-${index + 1}`,
+            isGridRevealed ? 'is-revealed' : ''
+          ]"
         >
           <!-- Corner Crosshair -->
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>

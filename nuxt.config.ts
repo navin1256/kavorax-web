@@ -5,6 +5,13 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxt/eslint'],
 
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8080'
+    }
+  },
+
   shadcn: {
     prefix: '',
     componentDir: './app/components/ui'

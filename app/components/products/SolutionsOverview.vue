@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, type Component } from 'vue'
 import { useRoute } from 'vue-router'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import TelemetryBadge from '~/components/visual/TelemetryBadge.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   Cpu,
   BarChart3,
@@ -22,6 +24,22 @@ import {
 } from 'lucide-vue-next'
 
 const route = useRoute()
+
+// Independent scroll-triggered reveals for Chapter 02 header, each product card, and the system mesh
+const headerRef = ref<HTMLElement | null>(null)
+const { isRevealed: isHeaderRevealed } = useScrollReveal(headerRef, { threshold: 0.12 })
+
+const product1Ref = ref<HTMLElement | null>(null)
+const { isRevealed: isProduct1Revealed } = useScrollReveal(product1Ref, { threshold: 0.12 })
+
+const product2Ref = ref<HTMLElement | null>(null)
+const { isRevealed: isProduct2Revealed } = useScrollReveal(product2Ref, { threshold: 0.12 })
+
+const product3Ref = ref<HTMLElement | null>(null)
+const { isRevealed: isProduct3Revealed } = useScrollReveal(product3Ref, { threshold: 0.12 })
+
+const meshRef = ref<HTMLElement | null>(null)
+const { isRevealed: isMeshRevealed } = useScrollReveal(meshRef, { threshold: 0.12 })
 
 // Active interactive state in Product 1: Operations Platform
 const activeOpsStage = ref(1)
@@ -111,7 +129,7 @@ interface ProductItem {
   name: string
   category: string
   badge: string
-  icon: any
+  icon: Component
   headline: string
   description: string
   capabilities: string[]
@@ -224,20 +242,22 @@ watch(
 
 <template>
   <div id="solutions-overview" class="py-24 md:py-32 bg-[#0b0f14] relative border-b border-white/[0.08]">
-    <!-- Background Ambient Refraction -->
+    <!-- Background Ambient Refraction with Slow Drift -->
     <div
-      class="absolute top-1/3 left-10 w-[500px] h-[500px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/3 left-10 w-[500px] h-[500px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
     <div
-      class="absolute bottom-1/4 right-10 w-[600px] h-[600px] bg-brand/[0.03] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute bottom-1/4 right-10 w-[600px] h-[600px] bg-brand/[0.03] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Editorial Header -->
+      <!-- Section Editorial Header with Scroll Reveal -->
       <div
-        class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/[0.08]"
+        ref="headerRef"
+        class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/[0.08] reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isHeaderRevealed }"
       >
         <div class="max-w-3xl space-y-4">
           <ChapterLabel
@@ -245,12 +265,13 @@ watch(
             label="CAPABILITY SPECTRUM"
             sublabel="VERIFIED ENTERPRISE MODULES"
           />
-          <h2
+          <WordReveal
+            as="h2"
+            text="Distinct capability. Shared operational architecture."
+            :italic-words="['Shared', 'operational', 'architecture.']"
             class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
-          >
-            Distinct capability. <span class="italic font-light text-brand">Shared operational architecture</span>.
-          </h2>
-          <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
+          />
+          <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl">
             Inspect our three core enterprise platforms below, each detailed with verified technical
             specifications, operational telemetry, and bespoke interface demonstrations.
           </p>
@@ -293,7 +314,9 @@ watch(
       <!-- ======================================================== -->
       <section
         id="operations-platform"
-        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative"
+        ref="product1Ref"
+        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isProduct1Revealed }"
       >
         <!-- Invisible alias target for deep link #operations -->
         <div id="operations" class="absolute -top-32 left-0 pointer-events-none" />
@@ -324,7 +347,7 @@ watch(
               {{ products[0].headline }}
             </h3>
 
-            <p class="font-editorial text-lg text-zinc-300 leading-relaxed">
+            <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
               {{ products[0].description }}
             </p>
 
@@ -425,13 +448,17 @@ watch(
                     {{ stg.desc }}
                   </p>
 
-                  <div
-                    v-if="activeOpsStage === index"
-                    class="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-zinc-400"
-                  >
-                    <span class="text-zinc-500">TARGET DISPATCH:</span>
-                    <span class="text-emerald-400">{{ stg.target }}</span>
-                  </div>
+                  <!-- Smooth Crossfade for Target Dispatch -->
+                  <Transition name="console-fade" mode="out-in">
+                    <div
+                      :key="activeOpsStage"
+                      v-if="activeOpsStage === index"
+                      class="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-zinc-400"
+                    >
+                      <span class="text-zinc-500">TARGET DISPATCH:</span>
+                      <span class="text-emerald-400">{{ stg.target }}</span>
+                    </div>
+                  </Transition>
                 </div>
               </div>
 
@@ -454,7 +481,9 @@ watch(
       <!-- ======================================================== -->
       <section
         id="analytics-insights"
-        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative"
+        ref="product2Ref"
+        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isProduct2Revealed }"
       >
         <!-- Invisible alias target for deep link #analytics-intelligence -->
         <div id="analytics-intelligence" class="absolute -top-32 left-0 pointer-events-none" />
@@ -514,35 +543,40 @@ watch(
                 </button>
               </div>
 
-              <!-- Signal Visualizer Graph Display -->
-              <div class="p-5 rounded-xl bg-[#04070a] border border-white/[0.05] space-y-4">
-                <div class="flex items-center justify-between text-zinc-400 text-[11px]">
-                  <span class="text-white font-semibold">{{ channelData[activeAnalyticsChannel].title }}</span>
-                  <span class="text-cyan-400 font-mono">{{ channelData[activeAnalyticsChannel].rate }}</span>
-                </div>
+              <!-- Signal Visualizer Graph Display with Smooth Panel Crossfade -->
+              <Transition name="console-fade" mode="out-in">
+                <div
+                  :key="activeAnalyticsChannel"
+                  class="p-5 rounded-xl bg-[#04070a] border border-white/[0.05] space-y-4"
+                >
+                  <div class="flex items-center justify-between text-zinc-400 text-[11px]">
+                    <span class="text-white font-semibold">{{ channelData[activeAnalyticsChannel].title }}</span>
+                    <span class="text-cyan-400 font-mono">{{ channelData[activeAnalyticsChannel].rate }}</span>
+                  </div>
 
-                <!-- Dynamic Visual Bars Spectrum -->
-                <div class="h-28 flex items-end gap-2 pt-3 px-1 border-b border-white/[0.05] pb-2">
-                  <div
-                    v-for="(height, bIdx) in channelData[activeAnalyticsChannel].bars"
-                    :key="bIdx"
-                    class="w-full rounded-t transition-all duration-500 group relative"
-                    :style="{ height: `${height}%` }"
-                    :class="[
-                      height > 80
-                        ? 'bg-gradient-to-t from-cyan-600 to-brand shadow-[0_0_10px_rgba(6,182,212,0.5)]'
-                        : height > 50
-                          ? 'bg-cyan-500/60 hover:bg-cyan-400'
-                          : 'bg-white/10 hover:bg-white/20'
-                    ]"
-                  />
-                </div>
+                  <!-- Dynamic Visual Bars Spectrum -->
+                  <div class="h-28 flex items-end gap-2 pt-3 px-1 border-b border-white/[0.05] pb-2">
+                    <div
+                      v-for="(height, bIdx) in channelData[activeAnalyticsChannel].bars"
+                      :key="bIdx"
+                      class="w-full rounded-t transition-all duration-500 group relative"
+                      :style="{ height: `${height}%` }"
+                      :class="[
+                        height > 80
+                          ? 'bg-gradient-to-t from-cyan-600 to-brand shadow-[0_0_10px_rgba(6,182,212,0.5)]'
+                          : height > 50
+                            ? 'bg-cyan-500/60 hover:bg-cyan-400'
+                            : 'bg-white/10 hover:bg-white/20'
+                      ]"
+                    />
+                  </div>
 
-                <div class="flex items-center justify-between text-[10px] text-zinc-500 pt-1">
-                  <span>{{ channelData[activeAnalyticsChannel].precision }}</span>
-                  <span class="text-emerald-400 font-mono">{{ channelData[activeAnalyticsChannel].status }}</span>
+                  <div class="flex items-center justify-between text-[10px] text-zinc-500 pt-1">
+                    <span>{{ channelData[activeAnalyticsChannel].precision }}</span>
+                    <span class="text-emerald-400 font-mono">{{ channelData[activeAnalyticsChannel].status }}</span>
+                  </div>
                 </div>
-              </div>
+              </Transition>
 
               <!-- Cockpit Telemetry Footer -->
               <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400">
@@ -574,7 +608,7 @@ watch(
               {{ products[1].headline }}
             </h3>
 
-            <p class="font-editorial text-lg text-zinc-300 leading-relaxed">
+            <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
               {{ products[1].description }}
             </p>
 
@@ -625,7 +659,9 @@ watch(
       <!-- ======================================================== -->
       <section
         id="integration-hub"
-        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative"
+        ref="product3Ref"
+        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isProduct3Revealed }"
       >
         <!-- Invisible alias target for deep link #integrations -->
         <div id="integrations" class="absolute -top-32 left-0 pointer-events-none" />
@@ -656,7 +692,7 @@ watch(
               {{ products[2].headline }}
             </h3>
 
-            <p class="font-editorial text-lg text-zinc-300 leading-relaxed">
+            <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
               {{ products[2].description }}
             </p>
 
@@ -746,8 +782,8 @@ watch(
                 </button>
               </div>
 
-              <!-- Protocol Bridge Flow Schematic -->
-              <div class="p-4 rounded-xl bg-[#04070a] border border-white/[0.04] space-y-4">
+              <!-- Protocol Bridge Flow Schematic with Self-Drawing SVG Conduit -->
+              <div class="p-4 rounded-xl bg-[#04070a] border border-white/[0.04] space-y-3">
                 <div class="flex items-center justify-between gap-3">
                   <!-- Inbound Source -->
                   <div class="flex-1 p-3.5 rounded-lg border border-white/[0.08] bg-[#0c121a] text-center">
@@ -775,26 +811,47 @@ watch(
                   </div>
                 </div>
 
-                <!-- Live Encrypted Payload Envelope -->
-                <div class="p-3.5 rounded-lg bg-[#090d14] border border-white/[0.05] text-[11px] text-zinc-300 space-y-2">
-                  <div class="flex items-center justify-between text-zinc-500 text-[10px]">
-                    <span class="text-brand flex items-center gap-1">
-                      <Terminal class="h-3 w-3" />
-                      <span>ACTIVE PAYLOAD ENVELOPE</span>
-                    </span>
-                    <span class="text-zinc-400 font-mono">{{ protocolDetails[activeProtocol].label }}</span>
-                  </div>
-                  <div class="text-[10px] text-zinc-400 font-mono bg-black/40 p-2 rounded border border-white/[0.03] break-all">
-                    {{ protocolDetails[activeProtocol].payload }}
-                  </div>
-                  <div class="flex items-center justify-between text-[10px] text-emerald-400 pt-1 border-t border-white/[0.04]">
-                    <span class="flex items-center gap-1.5">
-                      <ShieldCheck class="h-3.5 w-3.5" />
-                      <span>CRYPTOGRAPHICALLY VALIDATED</span>
-                    </span>
-                    <span class="text-zinc-400">STATUS: 200 OK</span>
-                  </div>
+                <!-- Self-Drawing Technical SVG Connector between Nodes -->
+                <div class="py-1 px-2" aria-hidden="true">
+                  <svg class="w-full h-3 overflow-visible" viewBox="0 0 360 12" fill="none">
+                    <line x1="8" y1="6" x2="352" y2="6" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <path
+                      d="M 8 6 L 352 6"
+                      stroke="#10b981"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      class="draw-path-primary"
+                      :class="{ 'is-revealed': isProduct3Revealed }"
+                    />
+                    <circle cx="180" cy="6" r="2.5" fill="#10b981" class="animate-pulse-subtle" />
+                  </svg>
                 </div>
+
+                <!-- Live Encrypted Payload Envelope with Smooth Panel Crossfade -->
+                <Transition name="console-fade" mode="out-in">
+                  <div
+                    :key="activeProtocol"
+                    class="p-3.5 rounded-lg bg-[#090d14] border border-white/[0.05] text-[11px] text-zinc-300 space-y-2"
+                  >
+                    <div class="flex items-center justify-between text-zinc-500 text-[10px]">
+                      <span class="text-brand flex items-center gap-1">
+                        <Terminal class="h-3 w-3" />
+                        <span>ACTIVE PAYLOAD ENVELOPE</span>
+                      </span>
+                      <span class="text-zinc-400 font-mono">{{ protocolDetails[activeProtocol].label }}</span>
+                    </div>
+                    <div class="text-[10px] text-zinc-400 font-mono bg-black/40 p-2 rounded border border-white/[0.03] break-all">
+                      {{ protocolDetails[activeProtocol].payload }}
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-emerald-400 pt-1 border-t border-white/[0.04]">
+                      <span class="flex items-center gap-1.5">
+                        <ShieldCheck class="h-3.5 w-3.5" />
+                        <span>CRYPTOGRAPHICALLY VALIDATED</span>
+                      </span>
+                      <span class="text-zinc-400">STATUS: 200 OK</span>
+                    </div>
+                  </div>
+                </Transition>
               </div>
 
               <!-- Terminal Telemetry Footer -->
@@ -814,7 +871,12 @@ watch(
       <!-- INTER-PRODUCT INTELLIGENCE MESH (Supported by Real Data) -->
       <!-- ======================================================== -->
       <div class="mt-20 pt-16 border-t border-white/[0.08]">
-        <div class="rounded-2xl border border-white/[0.08] bg-[#0a1017]/90 p-8 sm:p-12 backdrop-blur-xl relative shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div
+          id="system-mesh"
+          ref="meshRef"
+          class="rounded-2xl border border-white/[0.08] bg-[#0a1017]/90 p-8 sm:p-12 backdrop-blur-xl relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          :class="{ 'is-revealed': isMeshRevealed }"
+        >
           <!-- Crosshairs -->
           <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -824,14 +886,48 @@ watch(
             <h3 class="font-editorial text-2xl sm:text-4xl font-semibold text-white text-balance-editorial">
               How KavoraX Platforms Exchange Intelligence.
             </h3>
-            <p class="font-editorial text-base sm:text-lg text-zinc-300 leading-relaxed">
+            <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed">
               Operations emit real-time event signals. Analytics continuously ingest telemetry. Integration Hub synchronizes state with external systems.
             </p>
           </div>
 
-          <!-- Dynamic Connection Bridge Diagram -->
+          <!-- Self-Drawing Interconnect Bus SVG Conduit -->
+          <div class="hidden md:block relative w-full h-6 -mb-3 z-10 px-12 pointer-events-none" aria-hidden="true">
+            <svg class="w-full h-6 overflow-visible" viewBox="0 0 800 24" fill="none">
+              <path
+                d="M 130 12 L 670 12"
+                stroke="rgba(255,255,255,0.08)"
+                stroke-width="2"
+                stroke-dasharray="6 6"
+              />
+              <path
+                d="M 130 12 L 670 12"
+                stroke="url(#meshConduitGrad)"
+                stroke-width="2"
+                stroke-linecap="round"
+                class="draw-path-secondary"
+                :class="{ 'is-revealed': isMeshRevealed }"
+              />
+              <defs>
+                <linearGradient id="meshConduitGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#10b981" />
+                  <stop offset="50%" stop-color="#06b6d4" />
+                  <stop offset="100%" stop-color="#34d399" />
+                </linearGradient>
+              </defs>
+              <!-- Interactive node anchor points -->
+              <circle cx="130" cy="12" r="4" fill="#10b981" class="draw-node" :class="{ 'is-revealed': isMeshRevealed }" />
+              <circle cx="400" cy="12" r="4" fill="#06b6d4" class="draw-node" :class="{ 'is-revealed': isMeshRevealed }" />
+              <circle cx="670" cy="12" r="4" fill="#34d399" class="draw-node" :class="{ 'is-revealed': isMeshRevealed }" />
+            </svg>
+          </div>
+
+          <!-- Dynamic Connection Bridge Diagram with Staggered Card Entrance -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
-            <div class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-colors">
+            <div
+              class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-all reveal-card stagger-1"
+              :class="{ 'is-revealed': isMeshRevealed }"
+            >
               <div class="flex justify-center">
                 <div class="h-10 w-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
                   <Cpu class="h-5 w-5" />
@@ -848,7 +944,10 @@ watch(
               </div>
             </div>
 
-            <div class="p-6 rounded-xl border border-cyan-500/30 bg-cyan-500/[0.04] text-center space-y-3 relative group hover:border-cyan-500/50 transition-colors">
+            <div
+              class="p-6 rounded-xl border border-cyan-500/30 bg-cyan-500/[0.04] text-center space-y-3 relative group hover:border-cyan-500/50 transition-all reveal-card stagger-2"
+              :class="{ 'is-revealed': isMeshRevealed }"
+            >
               <div class="flex justify-center">
                 <div class="h-10 w-10 rounded-lg bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400">
                   <BarChart3 class="h-5 w-5" />
@@ -865,7 +964,10 @@ watch(
               </div>
             </div>
 
-            <div class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-colors">
+            <div
+              class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-all reveal-card stagger-3"
+              :class="{ 'is-revealed': isMeshRevealed }"
+            >
               <div class="flex justify-center">
                 <div class="h-10 w-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                   <Network class="h-5 w-5" />
@@ -887,3 +989,32 @@ watch(
     </div>
   </div>
 </template>
+
+<style scoped>
+.console-fade-enter-active,
+.console-fade-leave-active {
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.console-fade-enter-from {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.console-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .console-fade-enter-active,
+  .console-fade-leave-active {
+    transition: none !important;
+  }
+  .console-fade-enter-from,
+  .console-fade-leave-to {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+</style>
