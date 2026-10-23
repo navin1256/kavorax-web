@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
+import { ref, type Component } from 'vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import { Button } from '~/components/ui/button'
 import {
   Building2,
@@ -15,6 +17,16 @@ import {
   ShieldCheck,
   Radio
 } from 'lucide-vue-next'
+
+const s0Ref = ref<HTMLElement | null>(null)
+const s1Ref = ref<HTMLElement | null>(null)
+const s2Ref = ref<HTMLElement | null>(null)
+const s3Ref = ref<HTMLElement | null>(null)
+
+const { isRevealed: s0Revealed } = useScrollReveal(s0Ref, { threshold: 0.1 })
+const { isRevealed: s1Revealed } = useScrollReveal(s1Ref, { threshold: 0.1 })
+const { isRevealed: s2Revealed } = useScrollReveal(s2Ref, { threshold: 0.1 })
+const { isRevealed: s3Revealed } = useScrollReveal(s3Ref, { threshold: 0.1 })
 
 interface IndustryItem {
   id: string
@@ -210,13 +222,18 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <!-- ======================================================== -->
     <section
       :id="industries[0].id"
+      ref="s0Ref"
       class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#080c10]"
+      :class="{ 'is-revealed': s0Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <!-- Text Narrative Column -->
           <div class="lg:col-span-6 space-y-8 font-ui">
-            <div class="flex items-center gap-3">
+            <div
+              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
+              :class="{ 'is-revealed': s0Revealed }"
+            >
               <span
                 class="flex h-7 w-7 items-center justify-center rounded-md bg-brand/10 border border-brand/25 text-brand font-mono text-xs font-semibold"
               >
@@ -228,18 +245,27 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <div class="space-y-3">
-              <h2
+              <WordReveal
+                :text="industries[0].name"
+                as="h2"
                 class="font-editorial text-3xl sm:text-5xl lg:text-[3.25rem] font-normal tracking-tight text-white leading-[1.08] text-balance-editorial"
+                :italic-words="['SaaS', 'Technology']"
+                :delay="100"
+                :threshold="0.12"
+              />
+              <p
+                class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
+                :class="{ 'is-revealed': s0Revealed }"
               >
-                {{ industries[0].name }}
-              </h2>
-              <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed">
                 {{ industries[0].subtitle }}
               </p>
             </div>
 
             <!-- Operational Context -->
-            <div class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md">
+            <div
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              :class="{ 'is-revealed': s0Revealed }"
+            >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
                 Operational Realities
               </div>
@@ -250,13 +276,20 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 
             <!-- Key Challenges -->
             <div class="space-y-3">
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3">
+              <div
+                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
+                :class="{ 'is-revealed': s0Revealed }"
+              >
                 Key Industry Challenges Addressed
               </div>
               <div
                 v-for="(need, nIdx) in industries[0].commonNeeds"
                 :key="nIdx"
-                class="p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors"
+                :class="[
+                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors reveal-card',
+                  `stagger-${nIdx + 1}`,
+                  s0Revealed ? 'is-revealed' : ''
+                ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">
@@ -275,7 +308,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- Mapped Architecture Card -->
-            <div class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4">
+            <div
+              class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
+              :class="{ 'is-revealed': s0Revealed }"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                   <component :is="industries[0].solutionIcon" class="h-4 w-4 text-brand" />
@@ -302,7 +338,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- CTAs -->
-            <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div
+              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
+              :class="{ 'is-revealed': s0Revealed }"
+            >
               <NuxtLink to="/contact">
                 <Button
                   size="default"
@@ -324,7 +363,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
           </div>
 
           <!-- Photo Canvas Right -->
-          <div class="lg:col-span-6 relative">
+          <div
+            class="lg:col-span-6 relative reveal-card transition-editorial duration-700 delay-200"
+            :class="{ 'is-revealed': s0Revealed }"
+          >
             <div
               class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
             >
@@ -371,12 +413,17 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <!-- ======================================================== -->
     <section
       :id="industries[1].id"
+      ref="s1Ref"
       class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0b0f14]"
+      :class="{ 'is-revealed': s1Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <!-- Photo Canvas Left -->
-          <div class="lg:col-span-6 relative order-2 lg:order-1">
+          <div
+            class="lg:col-span-6 relative order-2 lg:order-1 reveal-card transition-editorial duration-700 delay-200"
+            :class="{ 'is-revealed': s1Revealed }"
+          >
             <div
               class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
             >
@@ -416,7 +463,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 
           <!-- Text Narrative Column Right -->
           <div class="lg:col-span-6 space-y-8 font-ui order-1 lg:order-2">
-            <div class="flex items-center gap-3">
+            <div
+              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
+              :class="{ 'is-revealed': s1Revealed }"
+            >
               <span
                 class="flex h-7 w-7 items-center justify-center rounded-md bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 font-mono text-xs font-semibold"
               >
@@ -428,18 +478,27 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <div class="space-y-3">
-              <h2
+              <WordReveal
+                :text="industries[1].name"
+                as="h2"
                 class="font-editorial text-3xl sm:text-5xl lg:text-[3.25rem] font-normal tracking-tight text-white leading-[1.08] text-balance-editorial"
+                :italic-words="['FinTech']"
+                :delay="100"
+                :threshold="0.12"
+              />
+              <p
+                class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
+                :class="{ 'is-revealed': s1Revealed }"
               >
-                {{ industries[1].name }}
-              </h2>
-              <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed">
                 {{ industries[1].subtitle }}
               </p>
             </div>
 
             <!-- Operational Context -->
-            <div class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md">
+            <div
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              :class="{ 'is-revealed': s1Revealed }"
+            >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
                 Operational Realities
               </div>
@@ -450,13 +509,20 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 
             <!-- Key Challenges -->
             <div class="space-y-3">
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3">
+              <div
+                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
+                :class="{ 'is-revealed': s1Revealed }"
+              >
                 Key Industry Challenges Addressed
               </div>
               <div
                 v-for="(need, nIdx) in industries[1].commonNeeds"
                 :key="nIdx"
-                class="p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-cyan-500/30 transition-colors"
+                :class="[
+                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-cyan-500/30 transition-colors reveal-card',
+                  `stagger-${nIdx + 1}`,
+                  s1Revealed ? 'is-revealed' : ''
+                ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mt-0.5">
@@ -475,7 +541,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- Mapped Architecture Card -->
-            <div class="rounded-xl border border-cyan-500/25 bg-cyan-500/[0.04] p-6 space-y-4">
+            <div
+              class="rounded-xl border border-cyan-500/25 bg-cyan-500/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
+              :class="{ 'is-revealed': s1Revealed }"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                   <component :is="industries[1].solutionIcon" class="h-4 w-4 text-cyan-400" />
@@ -502,7 +571,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- CTAs -->
-            <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div
+              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
+              :class="{ 'is-revealed': s1Revealed }"
+            >
               <NuxtLink to="/contact">
                 <Button
                   size="default"
@@ -532,13 +604,18 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <!-- ======================================================== -->
     <section
       :id="industries[2].id"
+      ref="s2Ref"
       class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#080c10]"
+      :class="{ 'is-revealed': s2Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <!-- Text Narrative Column -->
           <div class="lg:col-span-7 space-y-8 font-ui">
-            <div class="flex items-center gap-3">
+            <div
+              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
+              :class="{ 'is-revealed': s2Revealed }"
+            >
               <span
                 class="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-mono text-xs font-semibold"
               >
@@ -550,18 +627,27 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <div class="space-y-3">
-              <h2
+              <WordReveal
+                :text="industries[2].name"
+                as="h2"
                 class="font-editorial text-3xl sm:text-5xl lg:text-[3.25rem] font-normal tracking-tight text-white leading-[1.08] text-balance-editorial"
+                :italic-words="['Life', 'Sciences']"
+                :delay="100"
+                :threshold="0.12"
+              />
+              <p
+                class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
+                :class="{ 'is-revealed': s2Revealed }"
               >
-                {{ industries[2].name }}
-              </h2>
-              <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed">
                 {{ industries[2].subtitle }}
               </p>
             </div>
 
             <!-- Operational Context -->
-            <div class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md">
+            <div
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              :class="{ 'is-revealed': s2Revealed }"
+            >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
                 Operational Realities
               </div>
@@ -572,13 +658,20 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 
             <!-- Key Challenges -->
             <div class="space-y-3">
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3">
+              <div
+                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
+                :class="{ 'is-revealed': s2Revealed }"
+              >
                 Key Industry Challenges Addressed
               </div>
               <div
                 v-for="(need, nIdx) in industries[2].commonNeeds"
                 :key="nIdx"
-                class="p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-emerald-500/30 transition-colors"
+                :class="[
+                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-emerald-500/30 transition-colors reveal-card',
+                  `stagger-${nIdx + 1}`,
+                  s2Revealed ? 'is-revealed' : ''
+                ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono mt-0.5">
@@ -597,7 +690,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- Mapped Architecture Card -->
-            <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/[0.04] p-6 space-y-4">
+            <div
+              class="rounded-xl border border-emerald-500/25 bg-emerald-500/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
+              :class="{ 'is-revealed': s2Revealed }"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                   <component :is="industries[2].solutionIcon" class="h-4 w-4 text-emerald-400" />
@@ -624,7 +720,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- CTAs -->
-            <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div
+              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
+              :class="{ 'is-revealed': s2Revealed }"
+            >
               <NuxtLink to="/contact">
                 <Button
                   size="default"
@@ -646,7 +745,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
           </div>
 
           <!-- Photo Canvas Right -->
-          <div class="lg:col-span-5 relative">
+          <div
+            class="lg:col-span-5 relative reveal-card transition-editorial duration-700 delay-200"
+            :class="{ 'is-revealed': s2Revealed }"
+          >
             <div
               class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
             >
@@ -693,11 +795,16 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <!-- ======================================================== -->
     <section
       :id="industries[3].id"
+      ref="s3Ref"
       class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0b0f14]"
+      :class="{ 'is-revealed': s3Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Panoramic Top Visual Feature -->
-        <div class="mb-14 rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl relative group">
+        <div
+          class="mb-14 rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl relative group reveal-card transition-editorial duration-700 delay-150"
+          :class="{ 'is-revealed': s3Revealed }"
+        >
           <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
           <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
@@ -734,7 +841,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
         <!-- 2-Column Split Details Below Panoramic Image -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div class="lg:col-span-6 space-y-6 font-ui">
-            <div class="flex items-center gap-3">
+            <div
+              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
+              :class="{ 'is-revealed': s3Revealed }"
+            >
               <span
                 class="flex h-7 w-7 items-center justify-center rounded-md bg-brand/10 border border-brand/25 text-brand font-mono text-xs font-semibold"
               >
@@ -745,17 +855,26 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               </span>
             </div>
 
-            <h2
+            <WordReveal
+              :text="industries[3].name"
+              as="h2"
               class="font-editorial text-3xl sm:text-5xl font-normal tracking-tight text-white leading-tight text-balance-editorial"
-            >
-              {{ industries[3].name }}
-            </h2>
+              :italic-words="['Logistics']"
+              :delay="100"
+              :threshold="0.12"
+            />
 
-            <p class="font-editorial text-lg text-zinc-300 leading-relaxed">
+            <p
+              class="font-ui text-lg text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
+              :class="{ 'is-revealed': s3Revealed }"
+            >
               {{ industries[3].subtitle }}
             </p>
 
-            <div class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md">
+            <div
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              :class="{ 'is-revealed': s3Revealed }"
+            >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
                 Operational Realities
               </div>
@@ -765,7 +884,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- CTAs -->
-            <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div
+              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-450"
+              :class="{ 'is-revealed': s3Revealed }"
+            >
               <NuxtLink to="/contact">
                 <Button
                   size="default"
@@ -790,13 +912,20 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
           <div class="lg:col-span-6 space-y-6 font-ui">
             <!-- Key Challenges -->
             <div class="space-y-3">
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3">
+              <div
+                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
+                :class="{ 'is-revealed': s3Revealed }"
+              >
                 Key Industry Challenges Addressed
               </div>
               <div
                 v-for="(need, nIdx) in industries[3].commonNeeds"
                 :key="nIdx"
-                class="p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors"
+                :class="[
+                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors reveal-card',
+                  `stagger-${nIdx + 1}`,
+                  s3Revealed ? 'is-revealed' : ''
+                ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">
@@ -815,7 +944,10 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </div>
 
             <!-- Mapped Architecture Card -->
-            <div class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4">
+            <div
+              class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
+              :class="{ 'is-revealed': s3Revealed }"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
                   <component :is="industries[3].solutionIcon" class="h-4 w-4 text-brand" />

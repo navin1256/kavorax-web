@@ -26,7 +26,7 @@ useHead({
 </script>
 
 <template>
-  <main class="min-h-screen bg-[#0b0f14] text-white">
+  <div class="min-h-screen bg-[#0b0f14] text-white">
     <!-- Hero Section -->
     <DemoHero />
 
@@ -38,5 +38,5 @@ useHead({
 
     <!-- Closing CTA Section -->
     <DemoClosingCta />
-  </main>
+  </div>
 </template>

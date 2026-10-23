@@ -86,8 +86,14 @@ const footerNav = {
         class="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500"
       >
         <p>© {{ currentYear }} KavoraX Global Private Limited. All rights reserved.</p>
-        <div class="flex items-center gap-4 text-zinc-500">
-          <span>Enterprise Operating Systems</span>
+        <div class="flex items-center gap-4 text-zinc-500 font-ui text-xs">
+          <NuxtLink to="/privacy-policy" class="hover:text-zinc-300 transition-colors">
+            Privacy Policy
+          </NuxtLink>
+          <span>·</span>
+          <NuxtLink to="/terms-of-service" class="hover:text-zinc-300 transition-colors">
+            Terms of Service
+          </NuxtLink>
           <span>·</span>
           <span>Confidentiality Respected</span>
         </div>

@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "solutions": "Solutions",
+    "products": "Products",
+    "industries": "Industries",
+    "pricing": "Pricing",
+    "demo": "Book a Demo",
+    "resources": "Resources",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Next-Gen Business Operations Platform",
+    "title": "Unify Your Business Operations from POS to Delivery",
+    "subtitle": "The all-in-one B2B SaaS platform empowering retail, restaurants, and growing SMEs across India and the GCC to scale faster.",
+    "ctaPrimary": "Book a Free Demo",
+    "ctaSecondary": "Explore Solutions"
+  },
+  "positioning": {
+    "title": "Why Modern Businesses Choose KavoraX",
+    "subtitle": "Built ground-up to eliminate fragmented systems and power profitable growth."
+  },
+  "solutions": {
+    "title": "End-to-End Solutions",
+    "subtitle": "Modular software designed to streamline every touchpoint of your commerce.",
+    "viewAll": "View All Solutions"
+  },
+  "industries": {
+    "title": "Tailored for Your Industry",
+    "subtitle": "Specialized workflows engineered for high-velocity operations.",
+    "viewAll": "Explore All Industries"
+  },
+  "pricing": {
+    "title": "Transparent, Predictable Pricing",
+    "subtitle": "Choose the right plan to accelerate your business growth.",
+    "monthly": "Monthly",
+    "annual": "Annual (Save 20%)",
+    "starter": "Starter",
+    "professional": "Professional",
+    "enterprise": "Enterprise",
+    "selectPlan": "Get Started"
+  },
+  "forms": {
+    "contact": {
+      "title": "Get in Touch",
+      "subtitle": "Have questions about KavoraX? Our team is here to assist you.",
+      "name": "Full Name",
+      "email": "Work Email",
+      "phone": "Phone Number",
+      "company": "Company Name",
+      "message": "How can we help your business?",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Thank you! Your message has been received. We'll be in touch shortly."
+    },
+    "demo": {
+      "title": "Experience KavoraX in Action",
+      "subtitle": "Schedule a personalized 1-on-1 walkthrough tailored to your business model.",
+      "name": "Full Name",
+      "email": "Business Email",
+      "phone": "Phone Number",
+      "company": "Business Name",
+      "industry": "Industry Sector",
+      "outlets": "Number of Outlets / Locations",
+      "date": "Preferred Date",
+      "submit": "Schedule Demo",
+      "submitting": "Scheduling...",
+      "success": "Demo requested successfully! Our solution specialist will contact you to confirm the time."
+    },
+    "newsletter": {
+      "title": "Stay Ahead in Business Operations",
+      "subtitle": "Subscribe to our bi-weekly dispatch of retail insights, product updates, and growth playbooks.",
+      "email": "Enter your work email",
+      "submit": "Subscribe",
+      "submitting": "Subscribing...",
+      "success": "Welcome aboard! Check your inbox for our latest industry insights."
+    }
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "chatWhatsapp": "Chat on WhatsApp",
+    "viewDetails": "View Details",
+    "getStarted": "Get Started",
+    "contactSales": "Contact Sales"
+  },
+  "footer": {
+    "tagline": "Empowering ambitious businesses across India and Oman with enterprise-grade operating technology.",
+    "quickLinks": "Quick Links",
+    "solutions": "Solutions",
+    "company": "Company",
+    "legal": "Legal",
+    "rights": "All rights reserved."
+  }
+}

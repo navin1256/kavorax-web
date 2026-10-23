@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import WordReveal from '~/components/visual/WordReveal.vue'
@@ -10,11 +10,7 @@ import {
   Radio
 } from 'lucide-vue-next'
 
-const isHeroMounted = ref(false)
-
-onMounted(() => {
-  isHeroMounted.value = true
-})
+const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true, delay: 60 })
 
 const scrollToComparison = () => {
   const el = document.getElementById('solutions-comparison')
@@ -26,9 +22,9 @@ const scrollToComparison = () => {
 
 <template>
   <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
-    <!-- Ambient emerald backlight glow -->
+    <!-- Ambient emerald backlight glow with subtle drift -->
     <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
     <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none -z-10" aria-hidden="true" />
@@ -83,7 +79,7 @@ const scrollToComparison = () => {
 
           <!-- Hero Supporting Copy -->
           <p
-            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
+            class="font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             Every organisation has different operational needs. Let's discuss your requirements and

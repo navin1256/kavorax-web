@@ -85,7 +85,7 @@ function getDelay(index: number): number {
         >
           <span
             :class="[
-              'inline-block transition-[transform,opacity,color] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]',
+              'inline-block transition-[transform,opacity,color] duration-word-reveal transition-editorial will-change-[transform,opacity]',
               isHighlighted(word) ? props.highlightClass : '',
               isRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[115%]'
             ]"

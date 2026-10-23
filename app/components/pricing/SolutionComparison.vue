@@ -1,10 +1,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import { Cpu, BarChart3, Network, ArrowRight, CheckCircle2, ArrowUpRight } from 'lucide-vue-next'
 
+const comparisonRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(comparisonRef, { threshold: 0.1 })
+
 const activeScope = ref<'department' | 'enterprise' | 'global'>('enterprise')
+const isScopeTransitioning = ref(false)
+
+const setScope = (scope: 'department' | 'enterprise' | 'global') => {
+  if (activeScope.value === scope) return
+  isScopeTransitioning.value = true
+  setTimeout(() => {
+    activeScope.value = scope
+    setTimeout(() => {
+      isScopeTransitioning.value = false
+    }, 40)
+  }, 90)
+}
 
 const scopeProfiles = {
   department: {
@@ -97,35 +114,48 @@ const solutions = [
 <template>
   <section
     id="solutions-comparison"
+    ref="comparisonRef"
     class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] scroll-mt-28 md:scroll-mt-32"
+    :class="{ 'is-revealed': isRevealed }"
   >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08]">
         <div class="max-w-2xl space-y-4">
-          <ChapterLabel
-            index="CHAPTER 03"
-            label="SOLUTION SIZING & COMPARISON"
-            sublabel="ARCHITECTURE ALIGNMENT"
-          />
-          <h2
+          <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
+            <ChapterLabel
+              index="CHAPTER 03"
+              label="SOLUTION SIZING & COMPARISON"
+              sublabel="ARCHITECTURE ALIGNMENT"
+            />
+          </div>
+          <WordReveal
+            text="Three solution pillars, shaped to your architecture."
+            as="h2"
             class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+            :italic-words="['shaped', 'to', 'your', 'architecture.']"
+            :delay="120"
+            :threshold="0.12"
+          />
+          <p
+            class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl reveal-paragraph transition-editorial duration-700 delay-300"
+            :class="{ 'is-revealed': isRevealed }"
           >
-            Three solution pillars, <span class="italic font-light text-brand">shaped to your architecture</span>.
-          </h2>
-          <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
             KavoraX evaluates each solution category based on your functional objectives, existing
             systems, and operational scale, ensuring transparent and relevant engagements.
           </p>
         </div>
 
         <!-- Scope Switcher Pill -->
-        <div class="flex items-center gap-1.5 p-1.5 rounded-xl border border-white/10 bg-[#0e1620] font-mono shrink-0">
+        <div
+          class="flex items-center gap-1.5 p-1.5 rounded-xl border border-white/10 bg-[#0e1620] font-mono shrink-0 reveal-base transition-editorial duration-700 delay-200"
+          :class="{ 'is-revealed': isRevealed }"
+        >
           <button
             type="button"
             class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer"
             :class="activeScope === 'department' ? 'bg-brand text-black font-semibold' : 'text-zinc-400 hover:text-white'"
-            @click="activeScope = 'department'"
+            @click="setScope('department')"
           >
             Departmental
           </button>
@@ -133,7 +163,7 @@ const solutions = [
             type="button"
             class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer"
             :class="activeScope === 'enterprise' ? 'bg-brand text-black font-semibold' : 'text-zinc-400 hover:text-white'"
-            @click="activeScope = 'enterprise'"
+            @click="setScope('enterprise')"
           >
             Cross-Enterprise
           </button>
@@ -141,7 +171,7 @@ const solutions = [
             type="button"
             class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer"
             :class="activeScope === 'global' ? 'bg-brand text-black font-semibold' : 'text-zinc-400 hover:text-white'"
-            @click="activeScope = 'global'"
+            @click="setScope('global')"
           >
             Global Grid
           </button>
@@ -149,8 +179,14 @@ const solutions = [
       </div>
 
       <!-- Scope Profile Banner -->
-      <div class="mt-8 rounded-2xl border border-brand/20 bg-[#0c141f]/90 p-6 sm:p-7 font-ui backdrop-blur-xl relative">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div
+        class="mt-8 rounded-2xl border border-brand/20 bg-[#0c141f]/90 p-6 sm:p-7 font-ui backdrop-blur-xl relative reveal-card transition-editorial duration-700 delay-200"
+        :class="{ 'is-revealed': isRevealed }"
+      >
+        <div
+          class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-opacity duration-200 ease-out"
+          :class="isScopeTransitioning ? 'opacity-40' : 'opacity-100'"
+        >
           <div class="space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
@@ -186,9 +222,14 @@ const solutions = [
       <!-- Solutions 3-Card Grid -->
       <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 font-ui">
         <div
-          v-for="sol in solutions"
+          v-for="(sol, index) in solutions"
           :key="sol.id"
-          class="rounded-2xl border border-white/[0.08] bg-[#0e151f]/90 hover:border-brand/35 transition-all duration-300 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl relative p-8"
+          :class="[
+            'reveal-card',
+            `stagger-${index + 1}`,
+            isRevealed ? 'is-revealed' : '',
+            'rounded-2xl border border-white/[0.08] bg-[#0e151f]/90 hover:border-brand/35 transition-all duration-300 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl relative p-8'
+          ]"
         >
           <!-- Corner Crosshair -->
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -267,7 +308,10 @@ const solutions = [
       </div>
 
       <!-- Responsive Mobile-Usable Comparison Matrix -->
-      <div class="mt-20 rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-2xl relative">
+      <div
+        class="mt-20 rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-2xl relative reveal-card transition-editorial duration-700 delay-300"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
         <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 

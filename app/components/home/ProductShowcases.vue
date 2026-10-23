@@ -197,7 +197,7 @@ const telemetryBars = [
                 <div
                   v-for="(bar, bIdx) in telemetryBars"
                   :key="bIdx"
-                  class="w-full rounded-t transition-[height,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  class="w-full rounded-t transition-[height,opacity] duration-700 transition-editorial"
                   :class="[
                     bar.highlight ? 'bg-brand shadow-[0_0_12px_rgba(16,185,129,0.5)]' : bar.brandShade
                   ]"

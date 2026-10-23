@@ -1,6 +1,15 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Mail, Calendar, Layers, ArrowRight } from 'lucide-vue-next'
+
+const sectionRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(sectionRef, {
+  threshold: 0.15,
+  delay: 50
+})
 
 const channels = [
   {
@@ -11,7 +20,8 @@ const channels = [
     description: 'Reach our team directly for business, partnership, and corporate inquiries.',
     contactText: 'contact@kavorax.com',
     link: 'mailto:contact@kavorax.com',
-    linkLabel: 'Email Directly'
+    linkLabel: 'Email Directly',
+    staggerClass: 'stagger-1'
   },
   {
     title: 'Demo & Technical Walkthrough',
@@ -21,7 +31,8 @@ const channels = [
     description: 'Schedule a structured 45-minute technical briefing with our systems architects.',
     contactText: 'Executive Walkthrough Request',
     link: '/demo',
-    linkLabel: 'Book a Demo'
+    linkLabel: 'Book a Demo',
+    staggerClass: 'stagger-2'
   },
   {
     title: 'Solutions Architecture',
@@ -31,16 +42,23 @@ const channels = [
     description: 'Explore our Operations Platform, Analytics & Insights, and Integration Hub.',
     contactText: 'Connected Enterprise Platform',
     link: '/products',
-    linkLabel: 'Explore Solutions'
+    linkLabel: 'Explore Solutions',
+    staggerClass: 'stagger-3'
   }
 ]
 </script>
 
 <template>
-  <section class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.08] overflow-hidden">
+  <section
+    ref="sectionRef"
+    class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.08] overflow-hidden"
+  >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header with ChapterLabel -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 03"
           label="ENGAGEMENT OPTIONS"
@@ -57,24 +75,31 @@ const channels = [
 
       <!-- Section Title Area -->
       <div class="max-w-3xl space-y-4 mb-16">
-        <h2
+        <!-- Section H2 with WordReveal -->
+        <WordReveal
+          text="Verified Channels for Enterprise Dialogue."
+          as="h2"
           class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
+          :italic-words="['Enterprise Dialogue.']"
+          :delay="120"
+        />
+        <!-- Subtitle Corrected to font-ui font-light -->
+        <p
+          class="font-ui text-xl sm:text-2xl text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-200"
+          :class="{ 'is-revealed': isRevealed }"
         >
-          Verified Channels for
-          <span class="italic font-light text-brand">Enterprise Dialogue</span>.
-        </h2>
-        <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed font-normal">
           Select the channel that best matches your timeline, preferred communication style, and
           organizational prerequisites.
         </p>
       </div>
 
-      <!-- 3 Channels Grid with Restrained Refinement -->
+      <!-- 3 Channels Grid with Staggered Card Entrance -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-ui">
         <div
           v-for="ch in channels"
           :key="ch.title"
-          class="rounded-2xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-10 backdrop-blur-xl hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative"
+          class="rounded-2xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-10 backdrop-blur-xl hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative reveal-card transition-editorial duration-700"
+          :class="[ch.staggerClass, { 'is-revealed': isRevealed }]"
         >
           <!-- Active Theory Corner Crosshairs -->
           <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>

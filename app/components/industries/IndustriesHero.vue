@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import WordReveal from '~/components/visual/WordReveal.vue'
@@ -14,11 +14,7 @@ import {
   ShieldCheck
 } from 'lucide-vue-next'
 
-const isHeroMounted = ref(false)
-
-onMounted(() => {
-  isHeroMounted.value = true
-})
+const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true, delay: 60 })
 
 const scrollToSectors = () => {
   const el = document.getElementById('industry-overview')
@@ -35,11 +31,11 @@ const scrollToSectors = () => {
       <img
         src="/images/global-connectivity.jpg"
         alt="Connected global industries and infrastructure"
-        class="w-full h-full object-cover object-center opacity-25 scale-105"
+        class="w-full h-full object-cover object-center opacity-25 scale-105 animate-hero-drift"
       >
       <div class="absolute inset-0 bg-gradient-to-r from-[#080c10] via-[#080c10]/95 to-[#080c10]/70" />
       <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/70 to-[#080c10]/40" />
-      <div class="absolute top-1/4 right-1/4 w-[650px] h-[650px] bg-brand/[0.05] blur-[160px] rounded-full" />
+      <div class="absolute top-1/4 right-1/4 w-[650px] h-[650px] bg-brand/[0.05] blur-[160px] rounded-full animate-ambient-drift" />
       <div class="absolute inset-0 bg-tech-grid opacity-40" />
     </div>
 
@@ -93,7 +89,7 @@ const scrollToSectors = () => {
 
           <!-- Hero Supporting Copy -->
           <p
-            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
+            class="font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             Every industry has distinct operational needs. KavoraX builds connected business solutions
@@ -197,7 +193,7 @@ const scrollToSectors = () => {
               </div>
             </div>
 
-            <p class="font-editorial text-sm text-zinc-300 leading-relaxed">
+            <p class="font-ui text-xs sm:text-sm text-zinc-300 leading-relaxed">
               Every vertical demands distinct compliance, transaction velocity, and system integration patterns. We architect software that aligns with these operating realities.
             </p>
 
