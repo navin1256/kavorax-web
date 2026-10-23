@@ -6,6 +6,8 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Textarea } from '~/components/ui/textarea'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   Send,
   Loader2,
@@ -178,22 +180,32 @@ const handleReset = () => {
   apiError.value = null
   submittedId.value = null
 }
+
+const sectionRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(sectionRef, {
+  threshold: 0.12,
+  delay: 40
+})
 </script>
 
 <template>
   <section
     id="inquiry-form"
+    ref="sectionRef"
     class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] scroll-mt-20 overflow-hidden"
   >
-    <!-- Subtle ambient glow -->
+    <!-- Subtle ambient glow with gentle atmospheric drift -->
     <div
-      class="absolute top-1/3 -right-36 w-96 h-96 bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/3 -right-36 w-96 h-96 bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Tag & Coordinate Metadata Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        :class="{ 'is-revealed': isRevealed }"
+      >
         <ChapterLabel
           index="CHAPTER 02"
           label="INQUIRY FORM"
@@ -214,20 +226,29 @@ const handleReset = () => {
         <!-- Left Column: Supporting Visual & Editorial Guidance -->
         <div class="lg:col-span-5 space-y-8">
           <div class="space-y-4">
-            <h2
+            <!-- Section H2 with WordReveal -->
+            <WordReveal
+              text="What to Share With Our Team."
+              as="h2"
               class="font-editorial text-3xl sm:text-5xl font-medium tracking-tight text-white leading-[1.12]"
+              :italic-words="['Our Team.']"
+              :delay="120"
+            />
+            <!-- Corrected to font-ui font-light -->
+            <p
+              class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-150"
+              :class="{ 'is-revealed': isRevealed }"
             >
-              What to Share With
-              <span class="italic font-light text-brand">Our Team</span>.
-            </h2>
-            <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal">
               To help us prepare for an informative initial exchange, consider sharing the general
               context of your business objectives and software environment.
             </p>
           </div>
 
-          <!-- The ONE Supporting Visual: Architectural Consultation Photo Frame -->
-          <div class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group">
+          <!-- The ONE Supporting Visual: Architectural Consultation Photo Frame with Reveal -->
+          <div
+            class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group reveal-card transition-editorial duration-700 delay-100"
+            :class="{ 'is-revealed': isRevealed }"
+          >
             <!-- Active Theory Corner Crosshairs -->
             <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
             <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -254,7 +275,7 @@ const handleReset = () => {
                 </span>
               </div>
 
-              <!-- Editorial Photo Caption -->
+              <!-- Editorial Photo Caption (Corrected to font-ui) -->
               <div class="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-4 space-y-1">
                 <div class="flex items-center justify-between font-ui text-xs">
                   <span class="text-zinc-200 font-semibold flex items-center gap-1.5">
@@ -263,16 +284,19 @@ const handleReset = () => {
                   </span>
                   <span class="font-mono text-zinc-400 text-[10px]">VERIFIED</span>
                 </div>
-                <p class="text-zinc-400 font-editorial italic text-xs leading-snug">
+                <p class="text-zinc-400 font-ui text-xs leading-snug">
                   Direct engagement with solutions engineers to evaluate system compatibility and workflow cohesion.
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Structured Preparation Points -->
+          <!-- Structured Preparation Points with Staggered Card Reveals -->
           <div class="space-y-3.5 font-ui">
-            <div class="rounded-xl border border-white/[0.07] bg-[#0c141e]/80 p-4.5 space-y-1.5 hover:border-brand/30 transition-colors">
+            <div
+              class="rounded-xl border border-white/[0.07] bg-[#0c141e]/80 p-4.5 space-y-1.5 hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700 stagger-1"
+              :class="{ 'is-revealed': isRevealed }"
+            >
               <div class="flex items-center gap-2.5 text-white font-medium text-sm">
                 <span class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono">1</span>
                 <span>Operational Challenges</span>
@@ -282,7 +306,10 @@ const handleReset = () => {
               </p>
             </div>
 
-            <div class="rounded-xl border border-white/[0.07] bg-[#0c141e]/80 p-4.5 space-y-1.5 hover:border-brand/30 transition-colors">
+            <div
+              class="rounded-xl border border-white/[0.07] bg-[#0c141e]/80 p-4.5 space-y-1.5 hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700 stagger-2"
+              :class="{ 'is-revealed': isRevealed }"
+            >
               <div class="flex items-center gap-2.5 text-white font-medium text-sm">
                 <span class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono">2</span>
                 <span>Existing Software Topology</span>
@@ -292,7 +319,10 @@ const handleReset = () => {
               </p>
             </div>
 
-            <div class="rounded-xl border border-white/[0.07] bg-[#0c141e]/80 p-4.5 space-y-1.5 hover:border-brand/30 transition-colors">
+            <div
+              class="rounded-xl border border-white/[0.07] bg-[#0c141e]/80 p-4.5 space-y-1.5 hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700 stagger-3"
+              :class="{ 'is-revealed': isRevealed }"
+            >
               <div class="flex items-center gap-2.5 text-white font-medium text-sm">
                 <span class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono">3</span>
                 <span>Organizational Priorities & Scale</span>
@@ -303,8 +333,11 @@ const handleReset = () => {
             </div>
           </div>
 
-          <!-- Direct Verified Channels Box -->
-          <div class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-6 space-y-4 font-ui">
+          <!-- Direct Verified Channels Box with Reveal -->
+          <div
+            class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-6 space-y-4 font-ui reveal-card transition-editorial duration-700 delay-300"
+            :class="{ 'is-revealed': isRevealed }"
+          >
             <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-xs">
               <span class="font-semibold text-white uppercase tracking-wider">Direct Advisory Channels</span>
               <span class="font-mono text-[10px] text-brand">OFFICIAL</span>
@@ -336,16 +369,18 @@ const handleReset = () => {
           </div>
         </div>
 
-        <!-- Right Column: Carefully Designed Inquiry Form -->
+        <!-- Right Column: Carefully Designed Inquiry Form with Stable Cohesive Reveal -->
         <div class="lg:col-span-7 relative">
-          <!-- Subtle Glow Backplate -->
+          <!-- Subtle Glow Backplate with Atmospheric Ambient Drift -->
           <div
-            class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none"
+            class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none animate-ambient-drift"
             aria-hidden="true"
           />
 
+          <!-- Form Outer Container Card: Reveals as one unit approximately 150ms after guidance -->
           <div
-            class="relative rounded-3xl border border-white/10 bg-[#0c141e]/95 p-7 sm:p-12 lg:p-14 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group"
+            class="relative rounded-3xl border border-white/10 bg-[#0c141e]/95 p-7 sm:p-12 lg:p-14 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-card transition-editorial duration-700 delay-150"
+            :class="{ 'is-revealed': isRevealed }"
           >
             <!-- Active Theory Corner Crosshairs -->
             <div class="absolute top-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>

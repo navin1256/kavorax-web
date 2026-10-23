@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
+import CookieBanner from '~/components/CookieBanner.vue'
+import WhatsAppWidget from '~/components/WhatsAppWidget.vue'
 </script>
 
 <template>
@@ -12,5 +14,7 @@ import AppFooter from '~/components/layout/AppFooter.vue'
       <slot />
     </main>
     <AppFooter />
+    <WhatsAppWidget />
+    <CookieBanner />
   </div>
 </template>

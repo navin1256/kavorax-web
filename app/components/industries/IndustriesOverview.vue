@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import { Building2, Landmark, Activity, Truck, ArrowDownRight } from 'lucide-vue-next'
+
+const overviewRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(overviewRef, { threshold: 0.1 })
 
 const industries = [
   {
@@ -65,22 +71,32 @@ const industries = [
 <template>
   <section
     id="industry-overview"
+    ref="overviewRef"
     class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.08]"
+    :class="{ 'is-revealed': isRevealed }"
   >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="max-w-3xl space-y-4">
-        <ChapterLabel
-          index="CHAPTER 02"
-          label="INDUSTRY EXPLORER"
-          sublabel="OPERATIONAL REALITIES"
-        />
-        <h2
+        <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
+          <ChapterLabel
+            index="CHAPTER 02"
+            label="INDUSTRY EXPLORER"
+            sublabel="OPERATIONAL REALITIES"
+          />
+        </div>
+        <WordReveal
+          text="Purposeful solutions tailored to enterprise operational realities."
+          as="h2"
           class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+          :italic-words="['enterprise', 'operational', 'realities']"
+          :delay="120"
+          :threshold="0.12"
+        />
+        <p
+          class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl reveal-paragraph transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isRevealed }"
         >
-          Purposeful solutions tailored to <span class="italic font-light text-brand">enterprise operational realities</span>.
-        </h2>
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl">
           KavoraX concentrates on four foundational enterprise verticals where operational
           coordination, end-to-end visibility, and reliable interoperability are vital to
           sustainable growth.
@@ -90,9 +106,15 @@ const industries = [
       <!-- Asymmetric Editorial Gallery Grid (7-5 and 5-7 Col Spans) -->
       <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 font-ui">
         <div
-          v-for="ind in industries"
+          v-for="(ind, index) in industries"
           :key="ind.id"
-          :class="[ind.colSpan, 'rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.5)] relative']"
+          :class="[
+            ind.colSpan,
+            'reveal-card',
+            `stagger-${index + 1}`,
+            isRevealed ? 'is-revealed' : '',
+            'rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.5)] relative'
+          ]"
         >
           <!-- Corner Crosshair -->
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none z-10" aria-hidden="true">+</div>

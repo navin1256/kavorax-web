@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useScrollReveal } from '~/composables/useScrollReveal'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
+import WordReveal from '~/components/visual/WordReveal.vue'
 import {
   Workflow,
   BarChart3,
@@ -9,6 +12,9 @@ import {
   Layers,
   CheckCircle2
 } from 'lucide-vue-next'
+
+const connectedRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(connectedRef, { threshold: 0.1 })
 
 const operationalPillars = [
   {
@@ -72,31 +78,40 @@ const operationalPillars = [
 
 <template>
   <section
+    ref="connectedRef"
     class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] overflow-hidden"
+    :class="{ 'is-revealed': isRevealed }"
   >
     <!-- Ambient emerald depth lighting -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto space-y-4">
-        <ChapterLabel
-          index="CHAPTER 03"
-          label="CONNECTED BUSINESS OPERATIONS"
-          sublabel="FOUNDATIONAL ARCHITECTURE"
+        <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
+          <ChapterLabel
+            index="CHAPTER 03"
+            label="CONNECTED BUSINESS OPERATIONS"
+            sublabel="FOUNDATIONAL ARCHITECTURE"
+          />
+        </div>
+
+        <WordReveal
+          text="Connected Systems. Clearer Operations."
+          as="h2"
+          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+          :italic-words="['Clearer', 'Operations.']"
+          :delay="120"
+          :threshold="0.15"
         />
 
-        <h2
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
+        <p
+          class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl mx-auto reveal-paragraph transition-editorial duration-700 delay-300"
+          :class="{ 'is-revealed': isRevealed }"
         >
-          Connected Systems.
-          <span class="italic font-light text-brand">Clearer Operations</span>.
-        </h2>
-
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl mx-auto">
           Operational resilience depends on how effectively workflows, data, systems, and governance
           interact. KavoraX designs solutions that reinforce these four essential pillars, creating
           coherent operational foundations across varied business environments.
@@ -107,7 +122,8 @@ const operationalPillars = [
       <div class="mt-16 sm:mt-20">
         <!-- Center Interconnection Hub Board -->
         <div
-          class="rounded-2xl border border-white/[0.1] bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative"
+          class="rounded-2xl border border-white/[0.1] bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative reveal-card transition-editorial duration-700 delay-200"
+          :class="{ 'is-revealed': isRevealed }"
         >
           <!-- Corner Crosshairs -->
           <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -117,7 +133,8 @@ const operationalPillars = [
 
           <!-- Top Banner Bar -->
           <div
-            class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 mb-8 border-b border-white/[0.08] gap-4 font-ui"
+            class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 mb-8 border-b border-white/[0.08] gap-4 font-ui reveal-base transition-editorial duration-700 delay-300"
+            :class="{ 'is-revealed': isRevealed }"
           >
             <div class="flex items-center gap-3">
               <div
@@ -148,9 +165,13 @@ const operationalPillars = [
           <!-- 4 Pillars Quad Layout -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 font-ui">
             <div
-              v-for="pillar in operationalPillars"
+              v-for="(pillar, index) in operationalPillars"
               :key="pillar.id"
-              class="group relative rounded-xl border border-white/[0.07] bg-[#101925]/70 p-6 sm:p-7 hover:border-brand/35 transition-all duration-300 hover:bg-[#121d2c]"
+              :class="[
+                'group relative rounded-xl border border-white/[0.07] bg-[#101925]/70 p-6 sm:p-7 hover:border-brand/35 transition-all duration-300 hover:bg-[#121d2c] reveal-card',
+                `stagger-${index + 1}`,
+                isRevealed ? 'is-revealed' : ''
+              ]"
             >
               <!-- Card Header -->
               <div class="flex items-start justify-between mb-4">
@@ -195,7 +216,8 @@ const operationalPillars = [
 
           <!-- Bottom Visual Flow Conduit Bar -->
           <div
-            class="mt-8 pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400"
+            class="mt-8 pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-500"
+            :class="{ 'is-revealed': isRevealed }"
           >
             <div class="flex items-center gap-2 text-zinc-300">
               <span class="h-2 w-2 rounded-full bg-brand animate-pulse-subtle" />

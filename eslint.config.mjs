@@ -1,4 +1,18 @@
-// @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import eslintConfigPrettier from 'eslint-config-prettier'
 
-export default withNuxt()
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  {
+    ignores: [
+      '.nuxt/**',
+      '.output/**',
+      'dist/**',
+      'node_modules/**',
+      'public/**',
+      'scratch/**',
+      'legacy_archive/**',
+      '*.log'
+    ]
+  },
+  eslintConfigPrettier
+]

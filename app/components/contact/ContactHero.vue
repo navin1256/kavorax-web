@@ -20,9 +20,9 @@ onMounted(() => {
 
 <template>
   <section class="relative pt-20 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
-    <!-- Ambient emerald backlight glow -->
+    <!-- Ambient emerald backlight glow with subtle atmospheric drift -->
     <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
     <div class="absolute inset-0 bg-tech-grid opacity-35 pointer-events-none -z-10" aria-hidden="true" />
@@ -68,9 +68,9 @@ onMounted(() => {
           :immediate="true"
         />
 
-        <!-- Supporting Text -->
+        <!-- Supporting Text (Corrected to font-ui font-light) -->
         <p
-          class="font-editorial text-xl sm:text-2xl md:text-3xl text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
+          class="font-ui text-xl sm:text-2xl text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-500"
           :class="{ 'is-revealed': isHeroMounted }"
         >
           Tell us about your business, your challenges, and what you’re looking to achieve.
@@ -114,12 +114,13 @@ onMounted(() => {
           </NuxtLink>
         </div>
 
-        <!-- 3 Approachable Principles Strip with Corner Crosshairs -->
-        <div
-          class="pt-12 mt-12 border-t border-white/[0.08] grid grid-cols-1 md:grid-cols-3 gap-6 font-ui reveal-base transition-editorial duration-700 delay-800"
-          :class="{ 'is-revealed': isHeroMounted }"
-        >
-          <div class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors">
+        <!-- 3 Approachable Principles Strip with Individual Staggered Card Entrance -->
+        <div class="pt-12 mt-12 border-t border-white/[0.08] grid grid-cols-1 md:grid-cols-3 gap-6 font-ui">
+          <div
+            class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700"
+            :class="{ 'is-revealed': isHeroMounted }"
+            :style="{ transitionDelay: isHeroMounted ? '750ms' : '0ms' }"
+          >
             <div class="flex items-center gap-2.5 text-white font-medium text-sm">
               <UserCheck class="h-4 w-4 text-brand shrink-0" />
               <span>Direct Architect Access</span>
@@ -129,7 +130,11 @@ onMounted(() => {
             </p>
           </div>
 
-          <div class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors">
+          <div
+            class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700"
+            :class="{ 'is-revealed': isHeroMounted }"
+            :style="{ transitionDelay: isHeroMounted ? '850ms' : '0ms' }"
+          >
             <div class="flex items-center gap-2.5 text-white font-medium text-sm">
               <ShieldCheck class="h-4 w-4 text-brand shrink-0" />
               <span>Strict Confidentiality</span>
@@ -139,7 +144,11 @@ onMounted(() => {
             </p>
           </div>
 
-          <div class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors">
+          <div
+            class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700"
+            :class="{ 'is-revealed': isHeroMounted }"
+            :style="{ transitionDelay: isHeroMounted ? '950ms' : '0ms' }"
+          >
             <div class="flex items-center gap-2.5 text-white font-medium text-sm">
               <Cpu class="h-4 w-4 text-brand shrink-0" />
               <span>Pragmatic Guidance</span>
