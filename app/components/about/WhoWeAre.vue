@@ -141,9 +141,12 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.05 })
 
             <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-950">
               <img
-                src="/images/executive-briefing.jpg"
+                src="/images/executive-briefing.webp"
                 alt="Executive enterprise briefing room where technology strategy aligns with business operations"
-                loading="eager"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="288"
                 class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity"
               >
               <!-- Gradient Overlay -->

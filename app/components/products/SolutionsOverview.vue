@@ -254,7 +254,8 @@ watch(
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Editorial Header with Scroll Reveal -->
-      <div
+      <section
+        id="solutions-spectrum-header"
         ref="headerRef"
         class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-white/[0.08] reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
@@ -306,7 +307,7 @@ watch(
             <span>Integration</span>
           </button>
         </div>
-      </div>
+      </section>
 
       <!-- ======================================================== -->
       <!-- PRODUCT 1: OPERATIONS PLATFORM (Workflow Orchestration)  -->
@@ -870,7 +871,7 @@ watch(
       <!-- ======================================================== -->
       <!-- INTER-PRODUCT INTELLIGENCE MESH (Supported by Real Data) -->
       <!-- ======================================================== -->
-      <div class="mt-20 pt-16 border-t border-white/[0.08]">
+      <section id="system-mesh-section" class="mt-20 pt-16 border-t border-white/[0.08]">
         <div
           id="system-mesh"
           ref="meshRef"
@@ -985,7 +986,7 @@ watch(
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </template>

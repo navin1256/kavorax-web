@@ -11,11 +11,7 @@ import {
   Cpu
 } from 'lucide-vue-next'
 
-const isHeroMounted = ref(false)
-
-onMounted(() => {
-  isHeroMounted.value = true
-})
+const isHeroMounted = ref(true)
 </script>
 
 <template>
@@ -68,9 +64,9 @@ onMounted(() => {
           :immediate="true"
         />
 
-        <!-- Supporting Text (Corrected to font-ui font-light) -->
+        <!-- Supporting Text: Restored to Cormorant serif (font-editorial) per approved reference design -->
         <p
-          class="font-ui text-xl sm:text-2xl text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-500"
+          class="font-editorial text-xl sm:text-2xl md:text-3xl text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
           :class="{ 'is-revealed': isHeroMounted }"
         >
           Tell us about your business, your challenges, and what you’re looking to achieve.

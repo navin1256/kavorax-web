@@ -2,8 +2,8 @@ import type { H3Event } from 'h3'
 
 /**
  * Validates Cloudflare Turnstile tokens for server-side form submissions.
- * If NUXT_TURNSTILE_SECRET_KEY is not configured (e.g., local development),
- * verification passes safely to prevent blocking developer workflows.
+ * Fails closed: if NUXT_TURNSTILE_SECRET_KEY is missing or verification fails,
+ * it returns success: false to protect endpoints from automated abuse.
  */
 export async function validateTurnstile(
   token: string | undefined,
@@ -12,12 +12,17 @@ export async function validateTurnstile(
   const secretKey = process.env.NUXT_TURNSTILE_SECRET_KEY
 
   if (!secretKey) {
-    // Development or unconfigured environment: safe passthrough
-    return { success: true }
+    return {
+      success: false,
+      error: 'Turnstile security key is not configured on the server.'
+    }
   }
 
   if (!token) {
-    return { success: false, error: 'Anti-spam verification token is required.' }
+    return {
+      success: false,
+      error: 'Security verification token is required.'
+    }
   }
 
   try {

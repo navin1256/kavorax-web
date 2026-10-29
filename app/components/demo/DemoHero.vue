@@ -4,11 +4,7 @@ import { Button } from '~/components/ui/button'
 import WordReveal from '~/components/visual/WordReveal.vue'
 import { ArrowDown, Layers, Cpu, BarChart3, Network, ShieldCheck } from 'lucide-vue-next'
 
-const isHeroMounted = ref(false)
-
-onMounted(() => {
-  isHeroMounted.value = true
-})
+const isHeroMounted = ref(true)
 </script>
 
 <template>
@@ -41,9 +37,9 @@ onMounted(() => {
             :immediate="true"
           />
 
-          <!-- Hero Supporting Text -->
+          <!-- Hero Supporting Text: Restored to Cormorant serif (font-editorial) per approved reference design -->
           <p
-            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
+            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             Tell us a little about your business and what you want to achieve. We’ll use that context
@@ -114,22 +110,26 @@ onMounted(() => {
             <!-- Executive Briefing Visual Header -->
             <div class="relative h-44 w-full overflow-hidden bg-zinc-900">
               <img
-                src="/images/executive-briefing.jpg"
+                src="/images/executive-briefing.webp"
                 alt="Executive briefing room for architectural demonstration walkthrough"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="600"
+                height="176"
                 class="h-full w-full object-cover img-editorial-zoom opacity-70 group-hover:opacity-90 transition-opacity"
               >
               <div
                 class="absolute inset-0 bg-gradient-to-t from-[#0d141d] via-[#0d141d]/60 to-transparent"
               />
-              <div class="absolute top-3 left-4 right-4 flex items-center justify-between">
+              <div class="absolute top-3 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-2">
                 <span
-                  class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-zinc-300 border border-white/10"
+                  class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-zinc-300 border border-white/10 shrink-0 truncate max-w-[210px] sm:max-w-none"
                 >
                   SYSTEMS ARCHITECTURE SESSION
                 </span>
                 <span
-                  class="font-ui text-[11px] text-brand bg-brand/20 px-2 py-0.5 rounded border border-brand/30 flex items-center gap-1.5"
+                  class="font-ui text-[11px] text-brand bg-brand/20 px-2.5 py-0.5 rounded border border-brand/30 flex items-center gap-1.5 shrink-0 whitespace-nowrap"
                 >
                   <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
                   Live Walkthrough
@@ -209,13 +209,13 @@ onMounted(() => {
 
             <!-- Bottom Footnote -->
             <div
-              class="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between font-ui text-xs text-zinc-400"
+              class="mt-5 px-6 sm:px-7 pb-6 pt-4 border-t border-white/[0.06] flex items-center justify-between font-ui text-xs text-zinc-400"
             >
               <span class="flex items-center gap-2 text-zinc-300">
                 <ShieldCheck class="h-4 w-4 text-brand" />
                 Structured Around Your Real Priorities
               </span>
-              <span class="font-mono text-[11px] text-zinc-500">KavoraX Platform</span>
+              <span class="font-mono text-[11px] text-zinc-400 shrink-0 pr-1">KavoraX Platform</span>
             </div>
           </div>
         </div>

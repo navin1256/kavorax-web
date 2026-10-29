@@ -1,5 +1,7 @@
 User-agent: *
+Disallow: /admin/
 Disallow: /api/
 Allow: /
 
 Sitemap: https://kavorax.com/sitemap.xml
+

@@ -17,7 +17,7 @@ const whatsappUrl = computed(() => {
 <template>
   <aside
     aria-label="WhatsApp Quick Connect"
-    class="fixed bottom-6 right-6 z-40 print:hidden select-none"
+    class="fixed bottom-20 md:bottom-16 right-5 sm:right-6 z-40 print:hidden select-none transition-all duration-300"
   >
     <a
       :href="whatsappUrl"

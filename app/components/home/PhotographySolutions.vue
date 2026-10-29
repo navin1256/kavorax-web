@@ -38,7 +38,7 @@ const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
           :class="{ 'is-revealed': isRevealed }"
         >
           <ArchitecturalFrame
-            src="/images/architectural-workspace.jpg"
+            src="/images/architectural-workspace.webp"
             alt="Collaborative systems engineering workspace representing KavoraX enterprise advisory"
             aspect-ratio="wide"
             badge-text="SYSTEMS ADVISORY"

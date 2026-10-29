@@ -23,7 +23,7 @@ const industries = [
     headline: 'Auditable transaction architectures with zero-trust isolation.',
     description: 'Engineering fault-tolerant processing fabrics that meet strict regulatory frameworks, audit standards, and real-time ledger consistency requirements.',
     icon: Landmark,
-    image: '/images/fintech-headquarters.jpg',
+    image: '/images/fintech-headquarters.webp',
     anchor: '/industries#financial-services',
     metrics: ['Sub-millisecond reconciliation', 'Continuous SOC2 / ISO-level auditability', 'Air-gapped transaction isolation']
   },
@@ -34,7 +34,7 @@ const industries = [
     headline: 'Secure data pipelines accelerating care delivery.',
     description: 'Enabling clinical teams to share confidential diagnostics and telemetry with cryptographic privacy, zero data leakage, and automated compliance.',
     icon: Activity,
-    image: '/images/healthcare-diagnostics.jpg',
+    image: '/images/healthcare-diagnostics.webp',
     anchor: '/industries#healthcare',
     metrics: ['Encrypted patient telemetry', 'Automated data lineage tracing', '99.999% clinical availability']
   },
@@ -45,7 +45,7 @@ const industries = [
     headline: 'End-to-end freight visibility and event-driven fulfillment.',
     description: 'Connecting global container hubs, regional distribution points, and automated inventory systems into a synchronized operational fabric.',
     icon: Truck,
-    image: '/images/logistics-terminal.jpg',
+    image: '/images/logistics-terminal.webp',
     anchor: '/industries#supply-chain',
     metrics: ['Real-time intermodal tracking', 'Dynamic route load balancing', 'Automated freight exception handling']
   },
@@ -56,7 +56,7 @@ const industries = [
     headline: 'High-throughput platforms supporting mission-critical SaaS.',
     description: 'Empowering software enterprises with scalable multi-tenant orchestration, zero-downtime rolling deployments, and unified telemetry.',
     icon: Building2,
-    image: '/images/tech-infrastructure.jpg',
+    image: '/images/tech-infrastructure.webp',
     anchor: '/industries#enterprise-tech',
     metrics: ['Multi-region active-active mesh', 'Deterministic API gateway', 'Automated auto-scaling governance']
   }
@@ -154,6 +154,10 @@ const industries = [
             <img
               :src="industries[selectedIndex]?.image"
               :alt="industries[selectedIndex]?.title"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="520"
               class="w-full h-full object-cover img-editorial-zoom transition-all duration-700"
             >
             <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/75 to-[#080c10]/40" />

@@ -110,7 +110,7 @@ const currentLayer = computed(() => {
             class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mt-4"
           />
         </div>
-        <p class="font-editorial text-lg sm:text-xl text-zinc-300 max-w-md leading-relaxed font-normal">
+        <p class="font-ui text-base sm:text-lg text-zinc-300 max-w-md leading-relaxed font-normal">
           KavoraX architecture replaces fragmented point tools with a layered, synchronized digital fabric engineered for business resilience.
         </p>
       </div>

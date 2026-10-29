@@ -24,7 +24,7 @@ const industries = [
     focus: 'Cross-functional release handoffs & toolchain interoperability',
     icon: Building2,
     anchor: '/industries#enterprise-tech',
-    image: '/images/tech-infrastructure.jpg',
+    image: '/images/tech-infrastructure.webp',
     tag: 'HIGH CONCURRENCY'
   },
   {
@@ -32,7 +32,7 @@ const industries = [
     focus: 'Operational telemetry, data exchange & auditable governance',
     icon: Landmark,
     anchor: '/industries#financial-services',
-    image: '/images/fintech-headquarters.jpg',
+    image: '/images/fintech-headquarters.webp',
     tag: 'REGULATORY COMPLIANCE'
   },
   {
@@ -40,7 +40,7 @@ const industries = [
     focus: 'Administrative coordination & multi-department process visibility',
     icon: Activity,
     anchor: '/industries#healthcare',
-    image: '/images/healthcare-diagnostics.jpg',
+    image: '/images/healthcare-diagnostics.webp',
     tag: 'CARE CONTINUITY'
   },
   {
@@ -48,7 +48,7 @@ const industries = [
     focus: 'Multi-system synchronization across inventory & fulfillment networks',
     icon: Truck,
     anchor: '/industries#supply-chain',
-    image: '/images/logistics-terminal.jpg',
+    image: '/images/logistics-terminal.webp',
     tag: 'INTERMODAL SYNCHRONIZATION'
   }
 ]
@@ -110,6 +110,9 @@ const industries = [
                 :src="item.image"
                 :alt="item.name"
                 loading="lazy"
+                decoding="async"
+                width="600"
+                height="192"
                 class="h-full w-full object-cover img-editorial-zoom opacity-75 group-hover:opacity-100 transition-opacity"
               >
               <div

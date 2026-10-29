@@ -20,7 +20,7 @@ const industries = [
     keyFocus: 'Workflow execution & toolchain interoperability',
     primaryAnchor: '#enterprise-tech',
     ctaLabel: 'Explore SaaS Context',
-    image: '/images/tech-infrastructure.jpg',
+    image: '/images/tech-infrastructure.webp',
     alt: 'High-density enterprise computing and telemetry infrastructure'
   },
   {
@@ -34,7 +34,7 @@ const industries = [
     keyFocus: 'Operational telemetry & multi-system exchange',
     primaryAnchor: '#financial-services',
     ctaLabel: 'Explore FinTech Context',
-    image: '/images/fintech-headquarters.jpg',
+    image: '/images/fintech-headquarters.webp',
     alt: 'Modern financial architectural headquarters with glass facade'
   },
   {
@@ -48,7 +48,7 @@ const industries = [
     keyFocus: 'Operational coordination & bottleneck visibility',
     primaryAnchor: '#healthcare',
     ctaLabel: 'Explore Healthcare Context',
-    image: '/images/healthcare-diagnostics.jpg',
+    image: '/images/healthcare-diagnostics.webp',
     alt: 'Modern laboratory instrumentation and clinical diagnostics'
   },
   {
@@ -62,7 +62,7 @@ const industries = [
     keyFocus: 'Ecosystem bridging & milestone tracking',
     primaryAnchor: '#supply-chain',
     ctaLabel: 'Explore Logistics Context',
-    image: '/images/logistics-terminal.jpg',
+    image: '/images/logistics-terminal.webp',
     alt: 'Modern automated intermodal logistics terminal'
   }
 ]
@@ -126,6 +126,9 @@ const industries = [
                 :src="ind.image"
                 :alt="ind.alt"
                 loading="lazy"
+                decoding="async"
+                width="600"
+                height="256"
                 class="h-full w-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
               >
               <div

@@ -49,7 +49,7 @@ useHead({
       <!-- Terms Content Sections -->
       <div class="space-y-12 font-ui text-sm sm:text-base leading-relaxed text-zinc-300">
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">1. Acceptance of Terms</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">1. Acceptance of Terms</h2>
           <p>
             By accessing, deploying, subscribing to, or operating the KavoraX software platform (including our Point of Sale terminals, kitchen displays, inventory sync engine, digital ordering portals, and cloud analytics dashboards), you ("Customer", "Venue Operator", or "Subscriber") agree to be bound by these Terms of Service ("Terms") entered into with <strong class="text-white">KavoraX Global Private Limited</strong> ("KavoraX", "we", "our", or "us").
           </p>
@@ -59,7 +59,7 @@ useHead({
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">2. Service Architecture &amp; Subscribed Modules</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">2. Service Architecture &amp; Subscribed Modules</h2>
           <p>
             KavoraX provides a modular, connected business operations platform designed for retail shops, restaurants, cafes, supermarkets, salons, and multi-location enterprises across India and the GCC. Services include but are not limited to:
           </p>
@@ -74,21 +74,21 @@ useHead({
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">3. Offline-First Architecture &amp; Synchronization</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">3. Offline-First Architecture &amp; Synchronization</h2>
           <p>
             The software utilizes an offline-first distributed architecture. Local transactions committed during internet disruptions remain valid and automatically sync with the cloud upon reconnection. Operators are responsible for safeguarding local hardware terminals.
           </p>
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">4. Confidentiality &amp; Intellectual Property</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">4. Confidentiality &amp; Intellectual Property</h2>
           <p>
             All source code, user interface designs, algorithmic workflows, trademarks, and documentation associated with KavoraX remain the exclusive intellectual property of KavoraX Global Private Limited. Venue transaction datasets and customer lists remain the exclusive property of the subscribing venue partner.
           </p>
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">5. Governing Law &amp; Jurisdiction</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">5. Governing Law &amp; Jurisdiction</h2>
           <p>
             These Terms shall be governed by and construed in accordance with the laws of India. Any legal dispute or claim arising out of these Terms shall be subject to the exclusive jurisdiction of the courts in Bengaluru, Karnataka, India.
           </p>

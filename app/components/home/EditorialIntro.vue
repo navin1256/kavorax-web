@@ -62,9 +62,9 @@ const principles = [
         <!-- Left: Oversized Typographic Manifesto & Context -->
         <div class="lg:col-span-7 space-y-8">
           <ScrollTextReveal
-            text="The modern enterprise cannot afford disconnected systems. We construct unified technological backbones that allow operations, data, and people to move in synchronized harmony."
+            text="The modern enterprise cannot afford fragmented systems. We architect unified technologies that connect people, data and physical operations in synchronized motion."
             as="h2"
-            :highlight="['operations', 'data', 'and', 'people']"
+            :highlight="['synchronized', 'motion.']"
             highlight-class="italic font-light text-brand"
             :start-offset="0.88"
             :end-offset="0.32"
@@ -76,7 +76,7 @@ const principles = [
             :class="{ 'is-revealed': isRevealed }"
           >
             <p>
-              Organizations frequently struggle not from a lack of software, but from an overwhelming sprawl of incompatible platforms and siloed handoffs.
+              Fragmented systems drain momentum. When customer inquiries don't reach fulfillment, when inventory doesn't reflect actual stock, when field teams lack context from headquarters—enterprise potential leaks at every seam.
             </p>
           </div>
 
@@ -84,7 +84,7 @@ const principles = [
             class="font-ui text-base text-zinc-300 leading-relaxed max-w-xl font-normal reveal-paragraph delay-300"
             :class="{ 'is-revealed': isRevealed }"
           >
-            KavoraX bridges the gaps between operational planning, real-time analytics, and cross-enterprise integration. By engineering interoperable solutions from the ground up, we help business leaders replace friction with decisive action.
+            We close those gaps permanently. By unifying data pipelines, automating cross-functional workflows, and providing real-time operational clarity, KavoraX transforms disconnected operations into a synchronized enterprise.
           </p>
 
           <div
@@ -95,7 +95,7 @@ const principles = [
               to="/about"
               class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors group font-ui uppercase tracking-wider"
             >
-              <span>Learn About the KavoraX Philosophy</span>
+              <span>Read Our Story</span>
               <ArrowUpRight class="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </NuxtLink>
           </div>

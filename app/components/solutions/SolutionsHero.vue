@@ -61,7 +61,7 @@ const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: tru
       </div>
 
       <!-- Main Editorial Layout: Asymmetric 12-Column Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
         <!-- Left: Narrative Headline & Business Storytelling -->
         <div class="lg:col-span-7 space-y-7">
           <!-- Eyebrow Tag -->
@@ -83,7 +83,7 @@ const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: tru
             :immediate="true"
           />
 
-          <!-- Hero Supporting Copy (Standardized to Inter font-ui) -->
+          <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
           <p
             class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroRevealed }"
@@ -185,8 +185,13 @@ const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: tru
             <!-- Realistic Workplace / Technology Image Panel -->
             <div class="my-5 relative h-52 rounded-xl overflow-hidden border border-white/[0.08] group">
               <img
-                src="/images/architectural-workspace.jpg"
+                src="/images/architectural-workspace.webp"
                 alt="KavoraX collaborative systems architecture workshop"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="600"
+                height="208"
                 class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
               >
               <div class="absolute inset-0 bg-gradient-to-t from-[#0c141e] via-[#0c141e]/40 to-transparent" />

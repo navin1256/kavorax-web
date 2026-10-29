@@ -14,7 +14,7 @@ import {
   ShieldCheck
 } from 'lucide-vue-next'
 
-const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true, delay: 60 })
+const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true })
 
 const scrollToSectors = () => {
   const el = document.getElementById('industry-overview')
@@ -29,8 +29,13 @@ const scrollToSectors = () => {
     <!-- Visual Striking Photographic Hero with Multi-Stop Vignette -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <img
-        src="/images/global-connectivity.jpg"
+        src="/images/global-connectivity.webp"
         alt="Connected global industries and infrastructure"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        width="1920"
+        height="1080"
         class="w-full h-full object-cover object-center opacity-25 scale-105 animate-hero-drift"
       >
       <div class="absolute inset-0 bg-gradient-to-r from-[#080c10] via-[#080c10]/95 to-[#080c10]/70" />
@@ -65,7 +70,7 @@ const scrollToSectors = () => {
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
         <!-- Left: Editorial Headline & Copy -->
         <div class="lg:col-span-7 space-y-7">
           <!-- Subtle Eyebrow Label -->
@@ -87,9 +92,9 @@ const scrollToSectors = () => {
             :immediate="true"
           />
 
-          <!-- Hero Supporting Copy -->
+          <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
           <p
-            class="font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
+            class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             Every industry has distinct operational needs. KavoraX builds connected business solutions
@@ -179,8 +184,13 @@ const scrollToSectors = () => {
             <!-- Photographic Hero Inset -->
             <div class="my-5 relative h-60 rounded-xl overflow-hidden border border-white/[0.08] group">
               <img
-                src="/images/fintech-headquarters.jpg"
+                src="/images/fintech-headquarters.webp"
                 alt="Institutional enterprise environment"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="600"
+                height="240"
                 class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
               >
               <div class="absolute inset-0 bg-gradient-to-t from-[#0c141e] via-[#0c141e]/40 to-transparent" />

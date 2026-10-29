@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { Button } from '~/components/ui/button'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 import WordReveal from '~/components/visual/WordReveal.vue'
@@ -16,11 +16,22 @@ import {
 
 const heroRef = ref<HTMLElement | null>(null)
 const capRef = ref<HTMLElement | null>(null)
+const isHeroVisible = ref(true)
 
 // Cinematic immediate reveal for hero elements on page entry
 const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: true })
 // Viewport-triggered scroll reveal for enterprise capabilities section
 const { isRevealed: isCapRevealed } = useScrollReveal(capRef, { threshold: 0.15 })
+
+onMounted(() => {
+  if (typeof window !== 'undefined' && 'IntersectionObserver' in window && heroRef.value) {
+    const obs = new IntersectionObserver(([entry]) => {
+      isHeroVisible.value = entry.isIntersecting
+    }, { rootMargin: '100px 0px 100px 0px' })
+    obs.observe(heroRef.value)
+    onUnmounted(() => obs.disconnect())
+  }
+})
 
 const enterpriseCapabilities = [
   {
@@ -68,10 +79,15 @@ const scrollToContent = () => {
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <!-- Authentic Architectural Skyscraper Photography Asset with Ultra-Slow Cinematic Drift -->
         <img
-          src="/images/fintech-headquarters.jpg"
+          src="/images/fintech-headquarters.webp"
           alt="KavoraX modern enterprise corporate headquarters architecture"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="1920"
+          height="1080"
           class="h-full w-full object-cover object-[center_32%] md:object-[center_28%] lg:object-[center_25%] opacity-40 filter brightness-[0.75] contrast-[1.10] scale-[1.01] animate-hero-drift"
+          :style="{ animationPlayState: isHeroVisible ? 'running' : 'paused' }"
         >
 
         <!-- Layered Dark Black/Charcoal Linear Gradients (Zero curves, arcs, rings, or radial patterns) -->
@@ -131,19 +147,19 @@ const scrollToContent = () => {
 
         <!-- Headline: Word-by-word reveal with italic emerald flourish (responsive wrapping without clipping) -->
         <WordReveal
-          text="Technology that moves business forward."
+          text="Technology that&#10;moves business forward."
           as="h1"
           highlight="forward"
           highlight-class="italic font-light text-brand"
           :base-delay-ms="200"
           :stagger-ms="55"
           :immediate="true"
-          class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-normal tracking-[-0.025em] text-white leading-[1.08] text-balance max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
+          class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-normal tracking-[-0.025em] text-white leading-[1.08] max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
         />
 
-        <!-- Supporting Text: Preserved exact copy with harmonious spacing and high contrast -->
+        <!-- Supporting Text: Restored to Cormorant serif (font-editorial) per approved reference design -->
         <p
-          class="mt-5 sm:mt-6 font-ui text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed text-pretty font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] reveal-base delay-500"
+          class="mt-5 sm:mt-6 font-editorial text-lg sm:text-xl md:text-[1.45rem] lg:text-[1.55rem] text-zinc-200 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed text-pretty font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] reveal-base delay-500"
           :class="{ 'is-revealed': isHeroRevealed }"
         >
           KavoraX builds connected business solutions that help organisations operate smarter,
