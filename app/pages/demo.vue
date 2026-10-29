@@ -21,6 +21,15 @@ useHead({
       content:
         'See what better-connected business looks like. Request a product demonstration of the KavoraX Operations Platform, Analytics, and Integration Hub.'
     }
+  ],
+  link: [
+    {
+      rel: 'preload',
+      as: 'image',
+      href: '/images/executive-briefing.webp',
+      type: 'image/webp',
+      fetchpriority: 'high'
+    }
   ]
 })
 </script>

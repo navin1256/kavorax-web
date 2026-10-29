@@ -40,6 +40,10 @@ const aspectClasses = {
         :src="props.src"
         :alt="props.alt"
         :loading="props.priority ? 'eager' : 'lazy'"
+        :fetchpriority="props.priority ? 'high' : 'auto'"
+        decoding="async"
+        width="1200"
+        height="750"
         class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity"
       >
 

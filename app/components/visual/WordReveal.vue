@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 
 interface Props {
@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   baseDelayMs: 120,
   delay: undefined,
   immediate: false,
-  threshold: 0.15,
+  threshold: 0.05,
   class: ''
 })
 
@@ -44,17 +44,37 @@ const { isRevealed } = useScrollReveal(rootRef, {
   triggerOnce: true
 })
 
-// Normalize highlight terms for matching from both highlight and italicWords props
+// Normalize highlight terms from single words or multi-word phrases (e.g. 'Our Team.')
 const highlightTerms = computed(() => {
   const rawTerms = props.italicWords || props.highlight
   if (!rawTerms) return []
   const terms = Array.isArray(rawTerms) ? rawTerms : [rawTerms]
-  return terms.map((t) => t.trim().toLowerCase().replace(/[.,!?;:“”"']/g, ''))
+  return terms
+    .flatMap((t) => t.trim().toLowerCase().split(/\s+/))
+    .map((t) => t.replace(/[.,!?;:“”"']/g, ''))
+    .filter(Boolean)
 })
 
-// Split into clean words while preserving trailing punctuation
-const words = computed(() => {
-  return props.text.split(/\s+/).filter(Boolean)
+// Support explicit newlines (\n) for responsive editorial breaks
+const lines = computed(() => {
+  return props.text.split('\n')
+})
+
+interface WordToken {
+  word: string
+  globalIndex: number
+}
+
+const parsedLines = computed(() => {
+  let counter = 0
+  return lines.value.map((line) => {
+    const rawWords = line.split(/\s+/).filter(Boolean)
+    const tokens: WordToken[] = rawWords.map((word) => ({
+      word,
+      globalIndex: counter++
+    }))
+    return tokens
+  })
 })
 
 function isHighlighted(word: string): boolean {
@@ -65,37 +85,49 @@ function isHighlighted(word: string): boolean {
 function getDelay(index: number): number {
   return effectiveBaseDelay.value + index * props.staggerMs
 }
+
+onMounted(() => {
+  // Safety net: force reveal after 1.5s if not already triggered by scroll observer
+  setTimeout(() => {
+    if (!isRevealed.value) {
+      isRevealed.value = true
+    }
+  }, 1500)
+})
 </script>
 
 <template>
   <component
     :is="props.as"
     ref="rootRef"
-    :aria-label="props.text"
+    :aria-label="props.text.replace(/\n/g, ' ')"
     :class="[
-      'relative font-editorial leading-[1.08] tracking-[-0.025em] max-w-full break-words select-text',
+      'relative font-editorial leading-[1.08] tracking-[-0.025em] max-w-full break-words select-text lining-nums',
       props.class
     ]"
   >
     <!-- Visual words: masked upward reveal preventing clipped descenders & flourishes -->
     <span aria-hidden="true" class="inline select-text">
-      <template v-for="(word, index) in words" :key="index">
-        <span
-          class="inline-block overflow-hidden align-bottom px-[0.06em] -mx-[0.06em] pt-[0.1em] pb-[0.25em] -mb-[0.25em] select-text"
-        >
+      <template v-for="(lineTokens, lineIdx) in parsedLines" :key="lineIdx">
+        <template v-for="(item, wordIdx) in lineTokens" :key="item.globalIndex">
           <span
-            :class="[
-              'inline-block transition-[transform,opacity,color] duration-word-reveal transition-editorial will-change-[transform,opacity]',
-              isHighlighted(word) ? props.highlightClass : '',
-              isRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[115%]'
-            ]"
-            :style="{
-              transitionDelay: isRevealed ? `${getDelay(index)}ms` : '0ms'
-            }"
-          >{{ word }}</span>
-        </span>{{ index < words.length - 1 ? ' ' : '' }}
+            class="inline-block overflow-hidden align-bottom px-[0.06em] -mx-[0.06em] pt-[0.1em] pb-[0.25em] -mb-[0.25em] select-text"
+          >
+            <span
+              :class="[
+                'inline-block transition-[transform,opacity,color] duration-word-reveal transition-editorial will-change-[transform,opacity]',
+                isHighlighted(item.word) ? props.highlightClass : '',
+                isRevealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[115%]'
+              ]"
+              :style="{
+                transitionDelay: isRevealed ? `${getDelay(item.globalIndex)}ms` : '0ms'
+              }"
+            >{{ item.word }}</span>
+          </span>{{ wordIdx < lineTokens.length - 1 ? ' ' : '' }}
+        </template>
+        <br v-if="lineIdx < parsedLines.length - 1" class="hidden sm:inline" />
+        <span v-if="lineIdx < parsedLines.length - 1" class="inline sm:hidden">&nbsp;</span>
       </template>
     </span>
   </component>
 </template>
-

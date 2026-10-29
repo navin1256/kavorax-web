@@ -142,7 +142,7 @@ const scrollToSection = (id: string) => {
             :immediate="true"
           />
 
-          <!-- Hero Supporting Copy -->
+          <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
           <p
             class="font-ui text-base sm:text-lg text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"

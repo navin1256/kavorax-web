@@ -2,7 +2,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   compatibilityDate: "2026-01-01",
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   experimental: {
     appManifest: false
@@ -10,45 +10,51 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      link: [
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap",
-        },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-        },
-      ],
-    },
+      htmlAttrs: { lang: 'en' },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      ]
+    }
   },
 
   modules: [
     "@nuxtjs/i18n",
-    "@nuxt/content",
     "@nuxt/image",
     "@nuxt/fonts",
-    "@nuxt/icon",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    "@pinia/nuxt",
     "@vueuse/nuxt",
     "nuxt-gtag",
     "@nuxtjs/turnstile",
   ],
 
+  fonts: {
+    families: [
+      { name: "Cormorant Garamond", provider: "google", weights: [400, 500, 600, 700], styles: ["normal", "italic"] },
+      { name: "Inter", provider: "google", weights: [300, 400, 500, 600, 700], styles: ["normal"] },
+    ],
+    defaults: {
+      preload: true,
+      weights: [400, 600],
+      styles: ["normal", "italic"],
+      subsets: ["latin"],
+    },
+  },
+
   css: ["~/assets/css/main.css"],
   vite: { plugins: [tailwindcss()] },
 
-  site: { url: "https://kavorax.com" }, // used by sitemap module
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://kavorax.com",
+    name: "KavoraX Global"
+  },
 
   robots: {
     groups: [
       {
         userAgent: ['*'],
-        disallow: ['/api', '/api/*'],
+        disallow: ['/admin', '/admin/*', '/api', '/api/*'],
         allow: ['/']
       }
     ],
@@ -56,7 +62,7 @@ export default defineNuxtConfig({
   },
 
   turnstile: {
-    siteKey: process.env.NUXT_TURNSTILE_SITE_KEY || '',
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || '',
   },
 
   i18n: {
@@ -80,6 +86,20 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/images/**': { headers: { 'cache-control': 'public, max-age=86400, stale-while-revalidate=604800' } },
+    '/': { prerender: true },
+    '/about': { prerender: true },
+    '/solutions': { prerender: true },
+    '/products': { prerender: true },
+    '/industries': { prerender: true },
+    '/pricing': { prerender: true },
+    '/contact': { prerender: true },
+    '/demo': { prerender: true },
+    '/pos-and-billing': { prerender: true },
+    '/kitchen-display': { prerender: true },
+    '/privacy-policy': { prerender: true },
+    '/terms-of-service': { prerender: true },
     '/contact-us': { redirect: { to: '/contact', statusCode: 301 } },
     '/careers': { redirect: { to: '/about', statusCode: 301 } },
     '/resources': { redirect: { to: '/solutions', statusCode: 301 } },
@@ -92,6 +112,23 @@ export default defineNuxtConfig({
     '/ecommerce': { redirect: { to: '/solutions', statusCode: 301 } },
   },
 
-  // Removed hardcoded prerender routes to dynamically generate based on available pages
-  nitro: {},
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      routes: [
+        '/',
+        '/about',
+        '/solutions',
+        '/products',
+        '/industries',
+        '/pricing',
+        '/contact',
+        '/demo',
+        '/pos-and-billing',
+        '/kitchen-display',
+        '/privacy-policy',
+        '/terms-of-service'
+      ]
+    }
+  },
 });

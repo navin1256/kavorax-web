@@ -62,6 +62,8 @@ const apiError = ref<string | null>(null)
 const submittedId = ref<number | null>(null)
 const submittedName = ref('')
 const submissionStatus = ref<'idle' | 'success'>('idle')
+const turnstileToken = ref('')
+const turnstileRef = ref<{ reset?: () => void } | null>(null)
 
 const inquiryOptions = [
   { value: 'General Inquiry', label: 'General Inquiry' },
@@ -132,46 +134,60 @@ const handleSubmit = async () => {
     return
   }
 
+  if (!turnstileToken.value) {
+    errors.value = {
+      ...errors.value,
+      turnstile: 'Please complete the anti-spam security verification.'
+    }
+    return
+  }
+
   // Build subject incorporating inquiry type and company name if present
   const subject = formData.companyName
     ? `[${formData.inquiryType}] ${formData.companyName}`
     : formData.inquiryType
 
-  const response = await submitContactMessage({
-    name: formData.fullName,
-    email: formData.workEmail,
-    subject,
-    message: formData.message
-  })
-
-  if (response.success && response.data) {
-    submittedId.value = response.data.id
-    submittedName.value = formData.fullName
-    submissionStatus.value = 'success'
-    // Form data reset ONLY upon confirmed backend persistence
-    formData.fullName = ''
-    formData.workEmail = ''
-    formData.companyName = ''
-    formData.inquiryType = ''
-    formData.message = ''
-    errors.value = {}
-  } else {
-    // Preserve all entered form data for user retry
-    if (response.validationErrors) {
-      const backendErrors: Record<string, string> = {}
-      if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
-      if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
-      if (response.validationErrors.message) backendErrors.message = response.validationErrors.message
-      if (response.validationErrors.subject) backendErrors.inquiryType = response.validationErrors.subject
-      errors.value = { ...errors.value, ...backendErrors }
-    }
-    apiError.value = response.error || 'Unable to submit your inquiry. Please try again.'
-    nextTick(() => {
-      const errorEl = document.getElementById('contact-api-error')
-      if (errorEl) {
-        errorEl.focus()
-      }
+  try {
+    const response = await submitContactMessage({
+      name: formData.fullName,
+      email: formData.workEmail,
+      subject,
+      message: formData.message,
+      turnstileToken: turnstileToken.value
     })
+
+    if (response.success && response.data) {
+      submittedId.value = response.data.id
+      submittedName.value = formData.fullName
+      submissionStatus.value = 'success'
+      // Form data reset ONLY upon confirmed backend persistence
+      formData.fullName = ''
+      formData.workEmail = ''
+      formData.companyName = ''
+      formData.inquiryType = ''
+      formData.message = ''
+      errors.value = {}
+    } else {
+      // Preserve all entered form data for user retry
+      if (response.validationErrors) {
+        const backendErrors: Record<string, string> = {}
+        if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
+        if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
+        if (response.validationErrors.message) backendErrors.message = response.validationErrors.message
+        if (response.validationErrors.subject) backendErrors.inquiryType = response.validationErrors.subject
+        errors.value = { ...errors.value, ...backendErrors }
+      }
+      apiError.value = response.error || 'Unable to submit your inquiry. Please try again.'
+      nextTick(() => {
+        const errorEl = document.getElementById('contact-api-error')
+        if (errorEl) {
+          errorEl.focus()
+        }
+      })
+    }
+  } finally {
+    turnstileToken.value = ''
+    turnstileRef.value?.reset?.()
   }
 }
 
@@ -179,6 +195,8 @@ const handleReset = () => {
   submissionStatus.value = 'idle'
   apiError.value = null
   submittedId.value = null
+  turnstileToken.value = ''
+  turnstileRef.value?.reset?.()
 }
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -257,9 +275,13 @@ const { isRevealed } = useScrollReveal(sectionRef, {
 
             <div class="relative h-60 sm:h-72 w-full overflow-hidden bg-zinc-950">
               <img
-                src="/images/executive-briefing.jpg"
+                src="/images/executive-briefing.webp"
                 alt="Architectural briefing room where technology strategy aligns with business operations"
                 loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="600"
+                height="288"
                 class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity"
               >
               <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
@@ -663,6 +685,24 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                 <span>
                   Your inquiry is reviewed directly by KavoraX solution specialists. We maintain strict non-disclosure across all prospective architecture discussions.
                 </span>
+              </div>
+
+              <!-- Cloudflare Turnstile Anti-Spam Security Challenge -->
+              <div class="space-y-2">
+                <NuxtTurnstile
+                  ref="turnstileRef"
+                  v-model="turnstileToken"
+                  :options="{ theme: 'dark', size: 'normal' }"
+                />
+                <p
+                  v-if="errors.turnstile"
+                  id="turnstile-error"
+                  class="text-[11px] text-red-400 font-mono flex items-center gap-1.5 mt-1"
+                  role="alert"
+                >
+                  <AlertCircle class="h-3 w-3 shrink-0" />
+                  <span>{{ errors.turnstile }}</span>
+                </p>
               </div>
 
               <!-- Submit Button with Clear States -->

@@ -157,9 +157,13 @@ onMounted(() => {
             <!-- Architectural Workspace Photograph with Cinematic Ken Burns Drift -->
             <div class="relative h-96 sm:h-[460px] w-full overflow-hidden bg-zinc-950">
               <img
-                src="/images/architectural-workspace.jpg"
+                src="/images/architectural-workspace.webp"
                 alt="Modern enterprise architecture engineering workspace and design studio"
                 loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="800"
+                height="460"
                 class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity animate-hero-drift"
               >
               <!-- Gradient Overlay -->

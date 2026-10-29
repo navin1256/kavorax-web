@@ -1,6 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../../tailwind.config.ts";
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-brand: #10b981;
+  --color-brand-secondary: #34d399;
+  --color-brand-hover: #059669;
+  --color-brand-dark: #047857;
+  --color-brand-glow: rgba(16, 185, 129, 0.18);
+  --color-brand-subtle: rgba(16, 185, 129, 0.08);
+
+  --color-canvas: #0b0f14;
+  --color-canvas-secondary: #080c10;
+  --color-canvas-card: #0f161f;
+  --color-canvas-surface: #121a24;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial: "Cormorant Garamond", Georgia, serif;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
 
 @layer base {
   :root {
@@ -68,6 +112,7 @@
   h5,
   h6 {
     font-family: 'Cormorant Garamond', Georgia, serif;
+    font-variant-numeric: lining-nums;
     letter-spacing: -0.015em;
   }
 }
@@ -75,6 +120,7 @@
 /* Elegant Editorial & Brand Utility Classes */
 .font-editorial {
   font-family: 'Cormorant Garamond', Georgia, serif;
+  font-variant-numeric: lining-nums;
 }
 
 .font-ui {
@@ -160,21 +206,19 @@
   will-change: transform;
 }
 
-/* Subtle ambient emerald light drift */
+/* Subtle ambient emerald light drift - GPU transform only */
 @keyframes ambient-glow-drift {
   0%, 100% {
-    opacity: 0.04;
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    opacity: 0.08;
     transform: translate3d(1%, -1%, 0) scale(1.04);
   }
 }
 
 .animate-ambient-drift {
   animation: ambient-glow-drift 12s ease-in-out infinite;
-  will-change: transform, opacity;
+  will-change: transform;
 }
 
 /* ==========================================================================
@@ -444,4 +488,25 @@ footer.bg-\[\#070b0f\] {
     transform: none !important;
   }
 }
+
+/* ==========================================================================
+   Performance Optimizations: Content-Visibility & Mobile GPU Clamping
+   ========================================================================== */
+
+
+@media (max-width: 768px) {
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  .animate-hero-drift,
+  .animate-ambient-drift {
+    animation: none !important;
+  }
+}
+
 

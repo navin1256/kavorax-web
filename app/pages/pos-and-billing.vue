@@ -18,6 +18,15 @@ useHead({
       name: 'description',
       content: 'High-speed counter transactions with sub-second item punching, dynamic GST calculations, split tender payments, and offline resilience.'
     }
+  ],
+  link: [
+    {
+      rel: 'preload',
+      as: 'image',
+      href: '/images/tech-infrastructure.webp',
+      type: 'image/webp',
+      fetchpriority: 'high'
+    }
   ]
 })
 </script>

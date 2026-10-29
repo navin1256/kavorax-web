@@ -416,7 +416,7 @@ export const initialModules: Module[] = [
     name: 'Kitchen Display (KDS)',
     headline: 'Kitchen Display (KDS)',
     subline: 'Eliminate lost paper tickets and kitchen confusion with real-time station routing and prep timers.',
-    heroImageQuery: '/images/kitchen-kds.jpg',
+    heroImageQuery: '/images/architectural-workspace.webp',
     heroDetail: 'Live order queue: 4 tickets in prep',
     features: [
       'Color-coded ticket aging',

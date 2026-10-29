@@ -49,7 +49,7 @@ useHead({
       <!-- Policy Content Sections -->
       <div class="space-y-12 font-ui text-sm sm:text-base leading-relaxed text-zinc-300">
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">1. Scope &amp; Commitment</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">1. Scope &amp; Commitment</h2>
           <p>
             At <strong class="text-white">KavoraX Global Private Limited</strong> ("KavoraX", "we", "our"), protecting the privacy, commercial confidentiality, and data autonomy of our venue partners and their customers is fundamental to our software engineering standards.
           </p>
@@ -59,7 +59,7 @@ useHead({
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">2. Information We Process</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">2. Information We Process</h2>
           <p>
             In providing business operations software, we process information categorized under:
           </p>
@@ -71,21 +71,21 @@ useHead({
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">3. Data Ownership &amp; Non-Monetization Pledge</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">3. Data Ownership &amp; Non-Monetization Pledge</h2>
           <p>
             Your venue data belongs exclusively to you. <strong class="text-white">KavoraX does not sell, rent, broker, or monetize venue transaction histories or customer phone lists to third-party data aggregators or advertising networks.</strong>
           </p>
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">4. Security &amp; Encryption Standards</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">4. Security &amp; Encryption Standards</h2>
           <p>
             All client-to-cloud communications are encrypted in transit using industry-standard TLS 1.3 cryptography. Offline local databases on certified KavoraX terminals use AES-256 encrypted local storage to safeguard cash drawer and customer records during off-grid operations.
           </p>
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium">5. Contact Information</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-medium lining-nums">5. Contact Information</h2>
           <div class="p-6 rounded-xl bg-[#0f1620] border border-white/[0.08] space-y-2 text-zinc-300">
             <p><strong class="text-white">Data Protection &amp; Privacy Office</strong></p>
             <p>Email: <a href="mailto:info@kavorax.com" class="text-brand hover:underline">info@kavorax.com</a></p>

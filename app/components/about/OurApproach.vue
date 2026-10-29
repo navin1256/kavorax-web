@@ -133,9 +133,12 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
               <div class="relative rounded-xl border border-white/10 bg-[#0d141e] overflow-hidden group">
                 <div class="relative h-64 sm:h-80 w-full overflow-hidden bg-zinc-950">
                   <img
-                    src="/images/tech-infrastructure.jpg"
+                    src="/images/tech-infrastructure.webp"
                     alt="Enterprise technology infrastructure lines representing structured system mapping"
-                    loading="eager"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="320"
                     class="h-full w-full object-cover img-editorial-zoom opacity-90 group-hover:opacity-100 transition-opacity"
                   >
                   <div class="absolute inset-0 bg-gradient-to-t from-[#0c131d] via-[#0c131d]/20 to-transparent" />

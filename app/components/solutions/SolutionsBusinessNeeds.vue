@@ -104,8 +104,12 @@ const storytellingPairs = [
 
             <div class="relative h-[380px] sm:h-[460px] w-full overflow-hidden">
               <img
-                src="/images/tech-infrastructure.jpg"
+                src="/images/tech-infrastructure.webp"
                 alt="Modern cloud data center and high-throughput networking infrastructure"
+                loading="lazy"
+                decoding="async"
+                width="700"
+                height="460"
                 class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
               >
               <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />

@@ -58,7 +58,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     name: 'Enterprise Technology & SaaS',
     subtitle: 'Streamlining cross-functional execution and multi-system digital operations.',
     icon: Building2,
-    image: '/images/tech-infrastructure.jpg',
+    image: '/images/tech-infrastructure.webp',
     imageAlt: 'High-density cloud infrastructure and telemetry servers',
     imageBadge: 'HIGH-CONCURRENCY MESH',
     imageCaption: 'Distributed Cloud Cluster · Sub-10ms Routing',
@@ -98,7 +98,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     name: 'Financial Services & FinTech',
     subtitle: 'Auditable transaction architectures, rigorous data segregation, and governance.',
     icon: Landmark,
-    image: '/images/fintech-headquarters.jpg',
+    image: '/images/fintech-headquarters.webp',
     imageAlt: 'Modern financial architectural headquarters with glass facade',
     imageBadge: 'REGULATORY COMPLIANCE',
     imageCaption: 'Institutional Governance · End-to-End Cryptography',
@@ -138,7 +138,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     name: 'Healthcare & Life Sciences',
     subtitle: 'Confidential clinical data pipelines and synchronized patient workflows.',
     icon: Activity,
-    image: '/images/healthcare-diagnostics.jpg',
+    image: '/images/healthcare-diagnostics.webp',
     imageAlt: 'Modern laboratory instrumentation and clinical diagnostics',
     imageBadge: 'CLINICAL GRADE',
     imageCaption: 'Encrypted Telemetry · Care Coordination',
@@ -178,7 +178,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     name: 'Supply Chain & Logistics',
     subtitle: 'Intermodal freight coordination, inventory synchronization, and milestone tracking.',
     icon: Truck,
-    image: '/images/logistics-terminal.jpg',
+    image: '/images/logistics-terminal.webp',
     imageAlt: 'Modern automated intermodal container logistics terminal',
     imageBadge: 'INTERMODAL LOGISTICS',
     imageCaption: 'Multi-Terminal Hub · Real-Time Freight Sync',
@@ -380,6 +380,9 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                   :src="industries[0].image"
                   :alt="industries[0].imageAlt"
                   loading="lazy"
+                  decoding="async"
+                  width="700"
+                  height="520"
                   class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
@@ -437,6 +440,9 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                   :src="industries[1].image"
                   :alt="industries[1].imageAlt"
                   loading="lazy"
+                  decoding="async"
+                  width="700"
+                  height="520"
                   class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
@@ -762,6 +768,9 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                   :src="industries[2].image"
                   :alt="industries[2].imageAlt"
                   loading="lazy"
+                  decoding="async"
+                  width="700"
+                  height="520"
                   class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
@@ -815,6 +824,9 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               :src="industries[3].image"
               :alt="industries[3].imageAlt"
               loading="lazy"
+              decoding="async"
+              width="700"
+              height="360"
               class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
             >
             <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f14] via-[#0b0f14]/40 to-transparent" />

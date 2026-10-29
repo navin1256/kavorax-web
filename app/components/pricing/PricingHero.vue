@@ -77,9 +77,9 @@ const scrollToComparison = () => {
             :immediate="true"
           />
 
-          <!-- Hero Supporting Copy -->
+          <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
           <p
-            class="font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl leading-relaxed reveal-base transition-editorial duration-700 delay-500"
+            class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             Every organisation has different operational needs. Let's discuss your requirements and

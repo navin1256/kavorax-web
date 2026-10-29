@@ -68,6 +68,8 @@ const submittedReference = ref<number | null>(null)
 const submittedName = ref('')
 const submittedCompany = ref('')
 const submissionStatus = ref<'idle' | 'success'>('idle')
+const turnstileToken = ref('')
+const turnstileRef = ref<{ reset?: () => void } | null>(null)
 
 // Industry options with verified industry sectors from the project + "Other"
 const industryOptions = [
@@ -142,47 +144,61 @@ const handleSubmit = async () => {
     return
   }
 
+  if (!turnstileToken.value) {
+    errors.value = {
+      ...errors.value,
+      turnstile: 'Please complete the anti-spam security verification.'
+    }
+    return
+  }
+
   // Format structured requirements preserving industry, interest area, job role and challenge
   const reqsFormatted = `[${formData.industry}] [${formData.areaOfInterest}]${formData.jobTitle ? ` Role: ${formData.jobTitle} |` : ''} ${formData.businessChallenge}`.slice(0, 1000)
 
-  const response = await submitDemoRequest({
-    name: formData.fullName,
-    email: formData.workEmail,
-    company: formData.companyName,
-    reqs: reqsFormatted
-  })
-
-  if (response.success && response.data) {
-    submittedReference.value = response.data.id
-    submittedName.value = formData.fullName
-    submittedCompany.value = formData.companyName
-    submissionStatus.value = 'success'
-    // Clear form inputs only upon confirmed persistence
-    formData.fullName = ''
-    formData.workEmail = ''
-    formData.companyName = ''
-    formData.jobTitle = ''
-    formData.industry = ''
-    formData.areaOfInterest = ''
-    formData.businessChallenge = ''
-    errors.value = {}
-  } else {
-    // Preserve form data for retry
-    if (response.validationErrors) {
-      const backendErrors: Record<string, string> = {}
-      if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
-      if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
-      if (response.validationErrors.company) backendErrors.companyName = response.validationErrors.company
-      if (response.validationErrors.reqs) backendErrors.businessChallenge = response.validationErrors.reqs
-      errors.value = { ...errors.value, ...backendErrors }
-    }
-    apiError.value = response.error || 'Failed to submit demonstration request. Please try again.'
-    nextTick(() => {
-      const errorEl = document.getElementById('demo-api-error')
-      if (errorEl) {
-        errorEl.focus()
-      }
+  try {
+    const response = await submitDemoRequest({
+      name: formData.fullName,
+      email: formData.workEmail,
+      company: formData.companyName,
+      reqs: reqsFormatted,
+      turnstileToken: turnstileToken.value
     })
+
+    if (response.success && response.data) {
+      submittedReference.value = response.data.id
+      submittedName.value = formData.fullName
+      submittedCompany.value = formData.companyName
+      submissionStatus.value = 'success'
+      // Clear form inputs only upon confirmed persistence
+      formData.fullName = ''
+      formData.workEmail = ''
+      formData.companyName = ''
+      formData.jobTitle = ''
+      formData.industry = ''
+      formData.areaOfInterest = ''
+      formData.businessChallenge = ''
+      errors.value = {}
+    } else {
+      // Preserve form data for retry
+      if (response.validationErrors) {
+        const backendErrors: Record<string, string> = {}
+        if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
+        if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
+        if (response.validationErrors.company) backendErrors.companyName = response.validationErrors.company
+        if (response.validationErrors.reqs) backendErrors.businessChallenge = response.validationErrors.reqs
+        errors.value = { ...errors.value, ...backendErrors }
+      }
+      apiError.value = response.error || 'Failed to submit demonstration request. Please try again.'
+      nextTick(() => {
+        const errorEl = document.getElementById('demo-api-error')
+        if (errorEl) {
+          errorEl.focus()
+        }
+      })
+    }
+  } finally {
+    turnstileToken.value = ''
+    turnstileRef.value?.reset?.()
   }
 }
 
@@ -197,7 +213,11 @@ const handleReset = () => {
   errors.value = {}
   apiError.value = null
   submittedReference.value = null
+  submittedName.value = ''
+  submittedCompany.value = ''
   submissionStatus.value = 'idle'
+  turnstileToken.value = ''
+  turnstileRef.value?.reset?.()
 }
 </script>
 
@@ -636,6 +656,24 @@ const handleReset = () => {
                   :aria-describedby="errors.businessChallenge ? 'businessChallenge-error' : undefined"
                   @blur="validateField('businessChallenge')"
                 />
+              </div>
+
+              <!-- Cloudflare Turnstile Anti-Spam Security Challenge -->
+              <div class="space-y-1.5">
+                <NuxtTurnstile
+                  ref="turnstileRef"
+                  v-model="turnstileToken"
+                  :options="{ theme: 'dark', size: 'normal' }"
+                />
+                <span
+                  v-if="errors.turnstile"
+                  id="turnstile-error"
+                  class="text-[11px] text-red-400 font-mono flex items-center gap-1.5"
+                  role="alert"
+                >
+                  <AlertCircle class="h-3 w-3 shrink-0" />
+                  {{ errors.turnstile }}
+                </span>
               </div>
 
               <!-- Submit Button -->
