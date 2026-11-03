@@ -19,59 +19,59 @@ const activeLayerId = ref<'operations' | 'telemetry' | 'integration' | 'governan
 const layers = [
   {
     id: 'operations' as const,
-    title: 'Workflows & Operations',
-    tag: 'Layer 01',
+    title: 'Operations & Workflows',
+    tag: 'Operations',
     icon: Workflow,
     summary:
-      'Coordinating cross-functional workflows, automating routine team handoffs, and eliminating operational friction across distributed departments.',
+      'Coordinate cross-functional work, automate routine handoffs, and eliminate operational friction across your business.',
     capabilities: [
       'Multi-team task synchronization',
       'Automated SLA routing & escalation',
       'Exception triage & bottleneck mitigation'
     ],
-    flowHighlight: 'OPERATIONS COORDINATION LAYER'
+    flowHighlight: 'OPERATIONS & WORKFLOWS'
   },
   {
     id: 'telemetry' as const,
-    title: 'Data & Telemetry Stream',
-    tag: 'Layer 02',
+    title: 'Real-Time Analytics & Reporting',
+    tag: 'Analytics',
     icon: BarChart3,
     summary:
-      'Aggregating operational events into real-time business telemetry, equipping leadership with direct visibility over throughput and bottlenecks.',
+      'Turn daily operational activity into clear business insights, giving leadership instant visibility into performance and growth.',
     capabilities: [
       'Centralized operational telemetry feeds',
-      'Continuous latency and throughput tracking',
+      'Continuous throughput and latency tracking',
       'Real-time anomaly identification'
     ],
-    flowHighlight: 'REAL-TIME TELEMETRY & INSIGHTS'
+    flowHighlight: 'REAL-TIME ANALYTICS'
   },
   {
     id: 'integration' as const,
-    title: 'Universal Integration Fabric',
-    tag: 'Layer 03',
+    title: 'System Integrations & APIs',
+    tag: 'Integrations',
     icon: Network,
     summary:
-      'Bridging on-premise databases, cloud applications, and external partner APIs into a synchronized data fabric without disruptive rip-and-replace.',
+      'Connect existing databases, cloud tools, and partner systems into a unified platform without disruptive migrations.',
     capabilities: [
       'Resilient multi-system data pipelines',
       'Cross-platform webhook synchronization',
       'Decoupled architecture compatibility'
     ],
-    flowHighlight: 'UNIVERSAL SYSTEM INTEROPERABILITY'
+    flowHighlight: 'SYSTEM INTEGRATIONS'
   },
   {
     id: 'governance' as const,
-    title: 'Governance & Security Perimeter',
-    tag: 'Layer 04',
+    title: 'Security & Access Governance',
+    tag: 'Security',
     icon: ShieldCheck,
     summary:
-      'Maintaining verifiable operational boundaries, role-based controls, and immutable audit logs across all enterprise systems.',
+      'Maintain clear access boundaries, role-based controls, and complete audit logs across all company tools.',
     capabilities: [
       'Role-based authorization boundaries',
       'Traceable operational audit trails',
       'Continuous compliance verification'
     ],
-    flowHighlight: 'GOVERNANCE & VERIFIABLE AUDIT'
+    flowHighlight: 'SECURITY & GOVERNANCE'
   }
 ]
 
@@ -98,7 +98,7 @@ const currentLayer = computed(() => {
         :class="{ 'is-revealed': isRevealed }"
       >
         <div>
-          <ChapterLabel index="02" label="CONNECTED SYSTEMS BLUEPRINT" sublabel="INTERCONNECTED ARCHITECTURE" />
+          <ChapterLabel label="One Connected Technology Ecosystem" />
           <WordReveal
             text="How connected systems function in unison."
             as="h2"
@@ -111,24 +111,24 @@ const currentLayer = computed(() => {
           />
         </div>
         <p class="font-ui text-base sm:text-lg text-zinc-300 max-w-md leading-relaxed font-normal">
-          KavoraX architecture replaces fragmented point tools with a layered, synchronized digital fabric engineered for business resilience.
+          KavoraX architecture connects your tools, workflows, and data into a synchronized system engineered for business growth and stability.
         </p>
       </div>
 
-      <!-- Self-Drawing Technical Architecture Interconnect Bus (Priority 3) -->
+      <!-- Technical Architecture Interconnect Bus -->
       <div
         class="mb-12 rounded-2xl border border-white/10 bg-[#0c1420]/80 backdrop-blur-md p-5 sm:p-7 relative overflow-hidden reveal-card transition-editorial duration-700 delay-100"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.06] font-mono text-xs gap-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.06] font-ui text-xs gap-2">
           <div class="flex items-center gap-2">
             <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-            <span class="text-white font-medium tracking-wider uppercase text-[11px]">INTER-LAYER DATA SYNCHRONIZATION BUS</span>
+            <span class="text-white font-medium tracking-wide text-xs">UNIFIED SYSTEM DATA FLOW</span>
           </div>
-          <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-            <span class="flex items-center gap-1.5"><span class="h-1.5 w-3 rounded-full bg-brand inline-block" /> Primary Backbone</span>
-            <span class="flex items-center gap-1.5"><span class="h-1.5 w-3 rounded-full bg-zinc-500 inline-block" /> Secondary Telemetry Link</span>
-            <span class="text-brand font-semibold hidden sm:inline">STATE SYNCHRONIZED</span>
+          <div class="flex items-center gap-4 text-xs text-zinc-400">
+            <span class="flex items-center gap-1.5"><span class="h-1.5 w-3 rounded-full bg-brand inline-block" /> Primary Flow</span>
+            <span class="flex items-center gap-1.5"><span class="h-1.5 w-3 rounded-full bg-zinc-500 inline-block" /> Analytics Link</span>
+            <span class="text-brand font-semibold hidden sm:inline">SYNCHRONIZED</span>
           </div>
         </div>
 
@@ -145,7 +145,7 @@ const currentLayer = computed(() => {
             <line x1="80" y1="35" x2="880" y2="35" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="4 6" />
             <line x1="80" y1="52" x2="880" y2="52" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
 
-            <!-- 2. Secondary telemetry paths (muted gray, draws after 450ms delay, duration 750ms) -->
+            <!-- 2. Secondary telemetry paths -->
             <path
               d="M 80 52 L 320 52 L 320 35 M 320 52 L 600 52 L 600 35 M 600 52 L 880 52 L 880 35"
               stroke="#64748b"
@@ -156,7 +156,7 @@ const currentLayer = computed(() => {
               :class="{ 'is-revealed': isRevealed }"
             />
 
-            <!-- 3. Primary Connection Backbone (Emerald #10b981, draws progressively 0-1100ms) -->
+            <!-- 3. Primary Connection Backbone -->
             <path
               d="M 80 35 L 880 35"
               stroke="#10b981"
@@ -166,13 +166,13 @@ const currentLayer = computed(() => {
               :class="{ 'is-revealed': isRevealed }"
             />
 
-            <!-- 4. Interactive Layer Nodes (Fade and scale in at 950ms after lines arrive) -->
+            <!-- 4. Interactive Layer Nodes -->
             <!-- Node 01: Workflows & Operations -->
             <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isRevealed }" @click="activeLayerId = 'operations'">
               <circle v-if="activeLayerId === 'operations'" cx="80" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
               <circle cx="80" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'operations' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
               <circle cx="80" cy="35" r="5" :fill="activeLayerId === 'operations' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-              <text x="80" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 01</text>
+              <text x="80" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">OPERATIONS</text>
             </g>
 
             <!-- Node 02: Data & Telemetry -->
@@ -180,7 +180,7 @@ const currentLayer = computed(() => {
               <circle v-if="activeLayerId === 'telemetry'" cx="320" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
               <circle cx="320" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'telemetry' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
               <circle cx="320" cy="35" r="5" :fill="activeLayerId === 'telemetry' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-              <text x="320" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 02</text>
+              <text x="320" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">ANALYTICS</text>
             </g>
 
             <!-- Node 03: Universal Integration -->
@@ -188,7 +188,7 @@ const currentLayer = computed(() => {
               <circle v-if="activeLayerId === 'integration'" cx="600" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
               <circle cx="600" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'integration' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
               <circle cx="600" cy="35" r="5" :fill="activeLayerId === 'integration' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-              <text x="600" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 03</text>
+              <text x="600" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">INTEGRATIONS</text>
             </g>
 
             <!-- Node 04: Governance & Security -->
@@ -196,13 +196,13 @@ const currentLayer = computed(() => {
               <circle v-if="activeLayerId === 'governance'" cx="880" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
               <circle cx="880" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'governance' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
               <circle cx="880" cy="35" r="5" :fill="activeLayerId === 'governance' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-              <text x="880" y="16" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle" font-weight="600">LAYER 04</text>
+              <text x="880" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">SECURITY</text>
             </g>
           </svg>
         </div>
       </div>
 
-      <!-- Custom Interactive Architecture Schematic -->
+      <!-- Interactive Architecture Schematic -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start font-ui">
         <!-- Left: Interactive Layer Navigator Stack -->
         <div
@@ -236,7 +236,7 @@ const currentLayer = computed(() => {
                   <div class="font-editorial text-xl font-semibold text-white tracking-tight">
                     {{ layer.title }}
                   </div>
-                  <div class="font-mono text-xs text-zinc-400 mt-0.5">
+                  <div class="font-ui text-xs text-zinc-400 mt-0.5">
                     {{ layer.tag }}
                   </div>
                 </div>
@@ -259,12 +259,12 @@ const currentLayer = computed(() => {
             class="rounded-2xl border border-white/10 bg-[#0c1420]/95 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] relative overflow-hidden group"
           >
             <!-- Top Status Bar -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.08] font-mono text-xs gap-2">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.08] font-ui text-xs gap-2">
               <div class="flex items-center gap-2 text-brand">
                 <span class="h-2 w-2 rounded-full bg-brand shrink-0" />
-                <span class="font-semibold uppercase tracking-wider">{{ currentLayer.flowHighlight }}</span>
+                <span class="font-medium uppercase tracking-wider text-xs">{{ currentLayer.flowHighlight }}</span>
               </div>
-              <span class="text-zinc-400 font-mono text-xs">ENTERPRISE FRAMEWORK</span>
+              <span class="text-zinc-400 font-ui text-xs">Connected Platform</span>
             </div>
 
             <!-- Content Area -->
@@ -277,8 +277,8 @@ const currentLayer = computed(() => {
                   <h3 class="font-editorial text-2xl sm:text-3xl font-semibold text-white">
                     {{ currentLayer.title }}
                   </h3>
-                  <div class="font-mono text-xs text-brand mt-0.5">
-                    {{ currentLayer.tag }} · Integrated Enterprise Capability
+                  <div class="font-ui text-xs text-brand mt-0.5 font-medium">
+                    {{ layerTagSubtitle(currentLayer.tag) }}
                   </div>
                 </div>
               </div>
@@ -289,8 +289,8 @@ const currentLayer = computed(() => {
 
               <!-- Capability List -->
               <div class="pt-4 border-t border-white/[0.06] space-y-3 font-ui text-sm">
-                <div class="text-xs font-mono text-zinc-400 uppercase tracking-widest font-medium">
-                  Operational Capabilities:
+                <div class="text-xs font-ui text-zinc-400 font-medium">
+                  Key Capabilities:
                 </div>
                 <div
                   v-for="(cap, cIdx) in currentLayer.capabilities"
@@ -305,12 +305,12 @@ const currentLayer = computed(() => {
 
             <!-- Footer Deep Link -->
             <div class="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between font-ui text-xs gap-3">
-              <span class="text-zinc-400 font-mono text-xs">KavoraX Platform Convergence</span>
+              <span class="text-zinc-400 font-ui text-xs">KavoraX Unified Platform</span>
               <NuxtLink
                 to="/solutions"
                 class="inline-flex items-center gap-1.5 text-brand hover:text-white transition-colors font-semibold"
               >
-                <span>Explore Solutions Architecture</span>
+                <span>Explore Our Solutions</span>
                 <ArrowRight class="h-3.5 w-3.5" />
               </NuxtLink>
             </div>
@@ -320,3 +320,20 @@ const currentLayer = computed(() => {
     </div>
   </section>
 </template>
+
+<script lang="ts">
+function layerTagSubtitle(tag: string): string {
+  switch (tag) {
+    case 'Operations':
+      return 'Connected Operational Foundation'
+    case 'Analytics':
+      return 'Real-Time Telemetry & Insights'
+    case 'Integrations':
+      return 'Universal System Interoperability'
+    case 'Security':
+      return 'Enterprise Governance & Privacy'
+    default:
+      return 'Connected Platform Capability'
+  }
+}
+</script>

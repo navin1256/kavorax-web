@@ -52,11 +52,7 @@ const faqs = [
       <!-- Section Header -->
       <div class="text-center max-w-2xl mx-auto space-y-4 mb-14">
         <div class="flex justify-center reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
-          <ChapterLabel
-            index="CHAPTER 05"
-            label="FREQUENTLY ASKED QUESTIONS"
-            sublabel="COMMERCIAL TRANSPARENCY"
-          />
+          <ChapterLabel label="Frequently Asked Questions" />
         </div>
 
         <WordReveal

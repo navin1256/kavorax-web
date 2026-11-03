@@ -18,7 +18,7 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
       >
         <!-- Tag -->
         <div
-          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-3.5 py-1 text-xs font-ui tracking-widest uppercase text-brand mb-6"
+          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-3.5 py-1 text-xs font-ui text-brand font-medium mb-6"
         >
           <span>DIRECT ADVISORY</span>
         </div>

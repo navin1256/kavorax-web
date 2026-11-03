@@ -127,11 +127,7 @@ const processSteps = [
         class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 03"
-          label="CONNECTED METHODOLOGY"
-          sublabel="SYSTEMIC ARCHITECTURE"
-        />
+        <ChapterLabel label="Our Approach" />
         <WordReveal
           as="h2"
           text="Architected for Organizational Coherence."

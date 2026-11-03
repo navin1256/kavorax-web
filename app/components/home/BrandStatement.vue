@@ -11,24 +11,21 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
 const commitments = [
   {
     icon: Network,
-    number: '01',
-    title: 'Interoperability First',
+    title: 'Built to Integrate',
     description:
-      'We reject vendor lock-in. Every KavoraX system is engineered with open, standardized protocols designed to interface cleanly with existing enterprise infrastructure.'
+      'We avoid vendor lock-in. Every KavoraX system is built to connect cleanly with your existing software, databases, and third-party tools.'
   },
   {
     icon: ShieldCheck,
-    number: '02',
-    title: 'Zero-Compromise Security',
+    title: 'Security & Privacy First',
     description:
-      'Cryptographic integrity and continuous authorization are embedded into every operational layer, from initial packet ingestion to persistent storage.'
+      'Enterprise-grade encryption, continuous access controls, and complete audit trails protect your customer data and business operations.'
   },
   {
     icon: Cpu,
-    number: '03',
-    title: 'Durable Architecture',
+    title: 'Reliable at Scale',
     description:
-      'Built for institutional longevity. Our platforms handle continuous high-throughput volume without compounding brittle technical debt.'
+      'Engineered for long-term operational resilience. Our software handles high transaction volumes smoothly as your business expands.'
   }
 ]
 </script>
@@ -46,18 +43,16 @@ const commitments = [
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-      <!-- Chapter Header -->
+      <!-- Section Header -->
       <div
         class="pb-8 border-b border-white/[0.08] mb-16 flex items-center justify-between reveal-base"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <ChapterLabel index="06" label="THE KAVORAX STANDARD" sublabel="FOUNDATIONAL COMMITMENTS" />
-        <div class="hidden sm:block font-mono text-xs text-zinc-400">
-          INSTITUTIONAL CRITERIA
-        </div>
+        <ChapterLabel label="Why Businesses Choose KavoraX" />
+        <h2 class="sr-only">Why Businesses Choose KavoraX</h2>
       </div>
 
-      <!-- Monumental Editorial Brand Quote with Scroll-Progress Stream Reveal -->
+      <!-- Editorial Brand Quote with Scroll-Progress Stream Reveal -->
       <div class="max-w-5xl mx-auto text-center space-y-8 mb-20">
         <ScrollTextReveal
           text="“We believe enterprise technology should empower organisations to operate with absolute clarity, interconnect critical operations, and scale with unwavering durability.”"
@@ -73,11 +68,11 @@ const commitments = [
           class="font-ui text-base sm:text-lg text-zinc-300 max-w-3xl mx-auto leading-relaxed font-normal reveal-base delay-200"
           :class="{ 'is-revealed': isRevealed }"
         >
-          KavoraX Global Private Limited is dedicated to engineering dependable, connected technology solutions that transform organizational complexity into measurable agility.
+          KavoraX Global Private Limited builds dependable, connected technology solutions that transform operational complexity into clarity and momentum.
         </p>
       </div>
 
-      <!-- Architectural Principles Ledger (Horizontal Continuum with Sequential Stagger) -->
+      <!-- Principles Ledger -->
       <div
         class="rounded-2xl border border-white/10 bg-[#0c131e]/90 backdrop-blur-xl p-6 sm:p-8 md:p-12 font-ui divide-y divide-white/[0.08] reveal-base delay-300"
         :class="{ 'is-revealed': isRevealed }"
@@ -91,16 +86,13 @@ const commitments = [
             idx === 0 ? 'delay-200' : idx === 1 ? 'delay-300' : 'delay-400'
           ]"
         >
-          <!-- Left: Number & Icon -->
+          <!-- Left: Icon -->
           <div class="lg:col-span-3 flex items-center gap-4">
-            <span class="font-mono text-sm font-semibold text-brand">
-              {{ item.number }}
-            </span>
             <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#111a26] border border-white/10 text-brand group-hover:scale-105 group-hover:border-brand/40 transition-all">
               <component :is="item.icon" class="h-5 w-5" />
             </div>
-            <div class="font-mono text-xs text-zinc-400 uppercase tracking-wider">
-              Commitment
+            <div class="font-ui text-xs text-brand font-medium">
+              Core Principle
             </div>
           </div>
 

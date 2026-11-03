@@ -39,11 +39,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.12 
 
         <!-- Top Chapter Tag (Standardized to CHAPTER 06) -->
         <div class="flex justify-center mb-6">
-          <ChapterLabel
-            index="CHAPTER 06"
-            label="SOLUTIONS ADVISORY"
-            sublabel="CONSULTATIVE ENGAGEMENT"
-          />
+          <ChapterLabel label="Ready to Get Started?" />
         </div>
 
         <!-- Headline with WordReveal -->

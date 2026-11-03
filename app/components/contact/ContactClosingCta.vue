@@ -41,11 +41,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
           class="flex justify-center mb-8 reveal-base transition-editorial duration-700 delay-75"
           :class="{ 'is-revealed': isRevealed }"
         >
-          <ChapterLabel
-            index="CHAPTER 04"
-            label="EXECUTIVE BRIEFING"
-            sublabel="INITIATE DIALOGUE"
-          />
+          <ChapterLabel label="Schedule a Briefing" />
         </div>
 
         <!-- Headline with WordReveal -->

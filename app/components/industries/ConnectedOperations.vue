@@ -92,11 +92,7 @@ const operationalPillars = [
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto space-y-4">
         <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
-          <ChapterLabel
-            index="CHAPTER 03"
-            label="CONNECTED BUSINESS OPERATIONS"
-            sublabel="FOUNDATIONAL ARCHITECTURE"
-          />
+          <ChapterLabel label="Connected Operations" />
         </div>
 
         <WordReveal

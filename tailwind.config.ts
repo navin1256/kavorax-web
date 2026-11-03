@@ -85,6 +85,16 @@ export default {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         heading: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        editorial: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        ui: [
+          'Inter',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif'
+        ],
         sans: [
           'Inter',
           'system-ui',
@@ -95,6 +105,7 @@ export default {
           'sans-serif'
         ],
         mono: [
+          '"JetBrains Mono"',
           'ui-monospace',
           'SFMono-Regular',
           'Menlo',

@@ -2,43 +2,44 @@
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import WordReveal from '~/components/visual/WordReveal.vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
-import { Compass, Network, RefreshCw, CheckCircle2, ArrowRight, ShieldCheck, Database, GitMerge } from 'lucide-vue-next'
+import {
+  CheckCircle2,
+  Network,
+  RefreshCw,
+  Sliders,
+  Database,
+  GitMerge,
+  ShieldCheck,
+  Cpu
+} from 'lucide-vue-next'
 
-const { isRevealed: isHeaderRevealed, targetRef: headerRef } = useScrollReveal({ threshold: 0.12 })
-const { isRevealed: isPhase1Revealed, targetRef: phase1Ref } = useScrollReveal({ threshold: 0.15 })
-const { isRevealed: isPhase2Revealed, targetRef: phase2Ref } = useScrollReveal({ threshold: 0.15 })
-const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({ threshold: 0.15 })
+const { isRevealed: isHeaderRevealed, targetRef: headerRef } = useScrollReveal({ threshold: 0.15 })
+const { isRevealed: isPhase1Revealed, targetRef: phase1Ref } = useScrollReveal({ threshold: 0.12 })
+const { isRevealed: isPhase2Revealed, targetRef: phase2Ref } = useScrollReveal({ threshold: 0.12 })
+const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({ threshold: 0.12 })
 </script>
 
 <template>
   <section
     id="our-approach"
     ref="headerRef"
-    class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.06] overflow-hidden"
+    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
   >
-    <!-- Ambient backlight glow -->
+    <!-- Background Ambient Glow -->
     <div
       class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header with ChapterLabel -->
+      <!-- Section Header -->
       <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-ui text-xs text-zinc-400 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 03"
-          label="OUR METHODOLOGY"
-          sublabel="OPERATIONAL REALITIES"
-        />
-        <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-          <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-            ENGINEERING WORKFLOW
-          </span>
-          <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span class="hidden sm:inline font-mono">THREE-PHASE DISCIPLINE</span>
+        <ChapterLabel label="How We Work" />
+        <div class="flex items-center gap-4 text-xs text-zinc-400">
+          <span class="text-zinc-300">Our Methodology</span>
         </div>
       </div>
 
@@ -60,7 +61,7 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
         </p>
       </div>
 
-      <!-- Alternating Editorial Chapters with Varied Compositions -->
+      <!-- Alternating Chapters -->
       <div class="space-y-16 lg:space-y-24">
 
         <!-- Phase 01: Left Narrative + Right Architectural Photo Frame -->
@@ -76,26 +77,26 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
           <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <!-- Left: Editorial Content -->
+            <!-- Left: Content -->
             <div class="lg:col-span-7 space-y-6">
               <div class="flex items-center gap-4">
                 <span class="font-editorial text-5xl sm:text-6xl font-semibold text-brand/50 group-hover:text-brand transition-colors">
                   01
                 </span>
                 <div class="h-8 w-px bg-white/10" />
-                <div>
-                  <span class="font-mono text-xs text-brand tracking-widest uppercase block">
-                    DISCOVERY & ALIGNMENT
+                <div class="font-ui">
+                  <span class="text-xs text-brand font-medium block">
+                    Discovery &amp; Strategy
                   </span>
-                  <span class="font-mono text-[10px] text-zinc-500">PHASE 01 OF 03</span>
+                  <span class="text-xs text-zinc-500">Step 1</span>
                 </div>
               </div>
 
-              <div class="space-y-2">
+              <div class="space-y-2 font-ui">
                 <h3 class="font-editorial text-2xl sm:text-4xl font-medium text-white group-hover:text-brand transition-colors">
                   Understand the Business
                 </h3>
-                <div class="font-ui text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <div class="text-xs text-zinc-400 font-medium">
                   Requirements Before Architecture
                 </div>
               </div>
@@ -119,34 +120,30 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
                   <span class="leading-relaxed">Align technical scope directly with measurable business objectives</span>
                 </div>
               </div>
-
-              <div class="pt-2">
-                <span class="inline-flex items-center gap-2 rounded bg-[#101a26] border border-white/10 px-3 py-1 font-mono text-[10px] text-zinc-300">
-                  <Compass class="h-3.5 w-3.5 text-brand" />
-                  PRE-ENGINEERING FEASIBILITY REVIEW
-                </span>
-              </div>
             </div>
 
-            <!-- Right: Architectural Infrastructure Photography Frame -->
-            <div class="lg:col-span-5 relative">
-              <div class="relative rounded-xl border border-white/10 bg-[#0d141e] overflow-hidden group">
-                <div class="relative h-64 sm:h-80 w-full overflow-hidden bg-zinc-950">
+            <!-- Right: Architectural Workspace Frame -->
+            <div class="lg:col-span-5">
+              <div class="rounded-xl border border-white/10 overflow-hidden bg-zinc-950 relative group">
+                <div class="relative h-64 sm:h-72 w-full">
                   <img
                     src="/images/tech-infrastructure.webp"
-                    alt="Enterprise technology infrastructure lines representing structured system mapping"
+                    alt="Process mapping and business analysis studio"
                     loading="lazy"
                     decoding="async"
                     width="600"
-                    height="320"
-                    class="h-full w-full object-cover img-editorial-zoom opacity-90 group-hover:opacity-100 transition-opacity"
+                    height="288"
+                    class="h-full w-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
                   >
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#0c131d] via-[#0c131d]/20 to-transparent" />
-                  <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] text-zinc-300">
-                    <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 text-white">
-                      OBSERVABILITY
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-transparent to-transparent" />
+                  <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-ui text-xs text-zinc-300">
+                    <span class="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-white/10 flex items-center gap-1.5 text-white">
+                      <span class="h-1.5 w-1.5 rounded-full bg-brand" />
+                      Process Mapping
                     </span>
-                    <span class="text-brand font-mono">AUDIT_READY</span>
+                    <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 text-brand">
+                      Operational Analysis
+                    </span>
                   </div>
                   <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-3">
                     <span class="font-ui text-xs font-semibold text-zinc-200 block">Baseline Process Audit</span>
@@ -160,7 +157,7 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
           </div>
         </div>
 
-        <!-- Phase 02: Inverted Composition (Left Visual Diagram + Right Narrative) -->
+        <!-- Phase 02: Inverted Composition -->
         <div
           ref="phase2Ref"
           class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
@@ -173,30 +170,30 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
           <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <!-- Left: Bespoke Multi-System Synchronization Board -->
-            <div class="lg:col-span-5 order-2 lg:order-1">
+            <!-- Left: Multi-System Synchronization Board -->
+            <div class="lg:col-span-5 order-2 lg:order-1 font-ui">
               <div class="rounded-xl border border-white/10 bg-[#0f1724]/90 p-5 space-y-4 shadow-inner">
-                <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] font-ui text-xs">
+                <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-xs">
                   <span class="text-zinc-200 font-medium flex items-center gap-2">
                     <Network class="h-3.5 w-3.5 text-brand" />
                     Multi-System Data Bus
                   </span>
-                  <span class="font-mono text-[10px] text-brand bg-brand/10 px-2 py-0.5 rounded border border-brand/20">
-                    LIVE SYNC
+                  <span class="text-xs text-brand bg-brand/10 px-2 py-0.5 rounded border border-brand/20 font-medium">
+                    Live Sync
                   </span>
                 </div>
 
-                <!-- 3 Interconnected Stream Layers with Self-Drawing SVG Conduits -->
-                <div class="space-y-2.5 font-mono text-[11px]">
+                <!-- 3 Stream Layers -->
+                <div class="space-y-2.5 text-xs">
                   <div class="rounded-lg border border-white/5 bg-[#142030] p-3 flex items-center justify-between">
                     <div class="flex items-center gap-2 text-zinc-300">
                       <Database class="h-3.5 w-3.5 text-zinc-400" />
                       <span>Enterprise ERP Feeds</span>
                     </div>
-                    <span class="text-[10px] text-brand font-semibold">SYNCHRONIZED</span>
+                    <span class="text-xs text-brand font-medium">Synchronized</span>
                   </div>
 
-                  <!-- Self-Drawing SVG Connector 1 -->
+                  <!-- Connector 1 -->
                   <div class="flex items-center justify-center my-0.5" aria-hidden="true">
                     <svg width="2" height="18" viewBox="0 0 2 18" fill="none" class="overflow-visible">
                       <line x1="1" y1="0" x2="1" y2="18" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
@@ -222,10 +219,10 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
                       <GitMerge class="h-3.5 w-3.5 text-brand" />
                       <span>KavoraX Event Engine</span>
                     </div>
-                    <span class="text-[10px] text-brand font-semibold">COORDINATED</span>
+                    <span class="text-xs text-brand font-medium">Coordinated</span>
                   </div>
 
-                  <!-- Self-Drawing SVG Connector 2 -->
+                  <!-- Connector 2 -->
                   <div class="flex items-center justify-center my-0.5" aria-hidden="true">
                     <svg width="2" height="18" viewBox="0 0 2 18" fill="none" class="overflow-visible">
                       <line x1="1" y1="0" x2="1" y2="18" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
@@ -248,37 +245,37 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
                       <ShieldCheck class="h-3.5 w-3.5 text-zinc-400" />
                       <span>Executive Observability</span>
                     </div>
-                    <span class="text-[10px] text-brand font-semibold">TRACEABLE</span>
+                    <span class="text-xs text-brand font-medium">Traceable</span>
                   </div>
                 </div>
 
-                <div class="pt-2 text-[10px] font-mono text-zinc-500 text-center">
-                  NO DISRUPTIVE RIP-AND-REPLACE REQUIRED
+                <div class="pt-2 text-xs text-zinc-400 text-center">
+                  No disruptive rip-and-replace required
                 </div>
               </div>
             </div>
 
-            <!-- Right: Editorial Narrative -->
+            <!-- Right: Narrative -->
             <div class="lg:col-span-7 space-y-6 order-1 lg:order-2">
               <div class="flex items-center gap-4">
                 <span class="font-editorial text-5xl sm:text-6xl font-semibold text-brand/50 group-hover:text-brand transition-colors">
                   02
                 </span>
                 <div class="h-8 w-px bg-white/10" />
-                <div>
-                  <span class="font-mono text-xs text-brand tracking-widest uppercase block">
-                    INTEROPERABILITY & SYNCHRONIZATION
+                <div class="font-ui">
+                  <span class="text-xs text-brand font-medium block">
+                    Integration &amp; Automation
                   </span>
-                  <span class="font-mono text-[10px] text-zinc-500">PHASE 02 OF 03</span>
+                  <span class="text-xs text-zinc-500">Step 2</span>
                 </div>
               </div>
 
-              <div class="space-y-2">
+              <div class="space-y-2 font-ui">
                 <h3 class="font-editorial text-2xl sm:text-4xl font-medium text-white group-hover:text-brand transition-colors">
                   Connect the Moving Parts
                 </h3>
-                <div class="font-ui text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                  Workflows, Systems & Information
+                <div class="text-xs text-zinc-400 font-medium">
+                  Workflows, Systems &amp; Information
                 </div>
               </div>
 
@@ -303,16 +300,16 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
               </div>
 
               <div class="pt-2">
-                <span class="inline-flex items-center gap-2 rounded bg-[#101a26] border border-white/10 px-3 py-1 font-mono text-[10px] text-zinc-300">
+                <span class="inline-flex items-center gap-2 rounded bg-[#101a26] border border-white/10 px-3 py-1 font-ui text-xs text-zinc-300">
                   <Network class="h-3.5 w-3.5 text-brand" />
-                  UNIFIED EVENT-DRIVEN SYNC FABRIC
+                  Unified Event-Driven Sync
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Phase 03: Distinct Asymmetric Architecture Ledger -->
+        <!-- Phase 03: Distinct Architecture Ledger -->
         <div
           ref="phase3Ref"
           class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
@@ -325,82 +322,62 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
           <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.06]">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.06] font-ui">
               <div class="flex items-center gap-4">
                 <span class="font-editorial text-5xl sm:text-6xl font-semibold text-brand/50 group-hover:text-brand transition-colors">
                   03
                 </span>
                 <div class="h-8 w-px bg-white/10" />
                 <div>
-                  <span class="font-mono text-xs text-brand tracking-widest uppercase block">
-                    EVOLUTION & RESILIENCE
+                  <span class="text-xs text-brand font-medium block">
+                    Continuous Evolution
                   </span>
-                  <span class="font-mono text-[10px] text-zinc-500">PHASE 03 OF 03</span>
+                  <span class="text-xs text-zinc-500">Step 3</span>
                 </div>
               </div>
 
-              <div class="font-mono text-xs text-zinc-400">
-                ARCHITECTURE // DECOUPLED EVOLUTION
+              <div class="text-xs text-zinc-400">
+                Modular &amp; Scalable Architecture
               </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start font-ui">
               <div class="lg:col-span-6 space-y-4">
                 <h3 class="font-editorial text-2xl sm:text-4xl font-medium text-white group-hover:text-brand transition-colors">
                   Build for Change
                 </h3>
-                <div class="font-ui text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                  Adaptability as an Architectural Goal
+                <div class="text-xs text-zinc-400 font-medium">
+                  Adaptability by Design
                 </div>
                 <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed">
                   Business models, regulatory demands, and software stacks inevitably shift over time. We approach architecture with modular flexibility as a foundational design goal, creating systems structured to accommodate new requirements and operational scale smoothly.
                 </p>
                 <div class="pt-2">
-                  <span class="inline-flex items-center gap-2 rounded bg-[#101a26] border border-white/10 px-3 py-1 font-mono text-[10px] text-zinc-300">
+                  <span class="inline-flex items-center gap-2 rounded bg-[#101a26] border border-white/10 px-3 py-1 text-xs text-zinc-300">
                     <RefreshCw class="h-3.5 w-3.5 text-brand" />
-                    DECOUPLED RESILIENT ARCHITECTURE
+                    Modular Architecture
                   </span>
                 </div>
               </div>
 
-              <!-- 3 Horizontal Architectural Pillars -->
-              <div class="lg:col-span-6 space-y-3 font-ui">
-                <div class="rounded-xl border border-white/[0.07] bg-[#101926] p-4.5 space-y-1.5 hover:border-brand/30 transition-colors">
-                  <div class="flex items-center justify-between">
-                    <span class="text-white font-medium text-sm flex items-center gap-2">
-                      <CheckCircle2 class="h-4 w-4 text-brand" />
-                      Modular Platform Boundaries
-                    </span>
-                    <span class="font-mono text-[10px] text-brand">MULTI-YEAR HORIZON</span>
+              <div class="lg:col-span-6 space-y-3 text-xs sm:text-sm">
+                <div class="p-4 rounded-xl border border-white/[0.06] bg-[#0f1724]/60 space-y-1 hover:border-brand/30 transition-colors">
+                  <div class="flex items-center gap-2 text-white font-medium">
+                    <Sliders class="h-4 w-4 text-brand shrink-0" />
+                    <span>Decoupled Components</span>
                   </div>
-                  <p class="text-xs text-zinc-400 leading-relaxed pl-6">
-                    Systems structured to evolve cleanly without creating brittle monolithic dependencies.
+                  <p class="text-zinc-400 leading-relaxed text-xs">
+                    Design software modules that can be updated, scaled, or adjusted independently without introducing systemic failure risks.
                   </p>
                 </div>
 
-                <div class="rounded-xl border border-white/[0.07] bg-[#101926] p-4.5 space-y-1.5 hover:border-brand/30 transition-colors">
-                  <div class="flex items-center justify-between">
-                    <span class="text-white font-medium text-sm flex items-center gap-2">
-                      <CheckCircle2 class="h-4 w-4 text-brand" />
-                      Decoupled Integrations
-                    </span>
-                    <span class="font-mono text-[10px] text-brand">ZERO LOCK-IN</span>
+                <div class="p-4 rounded-xl border border-white/[0.06] bg-[#0f1724]/60 space-y-1 hover:border-brand/30 transition-colors">
+                  <div class="flex items-center gap-2 text-white font-medium">
+                    <Cpu class="h-4 w-4 text-brand shrink-0" />
+                    <span>Incremental Expansion</span>
                   </div>
-                  <p class="text-xs text-zinc-400 leading-relaxed pl-6">
-                    Eliminates fragile point-to-point connections, ensuring third-party tools can be swapped as needs evolve.
-                  </p>
-                </div>
-
-                <div class="rounded-xl border border-white/[0.07] bg-[#101926] p-4.5 space-y-1.5 hover:border-brand/30 transition-colors">
-                  <div class="flex items-center justify-between">
-                    <span class="text-white font-medium text-sm flex items-center gap-2">
-                      <CheckCircle2 class="h-4 w-4 text-brand" />
-                      Resilient Audit & Telemetry
-                    </span>
-                    <span class="font-mono text-[10px] text-brand">AUDITABLE LOGS</span>
-                  </div>
-                  <p class="text-xs text-zinc-400 leading-relaxed pl-6">
-                    Built-in observability frameworks engineered to sustain long-term executive and regulatory compliance.
+                  <p class="text-zinc-400 leading-relaxed text-xs">
+                    Enable businesses to roll out new capabilities incrementally as operational requirements mature and scale dictates.
                   </p>
                 </div>
               </div>
@@ -408,21 +385,6 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
           </div>
         </div>
 
-      </div>
-
-      <!-- Bottom Context Strip -->
-      <div class="mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 font-ui text-xs text-zinc-400">
-        <div class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-          <span>Pragmatic methodology built for real-world enterprise infrastructure.</span>
-        </div>
-        <NuxtLink
-          to="/products"
-          class="inline-flex items-center gap-1.5 text-brand hover:text-white transition-colors"
-        >
-          <span>See How KavoraX Products Implement This Method</span>
-          <ArrowRight class="h-3.5 w-3.5" />
-        </NuxtLink>
       </div>
     </div>
   </section>

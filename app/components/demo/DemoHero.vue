@@ -20,11 +20,11 @@ const isHeroMounted = ref(true)
         <div class="lg:col-span-6 xl:col-span-7 space-y-6">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-75"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-75"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-2 w-2 rounded-full bg-brand" />
-            <span>BOOK A DEMO</span>
+            <span>Schedule a Demo</span>
           </div>
 
           <!-- Hero Headline with WordReveal -->

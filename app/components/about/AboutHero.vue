@@ -22,35 +22,31 @@ onMounted(() => {
     <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none -z-10" aria-hidden="true" />
 
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Editorial Eyebrow & Coordinate Metadata Bar -->
+      <!-- Eyebrow & Metadata Bar -->
       <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-12 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-12 font-ui text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
         :class="{ 'is-revealed': isHeroMounted }"
       >
         <div class="inline-flex items-center gap-2.5">
-          <ChapterLabel
-            index="CHAPTER 01"
-            label="EDITORIAL ARCHIVE"
-            sublabel="ABOUT KAVORAX"
-          />
+          <ChapterLabel label="About KavoraX" />
         </div>
-        <div class="flex items-center gap-6 text-[10px] text-zinc-400">
-          <span>CORP: <strong class="text-white font-mono">KAVORAX GLOBAL PRIVATE LIMITED</strong></span>
-          <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span class="hidden sm:inline font-mono">CONNECTED SYSTEMS ARCHITECTURE</span>
+        <div class="flex items-center gap-6 text-xs text-zinc-400">
+          <span class="text-zinc-300 font-medium">KavoraX Global Private Limited</span>
+          <span class="text-zinc-600 hidden sm:inline">·</span>
+          <span class="hidden sm:inline text-zinc-400">Connected Systems &amp; Technology</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-        <!-- Left Column: Oversized Editorial Typography & Purpose -->
+        <!-- Left Column: Editorial Typography & Purpose -->
         <div class="lg:col-span-7 space-y-7">
-          <!-- Subtle Eyebrow Label -->
+          <!-- Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
-            <span>ABOUT US</span>
+            <span>About Us</span>
           </div>
 
           <WordReveal
@@ -73,7 +69,7 @@ onMounted(() => {
 
             <p class="font-ui text-sm sm:text-base text-zinc-400 max-w-xl leading-relaxed font-normal">
               We believe enterprise technology should bridge operational divides—linking fragmented
-              processes, telemetry, and distributed departments into a synchronized and resilient whole.
+              processes, data, and distributed teams into a synchronized and resilient whole.
             </p>
           </div>
 
@@ -87,7 +83,7 @@ onMounted(() => {
                 size="lg"
                 class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-all duration-200 group"
               >
-                <span>Explore Platform Solutions</span>
+                <span>Explore Our Products</span>
                 <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </NuxtLink>
@@ -98,42 +94,42 @@ onMounted(() => {
                 size="lg"
                 class="w-full sm:w-auto border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-white hover:text-white px-8 py-6 text-base rounded-md transition-colors"
               >
-                <span>Contact KavoraX</span>
+                <span>Contact Our Team</span>
                 <ArrowRight class="ml-2 h-4 w-4 text-brand" />
               </Button>
             </NuxtLink>
           </div>
 
-          <!-- Editorial Chapter Navigation Strip -->
+          <!-- Quick Navigation Strip -->
           <div
             class="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-4 max-w-xl font-ui reveal-base transition-editorial duration-700 delay-800"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             <a href="#who-we-are" class="space-y-1 group block transition-all">
-              <span class="font-mono text-[10px] text-brand tracking-widest uppercase flex items-center gap-1">
-                <span>01 // ESSENCE</span>
+              <span class="text-xs text-brand font-medium flex items-center gap-1">
+                <span>Who We Are</span>
                 <ArrowRight class="h-2.5 w-2.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-brand" />
               </span>
               <div class="font-editorial text-lg text-white font-medium group-hover:text-brand transition-colors">Business at Core</div>
             </a>
             <a href="#our-approach" class="space-y-1 group block transition-all">
-              <span class="font-mono text-[10px] text-brand tracking-widest uppercase flex items-center gap-1">
-                <span>02 // METHOD</span>
+              <span class="text-xs text-brand font-medium flex items-center gap-1">
+                <span>Our Approach</span>
                 <ArrowRight class="h-2.5 w-2.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-brand" />
               </span>
-              <div class="font-editorial text-lg text-white font-medium group-hover:text-brand transition-colors">Connected Parts</div>
+              <div class="font-editorial text-lg text-white font-medium group-hover:text-brand transition-colors">Connected Systems</div>
             </a>
             <a href="#guiding-principles" class="space-y-1 group block transition-all">
-              <span class="font-mono text-[10px] text-brand tracking-widest uppercase flex items-center gap-1">
-                <span>03 // ETHIC</span>
+              <span class="text-xs text-brand font-medium flex items-center gap-1">
+                <span>Our Values</span>
                 <ArrowRight class="h-2.5 w-2.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-brand" />
               </span>
-              <div class="font-editorial text-lg text-white font-medium group-hover:text-brand transition-colors">Responsible Scale</div>
+              <div class="font-editorial text-lg text-white font-medium group-hover:text-brand transition-colors">Reliable Scale</div>
             </a>
           </div>
         </div>
 
-        <!-- Right Column: Cinematic Architectural Photography Frame -->
+        <!-- Right Column: Photography Frame -->
         <div
           class="lg:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
           :class="{ 'is-revealed': isHeroMounted }"
@@ -144,17 +140,16 @@ onMounted(() => {
             aria-hidden="true"
           />
 
-          <!-- Editorial Photography Frame with Fine-Line Graphics -->
+          <!-- Photography Frame -->
           <div
             class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
           >
-            <!-- Corner Crosshairs inspired by Active Theory -->
+            <!-- Corner Crosshairs -->
             <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
             <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
             <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
             <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
-            <!-- Architectural Workspace Photograph with Cinematic Ken Burns Drift -->
             <div class="relative h-96 sm:h-[460px] w-full overflow-hidden bg-zinc-950">
               <img
                 src="/images/architectural-workspace.webp"
@@ -172,34 +167,34 @@ onMounted(() => {
               />
 
               <!-- Floating Metadata Ribbon -->
-              <div class="absolute top-6 left-6 right-6 flex items-center justify-between font-mono text-[10px] text-zinc-300">
+              <div class="absolute top-6 left-6 right-6 flex items-center justify-between font-ui text-xs text-zinc-300">
                 <span class="px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-white/10 text-white flex items-center gap-1.5">
                   <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                  <span>STUDIO ARCHIVE</span>
+                  <span>Systems Engineering</span>
                 </span>
                 <span class="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/10 text-brand">
-                  SYSTEMS_ENGINEERING
+                  Architecture &amp; Design
                 </span>
               </div>
 
-              <!-- Editorial Caption Card -->
-              <div class="absolute bottom-6 left-6 right-6 rounded-xl border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-5 space-y-2">
-                <div class="flex items-center justify-between font-ui text-xs">
-                  <span class="text-brand font-semibold uppercase tracking-wider flex items-center gap-1.5">
+              <!-- Caption Card -->
+              <div class="absolute bottom-6 left-6 right-6 rounded-xl border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-5 space-y-2 font-ui">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-brand font-medium flex items-center gap-1.5">
                     <Building2 class="h-3.5 w-3.5 text-brand" />
                     KavoraX Global Private Limited
                   </span>
-                  <span class="font-mono text-zinc-400 text-[10px]">VERIFIED</span>
+                  <span class="text-zinc-400 text-xs">Registered Entity</span>
                 </div>
                 <p class="font-editorial text-base text-zinc-200 italic leading-snug">
                   "Engineering enterprise platforms that unify fragmented software, workflows, and operational intelligence."
                 </p>
-                <div class="pt-2 flex items-center justify-between border-t border-white/[0.06] text-[11px] font-mono text-zinc-400">
+                <div class="pt-2 flex items-center justify-between border-t border-white/[0.06] text-xs text-zinc-400">
                   <span class="flex items-center gap-1 text-zinc-300">
                     <ShieldCheck class="h-3 w-3 text-brand" />
                     Auditable Systems
                   </span>
-                  <span class="text-zinc-500">Zero Fabrications</span>
+                  <span class="text-zinc-500">Reliable &amp; Secure</span>
                 </div>
               </div>
             </div>

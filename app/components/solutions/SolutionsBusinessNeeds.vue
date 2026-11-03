@@ -71,11 +71,7 @@ const storytellingPairs = [
         class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 02"
-          label="OPERATIONAL REALITIES"
-          sublabel="PROBLEM-TO-SOLUTION CONTINUUM"
-        />
+        <ChapterLabel label="Common Business Challenges" />
         <WordReveal
           as="h2"
           text="Technology Should Work Around Your Business."

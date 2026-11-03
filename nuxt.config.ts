@@ -31,14 +31,15 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: "Cormorant Garamond", provider: "google", weights: [400, 500, 600, 700], styles: ["normal", "italic"] },
-      { name: "Inter", provider: "google", weights: [300, 400, 500, 600, 700], styles: ["normal"] },
+      { name: "Cormorant Garamond", provider: "google", weights: [300, 400, 500, 600, 700], styles: ["normal", "italic"] },
+      { name: "Inter", provider: "google", weights: [300, 400, 500, 600, 700], styles: ["normal", "italic"] },
+      { name: "JetBrains Mono", provider: "google", weights: [400, 500, 600], styles: ["normal"] },
     ],
     defaults: {
       preload: true,
       weights: [400, 600],
       styles: ["normal", "italic"],
-      subsets: ["latin"],
+      subsets: ["latin", "latin-ext"],
     },
   },
 

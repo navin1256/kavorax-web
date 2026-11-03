@@ -10,25 +10,22 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
 
 const principles = [
   {
-    number: '01',
-    title: 'Cohesive Intelligence',
-    subtitle: 'Breaking down departmental silos',
+    title: 'Connected Information',
+    subtitle: 'Real-time data flow',
     description:
-      'Replacing isolated databases and standalone tools with continuous, bidirectional information flow across business units.'
+      'Replace isolated databases and standalone tools with continuous, clear information flow across your teams.'
   },
   {
-    number: '02',
-    title: 'Operational Precision',
-    subtitle: 'Deterministic workflow execution',
+    title: 'Smooth Operations',
+    subtitle: 'Reliable automation',
     description:
-      'Automating high-frequency handoffs with zero tolerance for latency, data drift, or manual routing exceptions.'
+      'Automate repetitive handoffs and routine tasks with speed, precision, and zero manual routing errors.'
   },
   {
-    number: '03',
-    title: 'Institutional Longevity',
-    subtitle: 'Architected to outlast technical cycles',
+    title: 'Built to Scale',
+    subtitle: 'Long-term stability',
     description:
-      'Building modular, scalable foundations that absorb exponential operational volume without compounding brittle technical debt.'
+      'Modern, flexible systems engineered to handle growing operational volume without adding friction or complexity.'
   }
 ]
 </script>
@@ -46,15 +43,12 @@ const principles = [
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Chapter Eyebrow -->
+      <!-- Eyebrow Tag -->
       <div
         class="pb-8 border-b border-white/[0.08] mb-16 flex items-center justify-between reveal-base"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <ChapterLabel index="01" label="THE CONNECTED MANDATE" sublabel="COHERENCE OVER FRAGMENTATION" />
-        <div class="hidden sm:block font-mono text-xs text-zinc-400">
-          KAVORAX OPERATIONAL PARADIGM
-        </div>
+        <ChapterLabel label="Technology That Works Better Together" />
       </div>
 
       <!-- Asymmetrical Editorial Spread -->
@@ -93,7 +87,7 @@ const principles = [
           >
             <NuxtLink
               to="/about"
-              class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors group font-ui uppercase tracking-wider"
+              class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors group font-ui tracking-wide"
             >
               <span>Read Our Story</span>
               <ArrowUpRight class="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -101,12 +95,12 @@ const principles = [
           </div>
         </div>
 
-        <!-- Right: Sequential Editorial Continuum (Fine-line, not boxy cards) -->
+        <!-- Right: Sequential Editorial Continuum -->
         <div class="lg:col-span-5 space-y-8 font-ui">
           <div class="space-y-8">
             <div
               v-for="(item, pIdx) in principles"
-              :key="item.number"
+              :key="item.title"
               class="relative group space-y-2 pb-8 border-b border-white/[0.06] last:border-b-0 last:pb-0 reveal-card"
               :class="[
                 isRevealed ? 'is-revealed' : '',
@@ -114,10 +108,7 @@ const principles = [
               ]"
             >
               <div class="flex items-center justify-between">
-                <span class="font-mono text-xs font-semibold text-brand tracking-widest">
-                  {{ item.number }}
-                </span>
-                <span class="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
+                <span class="text-xs text-brand font-medium">
                   {{ item.subtitle }}
                 </span>
               </div>

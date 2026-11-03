@@ -79,11 +79,7 @@ const industries = [
       <!-- Section Header -->
       <div class="max-w-3xl space-y-4">
         <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
-          <ChapterLabel
-            index="CHAPTER 02"
-            label="INDUSTRY EXPLORER"
-            sublabel="OPERATIONAL REALITIES"
-          />
+          <ChapterLabel label="Explore Industries" />
         </div>
         <WordReveal
           text="Purposeful solutions tailored to enterprise operational realities."

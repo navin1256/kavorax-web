@@ -35,11 +35,7 @@ const { isRevealed } = useScrollReveal(customCtaRef, { threshold: 0.12 })
 
         <!-- Top Chapter Tag -->
         <div class="flex justify-center mb-6 reveal-base transition-editorial duration-700 delay-100" :class="{ 'is-revealed': isRevealed }">
-          <ChapterLabel
-            index="CHAPTER 04"
-            label="CUSTOM ENGAGEMENT"
-            sublabel="CONFIDENTIAL SCOPING"
-          />
+          <ChapterLabel label="Custom Solutions" />
         </div>
 
         <!-- Headline -->

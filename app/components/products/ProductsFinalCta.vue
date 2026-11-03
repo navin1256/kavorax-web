@@ -41,11 +41,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
 
         <!-- Top Chapter & Status Tag -->
         <div class="flex justify-center mb-6">
-          <ChapterLabel
-            index="NEXT STEPS"
-            label="DIRECT CONSULTATION"
-            sublabel="ARCHITECTURE ENGAGEMENT"
-          />
+          <ChapterLabel label="Get Started" />
         </div>
 
         <!-- Headline with WordReveal -->

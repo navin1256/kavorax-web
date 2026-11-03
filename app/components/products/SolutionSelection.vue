@@ -55,11 +55,7 @@ const scenarios = [
         class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 05"
-          label="GUIDANCE & PLANNING"
-          sublabel="ENTERPRISE FIT MATRIX"
-        />
+        <ChapterLabel label="Finding the Right Fit" />
         <WordReveal
           as="h2"
           text="Identifying the right starting point for your enterprise."

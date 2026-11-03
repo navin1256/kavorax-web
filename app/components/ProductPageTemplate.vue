@@ -82,7 +82,7 @@
     <section class="py-24 bg-transparent border-t border-white/5 relative">
       <div class="max-w-[1440px] mx-auto px-6 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-16">
-          <span class="text-brand text-xs font-semibold uppercase tracking-wider font-sans">CORE CAPABILITIES</span>
+          <span class="text-brand text-xs font-medium font-sans">Core Capabilities</span>
           <h2 class="font-editorial text-3xl md:text-4xl lg:text-5xl text-white tracking-tight mt-2">
             Everything you need to succeed.
           </h2>
@@ -103,7 +103,7 @@
     <section class="py-24 bg-[#0b1114]/60 backdrop-blur-sm border-t border-white/5 relative" id="showcase">
       <div class="max-w-[1440px] mx-auto px-6 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-brand text-xs font-semibold uppercase tracking-wider font-sans">PLATFORM PREVIEW</span>
+          <span class="text-brand text-xs font-medium font-sans">Platform Preview</span>
           <h2 class="font-editorial text-3xl md:text-4xl lg:text-5xl text-white tracking-tight mt-2">
             See it in action
           </h2>
@@ -157,7 +157,7 @@
     <section class="py-24 bg-transparent border-t border-white/5 relative" v-if="integrationModules.length > 0">
       <div class="max-w-[1440px] mx-auto px-6 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-16">
-          <span class="text-brand text-xs font-semibold uppercase tracking-wider font-sans">ECOSYSTEM INTEGRATIONS</span>
+          <span class="text-brand text-xs font-medium font-sans">Connected Integrations</span>
           <h2 class="font-editorial text-3xl md:text-4xl lg:text-5xl text-white tracking-tight mt-2">
             Works perfectly with
           </h2>
