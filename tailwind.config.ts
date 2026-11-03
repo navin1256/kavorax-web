@@ -82,10 +82,10 @@ export default {
         sm: 'calc(var(--radius) - 4px)'
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        heading: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        editorial: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        serif: ['"Fraunces"', 'Georgia', 'serif'],
+        heading: ['"Fraunces"', 'Georgia', 'serif'],
+        display: ['"Fraunces"', 'Georgia', 'serif'],
+        editorial: ['"Fraunces"', 'Georgia', 'serif'],
         ui: [
           'Inter',
           'system-ui',
