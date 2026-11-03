@@ -19,8 +19,8 @@ const industries = [
   {
     id: 'financial',
     title: 'Financial Services & FinTech',
-    tag: 'REGULATORY COMPLIANCE',
-    headline: 'Auditable transaction architectures with zero-trust isolation.',
+    tag: 'Financial Compliance',
+    headline: 'Auditable transaction architectures with high data integrity.',
     description: 'Engineering fault-tolerant processing fabrics that meet strict regulatory frameworks, audit standards, and real-time ledger consistency requirements.',
     icon: Landmark,
     image: '/images/fintech-headquarters.webp',
@@ -30,9 +30,9 @@ const industries = [
   {
     id: 'healthcare',
     title: 'Healthcare & Life Sciences',
-    tag: 'CARE CONTINUITY',
-    headline: 'Secure data pipelines accelerating care delivery.',
-    description: 'Enabling clinical teams to share confidential diagnostics and telemetry with cryptographic privacy, zero data leakage, and automated compliance.',
+    tag: 'Care Continuity',
+    headline: 'Secure data pipelines accelerating clinical care delivery.',
+    description: 'Enabling clinical teams to share confidential diagnostics and patient records with complete privacy, zero data leakage, and automated compliance.',
     icon: Activity,
     image: '/images/healthcare-diagnostics.webp',
     anchor: '/industries#healthcare',
@@ -41,7 +41,7 @@ const industries = [
   {
     id: 'logistics',
     title: 'Supply Chain & Logistics',
-    tag: 'GLOBAL SYNCHRONIZATION',
+    tag: 'Global Supply Chain',
     headline: 'End-to-end freight visibility and event-driven fulfillment.',
     description: 'Connecting global container hubs, regional distribution points, and automated inventory systems into a synchronized operational fabric.',
     icon: Truck,
@@ -52,7 +52,7 @@ const industries = [
   {
     id: 'technology',
     title: 'Enterprise Technology & Cloud',
-    tag: 'DISTRIBUTED ARCHITECTURE',
+    tag: 'Enterprise Cloud',
     headline: 'High-throughput platforms supporting mission-critical SaaS.',
     description: 'Empowering software enterprises with scalable multi-tenant orchestration, zero-downtime rolling deployments, and unified telemetry.',
     icon: Building2,
@@ -75,24 +75,24 @@ const industries = [
         :class="{ 'is-revealed': isRevealed }"
       >
         <div class="max-w-3xl space-y-4">
-          <ChapterLabel index="05" label="SECTOR ARCHITECTURES" sublabel="CRITICAL INDUSTRIES" />
+          <ChapterLabel label="Industries We Serve" />
           <h2 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
-            Specialized solutions for critical industries.
+            Specialized solutions for your industry.
           </h2>
           <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal">
-            Every sector requires purpose-built engineering to navigate unique compliance, operational scale, and data sensitivities.
+            Every sector has distinct operational workflows, customer touchpoints, and compliance requirements.
           </p>
         </div>
 
         <NuxtLink to="/industries" class="shrink-0 font-ui">
           <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#0f1620] text-zinc-200 hover:text-white hover:border-brand/40 transition-all shadow-sm">
-            <span>View All Industry Frameworks</span>
+            <span>Explore All Industries</span>
             <ArrowRight class="h-3.5 w-3.5 text-brand" />
           </span>
         </NuxtLink>
       </div>
 
-      <!-- Asymmetrical Interactive Showcase: Left Tab Selector + Right Photographic Stage -->
+      <!-- Asymmetrical Interactive Showcase -->
       <div class="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch font-ui">
         <!-- Left: Sector Navigators -->
         <div
@@ -125,7 +125,7 @@ const industries = [
 
               <div class="flex-1">
                 <div class="flex items-center justify-between">
-                  <span class="text-[11px] font-mono tracking-wider text-brand uppercase font-medium">
+                  <span class="text-xs font-ui font-medium text-brand">
                     {{ ind.tag }}
                   </span>
                   <div
@@ -144,7 +144,7 @@ const industries = [
           </div>
         </div>
 
-        <!-- Right: Immersive Photographic Stage with Editorial Details -->
+        <!-- Right: Immersive Photographic Stage with Details -->
         <div
           class="lg:col-span-7 relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl corner-crosshair flex flex-col justify-between reveal-base transition-editorial duration-700 delay-300"
           :class="{ 'is-revealed': isRevealed }"
@@ -167,11 +167,11 @@ const industries = [
           <!-- Foreground Narrative Overlay -->
           <div class="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.1] pb-4 gap-2">
-              <span class="text-xs font-mono text-brand font-semibold tracking-wider uppercase">
-                Sector Focus · {{ industries[selectedIndex]?.title }}
+              <span class="text-xs font-ui text-brand font-medium">
+                {{ industries[selectedIndex]?.title }}
               </span>
-              <span class="text-xs font-mono text-zinc-300">
-                ACTIVE FRAMEWORK
+              <span class="text-xs font-ui text-zinc-300">
+                Industry Solutions
               </span>
             </div>
 
@@ -204,13 +204,9 @@ const industries = [
                 :to="industries[selectedIndex]?.anchor"
                 class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors group font-ui"
               >
-                <span>Read Full Industry Specification</span>
+                <span>Read Industry Overview</span>
                 <ArrowRight class="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
               </NuxtLink>
-
-              <span class="text-xs font-mono text-zinc-400">
-                AUDITABLE STANDARDS
-              </span>
             </div>
           </div>
         </div>

@@ -59,11 +59,7 @@ const channels = [
         class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 03"
-          label="ENGAGEMENT OPTIONS"
-          sublabel="VERIFIED CHANNELS"
-        />
+        <ChapterLabel label="Direct Contact Channels" />
         <div class="flex items-center gap-4 text-[10px] text-zinc-400">
           <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
             OFFICIAL ADVISORY

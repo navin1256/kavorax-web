@@ -1,30 +1,33 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import WordReveal from '~/components/visual/WordReveal.vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
-import { ArrowRight, Layers, ShieldCheck, Cpu } from 'lucide-vue-next'
+import { ArrowRight, Cpu, ShieldCheck, Layers } from 'lucide-vue-next'
 
-const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.15 })
+const sectionRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
 </script>
 
 <template>
   <section
-    ref="targetRef"
-    class="py-24 md:py-36 bg-[#0b0f14] border-t border-white/[0.06] relative overflow-hidden"
+    id="about-cta"
+    ref="sectionRef"
+    class="py-24 md:py-36 bg-[#070b0f] bg-technical-grid relative overflow-hidden"
   >
-    <!-- Subtle Ambient Glow -->
+    <!-- Background Ambient Glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand/5 blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-base transition-editorial duration-700"
+        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] group reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <!-- Active Theory Corner Crosshairs -->
+        <!-- Corner Crosshairs -->
         <div class="absolute top-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
         <div class="absolute top-4 right-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
         <div class="absolute bottom-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -32,11 +35,7 @@ const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.15 })
 
         <!-- Chapter Label -->
         <div class="flex justify-center mb-8">
-          <ChapterLabel
-            index="CHAPTER 06"
-            label="INITIATE DIALOGUE"
-            sublabel="PARTNERSHIP & COLLABORATION"
-          />
+          <ChapterLabel label="Work With Us" />
         </div>
 
         <!-- Headline -->
@@ -55,8 +54,8 @@ const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.15 })
           Explore how connected business solutions could support your organisation's needs.
         </p>
 
-        <!-- Enterprise Assurance Badges -->
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-mono text-zinc-400">
+        <!-- Assurance Badges -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-ui text-zinc-400">
           <span class="flex items-center gap-1.5">
             <Cpu class="h-3.5 w-3.5 text-brand" />
             <span>Architecture-First Review</span>
@@ -98,10 +97,9 @@ const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.15 })
         </div>
 
         <!-- Corporate Attribution Footer -->
-        <div class="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-400">
-          <span>KAVORAX GLOBAL PRIVATE LIMITED</span>
-          <span class="text-zinc-400 font-ui text-[11px]">Enterprise Technology & Operations · Verified Corporate Entity</span>
-          <span class="text-brand">AUDITED ARCHITECTURE</span>
+        <div class="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-ui text-zinc-400">
+          <span class="text-zinc-300 font-medium">KavoraX Global Private Limited</span>
+          <span class="text-zinc-400 text-xs">Connected Technology &amp; Enterprise Solutions</span>
         </div>
       </div>
     </div>

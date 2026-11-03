@@ -261,11 +261,7 @@ watch(
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
         <div class="max-w-3xl space-y-4">
-          <ChapterLabel
-            index="CHAPTER 02"
-            label="CAPABILITY SPECTRUM"
-            sublabel="VERIFIED ENTERPRISE MODULES"
-          />
+          <ChapterLabel label="Platform Capabilities" />
           <WordReveal
             as="h2"
             text="Distinct capability. Shared operational architecture."

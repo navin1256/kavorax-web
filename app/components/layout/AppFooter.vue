@@ -35,21 +35,21 @@ const footerNav = {
             </span>
           </NuxtLink>
 
-          <p class="font-editorial text-lg text-zinc-300 max-w-md leading-relaxed">
+          <p class="font-ui text-sm text-zinc-400 max-w-md leading-relaxed">
             KavoraX Global Private Limited builds connected business solutions that help
             organisations operate smarter, serve customers better and scale with confidence.
           </p>
 
           <div class="pt-2 flex items-center gap-2 text-xs text-zinc-500">
             <ShieldCheck class="h-4 w-4 text-brand" />
-            <span>Enterprise Technology Solutions · Interoperable Architecture</span>
+            <span>Connected Business Solutions · Technology Platform</span>
           </div>
         </div>
 
         <!-- Links: Platform -->
         <div class="md:col-span-3 lg:col-span-3 space-y-4">
-          <h4 class="text-xs font-semibold text-white uppercase tracking-wider">
-            Platform Capabilities
+          <h4 class="text-xs font-semibold text-white font-ui">
+            Products &amp; Capabilities
           </h4>
           <ul class="space-y-2.5 text-sm">
             <li v-for="link in footerNav.platform" :key="link.label">
@@ -65,8 +65,8 @@ const footerNav = {
 
         <!-- Links: Company -->
         <div class="md:col-span-4 lg:col-span-3 space-y-4">
-          <h4 class="text-xs font-semibold text-white uppercase tracking-wider">
-            Organization & Engagement
+          <h4 class="text-xs font-semibold text-white font-ui">
+            Company
           </h4>
           <ul class="space-y-2.5 text-sm">
             <li v-for="link in footerNav.company" :key="link.label">

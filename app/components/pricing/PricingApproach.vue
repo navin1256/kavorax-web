@@ -61,11 +61,7 @@ const approachSteps = [
       <!-- Section Header -->
       <div class="max-w-3xl space-y-4">
         <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
-          <ChapterLabel
-            index="CHAPTER 02"
-            label="CONSULTATION METHODOLOGY"
-            sublabel="OPERATIONAL ALIGNMENT"
-          />
+          <ChapterLabel label="How Pricing Works" />
         </div>
         <WordReveal
           text="How we shape engagements around your operational reality."

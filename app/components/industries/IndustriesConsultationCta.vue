@@ -43,11 +43,7 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 })
           class="flex justify-center mb-6 reveal-base transition-editorial duration-700 delay-100"
           :class="{ 'is-revealed': isRevealed }"
         >
-          <ChapterLabel
-            index="NEXT STEPS"
-            label="INDUSTRY CONSULTATION"
-            sublabel="TAILORED ENGAGEMENT"
-          />
+          <ChapterLabel label="Talk to an Industry Specialist" />
         </div>
 
         <!-- Headline (Exact requested text) -->

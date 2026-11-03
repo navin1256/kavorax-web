@@ -41,11 +41,7 @@ const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: tru
         :class="{ 'is-revealed': isHeroRevealed }"
       >
         <div class="flex items-center gap-3">
-          <ChapterLabel
-            index="CHAPTER 01"
-            label="STRATEGIC ADVISORY"
-            sublabel="BUSINESS-FIRST METHODOLOGY"
-          />
+          <ChapterLabel label="Tailored Solutions" />
         </div>
 
         <div class="flex items-center gap-4 text-[10px] text-zinc-400">
@@ -66,7 +62,7 @@ const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: tru
         <div class="lg:col-span-7 space-y-7">
           <!-- Eyebrow Tag -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroRevealed }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />

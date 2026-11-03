@@ -296,7 +296,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                     {{ nIdx + 1 }}
                   </span>
                   <div>
-                    <h3 class="text-sm font-semibold text-white">
+                    <h3 class="text-sm font-semibold text-white font-ui">
                       {{ need.title }}
                     </h3>
                     <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
@@ -535,7 +535,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                     {{ nIdx + 1 }}
                   </span>
                   <div>
-                    <h3 class="text-sm font-semibold text-white">
+                    <h3 class="text-sm font-semibold text-white font-ui">
                       {{ need.title }}
                     </h3>
                     <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
@@ -684,7 +684,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                     {{ nIdx + 1 }}
                   </span>
                   <div>
-                    <h3 class="text-sm font-semibold text-white">
+                    <h3 class="text-sm font-semibold text-white font-ui">
                       {{ need.title }}
                     </h3>
                     <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
@@ -944,7 +944,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                     {{ nIdx + 1 }}
                   </span>
                   <div>
-                    <h3 class="text-sm font-semibold text-white">
+                    <h3 class="text-sm font-semibold text-white font-ui">
                       {{ need.title }}
                     </h3>
                     <p class="text-xs text-zinc-400 mt-1 leading-relaxed">

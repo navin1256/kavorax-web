@@ -224,11 +224,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
         class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 02"
-          label="INQUIRY FORM"
-          sublabel="STRUCTURED CORRESPONDENCE"
-        />
+        <ChapterLabel label="Send Us a Message" />
         <div class="flex items-center gap-4 text-[10px] text-zinc-400">
           <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
             SECURE TRANSMISSION
@@ -433,7 +429,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
               <div class="flex items-start gap-3.5">
                 <CheckCircle2 class="h-6 w-6 text-brand shrink-0 mt-0.5" />
                 <div class="space-y-2">
-                  <h4 class="text-base font-semibold text-white">Inquiry Successfully Registered</h4>
+                  <h4 class="text-base font-semibold text-white font-ui">Inquiry Successfully Registered</h4>
                   <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">
                     Thank you, <span class="font-medium text-white">{{ submittedName }}</span>. Your inquiry has been securely stored in our system and assigned reference <span class="font-mono text-brand font-semibold">#KX-C{{ submittedId }}</span>.
                   </p>

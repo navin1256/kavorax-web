@@ -54,11 +54,7 @@ const considerations = [
         class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 04"
-          label="EVALUATION FRAMEWORK"
-          sublabel="OBJECTIVE SCOPING AXES"
-        />
+        <ChapterLabel label="How We Evaluate Your Needs" />
         <WordReveal
           as="h2"
           text="How to Evaluate the Right Solution."

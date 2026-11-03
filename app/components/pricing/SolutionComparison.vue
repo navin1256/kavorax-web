@@ -123,11 +123,7 @@ const solutions = [
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08]">
         <div class="max-w-2xl space-y-4">
           <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isRevealed }">
-            <ChapterLabel
-              index="CHAPTER 03"
-              label="SOLUTION SIZING & COMPARISON"
-              sublabel="ARCHITECTURE ALIGNMENT"
-            />
+            <ChapterLabel label="Compare Solutions" />
           </div>
           <WordReveal
             text="Three solution pillars, shaped to your architecture."

@@ -35,7 +35,7 @@ const steps = [
       <!-- Section Header -->
       <div class="max-w-3xl space-y-4">
         <div
-          class="inline-flex items-center gap-2 text-xs font-ui font-semibold uppercase tracking-widest text-brand"
+          class="inline-flex items-center gap-2 text-xs font-ui font-medium text-brand"
         >
           Process Guidance
         </div>
@@ -45,7 +45,7 @@ const steps = [
           What to Expect from
           <span class="italic font-light text-brand">the Conversation</span>.
         </h2>
-        <p class="font-editorial text-lg text-zinc-300 leading-relaxed">
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
           Our demonstration conversations are designed to be focused, collaborative, and grounded in
           your operational reality.
         </p>

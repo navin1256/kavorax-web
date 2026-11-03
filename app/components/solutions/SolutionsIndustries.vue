@@ -63,11 +63,7 @@ const industries = [
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
         <div class="max-w-2xl space-y-4">
-          <ChapterLabel
-            index="CHAPTER 05"
-            label="DOMAIN ALIGNMENT"
-            sublabel="SECTOR-SPECIFIC FRAMEWORKS"
-          />
+          <ChapterLabel label="Industry Expertise" />
           <WordReveal
             as="h2"
             text="Connected Across Operating Domains."

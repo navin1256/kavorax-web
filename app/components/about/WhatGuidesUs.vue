@@ -2,58 +2,65 @@
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import WordReveal from '~/components/visual/WordReveal.vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
-import { Eye, Layers, RefreshCw, ShieldCheck, CheckCircle2 } from 'lucide-vue-next'
+import {
+  Compass,
+  Cpu,
+  Layers,
+  Scale,
+  CheckCircle2,
+  ShieldCheck
+} from 'lucide-vue-next'
 
 const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
 
 const principles = [
   {
+    id: 'business-first',
     num: '01',
-    code: 'ETHIC_01',
-    id: 'clarity',
-    title: 'Clarity',
-    subtitle: 'Operational Visibility',
-    icon: Eye,
+    code: 'PRIN_01',
+    title: 'Business Context Before Code',
+    subtitle: 'Pragmatic Purpose',
+    icon: Compass,
     description:
-      'Software should illuminate enterprise processes rather than obscure them. We prioritize direct system telemetry, unambiguous task statuses, and actionable clarity for operational teams so decisions are based on observable facts.',
-    quote: 'Illuminate workflows, eliminate ambiguity.',
-    commitment: 'Unambiguous telemetry across all modules'
+      'We never deploy technology for novelty. Every architecture decision, data pipeline, and API endpoint must solve an identifiable operational challenge.',
+    quote: 'Software exists to serve business outcomes, not to showcase abstract complexity.',
+    commitment: 'Direct business alignment verified before implementation'
   },
   {
+    id: 'connected-systems',
     num: '02',
-    code: 'ETHIC_02',
-    id: 'cohesion',
-    title: 'Cohesion',
+    code: 'PRIN_02',
+    title: 'Coherence Over Fragmentation',
     subtitle: 'Connected Operations',
     icon: Layers,
     description:
-      'Isolated tools introduce latency and communication breakdowns. We engineer solutions that unify workflow coordination, system records, and team handoffs into a synchronized operational fabric across departments.',
-    quote: 'Unify moving parts into one synchronized fabric.',
-    commitment: 'Cross-departmental synchronization'
+      'Isolated tools create friction, redundant data entry, and visibility blind spots. We engineer platforms where workflows, telemetry, and departments operate in harmony.',
+    quote: 'The value of technology compounds when systems communicate reliably.',
+    commitment: 'Seamless data flow and integration standards'
   },
   {
+    id: 'honest-engineering',
     num: '03',
-    code: 'ETHIC_03',
-    id: 'adaptability',
-    title: 'Adaptability',
-    subtitle: 'Evolving Architecture',
-    icon: RefreshCw,
+    code: 'PRIN_03',
+    title: 'Honest, Dependable Engineering',
+    subtitle: 'Responsible Architecture',
+    icon: Scale,
     description:
-      'Business models and software environments continually shift. We build modular, decoupled systems that allow organisations to adjust workflows and add integrations without disruptive rebuilds or vendor lock-in.',
-    quote: 'Flexibility engineered into core platform boundaries.',
-    commitment: 'Decoupled modules with zero lock-in'
+      'We reject hyperbole and fragile prototypes. Our solutions emphasize transparent documentation, auditable security boundaries, and modular longevity.',
+    quote: 'True dependability is proven through reliable uptime and clear documentation.',
+    commitment: 'Clear documentation and verifiable audit trails'
   },
   {
+    id: 'sustainable-growth',
     num: '04',
-    code: 'ETHIC_04',
-    id: 'responsible-growth',
-    title: 'Responsible Growth',
-    subtitle: 'Sustainable Governance',
-    icon: ShieldCheck,
+    code: 'PRIN_04',
+    title: 'Designed for Sustainable Scale',
+    subtitle: 'Long-Term Durability',
+    icon: Cpu,
     description:
-      'Scaling should never compromise system integrity or governance. We embed verifiable audit trails, role-based access controls, and policy compliance directly into platform foundations for long-term trust.',
-    quote: 'Scale with verifiable integrity and auditable controls.',
-    commitment: 'Auditable controls & compliance trails'
+      'Scalability should not require destabilizing rewrites. We design modular foundations capable of expanding with transaction volumes while keeping operational overhead low.',
+    quote: 'Sustainable growth is built on modular, maintainable software foundations.',
+    commitment: 'High-availability architecture built for expansion'
   }
 ]
 </script>
@@ -62,31 +69,23 @@ const principles = [
   <section
     id="guiding-principles"
     ref="targetRef"
-    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.06] overflow-hidden"
+    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
   >
-    <!-- Ambient ambient glow -->
+    <!-- Ambient emerald backlight glow -->
     <div
-      class="absolute top-1/2 right-0 w-96 h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/3 w-[600px] h-[400px] bg-brand/5 blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header with ChapterLabel -->
+      <!-- Section Header -->
       <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-ui text-xs text-zinc-400 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 05"
-          label="GUIDING ETHICS"
-          sublabel="PRAGMATIC VALUES"
-        />
-        <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-          <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-            ENGINEERING PRINCIPLES
-          </span>
-          <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span class="hidden sm:inline font-mono">NON-NEGOTIABLE STANDARDS</span>
+        <ChapterLabel label="Our Principles" />
+        <div class="flex items-center gap-4 text-xs text-zinc-400">
+          <span class="text-zinc-300">Core Values</span>
         </div>
       </div>
 
@@ -108,7 +107,7 @@ const principles = [
         </p>
       </div>
 
-      <!-- 4 Principles Editorial 2x2 Ledger with Restrained Composition -->
+      <!-- 4 Principles Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-ui">
         <div
           v-for="(item, pIdx) in principles"
@@ -131,8 +130,8 @@ const principles = [
                   <component :is="item.icon" class="h-5 w-5" />
                 </div>
                 <div>
-                  <span class="font-mono text-xs text-brand uppercase tracking-wider block">{{ item.subtitle }}</span>
-                  <div class="font-mono text-[10px] text-zinc-500">{{ item.code }} // CORE PRINCIPLE</div>
+                  <span class="text-xs text-brand font-medium block">{{ item.subtitle }}</span>
+                  <div class="text-[11px] text-zinc-400">Guiding Principle</div>
                 </div>
               </div>
               <span class="font-editorial text-4xl sm:text-5xl font-semibold text-zinc-600 group-hover:text-brand transition-colors">
@@ -156,7 +155,7 @@ const principles = [
             <div class="font-editorial italic text-base text-zinc-200">
               "{{ item.quote }}"
             </div>
-            <div class="flex items-center gap-2 text-xs font-mono text-zinc-400">
+            <div class="flex items-center gap-2 text-xs text-zinc-400">
               <CheckCircle2 class="h-3.5 w-3.5 text-brand shrink-0" />
               <span>{{ item.commitment }}</span>
             </div>
@@ -164,14 +163,14 @@ const principles = [
         </div>
       </div>
 
-      <!-- Institutional Authenticity Guarantee -->
+      <!-- Authenticity Guarantee -->
       <div class="mt-16 rounded-xl border border-white/[0.06] bg-[#0c141f]/60 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-ui text-xs text-zinc-400">
         <div class="flex items-center gap-2.5">
           <ShieldCheck class="h-4 w-4 text-brand shrink-0" />
           <span>Every principle represents practical engineering commitments implemented directly across KavoraX platforms.</span>
         </div>
-        <span class="font-mono text-[11px] text-zinc-400 shrink-0">
-          ZERO INVENTED CLAIMS
+        <span class="text-zinc-400 shrink-0 font-medium">
+          Guaranteed Transparency
         </span>
       </div>
     </div>

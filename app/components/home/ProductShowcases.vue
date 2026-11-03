@@ -40,9 +40,9 @@ const telemetryBars = [
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
         <div class="max-w-3xl space-y-4">
-          <ChapterLabel index="03" label="PRODUCT SHOWCASE" sublabel="UNIFIED PLATFORM ENGINES" />
+          <ChapterLabel label="Our Products" />
           <h2 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
-            Institutional technology with bespoke design.
+            Technology designed for real-world operations.
           </h2>
           <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal">
             Three core enterprise capabilities engineered to operate as one unified foundation.
@@ -51,7 +51,7 @@ const telemetryBars = [
 
         <NuxtLink to="/products" class="shrink-0 font-ui">
           <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#0f1620] text-zinc-200 hover:text-white hover:border-brand/40 transition-all shadow-sm">
-            <span>Explore All Capabilities</span>
+            <span>Explore All Products</span>
             <ArrowRight class="h-3.5 w-3.5 text-brand" />
           </span>
         </NuxtLink>
@@ -65,31 +65,31 @@ const telemetryBars = [
       >
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center font-ui">
           <div class="lg:col-span-6 space-y-6">
-            <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-mono text-brand">
+            <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-ui font-medium text-brand">
               <Workflow class="h-3.5 w-3.5" />
-              <span>CAPABILITY 01 · OPERATIONS PLATFORM</span>
+              <span>Operations Platform</span>
             </div>
 
             <h3 class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium text-white leading-[1.1]">
-              Continuous workflow orchestration across distributed teams.
+              Continuous workflow coordination across distributed teams.
             </h3>
 
             <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
-              Eliminate operational friction with deterministic process routing, automated escalation triggers, and real-time handoff visibility.
+              Eliminate operational friction with smart process routing, automated escalation triggers, and real-time handoff visibility.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-zinc-300">
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="h-4 w-4 text-brand shrink-0" />
-                <span>Deterministic task pipeline</span>
+                <span>Automated task pipeline</span>
               </div>
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="h-4 w-4 text-brand shrink-0" />
-                <span>Policy-driven SLA triggers</span>
+                <span>SLA-based priority triggers</span>
               </div>
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="h-4 w-4 text-brand shrink-0" />
-                <span>Cross-functional state synchronization</span>
+                <span>Cross-functional synchronization</span>
               </div>
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="h-4 w-4 text-brand shrink-0" />
@@ -99,21 +99,21 @@ const telemetryBars = [
 
             <div class="pt-4 flex items-center gap-4">
               <NuxtLink
-                to="/products#operations-platform"
+                to="/products"
                 class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors"
               >
-                <span>Deep Dive into Operations</span>
+                <span>Learn More About Operations</span>
                 <ArrowRight class="h-3.5 w-3.5" />
               </NuxtLink>
             </div>
           </div>
 
-          <!-- Bespoke Visual Treatment 1: Clean Workflow State Diagram -->
+          <!-- Visual Treatment 1: Clean Workflow State Diagram -->
           <div class="lg:col-span-6">
-            <div class="rounded-xl border border-white/10 bg-[#070b10] p-5 sm:p-6 space-y-4 font-mono text-xs shadow-inner">
+            <div class="rounded-xl border border-white/10 bg-[#070b10] p-5 sm:p-6 space-y-4 font-ui text-xs shadow-inner">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.08] text-zinc-300 gap-2">
-                <span class="font-semibold">WORKFLOW ORCHESTRATION PIPELINE</span>
-                <span class="text-brand">COORDINATED</span>
+                <span class="font-semibold text-white">Workflow Routing Pipeline</span>
+                <span class="text-brand text-xs font-medium">Coordinated</span>
               </div>
 
               <!-- Workflow Stage Nodes -->
@@ -122,39 +122,39 @@ const telemetryBars = [
                   <div class="flex items-center gap-3">
                     <span class="h-2 w-2 rounded-full bg-brand shrink-0" />
                     <div>
-                      <div class="text-white font-semibold font-ui text-sm">01. Ingestion &amp; Policy Verification</div>
-                      <div class="text-xs text-zinc-400 font-sans mt-0.5">Automated validation against organizational compliance rules</div>
+                      <div class="text-white font-semibold font-ui text-sm">Task Ingestion &amp; Verification</div>
+                      <div class="text-xs text-zinc-400 font-sans mt-0.5">Automated validation against business rules</div>
                     </div>
                   </div>
-                  <span class="text-brand text-xs font-semibold shrink-0 ml-2">VERIFIED</span>
+                  <span class="text-brand text-xs font-semibold shrink-0 ml-2">Verified</span>
                 </div>
 
                 <div class="p-3.5 sm:p-4 rounded-lg border border-white/[0.1] bg-[#0d141e] flex items-center justify-between">
                   <div class="flex items-center gap-3">
                     <span class="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
                     <div>
-                      <div class="text-white font-semibold font-ui text-sm">02. Cross-Team Dispatch</div>
+                      <div class="text-white font-semibold font-ui text-sm">Cross-Team Dispatch</div>
                       <div class="text-xs text-zinc-400 font-sans mt-0.5">Automated routing across operational and administrative units</div>
                     </div>
                   </div>
-                  <span class="text-emerald-400 text-xs font-semibold shrink-0 ml-2">SYNCHRONIZED</span>
+                  <span class="text-emerald-400 text-xs font-semibold shrink-0 ml-2">Synced</span>
                 </div>
 
                 <div class="p-3.5 sm:p-4 rounded-lg border border-white/[0.06] bg-[#090e15] flex items-center justify-between text-zinc-400">
                   <div class="flex items-center gap-3">
                     <span class="h-2 w-2 rounded-full bg-brand/40 shrink-0" />
                     <div>
-                      <div class="text-zinc-200 font-semibold font-ui text-sm">03. Immutable Audit Record</div>
-                      <div class="text-xs text-zinc-400 font-sans mt-0.5">Traceable event history captured for executive review</div>
+                      <div class="text-zinc-200 font-semibold font-ui text-sm">Activity Audit Record</div>
+                      <div class="text-xs text-zinc-400 font-sans mt-0.5">Traceable event history captured for management review</div>
                     </div>
                   </div>
-                  <span class="text-zinc-400 text-xs font-semibold shrink-0 ml-2">LOGGED</span>
+                  <span class="text-zinc-400 text-xs font-semibold shrink-0 ml-2">Logged</span>
                 </div>
               </div>
 
               <div class="pt-3 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between text-xs text-zinc-400 gap-2">
-                <span>EXECUTION GUARANTEE: HIGH AVAILABILITY</span>
-                <span class="text-brand font-medium">ZERO DATA DRIFT</span>
+                <span>Reliability: 99.99% Uptime</span>
+                <span class="text-brand font-medium">Real-Time Sync</span>
               </div>
             </div>
           </div>
@@ -172,27 +172,27 @@ const telemetryBars = [
           :class="{ 'is-revealed': isCards23Revealed }"
         >
           <div class="space-y-6">
-            <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-mono text-brand">
+            <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-ui font-medium text-brand">
               <BarChart3 class="h-3.5 w-3.5" />
-              <span>CAPABILITY 02 · ANALYTICS &amp; INTELLIGENCE</span>
+              <span>Business Analytics</span>
             </div>
 
             <h3 class="font-editorial text-3xl sm:text-4xl font-medium text-white leading-tight">
-              Real-time operational telemetry and predictive foresight.
+              Real-time operational clarity and business foresight.
             </h3>
 
             <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
-              Transform continuous business signals into immediate visibility. Identify anomalies and forecast operational capacity before bottlenecks emerge.
+              Transform continuous business signals into immediate visibility. Identify trends, track margins, and spot bottlenecks before they affect growth.
             </p>
 
-            <!-- Bespoke Visual Treatment 2: Clean Telemetry Distribution with Surge Animation -->
-            <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-mono text-xs space-y-4">
+            <!-- Visual Treatment 2: Clean Telemetry Distribution -->
+            <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-ui text-xs space-y-4">
               <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
-                <span class="font-semibold">OPERATIONAL THROUGHPUT OVERVIEW</span>
-                <span class="text-brand font-medium">REAL-TIME TELEMETRY</span>
+                <span class="font-semibold text-white">Daily Performance Overview</span>
+                <span class="text-brand font-medium">Live Telemetry</span>
               </div>
 
-              <!-- Bar chart visualization with progressive surge reveal -->
+              <!-- Bar chart visualization -->
               <div class="h-20 flex items-end gap-2 pt-2">
                 <div
                   v-for="(bar, bIdx) in telemetryBars"
@@ -209,18 +209,18 @@ const telemetryBars = [
               </div>
 
               <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-400">
-                <span>SYSTEM HEALTH: OPTIMAL</span>
-                <span class="text-white">LATENCY: SUB-SECOND</span>
+                <span>System Status: Healthy</span>
+                <span class="text-white">Throughput: Optimal</span>
               </div>
             </div>
           </div>
 
           <div class="pt-8 border-t border-white/[0.06] mt-6">
             <NuxtLink
-              to="/products#analytics-intelligence"
+              to="/business-analytics"
               class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors"
             >
-              <span>Explore Analytics Capabilities</span>
+              <span>Explore Analytics</span>
               <ArrowRight class="h-3.5 w-3.5" />
             </NuxtLink>
           </div>
@@ -232,34 +232,34 @@ const telemetryBars = [
           :class="{ 'is-revealed': isCards23Revealed }"
         >
           <div class="space-y-6">
-            <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-mono text-brand">
+            <div class="inline-flex items-center gap-2 rounded-md bg-brand/10 border border-brand/20 px-3 py-1 text-xs font-ui font-medium text-brand">
               <Network class="h-3.5 w-3.5" />
-              <span>CAPABILITY 03 · INTEGRATION ARCHITECTURE</span>
+              <span>System Integrations</span>
             </div>
 
             <h3 class="font-editorial text-3xl sm:text-4xl font-medium text-white leading-tight">
-              Interoperable protocol fabric connecting any system.
+              Connect your existing tools into one unified platform.
             </h3>
 
             <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
               Standardize disparate protocols, legacy ERPs, databases, and modern cloud endpoints into a single, high-throughput integration pipeline.
             </p>
 
-            <!-- Bespoke Visual Treatment 3: Clean Multi-System Bridge Map with Flow Indicators -->
-            <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-mono text-xs space-y-3.5">
+            <!-- Visual Treatment 3: Clean Multi-System Bridge Map -->
+            <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-ui text-xs space-y-3.5">
               <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
-                <span class="font-semibold">INTEROPERABILITY PROTOCOL FABRIC</span>
-                <span class="text-brand font-medium">SECURE TLS</span>
+                <span class="font-semibold text-white">System Connectivity Map</span>
+                <span class="text-brand font-medium">Encrypted &amp; Secure</span>
               </div>
 
-              <!-- Integration Map Nodes with Connected Data Path -->
+              <!-- Integration Map Nodes -->
               <div class="space-y-2 font-ui">
                 <div class="p-3 rounded-lg bg-[#0e1622] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
                   <span class="flex items-center gap-2">
                     <Database class="h-3.5 w-3.5 text-zinc-400" />
-                    Core Databases &amp; Enterprise ERP
+                    Databases &amp; Enterprise ERPs
                   </span>
-                  <span class="font-mono text-brand text-[11px]">CONNECTED</span>
+                  <span class="text-brand text-xs font-medium">Connected</span>
                 </div>
 
                 <div class="flex justify-center -my-1 py-0.5">
@@ -269,9 +269,9 @@ const telemetryBars = [
                 <div class="p-3 rounded-lg bg-brand/[0.08] border border-brand/30 flex items-center justify-between text-xs text-white font-medium shadow-[0_0_16px_-4px_rgba(16,185,129,0.25)]">
                   <span class="flex items-center gap-2">
                     <GitBranch class="h-3.5 w-3.5 text-brand" />
-                    KavoraX Unified Interoperability Bus
+                    KavoraX Unified Integration Bus
                   </span>
-                  <span class="font-mono text-brand text-[11px]">ACTIVE SYNCHRONY</span>
+                  <span class="text-brand text-xs font-medium">Active Sync</span>
                 </div>
 
                 <div class="flex justify-center -my-1 py-0.5">
@@ -281,25 +281,20 @@ const telemetryBars = [
                 <div class="p-3 rounded-lg bg-[#0e1622] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
                   <span class="flex items-center gap-2">
                     <ShieldCheck class="h-3.5 w-3.5 text-zinc-400" />
-                    Cloud Applications &amp; Partner APIs
+                    Cloud APIs &amp; External Services
                   </span>
-                  <span class="font-mono text-brand text-[11px]">CONNECTED</span>
+                  <span class="text-brand text-xs font-medium">Synchronized</span>
                 </div>
-              </div>
-
-              <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-400 font-mono">
-                <span>STANDARDS: REST · GRAPHQL · GRPC</span>
-                <span class="text-zinc-300">ZERO RIP-AND-REPLACE</span>
               </div>
             </div>
           </div>
 
           <div class="pt-8 border-t border-white/[0.06] mt-6">
             <NuxtLink
-              to="/products#integration-hub"
+              to="/products"
               class="inline-flex items-center gap-2 text-xs font-semibold text-brand hover:text-white transition-colors"
             >
-              <span>Explore Integration Architecture</span>
+              <span>Explore Integrations</span>
               <ArrowRight class="h-3.5 w-3.5" />
             </NuxtLink>
           </div>

@@ -237,7 +237,7 @@ const handleReset = () => {
         <div class="lg:col-span-5 space-y-8">
           <div class="space-y-4">
             <div
-              class="inline-flex items-center gap-2 text-xs font-ui font-semibold uppercase tracking-widest text-brand"
+              class="inline-flex items-center gap-2 text-xs font-ui font-medium text-brand"
             >
               Demo Preparation
             </div>
@@ -247,7 +247,7 @@ const handleReset = () => {
               Help Us Frame the
               <span class="italic font-light text-brand">Discussion</span>.
             </h2>
-            <p class="font-editorial text-lg text-zinc-300 leading-relaxed">
+            <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light">
               Every business runs on different operational systems and workflows. Providing context
               in advance enables us to focus on the capabilities most relevant to your goals.
             </p>
@@ -256,7 +256,7 @@ const handleReset = () => {
           <!-- Helpful Points to Share -->
           <div class="space-y-4 font-ui">
             <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+              <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
                 <span
                   class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
                 >
@@ -271,7 +271,7 @@ const handleReset = () => {
             </div>
 
             <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+              <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
                 <span
                   class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
                 >
@@ -286,7 +286,7 @@ const handleReset = () => {
             </div>
 
             <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+              <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
                 <span
                   class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
                 >
@@ -306,7 +306,7 @@ const handleReset = () => {
             class="rounded-xl border border-brand/20 bg-brand/[0.03] p-5 sm:p-6 space-y-3 font-ui"
           >
             <div
-              class="flex items-center gap-2 text-brand text-xs font-semibold uppercase tracking-wider"
+              class="flex items-center gap-2 text-brand text-xs font-medium"
             >
               <ShieldCheck class="h-4 w-4" />
               <span>Confidentiality & Accurate Context</span>
@@ -360,7 +360,7 @@ const handleReset = () => {
               <div class="flex items-start gap-3.5">
                 <CheckCircle2 class="h-6 w-6 text-brand shrink-0 mt-0.5" />
                 <div class="space-y-2">
-                  <h4 class="text-base font-semibold text-white">
+                  <h4 class="text-base font-semibold text-white font-ui">
                     Demo Request Registered
                   </h4>
                   <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">

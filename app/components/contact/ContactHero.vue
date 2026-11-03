@@ -29,11 +29,7 @@ const isHeroMounted = ref(true)
         class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-14 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
         :class="{ 'is-revealed': isHeroMounted }"
       >
-        <ChapterLabel
-          index="CHAPTER 01"
-          label="DIRECT ENGAGEMENT"
-          sublabel="KAVORAX GLOBAL PRIVATE LIMITED"
-        />
+        <ChapterLabel label="Contact Us" />
         <div class="flex items-center gap-6 text-[10px] text-zinc-400">
           <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
             CONFIDENTIAL ADVISORY
@@ -47,7 +43,7 @@ const isHeroMounted = ref(true)
       <div class="max-w-4xl space-y-7">
         <!-- Badge -->
         <div
-          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
           :class="{ 'is-revealed': isHeroMounted }"
         >
           <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />

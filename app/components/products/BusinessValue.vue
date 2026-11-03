@@ -60,11 +60,7 @@ const values = [
         class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 04"
-          label="ORGANIZATIONAL VALUE"
-          sublabel="CORE ENGINEERING PRINCIPLES"
-        />
+        <ChapterLabel label="Business Value" />
         <WordReveal
           as="h2"
           text="Designed Around the Way Businesses Work."

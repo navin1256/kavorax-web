@@ -72,11 +72,7 @@ const nodes = [
         class="max-w-3xl mx-auto text-center space-y-4 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 03"
-          label="ARCHITECTURAL INTERCONNECTION"
-          sublabel="SYSTEM TOPOLOGY"
-        />
+        <ChapterLabel label="Connected Architecture" />
         <WordReveal
           as="h2"
           text="One Connected Foundation. Multiple Business Possibilities."

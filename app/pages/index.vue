@@ -22,28 +22,28 @@ useHead({
 
 <template>
   <div class="relative bg-[#080c10] overflow-x-hidden">
-    <!-- 1. Full-viewport Cinematic Hero with focal point & scroll indicator -->
+    <!-- 1. Cinematic Hero with focal point & scroll indicator -->
     <HeroSection />
 
-    <!-- 2. Oversized Editorial Introduction -->
+    <!-- 2. Editorial Introduction -->
     <EditorialIntro />
 
-    <!-- 3. Custom Visual Illustrating Connected Business Systems -->
+    <!-- 3. Connected Architecture Visual -->
     <ConnectedArchitectureVisual />
 
-    <!-- 4. Product Showcases with Bespoke Visual Treatments -->
+    <!-- 4. Product Showcases -->
     <ProductShowcases />
 
-    <!-- 5. Photography-led Solutions Section -->
+    <!-- 5. Solutions Section -->
     <PhotographySolutions />
 
-    <!-- 6. Immersive Industry Preview -->
+    <!-- 6. Industry Preview -->
     <IndustryPreview />
 
-    <!-- 7. Strong Brand Statement & Foundational Commitments -->
+    <!-- 7. Why Businesses Choose KavoraX -->
     <BrandStatement />
 
-    <!-- 8. Memorable Closing CTA -->
+    <!-- 8. Closing CTA -->
     <FinalCta />
   </div>
 </template>

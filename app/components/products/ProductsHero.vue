@@ -101,22 +101,13 @@ const scrollToSection = (id: string) => {
         :class="{ 'is-revealed': isHeroMounted }"
       >
         <div class="flex items-center gap-3">
-          <ChapterLabel
-            index="CHAPTER 01"
-            label="PORTFOLIO ARCHIVE"
-            sublabel="PRODUCT DISCOVERY CONSOLE"
-          />
+          <ChapterLabel label="Our Products" />
         </div>
 
         <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-          <span class="hidden sm:inline">PORTFOLIO: <strong class="text-white font-mono">3 CORE PLATFORMS</strong></span>
-          <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span>COMPLIANCE: <strong class="text-brand font-mono">ENTERPRISE VERIFIED</strong></span>
-          <span class="text-zinc-600">|</span>
-          <span class="text-zinc-400 font-mono flex items-center gap-1.5">
-            <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
-            <span>ALL TIERS SYNCHRONIZED</span>
-          </span>
+          <span class="hidden sm:inline">Portfolio: <strong class="text-white font-medium">3 Core Platforms</strong></span>
+          <span class="text-zinc-600 hidden sm:inline">·</span>
+          <span>Status: <strong class="text-brand font-medium">Active &amp; Supported</strong></span>
         </div>
       </div>
 
@@ -125,11 +116,11 @@ const scrollToSection = (id: string) => {
         <div class="lg:col-span-6 xl:col-span-7 space-y-7">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui tracking-widest uppercase text-brand backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
-            <span>OUR PRODUCTS &amp; SOLUTIONS</span>
+            <span>Products &amp; Capabilities</span>
           </div>
 
           <!-- Hero Headline with WordReveal -->
@@ -225,17 +216,17 @@ const scrollToSection = (id: string) => {
                 </div>
                 <div>
                   <div class="font-mono text-xs font-semibold text-white tracking-wide">
-                    KX // FABRIC MATRIX
+                    Platform Overview
                   </div>
                   <div class="font-mono text-[10px] text-zinc-500">
-                    INTERCONNECTED SYSTEMS
+                    Connected Applications
                   </div>
                 </div>
               </div>
 
               <div class="font-mono text-[10px] text-brand bg-brand/10 border border-brand/20 px-2.5 py-1 rounded flex items-center gap-1.5">
                 <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
-                <span>3 TIERS ACTIVE</span>
+                <span>3 Platforms Active</span>
               </div>
             </div>
 

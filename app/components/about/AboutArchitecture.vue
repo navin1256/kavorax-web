@@ -3,60 +3,68 @@ import { ref } from 'vue'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import WordReveal from '~/components/visual/WordReveal.vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
-import { Workflow, Network, BarChart3, ShieldCheck, ArrowRight, Layers } from 'lucide-vue-next'
+import {
+  Workflow,
+  BarChart3,
+  Network,
+  ShieldCheck,
+  Layers,
+  ArrowRight
+} from 'lucide-vue-next'
 
-const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
+const sectionRef = ref<HTMLElement | null>(null)
+const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
+
+const activeDimId = ref('operations')
 
 const architecturalDimensions = [
   {
-    id: 'business-ops',
+    id: 'operations',
     code: 'DIM_01',
-    title: 'Business Operations',
-    tag: 'Execution & Handoffs',
+    title: 'Operations & Workflows',
+    tag: 'Daily Execution',
     icon: Workflow,
     description:
-      'Coordinating cross-functional workflows, automating routine team handoffs, and eliminating operational friction across distributed departments.',
-    elements: ['Task routing', 'Milestone coordination', 'Handoff visibility'],
-    telemetry: 'REAL-TIME WORKFLOW DISPATCH'
+      'The day-to-day work: order routing, fulfillment stages, shift handoffs, and customer interactions that form the heartbeat of the business.',
+    elements: ['Automated Task Routing', 'Cross-Team Handoffs', 'Exception Triggers'],
+    telemetry: 'Operational Flow'
   },
   {
-    id: 'connected-systems',
+    id: 'systems',
     code: 'DIM_02',
-    title: 'Connected Systems',
-    tag: 'Interoperability & Data Bus',
+    title: 'Software & Integrations',
+    tag: 'Tools & Platforms',
     icon: Network,
     description:
-      'Bridging on-premise databases, cloud applications, and external partner APIs into a synchronized data fabric that prevents fragmented records.',
-    elements: ['API bridges', 'Legacy sync', 'Event exchange'],
-    telemetry: 'BI-DIRECTIONAL INTEROP BUS'
+      'The tools and platforms in use: POS terminals, ERP systems, delivery dispatch, inventory databases, and third-party APIs.',
+    elements: ['API Integrations', 'Legacy System Bridges', 'Cloud Applications'],
+    telemetry: 'Platform Sync'
   },
   {
-    id: 'data-insights',
+    id: 'telemetry',
     code: 'DIM_03',
-    title: 'Data & Insights',
-    tag: 'Telemetry & Observability',
+    title: 'Data & Analytics',
+    tag: 'Insights & Metrics',
     icon: BarChart3,
     description:
-      'Aggregating operational events into real-time business telemetry, equipping leadership with direct visibility over throughput and bottlenecks.',
-    elements: ['Operational feeds', 'Latency tracking', 'Decision clarity'],
-    telemetry: 'LATENCY & EVENT OBSERVABILITY'
+      'The data stream: sales trends, inventory depletion, margin reports, and operational metrics needed for informed leadership decisions.',
+    elements: ['Real-Time Reporting', 'Margin Analytics', 'Inventory Forecasts'],
+    telemetry: 'Continuous Feeds'
   },
   {
     id: 'governance',
     code: 'DIM_04',
-    title: 'Governance & Oversight',
-    tag: 'Integrity & Policies',
+    title: 'Security & Access',
+    tag: 'Control & Trust',
     icon: ShieldCheck,
     description:
-      'Maintaining verifiable operational boundaries, role-based controls, and policy enforcement across interconnected enterprise systems.',
-    elements: ['Audit readiness', 'Access boundaries', 'Traceable logs'],
-    telemetry: 'VERIFIABLE POLICY CONTROL'
+      'The policies and safeguards: role-based access controls, verifiable audit trails, and privacy compliance that protect business continuity.',
+    elements: ['Role Permissions', 'Audit Logs', 'Data Encryption'],
+    telemetry: 'Policy Integrity'
   }
 ]
 
-const activeDimId = ref('business-ops')
-
-function selectDimension(id: string) {
+const selectDimension = (id: string) => {
   activeDimId.value = id
 }
 </script>
@@ -64,32 +72,24 @@ function selectDimension(id: string) {
 <template>
   <section
     id="connected-architecture"
-    ref="targetRef"
-    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.06] overflow-hidden"
+    ref="sectionRef"
+    class="py-24 md:py-36 bg-[#070b0f] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
   >
-    <!-- Ambient emerald glow with subtle drift -->
+    <!-- Background Ambient Emerald Drift Glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-brand/5 blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Tag & Coordinate Metadata Bar -->
+      <!-- Section Header -->
       <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.06] mb-16 font-ui text-xs text-zinc-400 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <ChapterLabel
-          index="CHAPTER 04"
-          label="CONNECTED ARCHITECTURE"
-          sublabel="CONCEPTUAL FRAMEWORK"
-        />
-        <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-          <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-            SYSTEM BLUEPRINT
-          </span>
-          <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span class="hidden sm:inline font-mono">QUADRANT COORDINATION MODEL</span>
+        <ChapterLabel label="Our Architecture" />
+        <div class="flex items-center gap-4 text-xs text-zinc-400">
+          <span class="text-zinc-300">Connected Model</span>
         </div>
       </div>
 
@@ -113,12 +113,12 @@ function selectDimension(id: string) {
         </p>
       </div>
 
-      <!-- Bespoke Conceptual Blueprint Frame with Corner Crosshairs -->
+      <!-- Blueprint Frame -->
       <div
         class="relative rounded-2xl border border-white/10 bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] group reveal-base transition-editorial duration-700 delay-200"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <!-- Active Theory Corner Crosshairs -->
+        <!-- Corner Crosshairs -->
         <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
         <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
         <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
@@ -135,26 +135,25 @@ function selectDimension(id: string) {
               <Layers class="h-5 w-5" />
             </div>
             <div>
-              <h3 class="text-base font-semibold text-white">
+              <h3 class="text-base font-semibold text-white font-ui">
                 The Four Interconnected Dimensions of Business
               </h3>
               <p class="text-xs text-zinc-400">
-                Illustrative conceptual diagram: Synchronizing enterprise operations, data, and oversight
+                Synchronizing enterprise operations, data, software, and governance
               </p>
             </div>
           </div>
 
           <div class="flex items-center gap-2">
-            <span class="text-xs text-zinc-400 font-mono">FRAMEWORK:</span>
             <span
-              class="font-mono text-xs text-brand bg-brand/10 px-2.5 py-1 rounded border border-brand/20"
+              class="font-ui text-xs text-brand bg-brand/10 px-2.5 py-1 rounded border border-brand/20 font-medium"
             >
-              KAVORAX_QUAD_MODEL
+              Four Core Pillars
             </span>
           </div>
         </div>
 
-        <!-- Interactive 4 Dimensions Quad Grid -->
+        <!-- Interactive 4 Dimensions Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 font-ui">
           <div
             v-for="dim in architecturalDimensions"
@@ -182,9 +181,7 @@ function selectDimension(id: string) {
                 </div>
                 <div>
                   <div class="flex items-center gap-2">
-                    <span class="font-mono text-[10px] text-brand/70">{{ dim.code }}</span>
-                    <span class="text-zinc-600">//</span>
-                    <span class="text-xs font-mono text-zinc-400">
+                    <span class="text-xs font-ui text-brand font-medium">
                       {{ dim.tag }}
                     </span>
                   </div>
@@ -208,38 +205,38 @@ function selectDimension(id: string) {
               {{ dim.description }}
             </p>
 
-            <!-- Sub-elements Pills & Telemetry Tag -->
+            <!-- Sub-elements Pills & Tag -->
             <div class="mt-6 pt-5 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-3 text-xs">
               <div class="flex flex-wrap gap-2">
                 <span
                   v-for="(el, eIdx) in dim.elements"
                   :key="eIdx"
-                  class="bg-black/50 text-zinc-300 px-2.5 py-1 rounded border border-white/5 font-mono text-[11px]"
+                  class="bg-black/50 text-zinc-300 px-2.5 py-1 rounded border border-white/5 font-ui text-xs"
                 >
                   {{ el }}
                 </span>
               </div>
-              <span class="font-mono text-[10px] text-brand/80">
+              <span class="font-ui text-xs text-brand font-medium">
                 {{ dim.telemetry }}
               </span>
             </div>
           </div>
         </div>
 
-        <!-- Dynamic Detailed View of Selected Dimension with Smooth Crossfade -->
+        <!-- Dynamic Detailed View of Selected Dimension -->
         <div class="mt-8 rounded-xl border border-white/[0.08] bg-[#090e15] p-5 sm:p-6 font-ui">
           <Transition name="dimension-fade" mode="out-in">
             <div :key="activeDimId">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
                 <div class="flex items-center gap-2">
-                  <span class="font-mono text-xs text-brand font-semibold">SELECTED VIEW:</span>
+                  <span class="text-xs text-brand font-medium">Selected Dimension:</span>
                   <span class="text-sm text-white font-medium">
                     {{ architecturalDimensions.find(d => d.id === activeDimId)?.title }}
                   </span>
                 </div>
-                <div class="font-mono text-[11px] text-zinc-400 flex items-center gap-2">
-                  <span>INTERFACE BUS:</span>
-                  <span class="text-brand">INTERCONNECTED & MONITORED</span>
+                <div class="text-xs text-zinc-400 flex items-center gap-2">
+                  <span>Platform State:</span>
+                  <span class="text-brand font-medium">Connected &amp; Monitored</span>
                 </div>
               </div>
               <p class="mt-3 text-xs sm:text-sm text-zinc-300 leading-relaxed font-editorial italic">
@@ -255,13 +252,13 @@ function selectDimension(id: string) {
         >
           <div class="flex items-center gap-2 text-zinc-300">
             <span class="h-2 w-2 rounded-full bg-brand animate-pulse" />
-            <span>Conceptual Relationship: Operations flow into Data · Systems support Workflows · Governance protects all layers</span>
+            <span>Operations flow into Data · Systems support Workflows · Governance protects all layers</span>
           </div>
           <NuxtLink
             to="/products"
             class="inline-flex items-center gap-1.5 text-brand hover:text-white transition-colors group"
           >
-            <span>Explore KavoraX Connected Products</span>
+            <span>Explore Connected Products</span>
             <ArrowRight class="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
           </NuxtLink>
         </div>
