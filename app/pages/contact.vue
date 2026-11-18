@@ -42,13 +42,220 @@ useHead({
 const isHeroMounted = ref(true)
 
 // --- ContactFormSection ---
-// Validation Schema using existing Zod libraryconst contactSchema = z.object({  fullName: z    .string()    .trim()    .min(2, { message: 'Full name must be at least 2 characters.' })    .max(100, { message: 'Full name cannot exceed 100 characters.' }),  workEmail: z.string().trim().email({ message: 'Please enter a valid work email address.' }),  companyName: z    .string()    .trim()    .max(120, { message: 'Company name cannot exceed 120 characters.' })    .optional(),  inquiryType: z    .string()    .min(1, { message: 'Please select an inquiry type.' }),  message: z    .string()    .trim()    .min(10, { message: 'Message must be at least 10 characters long.' })    .max(2000, { message: 'Message cannot exceed 2000 characters.' })})type ContactFormData = z.infer<typeof contactSchema>const { isSubmitting, submitContactMessage } = useKavoraxApi()const formData = reactive<ContactFormData>({  fullName: '',  workEmail: '',  companyName: '',  inquiryType: '',  message: ''})const errors = ref<Record<string, string>>({})const apiError = ref<string | null>(null)const submittedId = ref<number | null>(null)const submittedName = ref('')const submissionStatus = ref<'idle' | 'success'>('idle')const turnstileToken = ref('')const turnstileRef = ref<{ reset?: () => void } | null>(null)const inquiryOptions = [  { value: 'General Inquiry', label: 'General Inquiry' },  { value: 'Product Information', label: 'Product Information' },  { value: 'Solutions', label: 'Solutions & Architecture' },  { value: 'Partnership', label: 'Partnership' },  { value: 'Other', label: 'Other' }]const validateField = (field: keyof ContactFormData) => {  try {    const fieldSchema = contactSchema.shape[field]    if (fieldSchema) {      fieldSchema.parse(formData[field])      if (errors.value[field]) {        const remaining: Record<string, string> = {}        for (const key of Object.keys(errors.value)) {          if (key !== field && errors.value[key]) {            remaining[key] = errors.value[key]          }        }        errors.value = remaining      }    }  } catch (err) {    if (err instanceof z.ZodError) {      const firstIssue = err.issues?.[0]      if (firstIssue) {        errors.value = {          ...errors.value,          [field]: firstIssue.message        }      }    }  }}const handleInput = (field: keyof ContactFormData) => {  if (errors.value[field]) {    validateField(field)  }}const handleSubmit = async () => {  errors.value = {}  apiError.value = null  const result = contactSchema.safeParse(formData)  if (!result.success) {    const newErrors: Record<string, string> = {}    result.error.issues.forEach((err) => {      const field = err.path[0] as string      if (field && !newErrors[field]) {        newErrors[field] = err.message      }    })    errors.value = newErrors    // Find first error field to set focus for accessibility    const firstErrorKey = Object.keys(newErrors)[0]    if (firstErrorKey) {      const el = document.getElementById(firstErrorKey)      if (el) {        el.focus()      }    }    return  }  if (!turnstileToken.value) {    errors.value = {      ...errors.value,      turnstile: 'Please complete the anti-spam security verification.'    }    return  }  // Build subject incorporating inquiry type and company name if present  const subject = formData.companyName    ? `[${formData.inquiryType}] ${formData.companyName}`    : formData.inquiryType  try {    const response = await submitContactMessage({      name: formData.fullName,      email: formData.workEmail,      subject,      message: formData.message,      turnstileToken: turnstileToken.value    })    if (response.success && response.data) {      submittedId.value = response.data.id      submittedName.value = formData.fullName      submissionStatus.value = 'success'      // Form data reset ONLY upon confirmed backend persistence      formData.fullName = ''      formData.workEmail = ''      formData.companyName = ''      formData.inquiryType = ''      formData.message = ''      errors.value = {}    } else {      // Preserve all entered form data for user retry      if (response.validationErrors) {        const backendErrors: Record<string, string> = {}        if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name        if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email        if (response.validationErrors.message) backendErrors.message = response.validationErrors.message        if (response.validationErrors.subject) backendErrors.inquiryType = response.validationErrors.subject        errors.value = { ...errors.value, ...backendErrors }      }      apiError.value = response.error || 'Unable to submit your inquiry. Please try again.'      nextTick(() => {        const errorEl = document.getElementById('contact-api-error')        if (errorEl) {          errorEl.focus()        }      })    }  } finally {    turnstileToken.value = ''    turnstileRef.value?.reset?.()  }}const handleReset = () => {  submissionStatus.value = 'idle'  apiError.value = null  submittedId.value = null  turnstileToken.value = ''  turnstileRef.value?.reset?.()}const formSectionRef = ref<HTMLElement | null>(null)const { isRevealed: isFormRevealed } = useScrollReveal(formSectionRef, {  threshold: 0.12,  delay: 40})
+// Validation Schema using existing Zod library
+const contactSchema = z.object({
+  fullName: z
+    .string()
+    .trim()
+    .min(2, { message: 'Full name must be at least 2 characters.' })
+    .max(100, { message: 'Full name cannot exceed 100 characters.' }),
+  workEmail: z.string().trim().email({ message: 'Please enter a valid work email address.' }),
+  companyName: z
+    .string()
+    .trim()
+    .max(120, { message: 'Company name cannot exceed 120 characters.' })
+    .optional(),
+  inquiryType: z
+    .string()
+    .min(1, { message: 'Please select an inquiry type.' }),
+  message: z
+    .string()
+    .trim()
+    .min(10, { message: 'Message must be at least 10 characters long.' })
+    .max(2000, { message: 'Message cannot exceed 2000 characters.' })
+})
+type ContactFormData = z.infer<typeof contactSchema>
+const { isSubmitting, submitContactMessage } = useKavoraxApi()
+const formData = reactive<ContactFormData>({
+  fullName: '',
+  workEmail: '',
+  companyName: '',
+  inquiryType: '',
+  message: ''
+})
+const errors = ref<Record<string, string>>({})
+const apiError = ref<string | null>(null)
+const submittedId = ref<number | null>(null)
+const submittedName = ref('')
+const submissionStatus = ref<'idle' | 'success'>('idle')
+const turnstileToken = ref('')
+const turnstileRef = ref<{ reset?: () => void } | null>(null)
+const inquiryOptions = [
+  { value: 'General Inquiry', label: 'General Inquiry' },
+  { value: 'Product Information', label: 'Product Information' },
+  { value: 'Solutions', label: 'Solutions & Architecture' },
+  { value: 'Partnership', label: 'Partnership' },
+  { value: 'Other', label: 'Other' }
+]
+const validateField = (field: keyof ContactFormData) => {
+  try {
+    const fieldSchema = contactSchema.shape[field]
+    if (fieldSchema) {
+      fieldSchema.parse(formData[field])
+      if (errors.value[field]) {
+        const remaining: Record<string, string> = {}
+        for (const key of Object.keys(errors.value)) {
+          if (key !== field && errors.value[key]) {
+            remaining[key] = errors.value[key]
+          }
+        }
+        errors.value = remaining
+      }
+    }
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      const firstIssue = err.issues?.[0]
+      if (firstIssue) {
+        errors.value = {
+          ...errors.value,
+          [field]: firstIssue.message
+        }
+      }
+    }
+  }
+}
+const handleInput = (field: keyof ContactFormData) => {
+  if (errors.value[field]) {
+    validateField(field)
+  }
+}
+const handleSubmit = async () => {
+  errors.value = {}
+  apiError.value = null
+  const result = contactSchema.safeParse(formData)
+  if (!result.success) {
+    const newErrors: Record<string, string> = {}
+    result.error.issues.forEach((err) => {
+      const field = err.path[0] as string
+      if (field && !newErrors[field]) {
+        newErrors[field] = err.message
+      }
+    })
+    errors.value = newErrors
+    // Find first error field to set focus for accessibility
+    const firstErrorKey = Object.keys(newErrors)[0]
+    if (firstErrorKey) {
+      const el = document.getElementById(firstErrorKey)
+      if (el) {
+        el.focus()
+      }
+    }
+    return
+  }
+  if (!turnstileToken.value) {
+    errors.value = {
+      ...errors.value,
+      turnstile: 'Please complete the anti-spam security verification.'
+    }
+    return
+  }
+  // Build subject incorporating inquiry type and company name if present
+  const subject = formData.companyName
+    ? `[${formData.inquiryType}] ${formData.companyName}`
+    : formData.inquiryType
+  try {
+    const response = await submitContactMessage({
+      name: formData.fullName,
+      email: formData.workEmail,
+      subject,
+      message: formData.message,
+      turnstileToken: turnstileToken.value
+    })
+    if (response.success && response.data) {
+      submittedId.value = response.data.id
+      submittedName.value = formData.fullName
+      submissionStatus.value = 'success'
+      // Form data reset ONLY upon confirmed backend persistence
+      formData.fullName = ''
+      formData.workEmail = ''
+      formData.companyName = ''
+      formData.inquiryType = ''
+      formData.message = ''
+      errors.value = {}
+    } else {
+      // Preserve all entered form data for user retry
+      if (response.validationErrors) {
+        const backendErrors: Record<string, string> = {}
+        if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
+        if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
+        if (response.validationErrors.message) backendErrors.message = response.validationErrors.message
+        if (response.validationErrors.subject) backendErrors.inquiryType = response.validationErrors.subject
+        errors.value = { ...errors.value, ...backendErrors }
+      }
+      apiError.value = response.error || 'Unable to submit your inquiry. Please try again.'
+      nextTick(() => {
+        const errorEl = document.getElementById('contact-api-error')
+        if (errorEl) {
+          errorEl.focus()
+        }
+      })
+    }
+  } finally {
+    turnstileToken.value = ''
+    turnstileRef.value?.reset?.()
+  }
+}
+const handleReset = () => {
+  submissionStatus.value = 'idle'
+  apiError.value = null
+  submittedId.value = null
+  turnstileToken.value = ''
+  turnstileRef.value?.reset?.()
+}
+const formSectionRef = ref<HTMLElement | null>(null)
+const { isRevealed: isFormRevealed } = useScrollReveal(formSectionRef, {
+  threshold: 0.12,
+  delay: 40
+})
 
 // --- ContactChannels ---
-const channelsSectionRef = ref<HTMLElement | null>(null)const { isRevealed: isChannelsRevealed } = useScrollReveal(channelsSectionRef, {  threshold: 0.15,  delay: 50})const channels = [  {    title: 'General Inquiries',    icon: Mail,    code: 'CHANNEL_01',    category: 'Direct Communication',    description: 'Reach our team directly for business, partnership, and corporate inquiries.',    contactText: 'contact@kavorax.com',    link: 'mailto:contact@kavorax.com',    linkLabel: 'Email Directly',    staggerClass: 'stagger-1'  },  {    title: 'Demo & Technical Walkthrough',    icon: Calendar,    code: 'CHANNEL_02',    category: 'Executive Briefing',    description: 'Schedule a structured 45-minute technical briefing with our systems architects.',    contactText: 'Executive Walkthrough Request',    link: '/demo',    linkLabel: 'Book a Demo',    staggerClass: 'stagger-2'  },  {    title: 'Solutions Architecture',    icon: Layers,    code: 'CHANNEL_03',    category: 'Platform Exploration',    description: 'Explore our Operations Platform, Analytics & Insights, and Integration Hub.',    contactText: 'Connected Enterprise Platform',    link: '/products',    linkLabel: 'Explore Solutions',    staggerClass: 'stagger-3'  }]
+const channelsSectionRef = ref<HTMLElement | null>(null)
+const { isRevealed: isChannelsRevealed } = useScrollReveal(channelsSectionRef, {
+  threshold: 0.15,
+  delay: 50
+})
+const channels = [
+  {
+    title: 'General Inquiries',
+    icon: Mail,
+    code: 'CHANNEL_01',
+    category: 'Direct Communication',
+    description: 'Reach our team directly for business, partnership, and corporate inquiries.',
+    contactText: 'contact@kavorax.com',
+    link: 'mailto:contact@kavorax.com',
+    linkLabel: 'Email Directly',
+    staggerClass: 'stagger-1'
+  },
+  {
+    title: 'Demo & Technical Walkthrough',
+    icon: Calendar,
+    code: 'CHANNEL_02',
+    category: 'Executive Briefing',
+    description: 'Schedule a structured 45-minute technical briefing with our systems architects.',
+    contactText: 'Executive Walkthrough Request',
+    link: '/demo',
+    linkLabel: 'Book a Demo',
+    staggerClass: 'stagger-2'
+  },
+  {
+    title: 'Solutions Architecture',
+    icon: Layers,
+    code: 'CHANNEL_03',
+    category: 'Platform Exploration',
+    description: 'Explore our Operations Platform, Analytics & Insights, and Integration Hub.',
+    contactText: 'Connected Enterprise Platform',
+    link: '/products',
+    linkLabel: 'Explore Solutions',
+    staggerClass: 'stagger-3'
+  }
+]
 
 // --- ContactClosingCta ---
-const closingSectionRef = ref<HTMLElement | null>(null)const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {  threshold: 0.18,  delay: 50})
+const closingSectionRef = ref<HTMLElement | null>(null)
+const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
+  threshold: 0.18,
+  delay: 50
+})
 </script>
 
 <template>

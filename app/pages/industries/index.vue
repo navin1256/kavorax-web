@@ -36,19 +36,334 @@ useHead({
 })
 
 // --- IndustriesHero ---
-const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true })const scrollToSectors = () => {  const el = document.getElementById('industry-overview')  if (el) {    el.scrollIntoView({ behavior: 'smooth', block: 'start' })  }}
+const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true })
+const scrollToSectors = () => {
+  const el = document.getElementById('industry-overview')
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
 
 // --- IndustriesOverview ---
-const overviewRef = ref<HTMLElement | null>(null)const { isRevealed: isOverviewRevealed } = useScrollReveal(overviewRef, { threshold: 0.1 })const overviewIndustries = [  {    id: 'enterprise-tech',    name: 'Enterprise Technology & SaaS',    tag: 'Digital Operations',    icon: Building2,    colSpan: 'lg:col-span-7',    description:      'Fast-moving software and technology providers coordinating complex product lifecycles, cross-functional handoffs, and multi-tenant operational toolchains.',    keyFocus: 'Workflow execution & toolchain interoperability',    primaryAnchor: '#enterprise-tech',    ctaLabel: 'Explore SaaS Context',    image: '/images/tech-infrastructure.webp',    alt: 'High-density enterprise computing and telemetry infrastructure'  },  {    id: 'financial-services',    name: 'Financial Services & FinTech',    tag: 'Auditable Systems',    icon: Landmark,    colSpan: 'lg:col-span-5',    description:      'Banking, payment, and financial institutions requiring continuous operational visibility, strict governance, and synchronized data exchange across distributed platforms.',    keyFocus: 'Operational telemetry & multi-system exchange',    primaryAnchor: '#financial-services',    ctaLabel: 'Explore FinTech Context',    image: '/images/fintech-headquarters.webp',    alt: 'Modern financial architectural headquarters with glass facade'  },  {    id: 'healthcare',    name: 'Healthcare & Life Sciences',    tag: 'Care Delivery Workflows',    icon: Activity,    colSpan: 'lg:col-span-5',    description:      'Clinical operations and health networks managing distributed administrative processes, cross-facility coordination, and complex stakeholder communications.',    keyFocus: 'Operational coordination & bottleneck visibility',    primaryAnchor: '#healthcare',    ctaLabel: 'Explore Healthcare Context',    image: '/images/healthcare-diagnostics.webp',    alt: 'Modern laboratory instrumentation and clinical diagnostics'  },  {    id: 'supply-chain',    name: 'Supply Chain & Logistics',    tag: 'Fulfillment & Freight',    icon: Truck,    colSpan: 'lg:col-span-7',    description:      'Logistics providers and fulfillment operators requiring dependable interoperability between distributed inventory, freight tracking, and back-office ERP systems.',    keyFocus: 'Ecosystem bridging & milestone tracking',    primaryAnchor: '#supply-chain',    ctaLabel: 'Explore Logistics Context',    image: '/images/logistics-terminal.webp',    alt: 'Modern automated intermodal logistics terminal'  }]
+const overviewRef = ref<HTMLElement | null>(null)
+const { isRevealed: isOverviewRevealed } = useScrollReveal(overviewRef, { threshold: 0.1 })
+const overviewIndustries = [
+  {
+    id: 'enterprise-tech',
+    name: 'Enterprise Technology & SaaS',
+    tag: 'Digital Operations',
+    icon: Building2,
+    colSpan: 'lg:col-span-7',
+    description:
+      'Fast-moving software and technology providers coordinating complex product lifecycles, cross-functional handoffs, and multi-tenant operational toolchains.',
+    keyFocus: 'Workflow execution & toolchain interoperability',
+    primaryAnchor: '#enterprise-tech',
+    ctaLabel: 'Explore SaaS Context',
+    image: '/images/tech-infrastructure.webp',
+    alt: 'High-density enterprise computing and telemetry infrastructure'
+  },
+  {
+    id: 'financial-services',
+    name: 'Financial Services & FinTech',
+    tag: 'Auditable Systems',
+    icon: Landmark,
+    colSpan: 'lg:col-span-5',
+    description:
+      'Banking, payment, and financial institutions requiring continuous operational visibility, strict governance, and synchronized data exchange across distributed platforms.',
+    keyFocus: 'Operational telemetry & multi-system exchange',
+    primaryAnchor: '#financial-services',
+    ctaLabel: 'Explore FinTech Context',
+    image: '/images/fintech-headquarters.webp',
+    alt: 'Modern financial architectural headquarters with glass facade'
+  },
+  {
+    id: 'healthcare',
+    name: 'Healthcare & Life Sciences',
+    tag: 'Care Delivery Workflows',
+    icon: Activity,
+    colSpan: 'lg:col-span-5',
+    description:
+      'Clinical operations and health networks managing distributed administrative processes, cross-facility coordination, and complex stakeholder communications.',
+    keyFocus: 'Operational coordination & bottleneck visibility',
+    primaryAnchor: '#healthcare',
+    ctaLabel: 'Explore Healthcare Context',
+    image: '/images/healthcare-diagnostics.webp',
+    alt: 'Modern laboratory instrumentation and clinical diagnostics'
+  },
+  {
+    id: 'supply-chain',
+    name: 'Supply Chain & Logistics',
+    tag: 'Fulfillment & Freight',
+    icon: Truck,
+    colSpan: 'lg:col-span-7',
+    description:
+      'Logistics providers and fulfillment operators requiring dependable interoperability between distributed inventory, freight tracking, and back-office ERP systems.',
+    keyFocus: 'Ecosystem bridging & milestone tracking',
+    primaryAnchor: '#supply-chain',
+    ctaLabel: 'Explore Logistics Context',
+    image: '/images/logistics-terminal.webp',
+    alt: 'Modern automated intermodal logistics terminal'
+  }
+]
 
 // --- IndustryDetailSections ---
-const s0Ref = ref<HTMLElement | null>(null)const s1Ref = ref<HTMLElement | null>(null)const s2Ref = ref<HTMLElement | null>(null)const s3Ref = ref<HTMLElement | null>(null)const { isRevealed: s0Revealed } = useScrollReveal(s0Ref, { threshold: 0.1 })const { isRevealed: s1Revealed } = useScrollReveal(s1Ref, { threshold: 0.1 })const { isRevealed: s2Revealed } = useScrollReveal(s2Ref, { threshold: 0.1 })const { isRevealed: s3Revealed } = useScrollReveal(s3Ref, { threshold: 0.1 })interface IndustryDetailItem {  id: string  number: string  category: string  name: string  subtitle: string  icon: Component  image: string  imageAlt: string  imageBadge: string  imageCaption: string  context: string  commonNeeds: { title: string; desc: string }[]  solutionTitle: string  solutionDesc: string  solutionLink: string  solutionIcon: Component  capabilities: string[]  primaryCta: string  secondaryCta: string}const detailIndustries: [IndustryDetailItem, IndustryDetailItem, IndustryDetailItem, IndustryDetailItem] = [  {    id: 'enterprise-tech',    number: '01',    category: 'DIGITAL OPERATIONS',    name: 'Enterprise Technology & SaaS',    subtitle: 'Streamlining cross-functional execution and multi-system digital operations.',    icon: Building2,    image: '/images/tech-infrastructure.webp',    imageAlt: 'High-density cloud infrastructure and telemetry servers',    imageBadge: 'HIGH-CONCURRENCY MESH',    imageCaption: 'Distributed Cloud Cluster · Sub-10ms Routing',    context:      'Modern software and technology companies operate in fast-paced environments where engineering, product, customer support, and go-to-market teams rely on heavily decentralized toolchains. Maintaining clear visibility over cross-functional deliverables without slowing down release cycles remains a continuous operational challenge.',    commonNeeds: [      {        title: 'Cross-Departmental Task Coordination',        desc: 'Minimizing friction during critical handoffs between engineering sprints, customer success onboarding, and back-office billing.'      },      {        title: 'Decoupled Toolchain Interoperability',        desc: 'Synchronizing data records between issue trackers, customer engagement tools, and internal admin panels without brittle custom scripts.'      },      {        title: 'Operational Bottleneck Detection',        desc: 'Identifying workflow lags and systemic delays across service provisioning and customer lifecycle milestones.'      }    ],    solutionTitle: 'Operations Platform & Integration Hub',    solutionDesc:      'KavoraX Operations Platform establishes unified workflow coordination across distributed teams, while Integration Hub maintains reliable data synchronization between disconnected SaaS services.',    solutionLink: '/products#operations-platform',    solutionIcon: Cpu,    capabilities: [      'Multi-tenant toolchain data synchronization',      'Automated service milestone routing and notification',      'Real-time bottleneck and handoff lag visibility'    ],    primaryCta: 'Discuss Tech Operations',    secondaryCta: 'Explore Operations Platform'  },  {    id: 'financial-services',    number: '02',    category: 'AUDITABLE ARCHITECTURE',    name: 'Financial Services & FinTech',    subtitle: 'Auditable transaction architectures, rigorous data segregation, and governance.',    icon: Landmark,    image: '/images/fintech-headquarters.webp',    imageAlt: 'Modern financial architectural headquarters with glass facade',    imageBadge: 'REGULATORY COMPLIANCE',    imageCaption: 'Institutional Governance · End-to-End Cryptography',    context:      'Financial institutions and fintech organizations navigate stringent regulatory frameworks, rigorous audit requirements, and zero-tolerance expectations for transactional errors. Software systems must coordinate high-volume transactions while preserving full operational transparency and data lineage.',    commonNeeds: [      {        title: 'Auditable Operational Logging',        desc: 'Ensuring every state transition, user authorization, and system event is immutably recorded for regulatory scrutiny.'      },      {        title: 'Rigorous Data Segregation',        desc: 'Maintaining strict organizational boundaries and role-based permissions across sensitive accounts and customer portfolios.'      },      {        title: 'Reconciliation Traceability',        desc: 'Automating multi-system balance reconciliations and identifying ledger discrepancies before settlement windows close.'      }    ],    solutionTitle: 'Analytics & Insights & Operations Platform',    solutionDesc:      'KavoraX Analytics & Insights delivers continuous operational telemetry and anomaly detection, paired with policy-governed task execution for compliance workflows.',    solutionLink: '/products#analytics-insights',    solutionIcon: BarChart3,    capabilities: [      'Continuous compliance audit event aggregation',      'Multi-entity policy governance and permission gates',      'Real-time operational exception escalation'    ],    primaryCta: 'Discuss FinTech Governance',    secondaryCta: 'Explore Analytics Engine'  },  {    id: 'healthcare',    number: '03',    category: 'CARE CONTINUITY',    name: 'Healthcare & Life Sciences',    subtitle: 'Confidential clinical data pipelines and synchronized patient workflows.',    icon: Activity,    image: '/images/healthcare-diagnostics.webp',    imageAlt: 'Modern laboratory instrumentation and clinical diagnostics',    imageBadge: 'CLINICAL GRADE',    imageCaption: 'Encrypted Telemetry · Care Coordination',    context:      'Healthcare organizations, medical device manufacturers, and clinical laboratories must balance exceptional patient care standards with rigorous patient privacy mandates and fragmented legacy electronic record systems.',    commonNeeds: [      {        title: 'Multi-Department Scheduling & Handoffs',        desc: 'Coordinating operational workflows between laboratory diagnostics, clinical evaluation, and administrative billing.'      },      {        title: 'Confidential Diagnostics Routing',        desc: 'Transmitting sensitive patient telemetry and laboratory findings across authenticated endpoints without risk of exposure.'      },      {        title: 'Cross-System EHR Interoperability',        desc: 'Enabling legacy record databases to communicate with modern clinical scheduling and telemedicine portals.'      }    ],    solutionTitle: 'Operations Platform & Integration Hub',    solutionDesc:      'KavoraX Integration Hub provides cryptographically verified data pipelines for healthcare providers, while Operations Platform coordinates clinical task handoffs with strict privacy enforcement.',    solutionLink: '/products#operations-platform',    solutionIcon: Cpu,    capabilities: [      'Encrypted inter-departmental task routing',      'Confidential clinical data lineage tracking',      'Automated SLA monitoring for critical patient milestones'    ],    primaryCta: 'Discuss Healthcare Solutions',    secondaryCta: 'Explore Integration Hub'  },  {    id: 'supply-chain',    number: '04',    category: 'GLOBAL SYNCHRONIZATION',    name: 'Supply Chain & Logistics',    subtitle: 'Intermodal freight coordination, inventory synchronization, and milestone tracking.',    icon: Truck,    image: '/images/logistics-terminal.webp',    imageAlt: 'Modern automated intermodal container logistics terminal',    imageBadge: 'INTERMODAL LOGISTICS',    imageCaption: 'Multi-Terminal Hub · Real-Time Freight Sync',    context:      'Global logistics operators, freight coordinators, and warehouse networks face compounding complexity from fluctuating carrier capacity, weather disruptions, and heterogeneous inventory management software.',    commonNeeds: [      {        title: 'Multi-Vendor Freight Bridging',        desc: 'Unifying disparate EDI, API, and legacy transport management protocols into a single, predictable tracking stream.'      },      {        title: 'Automated Exception Routing',        desc: 'Triggering rapid mitigation workflows whenever shipment milestones or cold-chain temperature thresholds are breached.'      },      {        title: 'Warehouse & Inventory Synchronization',        desc: 'Maintaining cross-terminal inventory visibility to optimize dispatch timing and eliminate dwell time.'      }    ],    solutionTitle: 'Integration Hub & Operations Platform',    solutionDesc:      'KavoraX Integration Hub standardizes communication across global freight providers, while Operations Platform orchestrates automated exception resolution across distributed fulfillment teams.',    solutionLink: '/products#integration-hub',    solutionIcon: Network,    capabilities: [      'Multi-carrier operational protocol bridging',      'Automated freight exception handling workflows',      'Real-time multi-terminal inventory synchronization'    ],    primaryCta: 'Discuss Logistics Architecture',    secondaryCta: 'Explore Integration Hub'  }]
+const s0Ref = ref<HTMLElement | null>(null)
+const s1Ref = ref<HTMLElement | null>(null)
+const s2Ref = ref<HTMLElement | null>(null)
+const s3Ref = ref<HTMLElement | null>(null)
+const { isRevealed: s0Revealed } = useScrollReveal(s0Ref, { threshold: 0.1 })
+const { isRevealed: s1Revealed } = useScrollReveal(s1Ref, { threshold: 0.1 })
+const { isRevealed: s2Revealed } = useScrollReveal(s2Ref, { threshold: 0.1 })
+const { isRevealed: s3Revealed } = useScrollReveal(s3Ref, { threshold: 0.1 })
+interface IndustryDetailItem {
+  id: string
+  number: string
+  category: string
+  name: string
+  subtitle: string
+  icon: Component
+  image: string
+  imageAlt: string
+  imageBadge: string
+  imageCaption: string
+  context: string
+  commonNeeds: { title: string; desc: string }[]
+  solutionTitle: string
+  solutionDesc: string
+  solutionLink: string
+  solutionIcon: Component
+  capabilities: string[]
+  primaryCta: string
+  secondaryCta: string
+}
+const detailIndustries: [IndustryDetailItem, IndustryDetailItem, IndustryDetailItem, IndustryDetailItem] = [
+  {
+    id: 'enterprise-tech',
+    number: '01',
+    category: 'DIGITAL OPERATIONS',
+    name: 'Enterprise Technology & SaaS',
+    subtitle: 'Streamlining cross-functional execution and multi-system digital operations.',
+    icon: Building2,
+    image: '/images/tech-infrastructure.webp',
+    imageAlt: 'High-density cloud infrastructure and telemetry servers',
+    imageBadge: 'HIGH-CONCURRENCY MESH',
+    imageCaption: 'Distributed Cloud Cluster · Sub-10ms Routing',
+    context:
+      'Modern software and technology companies operate in fast-paced environments where engineering, product, customer support, and go-to-market teams rely on heavily decentralized toolchains. Maintaining clear visibility over cross-functional deliverables without slowing down release cycles remains a continuous operational challenge.',
+    commonNeeds: [
+      {
+        title: 'Cross-Departmental Task Coordination',
+        desc: 'Minimizing friction during critical handoffs between engineering sprints, customer success onboarding, and back-office billing.'
+      },
+      {
+        title: 'Decoupled Toolchain Interoperability',
+        desc: 'Synchronizing data records between issue trackers, customer engagement tools, and internal admin panels without brittle custom scripts.'
+      },
+      {
+        title: 'Operational Bottleneck Detection',
+        desc: 'Identifying workflow lags and systemic delays across service provisioning and customer lifecycle milestones.'
+      }
+    ],
+    solutionTitle: 'Operations Platform & Integration Hub',
+    solutionDesc:
+      'KavoraX Operations Platform establishes unified workflow coordination across distributed teams, while Integration Hub maintains reliable data synchronization between disconnected SaaS services.',
+    solutionLink: '/products#operations-platform',
+    solutionIcon: Cpu,
+    capabilities: [
+      'Multi-tenant toolchain data synchronization',
+      'Automated service milestone routing and notification',
+      'Real-time bottleneck and handoff lag visibility'
+    ],
+    primaryCta: 'Discuss Tech Operations',
+    secondaryCta: 'Explore Operations Platform'
+  },
+  {
+    id: 'financial-services',
+    number: '02',
+    category: 'AUDITABLE ARCHITECTURE',
+    name: 'Financial Services & FinTech',
+    subtitle: 'Auditable transaction architectures, rigorous data segregation, and governance.',
+    icon: Landmark,
+    image: '/images/fintech-headquarters.webp',
+    imageAlt: 'Modern financial architectural headquarters with glass facade',
+    imageBadge: 'REGULATORY COMPLIANCE',
+    imageCaption: 'Institutional Governance · End-to-End Cryptography',
+    context:
+      'Financial institutions and fintech organizations navigate stringent regulatory frameworks, rigorous audit requirements, and zero-tolerance expectations for transactional errors. Software systems must coordinate high-volume transactions while preserving full operational transparency and data lineage.',
+    commonNeeds: [
+      {
+        title: 'Auditable Operational Logging',
+        desc: 'Ensuring every state transition, user authorization, and system event is immutably recorded for regulatory scrutiny.'
+      },
+      {
+        title: 'Rigorous Data Segregation',
+        desc: 'Maintaining strict organizational boundaries and role-based permissions across sensitive accounts and customer portfolios.'
+      },
+      {
+        title: 'Reconciliation Traceability',
+        desc: 'Automating multi-system balance reconciliations and identifying ledger discrepancies before settlement windows close.'
+      }
+    ],
+    solutionTitle: 'Analytics & Insights & Operations Platform',
+    solutionDesc:
+      'KavoraX Analytics & Insights delivers continuous operational telemetry and anomaly detection, paired with policy-governed task execution for compliance workflows.',
+    solutionLink: '/products#analytics-insights',
+    solutionIcon: BarChart3,
+    capabilities: [
+      'Continuous compliance audit event aggregation',
+      'Multi-entity policy governance and permission gates',
+      'Real-time operational exception escalation'
+    ],
+    primaryCta: 'Discuss FinTech Governance',
+    secondaryCta: 'Explore Analytics Engine'
+  },
+  {
+    id: 'healthcare',
+    number: '03',
+    category: 'CARE CONTINUITY',
+    name: 'Healthcare & Life Sciences',
+    subtitle: 'Confidential clinical data pipelines and synchronized patient workflows.',
+    icon: Activity,
+    image: '/images/healthcare-diagnostics.webp',
+    imageAlt: 'Modern laboratory instrumentation and clinical diagnostics',
+    imageBadge: 'CLINICAL GRADE',
+    imageCaption: 'Encrypted Telemetry · Care Coordination',
+    context:
+      'Healthcare organizations, medical device manufacturers, and clinical laboratories must balance exceptional patient care standards with rigorous patient privacy mandates and fragmented legacy electronic record systems.',
+    commonNeeds: [
+      {
+        title: 'Multi-Department Scheduling & Handoffs',
+        desc: 'Coordinating operational workflows between laboratory diagnostics, clinical evaluation, and administrative billing.'
+      },
+      {
+        title: 'Confidential Diagnostics Routing',
+        desc: 'Transmitting sensitive patient telemetry and laboratory findings across authenticated endpoints without risk of exposure.'
+      },
+      {
+        title: 'Cross-System EHR Interoperability',
+        desc: 'Enabling legacy record databases to communicate with modern clinical scheduling and telemedicine portals.'
+      }
+    ],
+    solutionTitle: 'Operations Platform & Integration Hub',
+    solutionDesc:
+      'KavoraX Integration Hub provides cryptographically verified data pipelines for healthcare providers, while Operations Platform coordinates clinical task handoffs with strict privacy enforcement.',
+    solutionLink: '/products#operations-platform',
+    solutionIcon: Cpu,
+    capabilities: [
+      'Encrypted inter-departmental task routing',
+      'Confidential clinical data lineage tracking',
+      'Automated SLA monitoring for critical patient milestones'
+    ],
+    primaryCta: 'Discuss Healthcare Solutions',
+    secondaryCta: 'Explore Integration Hub'
+  },
+  {
+    id: 'supply-chain',
+    number: '04',
+    category: 'GLOBAL SYNCHRONIZATION',
+    name: 'Supply Chain & Logistics',
+    subtitle: 'Intermodal freight coordination, inventory synchronization, and milestone tracking.',
+    icon: Truck,
+    image: '/images/logistics-terminal.webp',
+    imageAlt: 'Modern automated intermodal container logistics terminal',
+    imageBadge: 'INTERMODAL LOGISTICS',
+    imageCaption: 'Multi-Terminal Hub · Real-Time Freight Sync',
+    context:
+      'Global logistics operators, freight coordinators, and warehouse networks face compounding complexity from fluctuating carrier capacity, weather disruptions, and heterogeneous inventory management software.',
+    commonNeeds: [
+      {
+        title: 'Multi-Vendor Freight Bridging',
+        desc: 'Unifying disparate EDI, API, and legacy transport management protocols into a single, predictable tracking stream.'
+      },
+      {
+        title: 'Automated Exception Routing',
+        desc: 'Triggering rapid mitigation workflows whenever shipment milestones or cold-chain temperature thresholds are breached.'
+      },
+      {
+        title: 'Warehouse & Inventory Synchronization',
+        desc: 'Maintaining cross-terminal inventory visibility to optimize dispatch timing and eliminate dwell time.'
+      }
+    ],
+    solutionTitle: 'Integration Hub & Operations Platform',
+    solutionDesc:
+      'KavoraX Integration Hub standardizes communication across global freight providers, while Operations Platform orchestrates automated exception resolution across distributed fulfillment teams.',
+    solutionLink: '/products#integration-hub',
+    solutionIcon: Network,
+    capabilities: [
+      'Multi-carrier operational protocol bridging',
+      'Automated freight exception handling workflows',
+      'Real-time multi-terminal inventory synchronization'
+    ],
+    primaryCta: 'Discuss Logistics Architecture',
+    secondaryCta: 'Explore Integration Hub'
+  }
+]
 
 // --- ConnectedOperations ---
-const connectedRef = ref<HTMLElement | null>(null)const { isRevealed: isConnectedRevealed } = useScrollReveal(connectedRef, { threshold: 0.1 })const operationalPillars = [  {    id: 'workflows',    number: '01',    title: 'Business Workflows',    subtitle: 'Execution & Coordination',    icon: Workflow,    description:      'Coordinating cross-functional execution and milestone progression so teams spend less time chasing status updates and more time moving initiatives forward.',    highlights: [      'Multi-team handoff synchronization',      'Automated task routing and escalation',      'Exception triage and bottleneck mitigation'    ]  },  {    id: 'data-insights',    number: '02',    title: 'Data & Insights',    subtitle: 'Visibility & Telemetry',    icon: BarChart3,    description:      'Aggregating operational telemetry into clear, real-time views so leadership can observe system health, workload throughput, and potential delivery risks.',    highlights: [      'Centralized operational telemetry feeds',      'Activity visibility across siloed units',      'Data-backed decision clarity'    ]  },  {    id: 'connected-systems',    number: '03',    title: 'Connected Systems',    subtitle: 'Interoperability & Bridging',    icon: Network,    description:      'Bridging legacy on-premise infrastructure, modern SaaS platforms, and external partner APIs into one coherent operational fabric without rip-and-replace.',    highlights: [      'Cross-platform event synchronization',      'Resilient multi-system data pipelines',      'Decoupled architecture compatibility'    ]  },  {    id: 'governance',    number: '04',    title: 'Governance & Oversight',    subtitle: 'Policy & Auditability',    icon: ShieldCheck,    description:      'Ensuring that as workflows scale across systems and departments, administrative actions remain policy-compliant, traceable, and ready for internal audit.',    highlights: [      'Role-based authorization boundaries',      'Traceable operational audit trails',      'Consistent policy governance'    ]  }]
+const connectedRef = ref<HTMLElement | null>(null)
+const { isRevealed: isConnectedRevealed } = useScrollReveal(connectedRef, { threshold: 0.1 })
+const operationalPillars = [
+  {
+    id: 'workflows',
+    number: '01',
+    title: 'Business Workflows',
+    subtitle: 'Execution & Coordination',
+    icon: Workflow,
+    description:
+      'Coordinating cross-functional execution and milestone progression so teams spend less time chasing status updates and more time moving initiatives forward.',
+    highlights: [
+      'Multi-team handoff synchronization',
+      'Automated task routing and escalation',
+      'Exception triage and bottleneck mitigation'
+    ]
+  },
+  {
+    id: 'data-insights',
+    number: '02',
+    title: 'Data & Insights',
+    subtitle: 'Visibility & Telemetry',
+    icon: BarChart3,
+    description:
+      'Aggregating operational telemetry into clear, real-time views so leadership can observe system health, workload throughput, and potential delivery risks.',
+    highlights: [
+      'Centralized operational telemetry feeds',
+      'Activity visibility across siloed units',
+      'Data-backed decision clarity'
+    ]
+  },
+  {
+    id: 'connected-systems',
+    number: '03',
+    title: 'Connected Systems',
+    subtitle: 'Interoperability & Bridging',
+    icon: Network,
+    description:
+      'Bridging legacy on-premise infrastructure, modern SaaS platforms, and external partner APIs into one coherent operational fabric without rip-and-replace.',
+    highlights: [
+      'Cross-platform event synchronization',
+      'Resilient multi-system data pipelines',
+      'Decoupled architecture compatibility'
+    ]
+  },
+  {
+    id: 'governance',
+    number: '04',
+    title: 'Governance & Oversight',
+    subtitle: 'Policy & Auditability',
+    icon: ShieldCheck,
+    description:
+      'Ensuring that as workflows scale across systems and departments, administrative actions remain policy-compliant, traceable, and ready for internal audit.',
+    highlights: [
+      'Role-based authorization boundaries',
+      'Traceable operational audit trails',
+      'Consistent policy governance'
+    ]
+  }
+]
 
 // --- IndustriesConsultationCta ---
-const ctaRef = ref<HTMLElement | null>(null)const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 })
+const ctaRef = ref<HTMLElement | null>(null)
+const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 })
 </script>
 
 <template>
