@@ -38,22 +38,197 @@ useHead({
 })
 
 // --- PricingHero ---
-const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true, delay: 60 })const scrollToComparison = () => {  const el = document.getElementById('solutions-comparison')  if (el) {    el.scrollIntoView({ behavior: 'smooth', block: 'start' })  }}
+const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true, delay: 60 })
+const scrollToComparison = () => {
+  const el = document.getElementById('solutions-comparison')
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
 
 // --- PricingApproach ---
-const approachRef = ref<HTMLElement | null>(null)const { isRevealed: isApproachRevealed } = useScrollReveal(approachRef, { threshold: 0.1 })const approachSteps = [  {    step: '01',    title: 'Understand Your Needs',    subtitle: 'Operational Goals & Systems',    icon: Compass,    description:      'We start by discussing your operational goals, existing software systems, cross-department handoffs, and specific technical requirements to understand where connectivity delivers the highest leverage.',    focusPoints: [      'Current workflow friction & bottlenecks',      'Existing infrastructure & legacy integrations',      'Target performance and scalability goals'    ]  },  {    step: '02',    title: 'Identify the Right Solution',    subtitle: 'Modular Product Alignment',    icon: Sliders,    description:      'Together, we explore relevant KavoraX platforms—Operations Platform, Analytics & Insights, or Integration Hub—and determine the combination that addresses your exact business needs.',    focusPoints: [      'Operations Platform for workflow orchestration',      'Analytics & Insights for centralized telemetry',      'Integration Hub for multi-system interoperability'    ]  },  {    step: '03',    title: 'Discuss the Engagement',    subtitle: 'Scope & Commercial Details',    icon: MessageSquare,    description:      'Connect directly with the KavoraX technical team to discuss rollout scope, milestone expectations, deployment parameters, and commercial details suited to your organization.',    focusPoints: [      'Transparent scope and rollout sequencing',      'Collaborative commercial alignment',      'Dedicated engineering and deployment review'    ]  }]
+const approachRef = ref<HTMLElement | null>(null)
+const { isRevealed: isApproachRevealed } = useScrollReveal(approachRef, { threshold: 0.1 })
+const approachSteps = [
+  {
+    step: '01',
+    title: 'Understand Your Needs',
+    subtitle: 'Operational Goals & Systems',
+    icon: Compass,
+    description:
+      'We start by discussing your operational goals, existing software systems, cross-department handoffs, and specific technical requirements to understand where connectivity delivers the highest leverage.',
+    focusPoints: [
+      'Current workflow friction & bottlenecks',
+      'Existing infrastructure & legacy integrations',
+      'Target performance and scalability goals'
+    ]
+  },
+  {
+    step: '02',
+    title: 'Identify the Right Solution',
+    subtitle: 'Modular Product Alignment',
+    icon: Sliders,
+    description:
+      'Together, we explore relevant KavoraX platforms—Operations Platform, Analytics & Insights, or Integration Hub—and determine the combination that addresses your exact business needs.',
+    focusPoints: [
+      'Operations Platform for workflow orchestration',
+      'Analytics & Insights for centralized telemetry',
+      'Integration Hub for multi-system interoperability'
+    ]
+  },
+  {
+    step: '03',
+    title: 'Discuss the Engagement',
+    subtitle: 'Scope & Commercial Details',
+    icon: MessageSquare,
+    description:
+      'Connect directly with the KavoraX technical team to discuss rollout scope, milestone expectations, deployment parameters, and commercial details suited to your organization.',
+    focusPoints: [
+      'Transparent scope and rollout sequencing',
+      'Collaborative commercial alignment',
+      'Dedicated engineering and deployment review'
+    ]
+  }
+]
 
 // --- SolutionComparison ---
-const comparisonRef = ref<HTMLElement | null>(null)const { isRevealed: isComparisonRevealed } = useScrollReveal(comparisonRef, { threshold: 0.1 })const activeScope = ref<'department' | 'enterprise' | 'global'>('enterprise')const isScopeTransitioning = ref(false)const setScope = (scope: 'department' | 'enterprise' | 'global') => {  if (activeScope.value === scope) return  isScopeTransitioning.value = true  setTimeout(() => {    activeScope.value = scope    setTimeout(() => {      isScopeTransitioning.value = false    }, 40)  }, 90)}const scopeProfiles = {  department: {    title: 'Departmental Foundation',    badge: 'Focused Scale',    description: 'Designed for single business units or localized operational departments coordinating discrete workflows.',    latency: '< 15ms',    concurrency: 'Standard Tier',    governance: 'Role-Based Access (RBAC)',    deployment: 'Single-Cluster VPC / SaaS'  },  enterprise: {    title: 'Cross-Enterprise Operations',    badge: 'Multi-Department Scale',    description: 'Engineered for multi-department organizations synchronizing operations, live telemetry, and multiple cloud toolchains.',    latency: '< 6ms',    concurrency: 'High Concurrency Active-Active',    governance: 'Zero-Trust Token Enforced',    deployment: 'Multi-Region High Availability'  },  global: {    title: 'Global Distributed Grid',    badge: 'Mission-Critical Scale',    description: 'Tailored for sovereign or multinational enterprises requiring air-gapped support, bespoke protocol bridges, and continuous auditability.',    latency: 'Sub-millisecond Edge',    concurrency: 'Federated Global Mesh',    governance: 'Cryptographic Audit Trails & GxP/SOC2',    deployment: 'Sovereign Cloud / Hybrid On-Prem'  }}const solutions = [  {    id: 'operations-platform',    name: 'Operations Platform',    category: 'Core Operations',    icon: Cpu,    description:      'Engineered to streamline business workflows, eliminate operational friction, and coordinate mission-critical activities across distributed teams.',    businessNeeds: [      'End-to-end operational workflow coordination',      'Cross-functional handoff automation',      'Policy-governed task execution & monitoring',      'Cross-departmental bottleneck mitigation'    ],    engagementModel: 'Scoped around operational workflows & active team units',    productLink: '/products#operations-platform',    contactLink: '/contact',    ctaLabel: 'Discuss Operations Platform'  },  {    id: 'analytics-insights',    name: 'Analytics & Insights',    category: 'Visibility & Intelligence',    icon: BarChart3,    description:      'Transforms operational business data into actionable visibility, equipping leadership with direct clarity on system activity and operational trends.',    businessNeeds: [      'Centralized operational telemetry visibility',      'Real-time business activity reporting',      'Unified insights across connected platforms',      'Continuous audit and milestone tracking'    ],    engagementModel: 'Aligned to telemetry volume & reporting surfaces',    productLink: '/products#analytics-insights',    contactLink: '/contact',    ctaLabel: 'Discuss Analytics & Insights'  },  {    id: 'integration-hub',    name: 'Integration Hub',    category: 'Interoperability',    icon: Network,    description:      'Enables reliable interoperability across software systems, bridging legacy infrastructure and cloud applications into one synchronized environment.',    businessNeeds: [      'Multi-system operational synchronization',      'Frictionless data exchange pipelines',      'Extensible cross-platform bridging',      'Decoupled system architecture compatibility'    ],    engagementModel: 'Configured for endpoint interfaces & data pipelines',    productLink: '/products#integration-hub',    contactLink: '/contact',    ctaLabel: 'Discuss Integration Hub'  }]
+const comparisonRef = ref<HTMLElement | null>(null)
+const { isRevealed: isComparisonRevealed } = useScrollReveal(comparisonRef, { threshold: 0.1 })
+const activeScope = ref<'department' | 'enterprise' | 'global'>('enterprise')
+const isScopeTransitioning = ref(false)
+const setScope = (scope: 'department' | 'enterprise' | 'global') => {
+  if (activeScope.value === scope) return
+  isScopeTransitioning.value = true
+  setTimeout(() => {
+    activeScope.value = scope
+    setTimeout(() => {
+      isScopeTransitioning.value = false
+    }, 40)
+  }, 90)
+}
+const scopeProfiles = {
+  department: {
+    title: 'Departmental Foundation',
+    badge: 'Focused Scale',
+    description: 'Designed for single business units or localized operational departments coordinating discrete workflows.',
+    latency: '< 15ms',
+    concurrency: 'Standard Tier',
+    governance: 'Role-Based Access (RBAC)',
+    deployment: 'Single-Cluster VPC / SaaS'
+  },
+  enterprise: {
+    title: 'Cross-Enterprise Operations',
+    badge: 'Multi-Department Scale',
+    description: 'Engineered for multi-department organizations synchronizing operations, live telemetry, and multiple cloud toolchains.',
+    latency: '< 6ms',
+    concurrency: 'High Concurrency Active-Active',
+    governance: 'Zero-Trust Token Enforced',
+    deployment: 'Multi-Region High Availability'
+  },
+  global: {
+    title: 'Global Distributed Grid',
+    badge: 'Mission-Critical Scale',
+    description: 'Tailored for sovereign or multinational enterprises requiring air-gapped support, bespoke protocol bridges, and continuous auditability.',
+    latency: 'Sub-millisecond Edge',
+    concurrency: 'Federated Global Mesh',
+    governance: 'Cryptographic Audit Trails & GxP/SOC2',
+    deployment: 'Sovereign Cloud / Hybrid On-Prem'
+  }
+}
+const solutions = [
+  {
+    id: 'operations-platform',
+    name: 'Operations Platform',
+    category: 'Core Operations',
+    icon: Cpu,
+    description:
+      'Engineered to streamline business workflows, eliminate operational friction, and coordinate mission-critical activities across distributed teams.',
+    businessNeeds: [
+      'End-to-end operational workflow coordination',
+      'Cross-functional handoff automation',
+      'Policy-governed task execution & monitoring',
+      'Cross-departmental bottleneck mitigation'
+    ],
+    engagementModel: 'Scoped around operational workflows & active team units',
+    productLink: '/products#operations-platform',
+    contactLink: '/contact',
+    ctaLabel: 'Discuss Operations Platform'
+  },
+  {
+    id: 'analytics-insights',
+    name: 'Analytics & Insights',
+    category: 'Visibility & Intelligence',
+    icon: BarChart3,
+    description:
+      'Transforms operational business data into actionable visibility, equipping leadership with direct clarity on system activity and operational trends.',
+    businessNeeds: [
+      'Centralized operational telemetry visibility',
+      'Real-time business activity reporting',
+      'Unified insights across connected platforms',
+      'Continuous audit and milestone tracking'
+    ],
+    engagementModel: 'Aligned to telemetry volume & reporting surfaces',
+    productLink: '/products#analytics-insights',
+    contactLink: '/contact',
+    ctaLabel: 'Discuss Analytics & Insights'
+  },
+  {
+    id: 'integration-hub',
+    name: 'Integration Hub',
+    category: 'Interoperability',
+    icon: Network,
+    description:
+      'Enables reliable interoperability across software systems, bridging legacy infrastructure and cloud applications into one synchronized environment.',
+    businessNeeds: [
+      'Multi-system operational synchronization',
+      'Frictionless data exchange pipelines',
+      'Extensible cross-platform bridging',
+      'Decoupled system architecture compatibility'
+    ],
+    engagementModel: 'Configured for endpoint interfaces & data pipelines',
+    productLink: '/products#integration-hub',
+    contactLink: '/contact',
+    ctaLabel: 'Discuss Integration Hub'
+  }
+]
 
 // --- CustomEngagementCta ---
-const customCtaRef = ref<HTMLElement | null>(null)const { isRevealed: isCustomCtaRevealed } = useScrollReveal(customCtaRef, { threshold: 0.12 })
+const customCtaRef = ref<HTMLElement | null>(null)
+const { isRevealed: isCustomCtaRevealed } = useScrollReveal(customCtaRef, { threshold: 0.12 })
 
 // --- PricingFaq ---
-const faqRef = ref<HTMLElement | null>(null)const { isRevealed: isFaqRevealed } = useScrollReveal(faqRef, { threshold: 0.1 })const faqs = [  {    id: 'faq-1',    question: 'How can I discuss pricing with KavoraX?',    answer:      'Prospective clients can connect directly with our advisory team through our Contact page or by requesting an architecture briefing. We evaluate your operational priorities, system integration scope, and scale to outline an engagement approach suited to your organisation.'  },  {    id: 'faq-2',    question: 'Which solution may fit my business?',    answer:      'Our capabilities are organized into three primary pillars: Operations Platform for workflow coordination, Analytics & Insights for centralized operational telemetry, and Integration Hub for cross-system interoperability. You can review our Products page or schedule an introductory dialogue to identify the right combination for your needs.'  },  {    id: 'faq-3',    question: 'Can I discuss requirements for multiple business systems?',    answer:      'Yes. Many enterprises operate with fragmented software stacks, legacy backbones, and third-party partner portals. During our consultation, we explore how our Integration Hub and Operations Platform can bridge disparate environments without requiring costly system overhauls.'  },  {    id: 'faq-4',    question: 'How do I arrange a product discussion?',    answer:      'You can initiate a product conversation by visiting our Contact page or submitting a technical briefing request via our Book a Demo page. The KavoraX team will coordinate with your team to organize an informative, architectural walkthrough.'  }]
+const faqRef = ref<HTMLElement | null>(null)
+const { isRevealed: isFaqRevealed } = useScrollReveal(faqRef, { threshold: 0.1 })
+const faqs = [
+  {
+    id: 'faq-1',
+    question: 'How can I discuss pricing with KavoraX?',
+    answer:
+      'Prospective clients can connect directly with our advisory team through our Contact page or by requesting an architecture briefing. We evaluate your operational priorities, system integration scope, and scale to outline an engagement approach suited to your organisation.'
+  },
+  {
+    id: 'faq-2',
+    question: 'Which solution may fit my business?',
+    answer:
+      'Our capabilities are organized into three primary pillars: Operations Platform for workflow coordination, Analytics & Insights for centralized operational telemetry, and Integration Hub for cross-system interoperability. You can review our Products page or schedule an introductory dialogue to identify the right combination for your needs.'
+  },
+  {
+    id: 'faq-3',
+    question: 'Can I discuss requirements for multiple business systems?',
+    answer:
+      'Yes. Many enterprises operate with fragmented software stacks, legacy backbones, and third-party partner portals. During our consultation, we explore how our Integration Hub and Operations Platform can bridge disparate environments without requiring costly system overhauls.'
+  },
+  {
+    id: 'faq-4',
+    question: 'How do I arrange a product discussion?',
+    answer:
+      'You can initiate a product conversation by visiting our Contact page or submitting a technical briefing request via our Book a Demo page. The KavoraX team will coordinate with your team to organize an informative, architectural walkthrough.'
+  }
+]
 
 // --- PricingFinalCta ---
-const finalCtaRef = ref<HTMLElement | null>(null)const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { threshold: 0.12 })
+const finalCtaRef = ref<HTMLElement | null>(null)
+const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { threshold: 0.12 })
 </script>
 
 <template>

@@ -61,10 +61,221 @@ useHead({
 const isHeroMounted = ref(true)
 
 // --- DemoFormSection ---
-// Validation Schema using Zodconst demoSchema = z.object({  fullName: z    .string()    .trim()    .min(2, { message: 'Full name must be at least 2 characters.' })    .max(100, { message: 'Full name cannot exceed 100 characters.' }),  workEmail: z.string().trim().email({ message: 'Please enter a valid work email address.' }),  companyName: z    .string()    .trim()    .min(2, { message: 'Company name must be at least 2 characters.' })    .max(120, { message: 'Company name cannot exceed 120 characters.' }),  jobTitle: z    .string()    .trim()    .max(100, { message: 'Job title cannot exceed 100 characters.' })    .optional(),  industry: z    .string()    .min(1, { message: 'Please select an industry.' }),  areaOfInterest: z    .string()    .min(1, { message: 'Please select an area of interest.' }),  businessChallenge: z    .string()    .trim()    .min(10, { message: 'Please describe your business challenge or goals (minimum 10 characters).' })    .max(800, { message: 'Description cannot exceed 800 characters.' })})type DemoFormData = z.infer<typeof demoSchema>const { isSubmitting, submitDemoRequest } = useKavoraxApi()const formData = reactive<DemoFormData>({  fullName: '',  workEmail: '',  companyName: '',  jobTitle: '',  industry: '',  areaOfInterest: '',  businessChallenge: ''})const errors = ref<Record<string, string>>({})const apiError = ref<string | null>(null)const submittedReference = ref<number | null>(null)const submittedName = ref('')const submittedCompany = ref('')const submissionStatus = ref<'idle' | 'success'>('idle')const turnstileToken = ref('')const turnstileRef = ref<{ reset?: () => void } | null>(null)// Industry options with verified industry sectors from the project + "Other"const industryOptions = [  { value: 'Enterprise Technology & SaaS', label: 'Enterprise Technology & SaaS' },  { value: 'Financial Services & FinTech', label: 'Financial Services & FinTech' },  { value: 'Healthcare & Life Sciences', label: 'Healthcare & Life Sciences' },  { value: 'Supply Chain & Logistics', label: 'Supply Chain & Logistics' },  { value: 'Other', label: 'Other' }]// Area of Interest options populated from verified product and solution categories in the project + "Other"const interestOptions = [  {    value: 'Operations Platform',    label: 'Operations Platform (Workflow Coordination)'  },  {    value: 'Analytics & Insights',    label: 'Analytics & Insights (Operational Telemetry)'  },  {    value: 'Integration Hub',    label: 'Integration Hub (Cross-System Interoperability)'  },  {    value: 'Comprehensive Platform',    label: 'Comprehensive Platform Overview (All Capabilities)'  },  { value: 'Other', label: 'Other / Custom Inquiry' }]const validateField = (field: keyof DemoFormData) => {  try {    const fieldSchema = demoSchema.shape[field]    if (fieldSchema) {      fieldSchema.parse(formData[field])      if (errors.value[field]) {        const remaining = { ...errors.value }        remaining[field] = ''        errors.value = remaining      }    }  } catch (err) {    if (err instanceof z.ZodError) {      const firstIssue = err.issues?.[0] || (err as unknown as { errors?: Array<{ message: string }> }).errors?.[0]      if (firstIssue) {        errors.value = {          ...errors.value,          [field]: firstIssue.message        }      }    }  }}const handleSubmit = async () => {  errors.value = {}  apiError.value = null  const result = demoSchema.safeParse(formData)  if (!result.success) {    const newErrors: Record<string, string> = {}    const issues = (result.error.issues || []) as Array<{ path?: unknown[]; message: string }>    issues.forEach((err) => {      const field = String(err.path?.[0] || '')      if (field) {        newErrors[field] = err.message      }    })    errors.value = newErrors    return  }  if (!turnstileToken.value) {    errors.value = {      ...errors.value,      turnstile: 'Please complete the anti-spam security verification.'    }    return  }  // Format structured requirements preserving industry, interest area, job role and challenge  const reqsFormatted = `[${formData.industry}] [${formData.areaOfInterest}]${formData.jobTitle ? ` Role: ${formData.jobTitle} |` : ''} ${formData.businessChallenge}`.slice(0, 1000)  try {    const response = await submitDemoRequest({      name: formData.fullName,      email: formData.workEmail,      company: formData.companyName,      reqs: reqsFormatted,      turnstileToken: turnstileToken.value    })    if (response.success && response.data) {      submittedReference.value = response.data.id      submittedName.value = formData.fullName      submittedCompany.value = formData.companyName      submissionStatus.value = 'success'      // Clear form inputs only upon confirmed persistence      formData.fullName = ''      formData.workEmail = ''      formData.companyName = ''      formData.jobTitle = ''      formData.industry = ''      formData.areaOfInterest = ''      formData.businessChallenge = ''      errors.value = {}    } else {      // Preserve form data for retry      if (response.validationErrors) {        const backendErrors: Record<string, string> = {}        if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name        if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email        if (response.validationErrors.company) backendErrors.companyName = response.validationErrors.company        if (response.validationErrors.reqs) backendErrors.businessChallenge = response.validationErrors.reqs        errors.value = { ...errors.value, ...backendErrors }      }      apiError.value = response.error || 'Failed to submit demonstration request. Please try again.'      nextTick(() => {        const errorEl = document.getElementById('demo-api-error')        if (errorEl) {          errorEl.focus()        }      })    }  } finally {    turnstileToken.value = ''    turnstileRef.value?.reset?.()  }}const handleReset = () => {  formData.fullName = ''  formData.workEmail = ''  formData.companyName = ''  formData.jobTitle = ''  formData.industry = ''  formData.areaOfInterest = ''  formData.businessChallenge = ''  errors.value = {}  apiError.value = null  submittedReference.value = null  submittedName.value = ''  submittedCompany.value = ''  submissionStatus.value = 'idle'  turnstileToken.value = ''  turnstileRef.value?.reset?.()}
+// Validation Schema using Zod
+const demoSchema = z.object({
+  fullName: z
+    .string()
+    .trim()
+    .min(2, { message: 'Full name must be at least 2 characters.' })
+    .max(100, { message: 'Full name cannot exceed 100 characters.' }),
+  workEmail: z.string().trim().email({ message: 'Please enter a valid work email address.' }),
+  companyName: z
+    .string()
+    .trim()
+    .min(2, { message: 'Company name must be at least 2 characters.' })
+    .max(120, { message: 'Company name cannot exceed 120 characters.' }),
+  jobTitle: z
+    .string()
+    .trim()
+    .max(100, { message: 'Job title cannot exceed 100 characters.' })
+    .optional(),
+  industry: z
+    .string()
+    .min(1, { message: 'Please select an industry.' }),
+  areaOfInterest: z
+    .string()
+    .min(1, { message: 'Please select an area of interest.' }),
+  businessChallenge: z
+    .string()
+    .trim()
+    .min(10, { message: 'Please describe your business challenge or goals (minimum 10 characters).' })
+    .max(800, { message: 'Description cannot exceed 800 characters.' })
+})
+type DemoFormData = z.infer<typeof demoSchema>
+const { isSubmitting, submitDemoRequest } = useKavoraxApi()
+const formData = reactive<DemoFormData>({
+  fullName: '',
+  workEmail: '',
+  companyName: '',
+  jobTitle: '',
+  industry: '',
+  areaOfInterest: '',
+  businessChallenge: ''
+})
+const errors = ref<Record<string, string>>({})
+const apiError = ref<string | null>(null)
+const submittedReference = ref<number | null>(null)
+const submittedName = ref('')
+const submittedCompany = ref('')
+const submissionStatus = ref<'idle' | 'success'>('idle')
+const turnstileToken = ref('')
+const turnstileRef = ref<{ reset?: () => void } | null>(null)
+// Industry options with verified industry sectors from the project + "Other"
+const industryOptions = [
+  { value: 'Enterprise Technology & SaaS', label: 'Enterprise Technology & SaaS' },
+  { value: 'Financial Services & FinTech', label: 'Financial Services & FinTech' },
+  { value: 'Healthcare & Life Sciences', label: 'Healthcare & Life Sciences' },
+  { value: 'Supply Chain & Logistics', label: 'Supply Chain & Logistics' },
+  { value: 'Other', label: 'Other' }
+]
+// Area of Interest options populated from verified product and solution categories in the project + "Other"
+const interestOptions = [
+  {
+    value: 'Operations Platform',
+    label: 'Operations Platform (Workflow Coordination)'
+  },
+  {
+    value: 'Analytics & Insights',
+    label: 'Analytics & Insights (Operational Telemetry)'
+  },
+  {
+    value: 'Integration Hub',
+    label: 'Integration Hub (Cross-System Interoperability)'
+  },
+  {
+    value: 'Comprehensive Platform',
+    label: 'Comprehensive Platform Overview (All Capabilities)'
+  },
+  { value: 'Other', label: 'Other / Custom Inquiry' }
+]
+const validateField = (field: keyof DemoFormData) => {
+  try {
+    const fieldSchema = demoSchema.shape[field]
+    if (fieldSchema) {
+      fieldSchema.parse(formData[field])
+      if (errors.value[field]) {
+        const remaining = { ...errors.value }
+        remaining[field] = ''
+        errors.value = remaining
+      }
+    }
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      const firstIssue = err.issues?.[0] || (err as unknown as { errors?: Array<{ message: string }> }).errors?.[0]
+      if (firstIssue) {
+        errors.value = {
+          ...errors.value,
+          [field]: firstIssue.message
+        }
+      }
+    }
+  }
+}
+const handleSubmit = async () => {
+  errors.value = {}
+  apiError.value = null
+  const result = demoSchema.safeParse(formData)
+  if (!result.success) {
+    const newErrors: Record<string, string> = {}
+    const issues = (result.error.issues || []) as Array<{ path?: unknown[]; message: string }>
+    issues.forEach((err) => {
+      const field = String(err.path?.[0] || '')
+      if (field) {
+        newErrors[field] = err.message
+      }
+    })
+    errors.value = newErrors
+    return
+  }
+  if (!turnstileToken.value) {
+    errors.value = {
+      ...errors.value,
+      turnstile: 'Please complete the anti-spam security verification.'
+    }
+    return
+  }
+  // Format structured requirements preserving industry, interest area, job role and challenge
+  const reqsFormatted = `[${formData.industry}] [${formData.areaOfInterest}]${formData.jobTitle ? ` Role: ${formData.jobTitle} |` : ''} ${formData.businessChallenge}`.slice(0, 1000)
+  try {
+    const response = await submitDemoRequest({
+      name: formData.fullName,
+      email: formData.workEmail,
+      company: formData.companyName,
+      reqs: reqsFormatted,
+      turnstileToken: turnstileToken.value
+    })
+    if (response.success && response.data) {
+      submittedReference.value = response.data.id
+      submittedName.value = formData.fullName
+      submittedCompany.value = formData.companyName
+      submissionStatus.value = 'success'
+      // Clear form inputs only upon confirmed persistence
+      formData.fullName = ''
+      formData.workEmail = ''
+      formData.companyName = ''
+      formData.jobTitle = ''
+      formData.industry = ''
+      formData.areaOfInterest = ''
+      formData.businessChallenge = ''
+      errors.value = {}
+    } else {
+      // Preserve form data for retry
+      if (response.validationErrors) {
+        const backendErrors: Record<string, string> = {}
+        if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
+        if (response.validationErrors.email) backendErrors.workEmail = response.validationErrors.email
+        if (response.validationErrors.company) backendErrors.companyName = response.validationErrors.company
+        if (response.validationErrors.reqs) backendErrors.businessChallenge = response.validationErrors.reqs
+        errors.value = { ...errors.value, ...backendErrors }
+      }
+      apiError.value = response.error || 'Failed to submit demonstration request. Please try again.'
+      nextTick(() => {
+        const errorEl = document.getElementById('demo-api-error')
+        if (errorEl) {
+          errorEl.focus()
+        }
+      })
+    }
+  } finally {
+    turnstileToken.value = ''
+    turnstileRef.value?.reset?.()
+  }
+}
+const handleReset = () => {
+  formData.fullName = ''
+  formData.workEmail = ''
+  formData.companyName = ''
+  formData.jobTitle = ''
+  formData.industry = ''
+  formData.areaOfInterest = ''
+  formData.businessChallenge = ''
+  errors.value = {}
+  apiError.value = null
+  submittedReference.value = null
+  submittedName.value = ''
+  submittedCompany.value = ''
+  submissionStatus.value = 'idle'
+  turnstileToken.value = ''
+  turnstileRef.value?.reset?.()
+}
 
 // --- DemoWhatToExpect ---
-const expectSteps = [  {    step: '01',    title: 'Understand Your Goals',    description: 'Share your business priorities and current challenges.',    details:      'We begin by listening to how your teams currently coordinate, which systems are in place, and where operational bottlenecks create friction.',    icon: Target  },  {    step: '02',    title: 'Explore Relevant Solutions',    description: 'Discuss which capabilities may be relevant to your needs.',    details:      'We walk through KavoraX capabilities—such as the Operations Platform, Analytics, or Integration Hub—that directly address your stated priorities.',    icon: Compass  },  {    step: '03',    title: 'Discuss Next Steps',    description: 'Identify potential next steps based on the conversation.',    details:      'If there is a mutual fit, we identify clear next steps, whether that involves further technical exploration, architectural review, or scoping.',    icon: ArrowUpRight  }]
+const expectSteps = [
+  {
+    step: '01',
+    title: 'Understand Your Goals',
+    description: 'Share your business priorities and current challenges.',
+    details:
+      'We begin by listening to how your teams currently coordinate, which systems are in place, and where operational bottlenecks create friction.',
+    icon: Target
+  },
+  {
+    step: '02',
+    title: 'Explore Relevant Solutions',
+    description: 'Discuss which capabilities may be relevant to your needs.',
+    details:
+      'We walk through KavoraX capabilities—such as the Operations Platform, Analytics, or Integration Hub—that directly address your stated priorities.',
+    icon: Compass
+  },
+  {
+    step: '03',
+    title: 'Discuss Next Steps',
+    description: 'Identify potential next steps based on the conversation.',
+    details:
+      'If there is a mutual fit, we identify clear next steps, whether that involves further technical exploration, architectural review, or scoping.',
+    icon: ArrowUpRight
+  }
+]
 </script>
 
 <template>
