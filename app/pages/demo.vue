@@ -57,11 +57,9 @@ useHead({
   ]
 })
 
-// --- DemoHero ---
 const isHeroMounted = ref(true)
 
-// --- DemoFormSection ---
-// Validation Schema using Zod
+
 const demoSchema = z.object({
   fullName: z
     .string()
@@ -92,8 +90,8 @@ const demoSchema = z.object({
     .max(800, { message: 'Description cannot exceed 800 characters.' })
 })
 type DemoFormData = z.infer<typeof demoSchema>
-const { isSubmitting, submitDemoRequest } = useKavoraxApi()
-const formData = reactive<DemoFormData>({
+
+const defaultForm: DemoFormData = {
   fullName: '',
   workEmail: '',
   companyName: '',
@@ -101,7 +99,10 @@ const formData = reactive<DemoFormData>({
   industry: '',
   areaOfInterest: '',
   businessChallenge: ''
-})
+}
+
+const { isSubmitting, submitDemoRequest } = useKavoraxApi()
+const formData = reactive<DemoFormData>({ ...defaultForm })
 const errors = ref<Record<string, string>>({})
 const apiError = ref<string | null>(null)
 const submittedReference = ref<number | null>(null)
@@ -110,7 +111,7 @@ const submittedCompany = ref('')
 const submissionStatus = ref<'idle' | 'success'>('idle')
 const turnstileToken = ref('')
 const turnstileRef = ref<{ reset?: () => void } | null>(null)
-// Industry options with verified industry sectors from the project + "Other"
+
 const industryOptions = [
   { value: 'Enterprise Technology & SaaS', label: 'Enterprise Technology & SaaS' },
   { value: 'Financial Services & FinTech', label: 'Financial Services & FinTech' },
@@ -118,7 +119,7 @@ const industryOptions = [
   { value: 'Supply Chain & Logistics', label: 'Supply Chain & Logistics' },
   { value: 'Other', label: 'Other' }
 ]
-// Area of Interest options populated from verified product and solution categories in the project + "Other"
+
 const interestOptions = [
   {
     value: 'Operations Platform',
@@ -138,6 +139,8 @@ const interestOptions = [
   },
   { value: 'Other', label: 'Other / Custom Inquiry' }
 ]
+
+
 const validateField = (field: keyof DemoFormData) => {
   try {
     const fieldSchema = demoSchema.shape[field]
@@ -161,6 +164,7 @@ const validateField = (field: keyof DemoFormData) => {
     }
   }
 }
+
 const handleSubmit = async () => {
   errors.value = {}
   apiError.value = null
@@ -184,7 +188,7 @@ const handleSubmit = async () => {
     }
     return
   }
-  // Format structured requirements preserving industry, interest area, job role and challenge
+
   const reqsFormatted = `[${formData.industry}] [${formData.areaOfInterest}]${formData.jobTitle ? ` Role: ${formData.jobTitle} |` : ''} ${formData.businessChallenge}`.slice(0, 1000)
   try {
     const response = await submitDemoRequest({
@@ -199,17 +203,9 @@ const handleSubmit = async () => {
       submittedName.value = formData.fullName
       submittedCompany.value = formData.companyName
       submissionStatus.value = 'success'
-      // Clear form inputs only upon confirmed persistence
-      formData.fullName = ''
-      formData.workEmail = ''
-      formData.companyName = ''
-      formData.jobTitle = ''
-      formData.industry = ''
-      formData.areaOfInterest = ''
-      formData.businessChallenge = ''
+      Object.assign(formData, defaultForm)
       errors.value = {}
     } else {
-      // Preserve form data for retry
       if (response.validationErrors) {
         const backendErrors: Record<string, string> = {}
         if (response.validationErrors.name) backendErrors.fullName = response.validationErrors.name
@@ -231,14 +227,9 @@ const handleSubmit = async () => {
     turnstileRef.value?.reset?.()
   }
 }
+
 const handleReset = () => {
-  formData.fullName = ''
-  formData.workEmail = ''
-  formData.companyName = ''
-  formData.jobTitle = ''
-  formData.industry = ''
-  formData.areaOfInterest = ''
-  formData.businessChallenge = ''
+  Object.assign(formData, defaultForm)
   errors.value = {}
   apiError.value = null
   submittedReference.value = null
@@ -249,7 +240,6 @@ const handleReset = () => {
   turnstileRef.value?.reset?.()
 }
 
-// --- DemoWhatToExpect ---
 const expectSteps = [
   {
     step: '01',
@@ -280,841 +270,788 @@ const expectSteps = [
 
 <template>
   <div class="min-h-screen bg-[#0b0f14] text-white">
-    <!-- Hero Section -->
     <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden bg-cinematic-radial">
-    <!-- Ambient emerald backlight glow -->
-    <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[360px] bg-brand/5 blur-[130px] rounded-full pointer-events-none -z-10"
-    />
+      <div
+        class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[360px] bg-brand/5 blur-[130px] rounded-full pointer-events-none -z-10"
+      />
 
-    <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        <!-- Left Column: Editorial Headline & Copy -->
-        <div class="lg:col-span-6 xl:col-span-7 space-y-6">
-          <!-- Subtle Eyebrow Label -->
-          <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-75"
-            :class="{ 'is-revealed': isHeroMounted }"
-          >
-            <span class="flex h-2 w-2 rounded-full bg-brand" />
-            <span>Schedule a Demo</span>
+      <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div class="lg:col-span-6 xl:col-span-7 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-75"
+              :class="{ 'is-revealed': isHeroMounted }"
+            >
+              <span class="flex h-2 w-2 rounded-full bg-brand" />
+              <span>Schedule a Demo</span>
+            </div>
+
+            <WordReveal
+              text="See What Better-Connected Business Looks Like."
+              as="h1"
+              class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words"
+              :italic-words="['Business', 'Looks', 'Like.']"
+              :delay="240"
+              :immediate="true"
+            />
+
+            <p
+              class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
+              :class="{ 'is-revealed': isHeroMounted }"
+            >
+              Tell us a little about your business and what you want to achieve. We’ll use that context
+              to help guide the conversation.
+            </p>
+
+            <div
+              class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-5 font-ui reveal-base transition-editorial duration-700 delay-700"
+              :class="{ 'is-revealed': isHeroMounted }"
+            >
+              <a href="#demo-form" class="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
+                >
+                  Request a Demo
+                  <ArrowDown class="ml-2 h-4 w-4" />
+                </Button>
+              </a>
+
+              <NuxtLink to="/products" class="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  class="w-full sm:w-auto border-white/10 bg-[#111a26]/60 hover:bg-[#111a26] text-zinc-200 hover:text-white px-7 py-6 text-base transition-colors"
+                >
+                  <Layers class="mr-2 h-4 w-4 text-brand" />
+                  View Solutions
+                </Button>
+              </NuxtLink>
+            </div>
+
+            <div
+              class="pt-8 border-t border-white/[0.07] grid grid-cols-3 gap-6 max-w-lg font-ui reveal-base transition-editorial duration-700 delay-800"
+              :class="{ 'is-revealed': isHeroMounted }"
+            >
+              <div>
+                <div class="font-editorial text-2xl font-semibold text-white">Contextual</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Guided Discussion</div>
+              </div>
+              <div>
+                <div class="font-editorial text-2xl font-semibold text-white">Confidential</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Non-Disclosure</div>
+              </div>
+              <div>
+                <div class="font-editorial text-2xl font-semibold text-white">Tailored</div>
+                <div class="text-xs text-zinc-400 mt-0.5">Solution Scope</div>
+              </div>
+            </div>
           </div>
 
-          <!-- Hero Headline with WordReveal -->
-          <WordReveal
-            text="See What Better-Connected Business Looks Like."
-            as="h1"
-            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words"
-            :italic-words="['Business', 'Looks', 'Like.']"
-            :delay="240"
-            :immediate="true"
-          />
-
-          <!-- Hero Supporting Text: Restored to Cormorant serif (font-editorial) per approved reference design -->
-          <p
-            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
+          <div
+            class="lg:col-span-6 xl:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            Tell us a little about your business and what you want to achieve. We’ll use that context
-            to help guide the conversation.
+            <div
+              class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-60 pointer-events-none"
+            />
+
+            <div
+              class="relative rounded-2xl border border-white/[0.08] bg-[#0d141d]/90 overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl group"
+            >
+              <div class="relative h-44 w-full overflow-hidden bg-zinc-900">
+                <img
+                  src="/images/executive-briefing.webp"
+                  alt="Executive briefing room for architectural demonstration walkthrough"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
+                  width="600"
+                  height="176"
+                  class="h-full w-full object-cover img-editorial-zoom opacity-70 group-hover:opacity-90 transition-opacity"
+                >
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-[#0d141d] via-[#0d141d]/60 to-transparent"
+                />
+                <div class="absolute top-3 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-2">
+                  <span
+                    class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-zinc-300 border border-white/10 shrink-0 truncate max-w-[210px] sm:max-w-none"
+                  >
+                    SYSTEMS ARCHITECTURE SESSION
+                  </span>
+                  <span
+                    class="font-ui text-[11px] text-brand bg-brand/20 px-2.5 py-0.5 rounded border border-brand/30 flex items-center gap-1.5 shrink-0 whitespace-nowrap"
+                  >
+                    <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
+                    Live Walkthrough
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6 sm:p-7 space-y-3 font-ui">
+                <div class="rounded-xl border border-white/[0.07] bg-[#111a26]/80 p-3.5">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 border border-white/10 text-brand shrink-0"
+                    >
+                      <Cpu class="h-4 w-4" />
+                    </div>
+                    <div>
+                      <h4 class="font-editorial text-base font-semibold text-white leading-snug">
+                        Operations Platform Walkthrough
+                      </h4>
+                      <p class="text-xs text-zinc-400 mt-0.5">
+                        Workflow execution, automated handoffs & policy monitoring
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-center -my-1.5">
+                  <div class="h-3 w-px bg-brand/30" />
+                </div>
+
+                <div class="rounded-xl border border-brand/25 bg-brand/[0.04] p-4">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand/20 border border-brand/30 text-brand shrink-0"
+                    >
+                      <BarChart3 class="h-4 w-4" />
+                    </div>
+                    <div>
+                      <h4 class="font-editorial text-lg font-semibold text-brand leading-snug">
+                        Analytics & Telemetry Visibility
+                      </h4>
+                      <p class="text-xs text-zinc-300 mt-0.5">
+                        Operational telemetry aggregation & real-time business activity
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-center -my-1.5">
+                  <div class="h-3 w-px bg-brand/30" />
+                </div>
+
+                <div class="rounded-xl border border-white/[0.07] bg-[#111a26]/80 p-4">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 border border-white/10 text-zinc-300 shrink-0"
+                    >
+                      <Network class="h-4 w-4 text-brand" />
+                    </div>
+                    <div>
+                      <h4 class="font-editorial text-lg font-semibold text-white leading-snug">
+                        Integration Hub Bridging
+                      </h4>
+                      <p class="text-xs text-zinc-400 mt-0.5">
+                        Multi-system data exchange & legacy-to-cloud compatibility
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="mt-5 px-6 sm:px-7 pb-6 pt-4 border-t border-white/[0.06] flex items-center justify-between font-ui text-xs text-zinc-400"
+              >
+                <span class="flex items-center gap-2 text-zinc-300">
+                  <ShieldCheck class="h-4 w-4 text-brand" />
+                  Structured Around Your Real Priorities
+                </span>
+                <span class="font-mono text-[11px] text-zinc-400 shrink-0 pr-1">KavoraX Platform</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="demo-form"
+      class="py-24 md:py-32 bg-[#080c10] relative border-t border-white/[0.06] scroll-mt-20"
+    >
+      <div
+        class="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
+      />
+
+      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div class="lg:col-span-5 space-y-8">
+            <div class="space-y-4">
+              <div
+                class="inline-flex items-center gap-2 text-xs font-ui font-medium text-brand"
+              >
+                Demo Preparation
+              </div>
+              <h2
+                class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
+              >
+                Help Us Frame the
+                <span class="italic font-light text-brand">Discussion</span>.
+              </h2>
+              <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light">
+                Every business runs on different operational systems and workflows. Providing context
+                in advance enables us to focus on the capabilities most relevant to your goals.
+              </p>
+            </div>
+
+            <div class="space-y-4 font-ui">
+              <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
+                <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
+                  <span
+                    class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
+                  >
+                    1
+                  </span>
+                  Current Operational Bottlenecks
+                </h3>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Highlight manual handoffs, disconnected software tools, or areas where operational
+                  delays frequently occur.
+                </p>
+              </div>
+
+              <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
+                <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
+                  <span
+                    class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
+                  >
+                    2
+                  </span>
+                  Existing Software & Toolchains
+                </h3>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Mention key systems, enterprise databases, cloud tools, or custom internal
+                  applications you want to connect.
+                </p>
+              </div>
+
+              <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
+                <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
+                  <span
+                    class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
+                  >
+                    3
+                  </span>
+                  Target Outcomes & Scope
+                </h3>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Outline what success looks like—whether higher execution speed, real-time telemetry,
+                  or automated cross-departmental coordination.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="rounded-xl border border-brand/20 bg-brand/[0.03] p-5 sm:p-6 space-y-3 font-ui"
+            >
+              <div
+                class="flex items-center gap-2 text-brand text-xs font-medium"
+              >
+                <ShieldCheck class="h-4 w-4" />
+                <span>Confidentiality & Accurate Context</span>
+              </div>
+              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                Providing accurate business context ensures a substantive, productive discussion. All
+                organizational information and architectural details shared through this form are
+                treated with strict confidentiality.
+              </p>
+              <div class="pt-1 flex items-center gap-2 text-xs text-zinc-400">
+                <HelpCircle class="h-3.5 w-3.5 text-brand shrink-0" />
+                <span>No automated marketing sequences or high-pressure tactics.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 relative">
+            <div
+              class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none"
+            />
+
+            <div
+              class="relative rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            >
+              <div class="pb-6 border-b border-white/[0.06]">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-editorial text-2xl sm:text-3xl font-semibold text-white">
+                      Request a Demo
+                    </h3>
+                    <p class="font-ui text-xs sm:text-sm text-zinc-400 mt-1">
+                      Fields marked with <span class="text-brand">*</span> are required.
+                    </p>
+                  </div>
+                  <div
+                    class="hidden sm:flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-brand"
+                  >
+                    <Calendar class="h-5 w-5" />
+                  </div>
+                </div>
+              </div>
+
+              <div
+                v-if="submissionStatus === 'success'"
+                class="mt-6 rounded-xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4 shadow-[0_0_25px_rgba(16,185,129,0.18)]"
+                role="status"
+              >
+                <div class="flex items-start gap-3.5">
+                  <CheckCircle2 class="h-6 w-6 text-brand shrink-0 mt-0.5" />
+                  <div class="space-y-2">
+                    <h4 class="text-base font-semibold text-white font-ui">
+                      Demo Request Registered
+                    </h4>
+                    <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">
+                      Thank you, <span class="font-medium text-white">{{ submittedName }}</span>. Your product demonstration request for <span class="font-medium text-white">{{ submittedCompany }}</span> has been assigned reference <span class="font-mono text-brand font-semibold">#KX-D{{ submittedReference }}</span>.
+                    </p>
+                    <p class="text-xs text-zinc-300 leading-relaxed">
+                      Our technical solutions architects will review your evaluation scope and contact you within one business day to coordinate the live walkthrough.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex justify-end">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#0e1622] hover:bg-[#142030]"
+                    @click="handleReset"
+                  >
+                    <RotateCcw class="mr-1.5 h-3.5 w-3.5" />
+                    Request Another Demonstration
+                  </Button>
+                </div>
+              </div>
+
+              <div
+                v-if="apiError"
+                id="demo-api-error"
+                tabindex="-1"
+                class="mt-6 rounded-xl border border-red-500/40 bg-red-500/[0.08] p-5 font-ui text-xs sm:text-sm text-red-200 flex items-start gap-3.5 focus:outline-none focus:ring-1 focus:ring-red-500"
+                role="alert"
+              >
+                <AlertCircle class="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+                <div class="space-y-1">
+                  <div class="font-semibold text-white">Submission Notice</div>
+                  <p>{{ apiError }}</p>
+                </div>
+              </div>
+
+              <form
+                v-if="submissionStatus !== 'success'"
+                class="mt-6 space-y-5 font-ui"
+                novalidate
+                @submit.prevent="handleSubmit"
+              >
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <Label for="fullName">
+                      Full Name <span class="text-brand" aria-hidden="true">*</span>
+                    </Label>
+                    <span
+                      v-if="errors.fullName"
+                      id="fullName-error"
+                      class="text-[11px] text-red-400 font-mono"
+                      role="alert"
+                    >
+                      {{ errors.fullName }}
+                    </span>
+                  </div>
+                  <Input
+                    id="fullName"
+                    v-model="formData.fullName"
+                    type="text"
+                    placeholder="e.g. Eleanor Vance"
+                    :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.fullName }"
+                    :aria-invalid="!!errors.fullName"
+                    :aria-describedby="errors.fullName ? 'fullName-error' : undefined"
+                    @blur="validateField('fullName')"
+                  />
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <Label for="workEmail">
+                      Work Email <span class="text-brand" aria-hidden="true">*</span>
+                    </Label>
+                    <span
+                      v-if="errors.workEmail"
+                      id="workEmail-error"
+                      class="text-[11px] text-red-400 font-mono"
+                      role="alert"
+                    >
+                      {{ errors.workEmail }}
+                    </span>
+                  </div>
+                  <Input
+                    id="workEmail"
+                    v-model="formData.workEmail"
+                    type="email"
+                    placeholder="e.g. eleanor.vance@company.com"
+                    :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.workEmail }"
+                    :aria-invalid="!!errors.workEmail"
+                    :aria-describedby="errors.workEmail ? 'workEmail-error' : undefined"
+                    @blur="validateField('workEmail')"
+                  />
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div class="space-y-1.5">
+                    <div class="flex items-center justify-between">
+                      <Label for="companyName">
+                        Company Name <span class="text-brand" aria-hidden="true">*</span>
+                      </Label>
+                      <span
+                        v-if="errors.companyName"
+                        id="companyName-error"
+                        class="text-[11px] text-red-400 font-mono"
+                        role="alert"
+                      >
+                        {{ errors.companyName }}
+                      </span>
+                    </div>
+                    <Input
+                      id="companyName"
+                      v-model="formData.companyName"
+                      type="text"
+                      placeholder="e.g. Acme Corporation"
+                      :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.companyName }"
+                      :aria-invalid="!!errors.companyName"
+                      :aria-describedby="errors.companyName ? 'companyName-error' : undefined"
+                      @blur="validateField('companyName')"
+                    />
+                  </div>
+
+                  <div class="space-y-1.5">
+                    <div class="flex items-center justify-between">
+                      <Label for="jobTitle">
+                        Job Title
+                        <span class="text-zinc-500 font-normal font-mono text-[10px]">(Optional)</span>
+                      </Label>
+                      <span
+                        v-if="errors.jobTitle"
+                        id="jobTitle-error"
+                        class="text-[11px] text-red-400 font-mono"
+                        role="alert"
+                      >
+                        {{ errors.jobTitle }}
+                      </span>
+                    </div>
+                    <Input
+                      id="jobTitle"
+                      v-model="formData.jobTitle"
+                      type="text"
+                      placeholder="e.g. Head of Operations"
+                      :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.jobTitle }"
+                      :aria-invalid="!!errors.jobTitle"
+                      :aria-describedby="errors.jobTitle ? 'jobTitle-error' : undefined"
+                      @blur="validateField('jobTitle')"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <Label for="industry">
+                      Industry <span class="text-brand" aria-hidden="true">*</span>
+                    </Label>
+                    <span
+                      v-if="errors.industry"
+                      id="industry-error"
+                      class="text-[11px] text-red-400 font-mono"
+                      role="alert"
+                    >
+                      {{ errors.industry }}
+                    </span>
+                  </div>
+                  <div class="relative">
+                    <select
+                      id="industry"
+                      v-model="formData.industry"
+                      :class="[
+                        'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
+                        formData.industry ? 'text-white' : 'text-zinc-500',
+                        errors.industry ? 'border-red-500/50 focus-visible:ring-red-500' : ''
+                      ]"
+                      :aria-invalid="!!errors.industry"
+                      :aria-describedby="errors.industry ? 'industry-error' : undefined"
+                      @change="validateField('industry')"
+                    >
+                      <option value="" disabled selected class="bg-[#0c121a] text-zinc-500">
+                        Select your industry
+                      </option>
+                      <option
+                        v-for="opt in industryOptions"
+                        :key="opt.value"
+                        :value="opt.value"
+                        class="bg-[#0e1622] text-white py-1"
+                      >
+                        {{ opt.label }}
+                      </option>
+                    </select>
+                    <div
+                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-zinc-400"
+                    >
+                      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <Label for="areaOfInterest">
+                      Area of Interest <span class="text-brand" aria-hidden="true">*</span>
+                    </Label>
+                    <span
+                      v-if="errors.areaOfInterest"
+                      id="areaOfInterest-error"
+                      class="text-[11px] text-red-400 font-mono"
+                      role="alert"
+                    >
+                      {{ errors.areaOfInterest }}
+                    </span>
+                  </div>
+                  <div class="relative">
+                    <select
+                      id="areaOfInterest"
+                      v-model="formData.areaOfInterest"
+                      :class="[
+                        'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
+                        formData.areaOfInterest ? 'text-white' : 'text-zinc-500',
+                        errors.areaOfInterest ? 'border-red-500/50 focus-visible:ring-red-500' : ''
+                      ]"
+                      :aria-invalid="!!errors.areaOfInterest"
+                      :aria-describedby="errors.areaOfInterest ? 'areaOfInterest-error' : undefined"
+                      @change="validateField('areaOfInterest')"
+                    >
+                      <option value="" disabled selected class="bg-[#0c121a] text-zinc-500">
+                        Select area of interest
+                      </option>
+                      <option
+                        v-for="opt in interestOptions"
+                        :key="opt.value"
+                        :value="opt.value"
+                        class="bg-[#0e1622] text-white py-1"
+                      >
+                        {{ opt.label }}
+                      </option>
+                    </select>
+                    <div
+                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-zinc-400"
+                    >
+                      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <Label for="businessChallenge">
+                      Business Challenge or Goals <span class="text-brand" aria-hidden="true">*</span>
+                    </Label>
+                    <span
+                      v-if="errors.businessChallenge"
+                      id="businessChallenge-error"
+                      class="text-[11px] text-red-400 font-mono"
+                      role="alert"
+                    >
+                      {{ errors.businessChallenge }}
+                    </span>
+                  </div>
+                  <Textarea
+                    id="businessChallenge"
+                    v-model="formData.businessChallenge"
+                    placeholder="Outline your current business friction, operational objectives, and what you would like to evaluate during the demonstration..."
+                    rows="4"
+                    :class="{
+                      'border-red-500/50 focus-visible:ring-red-500': errors.businessChallenge
+                    }"
+                    :aria-invalid="!!errors.businessChallenge"
+                    :aria-describedby="errors.businessChallenge ? 'businessChallenge-error' : undefined"
+                    @blur="validateField('businessChallenge')"
+                  />
+                </div>
+
+                <div class="space-y-1.5">
+                  <NuxtTurnstile
+                    ref="turnstileRef"
+                    v-model="turnstileToken"
+                    :options="{ theme: 'dark', size: 'normal' }"
+                  />
+                  <span
+                    v-if="errors.turnstile"
+                    id="turnstile-error"
+                    class="text-[11px] text-red-400 font-mono flex items-center gap-1.5"
+                    role="alert"
+                  >
+                    <AlertCircle class="h-3 w-3 shrink-0" />
+                    {{ errors.turnstile }}
+                  </span>
+                </div>
+
+                <div class="pt-3">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    :disabled="isSubmitting"
+                    class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-6 text-base rounded-md shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_0px_rgba(16,185,129,0.4)] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    <Loader2 v-if="isSubmitting" class="mr-2 h-4 w-4 animate-spin text-black" />
+                    <Send v-else class="mr-2 h-4 w-4" />
+                    <span>{{ isSubmitting ? 'Submitting to KavoraX...' : 'Request a Demo' }}</span>
+                  </Button>
+                </div>
+
+                <div class="text-center pt-2">
+                  <span class="text-xs text-zinc-500 font-ui">
+                    Submitted data is used strictly to prepare your technical demonstration.
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 md:py-32 bg-[#0b0f14] relative overflow-hidden border-t border-white/[0.06]">
+      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl space-y-4">
+          <div
+            class="inline-flex items-center gap-2 text-xs font-ui font-medium text-brand"
+          >
+            Process Guidance
+          </div>
+          <h2
+            class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
+          >
+            What to Expect from
+            <span class="italic font-light text-brand">the Conversation</span>.
+          </h2>
+          <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
+            Our demonstration conversations are designed to be focused, collaborative, and grounded in
+            your operational reality.
+          </p>
+        </div>
+
+        <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div
+            v-for="item in expectSteps"
+            :key="item.step"
+            class="rounded-2xl border border-white/[0.08] bg-[#0e1620]/80 p-7 sm:p-8 backdrop-blur-sm relative group hover:border-brand/30 transition-all duration-300 flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
+                <span class="font-mono text-xs text-brand font-semibold tracking-wider">
+                  STEP {{ item.step }}
+                </span>
+                <div
+                  class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] border border-white/10 text-brand group-hover:bg-brand/10 group-hover:border-brand/20 transition-colors"
+                >
+                  <component :is="item.icon" class="h-4 w-4" />
+                </div>
+              </div>
+
+              <div class="mt-6 space-y-3">
+                <h3 class="font-editorial text-2xl font-semibold text-white leading-snug">
+                  {{ item.title }}
+                </h3>
+                <p class="font-ui text-sm text-brand font-medium leading-relaxed">
+                  {{ item.description }}
+                </p>
+                <p class="font-ui text-xs sm:text-sm text-zinc-400 leading-relaxed pt-1">
+                  {{ item.details }}
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-white/[0.04] flex items-center gap-2 text-xs text-zinc-500 font-ui">
+              <CheckCircle2 class="h-3.5 w-3.5 text-brand" />
+              <span>Structured Process Guidance</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 rounded-xl border border-white/[0.07] bg-[#090e15] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-ui text-xs text-zinc-400"
+        >
+          <div class="flex items-start sm:items-center gap-3">
+            <div class="h-2 w-2 rounded-full bg-brand shrink-0 mt-1 sm:mt-0" />
+            <p class="leading-relaxed">
+              <span class="text-white font-medium">Clear, Respectful Dialogue:</span> These points
+              serve as general process guidance to ensure your time is spent purposefully. We focus on
+              practical technical context without aggressive sales sequences.
+            </p>
+          </div>
+          <span class="font-mono text-[11px] text-zinc-500 shrink-0">
+            KavoraX Global Advisory
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.06] relative overflow-hidden"
+    >
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10"
+      />
+
+      <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div
+          class="rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-14 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+        >
+          <div
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-3.5 py-1 text-xs font-ui text-brand font-medium mb-6"
+          >
+            <span>DIRECT ADVISORY</span>
+          </div>
+
+          <h2
+            class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
+          >
+            Let’s Explore
+            <span class="italic font-light text-brand">What’s Possible</span>.
+          </h2>
+
+          <p
+            class="mt-6 font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed"
+          >
+            Start a conversation about your business needs and goals.
           </p>
 
-          <!-- Dual CTAs -->
-          <div
-            class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-5 font-ui reveal-base transition-editorial duration-700 delay-700"
-            :class="{ 'is-revealed': isHeroMounted }"
-          >
-            <a href="#demo-form" class="w-full sm:w-auto">
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
+            <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
                 size="lg"
                 class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
               >
-                Request a Demo
-                <ArrowDown class="ml-2 h-4 w-4" />
-              </Button>
-            </a>
-
-            <NuxtLink to="/products" class="w-full sm:w-auto">
-              <Button
-                variant="outline"
-                size="lg"
-                class="w-full sm:w-auto border-white/10 bg-[#111a26]/60 hover:bg-[#111a26] text-zinc-200 hover:text-white px-7 py-6 text-base transition-colors"
-              >
-                <Layers class="mr-2 h-4 w-4 text-brand" />
-                View Solutions
+                <MessageSquare class="mr-2 h-4 w-4" />
+                Contact Us
+                <ArrowRight class="ml-2 h-4 w-4" />
               </Button>
             </NuxtLink>
           </div>
 
-          <!-- Consultation Principles Strip -->
-          <div
-            class="pt-8 border-t border-white/[0.07] grid grid-cols-3 gap-6 max-w-lg font-ui reveal-base transition-editorial duration-700 delay-800"
-            :class="{ 'is-revealed': isHeroMounted }"
-          >
-            <div>
-              <div class="font-editorial text-2xl font-semibold text-white">Contextual</div>
-              <div class="text-xs text-zinc-400 mt-0.5">Guided Discussion</div>
-            </div>
-            <div>
-              <div class="font-editorial text-2xl font-semibold text-white">Confidential</div>
-              <div class="text-xs text-zinc-400 mt-0.5">Non-Disclosure</div>
-            </div>
-            <div>
-              <div class="font-editorial text-2xl font-semibold text-white">Tailored</div>
-              <div class="text-xs text-zinc-400 mt-0.5">Solution Scope</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Demonstration Architectural Topology Panel -->
-        <div
-          class="lg:col-span-6 xl:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
-          :class="{ 'is-revealed': isHeroMounted }"
-        >
-          <!-- Subtle Glow Backplate -->
-          <div
-            class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-60 pointer-events-none"
-          />
-
-          <!-- Architecture Composition Container -->
-          <div
-            class="relative rounded-2xl border border-white/[0.08] bg-[#0d141d]/90 overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl group"
-          >
-            <!-- Executive Briefing Visual Header -->
-            <div class="relative h-44 w-full overflow-hidden bg-zinc-900">
-              <img
-                src="/images/executive-briefing.webp"
-                alt="Executive briefing room for architectural demonstration walkthrough"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-                width="600"
-                height="176"
-                class="h-full w-full object-cover img-editorial-zoom opacity-70 group-hover:opacity-90 transition-opacity"
-              >
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-[#0d141d] via-[#0d141d]/60 to-transparent"
-              />
-              <div class="absolute top-3 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-2">
-                <span
-                  class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-zinc-300 border border-white/10 shrink-0 truncate max-w-[210px] sm:max-w-none"
-                >
-                  SYSTEMS ARCHITECTURE SESSION
-                </span>
-                <span
-                  class="font-ui text-[11px] text-brand bg-brand/20 px-2.5 py-0.5 rounded border border-brand/30 flex items-center gap-1.5 shrink-0 whitespace-nowrap"
-                >
-                  <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
-                  Live Walkthrough
-                </span>
-              </div>
-            </div>
-
-            <!-- Panel Content -->
-            <div class="p-6 sm:p-7 space-y-3 font-ui">
-              <!-- Pillar 1 -->
-              <div class="rounded-xl border border-white/[0.07] bg-[#111a26]/80 p-3.5">
-                <div class="flex items-start gap-3">
-                  <div
-                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 border border-white/10 text-brand shrink-0"
-                  >
-                    <Cpu class="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 class="font-editorial text-base font-semibold text-white leading-snug">
-                      Operations Platform Walkthrough
-                    </h4>
-                    <p class="text-xs text-zinc-400 mt-0.5">
-                      Workflow execution, automated handoffs & policy monitoring
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Connector Line -->
-              <div class="flex items-center justify-center -my-1.5">
-                <div class="h-3 w-px bg-brand/30" />
-              </div>
-
-              <!-- Pillar 2 -->
-              <div class="rounded-xl border border-brand/25 bg-brand/[0.04] p-4">
-                <div class="flex items-start gap-3">
-                  <div
-                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand/20 border border-brand/30 text-brand shrink-0"
-                  >
-                    <BarChart3 class="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 class="font-editorial text-lg font-semibold text-brand leading-snug">
-                      Analytics & Telemetry Visibility
-                    </h4>
-                    <p class="text-xs text-zinc-300 mt-0.5">
-                      Operational telemetry aggregation & real-time business activity
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Connector Line -->
-              <div class="flex items-center justify-center -my-1.5">
-                <div class="h-3 w-px bg-brand/30" />
-              </div>
-
-              <!-- Pillar 3 -->
-              <div class="rounded-xl border border-white/[0.07] bg-[#111a26]/80 p-4">
-                <div class="flex items-start gap-3">
-                  <div
-                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 border border-white/10 text-zinc-300 shrink-0"
-                  >
-                    <Network class="h-4 w-4 text-brand" />
-                  </div>
-                  <div>
-                    <h4 class="font-editorial text-lg font-semibold text-white leading-snug">
-                      Integration Hub Bridging
-                    </h4>
-                    <p class="text-xs text-zinc-400 mt-0.5">
-                      Multi-system data exchange & legacy-to-cloud compatibility
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bottom Footnote -->
-            <div
-              class="mt-5 px-6 sm:px-7 pb-6 pt-4 border-t border-white/[0.06] flex items-center justify-between font-ui text-xs text-zinc-400"
-            >
-              <span class="flex items-center gap-2 text-zinc-300">
-                <ShieldCheck class="h-4 w-4 text-brand" />
-                Structured Around Your Real Priorities
-              </span>
-              <span class="font-mono text-[11px] text-zinc-400 shrink-0 pr-1">KavoraX Platform</span>
-            </div>
+          <div class="mt-8 pt-6 border-t border-white/[0.06] text-xs font-ui text-zinc-500">
+            KavoraX Global Private Limited · Enterprise Business Architecture
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-    <!-- Request Form Section -->
-    <section
-    id="demo-form"
-    class="py-24 md:py-32 bg-[#080c10] relative border-t border-white/[0.06] scroll-mt-20"
-  >
-    <!-- Background Ambient Glow -->
-    <div
-      class="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
-    />
-
-    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-        <!-- Left Column: Context Guidance & Reassurance -->
-        <div class="lg:col-span-5 space-y-8">
-          <div class="space-y-4">
-            <div
-              class="inline-flex items-center gap-2 text-xs font-ui font-medium text-brand"
-            >
-              Demo Preparation
-            </div>
-            <h2
-              class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
-            >
-              Help Us Frame the
-              <span class="italic font-light text-brand">Discussion</span>.
-            </h2>
-            <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light">
-              Every business runs on different operational systems and workflows. Providing context
-              in advance enables us to focus on the capabilities most relevant to your goals.
-            </p>
-          </div>
-
-          <!-- Helpful Points to Share -->
-          <div class="space-y-4 font-ui">
-            <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
-                <span
-                  class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
-                >
-                  1
-                </span>
-                Current Operational Bottlenecks
-              </h3>
-              <p class="text-xs text-zinc-400 leading-relaxed">
-                Highlight manual handoffs, disconnected software tools, or areas where operational
-                delays frequently occur.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
-                <span
-                  class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
-                >
-                  2
-                </span>
-                Existing Software & Toolchains
-              </h3>
-              <p class="text-xs text-zinc-400 leading-relaxed">
-                Mention key systems, enterprise databases, cloud tools, or custom internal
-                applications you want to connect.
-              </p>
-            </div>
-
-            <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
-                <span
-                  class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
-                >
-                  3
-                </span>
-                Target Outcomes & Scope
-              </h3>
-              <p class="text-xs text-zinc-400 leading-relaxed">
-                Outline what success looks like—whether higher execution speed, real-time telemetry,
-                or automated cross-departmental coordination.
-              </p>
-            </div>
-          </div>
-
-          <!-- Trust & Reassurance Statement (Section 4.D) -->
-          <div
-            class="rounded-xl border border-brand/20 bg-brand/[0.03] p-5 sm:p-6 space-y-3 font-ui"
-          >
-            <div
-              class="flex items-center gap-2 text-brand text-xs font-medium"
-            >
-              <ShieldCheck class="h-4 w-4" />
-              <span>Confidentiality & Accurate Context</span>
-            </div>
-            <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-              Providing accurate business context ensures a substantive, productive discussion. All
-              organizational information and architectural details shared through this form are
-              treated with strict confidentiality.
-            </p>
-            <div class="pt-1 flex items-center gap-2 text-xs text-zinc-400">
-              <HelpCircle class="h-3.5 w-3.5 text-brand shrink-0" />
-              <span>No automated marketing sequences or high-pressure tactics.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Demo Request Form Card -->
-        <div class="lg:col-span-7 relative">
-          <!-- Subtle Glow Backplate -->
-          <div
-            class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none"
-          />
-
-          <div
-            class="relative rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-          >
-            <div class="pb-6 border-b border-white/[0.06]">
-              <div class="flex items-center justify-between">
-                <div>
-                  <h3 class="font-editorial text-2xl sm:text-3xl font-semibold text-white">
-                    Request a Demo
-                  </h3>
-                  <p class="font-ui text-xs sm:text-sm text-zinc-400 mt-1">
-                    Fields marked with <span class="text-brand">*</span> are required.
-                  </p>
-                </div>
-                <div
-                  class="hidden sm:flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-brand"
-                >
-                  <Calendar class="h-5 w-5" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Real Backend Success Confirmation Notice -->
-            <div
-              v-if="submissionStatus === 'success'"
-              class="mt-6 rounded-xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4 shadow-[0_0_25px_rgba(16,185,129,0.18)]"
-              role="status"
-            >
-              <div class="flex items-start gap-3.5">
-                <CheckCircle2 class="h-6 w-6 text-brand shrink-0 mt-0.5" />
-                <div class="space-y-2">
-                  <h4 class="text-base font-semibold text-white font-ui">
-                    Demo Request Registered
-                  </h4>
-                  <p class="text-xs sm:text-sm text-zinc-200 leading-relaxed">
-                    Thank you, <span class="font-medium text-white">{{ submittedName }}</span>. Your product demonstration request for <span class="font-medium text-white">{{ submittedCompany }}</span> has been assigned reference <span class="font-mono text-brand font-semibold">#KX-D{{ submittedReference }}</span>.
-                  </p>
-                  <p class="text-xs text-zinc-300 leading-relaxed">
-                    Our technical solutions architects will review your evaluation scope and contact you within one business day to coordinate the live walkthrough.
-                  </p>
-                </div>
-              </div>
-
-              <div class="pt-2 flex justify-end">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#0e1622] hover:bg-[#142030]"
-                  @click="handleReset"
-                >
-                  <RotateCcw class="mr-1.5 h-3.5 w-3.5" />
-                  Request Another Demonstration
-                </Button>
-              </div>
-            </div>
-
-            <!-- Backend Error Alert Banner -->
-            <div
-              v-if="apiError"
-              id="demo-api-error"
-              tabindex="-1"
-              class="mt-6 rounded-xl border border-red-500/40 bg-red-500/[0.08] p-5 font-ui text-xs sm:text-sm text-red-200 flex items-start gap-3.5 focus:outline-none focus:ring-1 focus:ring-red-500"
-              role="alert"
-            >
-              <AlertCircle class="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
-              <div class="space-y-1">
-                <div class="font-semibold text-white">Submission Notice</div>
-                <p>{{ apiError }}</p>
-              </div>
-            </div>
-
-            <!-- Demo Form -->
-            <form
-              v-if="submissionStatus !== 'success'"
-              class="mt-6 space-y-5 font-ui"
-              novalidate
-              @submit.prevent="handleSubmit"
-            >
-              <!-- 1. Full Name (Required) -->
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between">
-                  <Label for="fullName">
-                    Full Name <span class="text-brand" aria-hidden="true">*</span>
-                  </Label>
-                  <span
-                    v-if="errors.fullName"
-                    id="fullName-error"
-                    class="text-[11px] text-red-400 font-mono"
-                    role="alert"
-                  >
-                    {{ errors.fullName }}
-                  </span>
-                </div>
-                <Input
-                  id="fullName"
-                  v-model="formData.fullName"
-                  type="text"
-                  placeholder="e.g. Eleanor Vance"
-                  :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.fullName }"
-                  :aria-invalid="!!errors.fullName"
-                  :aria-describedby="errors.fullName ? 'fullName-error' : undefined"
-                  @blur="validateField('fullName')"
-                />
-              </div>
-
-              <!-- 2. Work Email (Required) -->
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between">
-                  <Label for="workEmail">
-                    Work Email <span class="text-brand" aria-hidden="true">*</span>
-                  </Label>
-                  <span
-                    v-if="errors.workEmail"
-                    id="workEmail-error"
-                    class="text-[11px] text-red-400 font-mono"
-                    role="alert"
-                  >
-                    {{ errors.workEmail }}
-                  </span>
-                </div>
-                <Input
-                  id="workEmail"
-                  v-model="formData.workEmail"
-                  type="email"
-                  placeholder="e.g. eleanor.vance@company.com"
-                  :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.workEmail }"
-                  :aria-invalid="!!errors.workEmail"
-                  :aria-describedby="errors.workEmail ? 'workEmail-error' : undefined"
-                  @blur="validateField('workEmail')"
-                />
-              </div>
-
-              <!-- 3. Company Name (Required) & 4. Job Title (Optional) -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <!-- Company Name -->
-                <div class="space-y-1.5">
-                  <div class="flex items-center justify-between">
-                    <Label for="companyName">
-                      Company Name <span class="text-brand" aria-hidden="true">*</span>
-                    </Label>
-                    <span
-                      v-if="errors.companyName"
-                      id="companyName-error"
-                      class="text-[11px] text-red-400 font-mono"
-                      role="alert"
-                    >
-                      {{ errors.companyName }}
-                    </span>
-                  </div>
-                  <Input
-                    id="companyName"
-                    v-model="formData.companyName"
-                    type="text"
-                    placeholder="e.g. Acme Corporation"
-                    :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.companyName }"
-                    :aria-invalid="!!errors.companyName"
-                    :aria-describedby="errors.companyName ? 'companyName-error' : undefined"
-                    @blur="validateField('companyName')"
-                  />
-                </div>
-
-                <!-- Job Title -->
-                <div class="space-y-1.5">
-                  <div class="flex items-center justify-between">
-                    <Label for="jobTitle">
-                      Job Title
-                      <span class="text-zinc-500 font-normal font-mono text-[10px]">(Optional)</span>
-                    </Label>
-                    <span
-                      v-if="errors.jobTitle"
-                      id="jobTitle-error"
-                      class="text-[11px] text-red-400 font-mono"
-                      role="alert"
-                    >
-                      {{ errors.jobTitle }}
-                    </span>
-                  </div>
-                  <Input
-                    id="jobTitle"
-                    v-model="formData.jobTitle"
-                    type="text"
-                    placeholder="e.g. Head of Operations"
-                    :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.jobTitle }"
-                    :aria-invalid="!!errors.jobTitle"
-                    :aria-describedby="errors.jobTitle ? 'jobTitle-error' : undefined"
-                    @blur="validateField('jobTitle')"
-                  />
-                </div>
-              </div>
-
-              <!-- 5. Industry (Required Dropdown with 'Other') -->
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between">
-                  <Label for="industry">
-                    Industry <span class="text-brand" aria-hidden="true">*</span>
-                  </Label>
-                  <span
-                    v-if="errors.industry"
-                    id="industry-error"
-                    class="text-[11px] text-red-400 font-mono"
-                    role="alert"
-                  >
-                    {{ errors.industry }}
-                  </span>
-                </div>
-                <div class="relative">
-                  <select
-                    id="industry"
-                    v-model="formData.industry"
-                    :class="[
-                      'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
-                      formData.industry ? 'text-white' : 'text-zinc-500',
-                      errors.industry ? 'border-red-500/50 focus-visible:ring-red-500' : ''
-                    ]"
-                    :aria-invalid="!!errors.industry"
-                    :aria-describedby="errors.industry ? 'industry-error' : undefined"
-                    @change="validateField('industry')"
-                  >
-                    <option value="" disabled selected class="bg-[#0c121a] text-zinc-500">
-                      Select your industry
-                    </option>
-                    <option
-                      v-for="opt in industryOptions"
-                      :key="opt.value"
-                      :value="opt.value"
-                      class="bg-[#0e1622] text-white py-1"
-                    >
-                      {{ opt.label }}
-                    </option>
-                  </select>
-                  <div
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-zinc-400"
-                  >
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 6. Area of Interest (Required Dropdown from Verified Offerings) -->
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between">
-                  <Label for="areaOfInterest">
-                    Area of Interest <span class="text-brand" aria-hidden="true">*</span>
-                  </Label>
-                  <span
-                    v-if="errors.areaOfInterest"
-                    id="areaOfInterest-error"
-                    class="text-[11px] text-red-400 font-mono"
-                    role="alert"
-                  >
-                    {{ errors.areaOfInterest }}
-                  </span>
-                </div>
-                <div class="relative">
-                  <select
-                    id="areaOfInterest"
-                    v-model="formData.areaOfInterest"
-                    :class="[
-                      'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
-                      formData.areaOfInterest ? 'text-white' : 'text-zinc-500',
-                      errors.areaOfInterest ? 'border-red-500/50 focus-visible:ring-red-500' : ''
-                    ]"
-                    :aria-invalid="!!errors.areaOfInterest"
-                    :aria-describedby="errors.areaOfInterest ? 'areaOfInterest-error' : undefined"
-                    @change="validateField('areaOfInterest')"
-                  >
-                    <option value="" disabled selected class="bg-[#0c121a] text-zinc-500">
-                      Select area of interest
-                    </option>
-                    <option
-                      v-for="opt in interestOptions"
-                      :key="opt.value"
-                      :value="opt.value"
-                      class="bg-[#0e1622] text-white py-1"
-                    >
-                      {{ opt.label }}
-                    </option>
-                  </select>
-                  <div
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-zinc-400"
-                  >
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 7. Business Challenge or Goals (Required Multiline) -->
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between">
-                  <Label for="businessChallenge">
-                    Business Challenge or Goals <span class="text-brand" aria-hidden="true">*</span>
-                  </Label>
-                  <span
-                    v-if="errors.businessChallenge"
-                    id="businessChallenge-error"
-                    class="text-[11px] text-red-400 font-mono"
-                    role="alert"
-                  >
-                    {{ errors.businessChallenge }}
-                  </span>
-                </div>
-                <Textarea
-                  id="businessChallenge"
-                  v-model="formData.businessChallenge"
-                  placeholder="Outline your current business friction, operational objectives, and what you would like to evaluate during the demonstration..."
-                  rows="4"
-                  :class="{
-                    'border-red-500/50 focus-visible:ring-red-500': errors.businessChallenge
-                  }"
-                  :aria-invalid="!!errors.businessChallenge"
-                  :aria-describedby="errors.businessChallenge ? 'businessChallenge-error' : undefined"
-                  @blur="validateField('businessChallenge')"
-                />
-              </div>
-
-              <!-- Cloudflare Turnstile Anti-Spam Security Challenge -->
-              <div class="space-y-1.5">
-                <NuxtTurnstile
-                  ref="turnstileRef"
-                  v-model="turnstileToken"
-                  :options="{ theme: 'dark', size: 'normal' }"
-                />
-                <span
-                  v-if="errors.turnstile"
-                  id="turnstile-error"
-                  class="text-[11px] text-red-400 font-mono flex items-center gap-1.5"
-                  role="alert"
-                >
-                  <AlertCircle class="h-3 w-3 shrink-0" />
-                  {{ errors.turnstile }}
-                </span>
-              </div>
-
-              <!-- Submit Button -->
-              <div class="pt-3">
-                <Button
-                  type="submit"
-                  size="lg"
-                  :disabled="isSubmitting"
-                  class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-6 text-base rounded-md shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_0px_rgba(16,185,129,0.4)] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  <Loader2 v-if="isSubmitting" class="mr-2 h-4 w-4 animate-spin text-black" />
-                  <Send v-else class="mr-2 h-4 w-4" />
-                  <span>{{ isSubmitting ? 'Submitting to KavoraX...' : 'Request a Demo' }}</span>
-                </Button>
-              </div>
-
-              <!-- Privacy & Confidentiality Footnote -->
-              <div class="text-center pt-2">
-                <span class="text-xs text-zinc-500 font-ui">
-                  Submitted data is used strictly to prepare your technical demonstration.
-                </span>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-    <!-- What to Expect Section -->
-    <section class="py-24 md:py-32 bg-[#0b0f14] relative overflow-hidden border-t border-white/[0.06]">
-    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="max-w-3xl space-y-4">
-        <div
-          class="inline-flex items-center gap-2 text-xs font-ui font-medium text-brand"
-        >
-          Process Guidance
-        </div>
-        <h2
-          class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
-        >
-          What to Expect from
-          <span class="italic font-light text-brand">the Conversation</span>.
-        </h2>
-        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
-          Our demonstration conversations are designed to be focused, collaborative, and grounded in
-          your operational reality.
-        </p>
-      </div>
-
-      <!-- 3 Steps Grid -->
-      <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-        <div
-          v-for="item in expectSteps"
-          :key="item.step"
-          class="rounded-2xl border border-white/[0.08] bg-[#0e1620]/80 p-7 sm:p-8 backdrop-blur-sm relative group hover:border-brand/30 transition-all duration-300 flex flex-col justify-between"
-        >
-          <!-- Top Row: Step Number & Icon -->
-          <div>
-            <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
-              <span class="font-mono text-xs text-brand font-semibold tracking-wider">
-                STEP {{ item.step }}
-              </span>
-              <div
-                class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] border border-white/10 text-brand group-hover:bg-brand/10 group-hover:border-brand/20 transition-colors"
-              >
-                <component :is="item.icon" class="h-4 w-4" />
-              </div>
-            </div>
-
-            <!-- Content -->
-            <div class="mt-6 space-y-3">
-              <h3 class="font-editorial text-2xl font-semibold text-white leading-snug">
-                {{ item.title }}
-              </h3>
-              <p class="font-ui text-sm text-brand font-medium leading-relaxed">
-                {{ item.description }}
-              </p>
-              <p class="font-ui text-xs sm:text-sm text-zinc-400 leading-relaxed pt-1">
-                {{ item.details }}
-              </p>
-            </div>
-          </div>
-
-          <!-- Bottom Indicator -->
-          <div class="mt-8 pt-4 border-t border-white/[0.04] flex items-center gap-2 text-xs text-zinc-500 font-ui">
-            <CheckCircle2 class="h-3.5 w-3.5 text-brand" />
-            <span>Structured Process Guidance</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Trust & Purpose Reassurance Strip (Section 4.D) -->
-      <div
-        class="mt-12 rounded-xl border border-white/[0.07] bg-[#090e15] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-ui text-xs text-zinc-400"
-      >
-        <div class="flex items-start sm:items-center gap-3">
-          <div class="h-2 w-2 rounded-full bg-brand shrink-0 mt-1 sm:mt-0" />
-          <p class="leading-relaxed">
-            <span class="text-white font-medium">Clear, Respectful Dialogue:</span> These points
-            serve as general process guidance to ensure your time is spent purposefully. We focus on
-            practical technical context without aggressive sales sequences.
-          </p>
-        </div>
-        <span class="font-mono text-[11px] text-zinc-500 shrink-0">
-          KavoraX Global Advisory
-        </span>
-      </div>
-    </div>
-  </section>
-
-    <!-- Closing CTA Section -->
-    <section
-    class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.06] relative overflow-hidden"
-  >
-    <!-- Subtle Ambient Glow -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10"
-    />
-
-    <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <div
-        class="rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-14 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
-      >
-        <!-- Tag -->
-        <div
-          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-3.5 py-1 text-xs font-ui text-brand font-medium mb-6"
-        >
-          <span>DIRECT ADVISORY</span>
-        </div>
-
-        <!-- Headline (Exact requested copy) -->
-        <h2
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-        >
-          Let’s Explore
-          <span class="italic font-light text-brand">What’s Possible</span>.
-        </h2>
-
-        <!-- Supporting text (Exact requested copy) -->
-        <p
-          class="mt-6 font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed"
-        >
-          Start a conversation about your business needs and goals.
-        </p>
-
-        <!-- Action CTA: Link to existing /contact route -->
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
-          <NuxtLink to="/contact" class="w-full sm:w-auto">
-            <Button
-              size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
-            >
-              <MessageSquare class="mr-2 h-4 w-4" />
-              Contact Us
-              <ArrowRight class="ml-2 h-4 w-4" />
-            </Button>
-          </NuxtLink>
-        </div>
-
-        <div class="mt-8 pt-6 border-t border-white/[0.06] text-xs font-ui text-zinc-500">
-          KavoraX Global Private Limited · Enterprise Business Architecture
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
   </div>
 </template>
