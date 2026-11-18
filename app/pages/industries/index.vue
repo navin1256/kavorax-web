@@ -35,6 +35,15 @@ useHead({
   ]
 })
 
+const cornerCrosshairs3 = ['top-3 left-3', 'top-3 right-3', 'bottom-3 left-3', 'bottom-3 right-3']
+const cornerCrosshairs4 = ['top-4 left-4', 'top-4 right-4', 'bottom-4 left-4', 'bottom-4 right-4']
+const heroSectorChips = [
+  { href: '#enterprise-tech', icon: Building2, label: 'Technology & SaaS' },
+  { href: '#financial-services', icon: Landmark, label: 'Financial Services' },
+  { href: '#healthcare', icon: Activity, label: 'Healthcare' },
+  { href: '#supply-chain', icon: Truck, label: 'Logistics' }
+]
+
 // --- IndustriesHero ---
 const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true })
 const scrollToSectors = () => {
@@ -368,9 +377,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
 
 <template>
   <div class="relative bg-[#0b0f14] overflow-x-hidden">
-    <!-- Hero Section -->
     <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
-    <!-- Visual Striking Photographic Hero with Multi-Stop Vignette -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <img
         src="/images/global-connectivity.webp"
@@ -389,7 +396,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
     </div>
 
     <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- HUD Telemetry Header Bar -->
       <div
         class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
         :class="{ 'is-revealed': isHeroMounted }"
@@ -411,9 +417,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
-        <!-- Left: Editorial Headline & Copy -->
         <div class="lg:col-span-7 space-y-7">
-          <!-- Subtle Eyebrow Label -->
           <div
             class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroMounted }"
@@ -421,8 +425,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
             <span>INDUSTRIES</span>
           </div>
-
-          <!-- Hero Headline with WordReveal -->
           <WordReveal
             text="Technology for the Industries Moving Business Forward."
             as="h1"
@@ -431,8 +433,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             :delay="240"
             :immediate="true"
           />
-
-          <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
           <p
             class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
@@ -441,8 +441,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             designed to help organisations improve visibility, streamline operations and adapt as
             they grow.
           </p>
-
-          <!-- Dual CTAs -->
           <div
             class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
             :class="{ 'is-revealed': isHeroMounted }"
@@ -466,37 +464,25 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
               <ArrowDown class="h-4 w-4 text-brand group-hover:translate-y-0.5 transition-transform" />
             </button>
           </div>
-
-          <!-- Quick Sector Navigation Chips -->
           <div
             class="pt-8 border-t border-white/[0.08] flex flex-wrap items-center gap-3 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-800"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            <a href="#enterprise-tech" class="px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] hover:border-brand/40 hover:text-white transition-colors flex items-center gap-2">
-              <Building2 class="h-3.5 w-3.5 text-brand" />
-              <span>Technology &amp; SaaS</span>
-            </a>
-            <a href="#financial-services" class="px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] hover:border-brand/40 hover:text-white transition-colors flex items-center gap-2">
-              <Landmark class="h-3.5 w-3.5 text-brand" />
-              <span>Financial Services</span>
-            </a>
-            <a href="#healthcare" class="px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] hover:border-brand/40 hover:text-white transition-colors flex items-center gap-2">
-              <Activity class="h-3.5 w-3.5 text-brand" />
-              <span>Healthcare</span>
-            </a>
-            <a href="#supply-chain" class="px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] hover:border-brand/40 hover:text-white transition-colors flex items-center gap-2">
-              <Truck class="h-3.5 w-3.5 text-brand" />
-              <span>Logistics</span>
+            <a
+              v-for="chip in heroSectorChips"
+              :key="chip.href"
+              :href="chip.href"
+              class="px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] hover:border-brand/40 hover:text-white transition-colors flex items-center gap-2"
+            >
+              <component :is="chip.icon" class="h-3.5 w-3.5 text-brand" />
+              <span>{{ chip.label }}</span>
             </a>
           </div>
         </div>
-
-        <!-- Right: Asymmetric Mosaic / Photographic Hero Canvas -->
         <div
           class="lg:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
           :class="{ 'is-revealed': isHeroMounted }"
         >
-          <!-- Ambient Halo -->
           <div
             class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-70 pointer-events-none"
             aria-hidden="true"
@@ -505,13 +491,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
           <div
             class="relative rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-6 sm:p-7 shadow-[0_30px_70px_rgba(0,0,0,0.8)] backdrop-blur-xl"
           >
-            <!-- Corner Crosshairs inspired by Active Theory -->
-            <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
-            <!-- Header -->
+            <div
+              v-for="pos in cornerCrosshairs3"
+              :key="pos"
+              :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+              aria-hidden="true"
+            >+</div>
             <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
               <span class="font-mono text-xs font-semibold text-white tracking-wider">
                 DOMAINS OF OPERATION
@@ -520,8 +505,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 FIELD TESTED
               </span>
             </div>
-
-            <!-- Photographic Hero Inset -->
             <div class="my-5 relative h-60 rounded-xl overflow-hidden border border-white/[0.08] group">
               <img
                 src="/images/fintech-headquarters.webp"
@@ -559,8 +542,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
     </div>
   </section>
-
-    <!-- 4 Industry Verticals Overview -->
     <section
     id="industry-overview"
     ref="overviewRef"
@@ -568,7 +549,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
     :class="{ 'is-revealed': isOverviewRevealed }"
   >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
       <div class="max-w-3xl space-y-4">
         <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isOverviewRevealed }">
           <ChapterLabel label="Explore Industries" />
@@ -590,8 +570,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
           sustainable growth.
         </p>
       </div>
-
-      <!-- Asymmetric Editorial Gallery Grid (7-5 and 5-7 Col Spans) -->
       <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 font-ui">
         <div
           v-for="(ind, index) in overviewIndustries"
@@ -604,11 +582,9 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             'rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.5)] relative'
           ]"
         >
-          <!-- Corner Crosshair -->
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none z-10" aria-hidden="true">+</div>
 
           <div>
-            <!-- Contextual Photograph with Gradient Scrim -->
             <div class="relative h-56 sm:h-64 w-full overflow-hidden bg-zinc-950">
               <img
                 :src="ind.image"
@@ -638,8 +614,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- Content Area -->
             <div class="p-6 sm:p-8">
               <h3
                 class="font-editorial text-2xl sm:text-3xl font-semibold text-white group-hover:text-brand transition-colors leading-snug"
@@ -679,13 +653,8 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
     </div>
   </section>
-
-    <!-- Alternating Industry Detail Sections (4 verified categories) -->
     <div class="relative bg-[#080c10] overflow-hidden">
-    <!-- ======================================================== -->
-    <!-- INDUSTRY 01: ENTERPRISE TECHNOLOGY & SAAS               -->
-    <!-- Layout: Content on Left, High-Density Cluster on Right  -->
-    <!-- ======================================================== -->
+    
     <section
       :id="detailIndustries[0].id"
       ref="s0Ref"
@@ -694,7 +663,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <!-- Text Narrative Column -->
           <div class="lg:col-span-6 space-y-8 font-ui">
             <div
               class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
@@ -726,8 +694,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 {{ detailIndustries[0].subtitle }}
               </p>
             </div>
-
-            <!-- Operational Context -->
             <div
               class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
               :class="{ 'is-revealed': s0Revealed }"
@@ -739,8 +705,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 {{ detailIndustries[0].context }}
               </p>
             </div>
-
-            <!-- Key Challenges -->
             <div class="space-y-3">
               <div
                 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
@@ -772,8 +736,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- Mapped Architecture Card -->
             <div
               class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
               :class="{ 'is-revealed': s0Revealed }"
@@ -802,8 +764,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- CTAs -->
             <div
               class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
               :class="{ 'is-revealed': s0Revealed }"
@@ -827,8 +787,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
               </NuxtLink>
             </div>
           </div>
-
-          <!-- Photo Canvas Right -->
           <div
             class="lg:col-span-6 relative reveal-card transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': s0Revealed }"
@@ -836,10 +794,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             <div
               class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
             >
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
+              <div
+                v-for="pos in cornerCrosshairs3"
+                :key="pos"
+                :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none z-10', pos]"
+                aria-hidden="true"
+              >+</div>
 
               <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
                 <img
@@ -853,8 +813,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
                 <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/60 via-transparent to-transparent" />
-
-                <!-- Floating HUD Chip -->
                 <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
                   <div class="flex items-center gap-2 text-brand">
                     <span class="h-2 w-2 rounded-full bg-brand animate-pulse-subtle" />
@@ -876,10 +834,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- INDUSTRY 02: FINANCIAL SERVICES & FINTECH               -->
-    <!-- Layout: INVERTED! Photo on Left, Content on Right       -->
-    <!-- ======================================================== -->
+    
     <section
       :id="detailIndustries[1].id"
       ref="s1Ref"
@@ -888,7 +843,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <!-- Photo Canvas Left -->
           <div
             class="lg:col-span-6 relative order-2 lg:order-1 reveal-card transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': s1Revealed }"
@@ -896,10 +850,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             <div
               class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
             >
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
+              <div
+                v-for="pos in cornerCrosshairs3"
+                :key="pos"
+                :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none z-10', pos]"
+                aria-hidden="true"
+              >+</div>
 
               <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
                 <img
@@ -913,8 +869,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
                 <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/60 via-transparent to-transparent" />
-
-                <!-- Floating HUD Chip -->
                 <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
                   <div class="flex items-center gap-2 text-cyan-400">
                     <ShieldCheck class="h-4 w-4 text-cyan-400" />
@@ -932,8 +886,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
               </div>
             </div>
           </div>
-
-          <!-- Text Narrative Column Right -->
           <div class="lg:col-span-6 space-y-8 font-ui order-1 lg:order-2">
             <div
               class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
@@ -965,8 +917,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 {{ detailIndustries[1].subtitle }}
               </p>
             </div>
-
-            <!-- Operational Context -->
             <div
               class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
               :class="{ 'is-revealed': s1Revealed }"
@@ -978,8 +928,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 {{ detailIndustries[1].context }}
               </p>
             </div>
-
-            <!-- Key Challenges -->
             <div class="space-y-3">
               <div
                 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
@@ -1011,8 +959,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- Mapped Architecture Card -->
             <div
               class="rounded-xl border border-cyan-500/25 bg-cyan-500/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
               :class="{ 'is-revealed': s1Revealed }"
@@ -1041,8 +987,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- CTAs -->
             <div
               class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
               :class="{ 'is-revealed': s1Revealed }"
@@ -1070,10 +1014,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- INDUSTRY 03: HEALTHCARE & LIFE SCIENCES                  -->
-    <!-- Layout: Clinical Precision Split (7 Cols Text, 5 Image)  -->
-    <!-- ======================================================== -->
+    
     <section
       :id="detailIndustries[2].id"
       ref="s2Ref"
@@ -1082,7 +1023,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <!-- Text Narrative Column -->
           <div class="lg:col-span-7 space-y-8 font-ui">
             <div
               class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
@@ -1114,8 +1054,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 {{ detailIndustries[2].subtitle }}
               </p>
             </div>
-
-            <!-- Operational Context -->
             <div
               class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
               :class="{ 'is-revealed': s2Revealed }"
@@ -1127,8 +1065,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 {{ detailIndustries[2].context }}
               </p>
             </div>
-
-            <!-- Key Challenges -->
             <div class="space-y-3">
               <div
                 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
@@ -1160,8 +1096,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- Mapped Architecture Card -->
             <div
               class="rounded-xl border border-emerald-500/25 bg-emerald-500/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
               :class="{ 'is-revealed': s2Revealed }"
@@ -1190,8 +1124,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- CTAs -->
             <div
               class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
               :class="{ 'is-revealed': s2Revealed }"
@@ -1215,8 +1147,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
               </NuxtLink>
             </div>
           </div>
-
-          <!-- Photo Canvas Right -->
           <div
             class="lg:col-span-5 relative reveal-card transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': s2Revealed }"
@@ -1224,10 +1154,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             <div
               class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
             >
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
+              <div
+                v-for="pos in cornerCrosshairs3"
+                :key="pos"
+                :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none z-10', pos]"
+                aria-hidden="true"
+              >+</div>
 
               <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
                 <img
@@ -1241,8 +1173,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
                 <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/60 via-transparent to-transparent" />
-
-                <!-- Floating HUD Chip -->
                 <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
                   <div class="flex items-center gap-2 text-emerald-400">
                     <Radio class="h-4 w-4 animate-pulse-subtle" />
@@ -1264,10 +1194,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- INDUSTRY 04: SUPPLY CHAIN & LOGISTICS                    -->
-    <!-- Layout: Panoramic Terminal Header + Asymmetric Split     -->
-    <!-- ======================================================== -->
+    
     <section
       :id="detailIndustries[3].id"
       ref="s3Ref"
@@ -1275,7 +1202,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       :class="{ 'is-revealed': s3Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Panoramic Top Visual Feature -->
         <div
           class="mb-14 rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl relative group reveal-card transition-editorial duration-700 delay-150"
           :class="{ 'is-revealed': s3Revealed }"
@@ -1297,8 +1223,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             >
             <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f14] via-[#0b0f14]/40 to-transparent" />
             <div class="absolute inset-0 bg-gradient-to-r from-[#0b0f14]/80 via-transparent to-transparent" />
-
-            <!-- Floating Inset Banner -->
             <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0b0f14]/90 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
               <div class="flex items-center gap-2 text-brand">
                 <Truck class="h-4 w-4" />
@@ -1315,8 +1239,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             </div>
           </div>
         </div>
-
-        <!-- 2-Column Split Details Below Panoramic Image -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div class="lg:col-span-6 space-y-6 font-ui">
             <div
@@ -1360,8 +1282,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 {{ detailIndustries[3].context }}
               </p>
             </div>
-
-            <!-- CTAs -->
             <div
               class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-450"
               :class="{ 'is-revealed': s3Revealed }"
@@ -1385,10 +1305,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
               </NuxtLink>
             </div>
           </div>
-
-          <!-- Right Column: Challenges & Mapped Architecture -->
           <div class="lg:col-span-6 space-y-6 font-ui">
-            <!-- Key Challenges -->
             <div class="space-y-3">
               <div
                 class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
@@ -1420,8 +1337,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
               </div>
             </div>
-
-            <!-- Mapped Architecture Card -->
             <div
               class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
               :class="{ 'is-revealed': s3Revealed }"
@@ -1455,21 +1370,17 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
     </section>
   </div>
-
-    <!-- Connected Business Operations Section -->
     <section
     ref="connectedRef"
     class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] overflow-hidden"
     :class="{ 'is-revealed': isConnectedRevealed }"
   >
-    <!-- Ambient emerald depth lighting -->
     <div
       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto space-y-4">
         <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isConnectedRevealed }">
           <ChapterLabel label="Connected Operations" />
@@ -1493,21 +1404,15 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
           coherent operational foundations across varied business environments.
         </p>
       </div>
-
-      <!-- Conceptual Relationship Diagram -->
       <div class="mt-16 sm:mt-20">
-        <!-- Center Interconnection Hub Board -->
         <div
           class="rounded-2xl border border-white/[0.1] bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative reveal-card transition-editorial duration-700 delay-200"
           :class="{ 'is-revealed': isConnectedRevealed }"
         >
-          <!-- Corner Crosshairs -->
           <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
           <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
           <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
           <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
-          <!-- Top Banner Bar -->
           <div
             class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 mb-8 border-b border-white/[0.08] gap-4 font-ui reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isConnectedRevealed }"
@@ -1537,8 +1442,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
               </span>
             </div>
           </div>
-
-          <!-- 4 Pillars Quad Layout -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 font-ui">
             <div
               v-for="(pillar, index) in operationalPillars"
@@ -1549,7 +1452,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 isConnectedRevealed ? 'is-revealed' : ''
               ]"
             >
-              <!-- Card Header -->
               <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center gap-3.5">
                   <div
@@ -1570,13 +1472,9 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 </div>
                 <span class="font-mono text-xs text-brand font-semibold">[ {{ pillar.number }} ]</span>
               </div>
-
-              <!-- Body Description -->
               <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
                 {{ pillar.description }}
               </p>
-
-              <!-- Capability Highlights -->
               <div class="mt-6 pt-5 border-t border-white/[0.06] space-y-2 text-xs text-zinc-400">
                 <div
                   v-for="(hl, hIdx) in pillar.highlights"
@@ -1589,8 +1487,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
               </div>
             </div>
           </div>
-
-          <!-- Bottom Visual Flow Conduit Bar -->
           <div
             class="mt-8 pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isConnectedRevealed }"
@@ -1611,14 +1507,11 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
       </div>
     </div>
   </section>
-
-    <!-- Industry Consultation Final CTA -->
     <section
     ref="ctaRef"
     class="py-28 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
     :class="{ 'is-revealed': isCtaRevealed }"
   >
-    <!-- Cinematic Ambient Depth Lighting -->
     <div
       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
       aria-hidden="true"
@@ -1634,21 +1527,18 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
         class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] reveal-card transition-editorial duration-700"
         :class="{ 'is-revealed': isCtaRevealed }"
       >
-        <!-- Corner Crosshairs inspired by Active Theory -->
-        <div class="absolute top-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
-        <!-- Top Chapter Tag -->
+        <div
+          v-for="pos in cornerCrosshairs4"
+          :key="pos"
+          :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+          aria-hidden="true"
+        >+</div>
         <div
           class="flex justify-center mb-6 reveal-base transition-editorial duration-700 delay-100"
           :class="{ 'is-revealed': isCtaRevealed }"
         >
           <ChapterLabel label="Talk to an Industry Specialist" />
         </div>
-
-        <!-- Headline (Exact requested text) -->
         <WordReveal
           text="Let's Explore What Your Industry Needs Next."
           as="h2"
@@ -1657,8 +1547,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
           :delay="120"
           :threshold="0.18"
         />
-
-        <!-- Supporting Copy (Exact requested text) -->
         <p
           class="mt-6 font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed reveal-paragraph transition-editorial duration-700 delay-300"
           :class="{ 'is-revealed': isCtaRevealed }"
@@ -1666,8 +1554,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
           Tell us about your organisation and priorities. The KavoraX team can help you explore
           relevant business solutions.
         </p>
-
-        <!-- Action CTAs -->
         <div
           class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-450"
           :class="{ 'is-revealed': isCtaRevealed }"
@@ -1693,8 +1579,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
             </Button>
           </NuxtLink>
         </div>
-
-        <!-- Verification Indicators Footer -->
         <div
           class="mt-12 pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-550"
           :class="{ 'is-revealed': isCtaRevealed }"
