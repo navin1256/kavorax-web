@@ -50,11 +50,14 @@ useHead({
   ]
 })
 
-// --- 1. SolutionsHero ---
+const cornerCrosshairs3 = ['top-3 left-3', 'top-3 right-3', 'bottom-3 left-3', 'bottom-3 right-3']
+const cornerCrosshairs4 = ['top-4 left-4', 'top-4 right-4', 'bottom-4 left-4', 'bottom-4 right-4']
+
+// Hero
 const heroRef = ref<HTMLElement | null>(null)
 const { isRevealed: isHeroRevealed } = useScrollReveal(heroRef, { immediate: true })
 
-// --- 2. SolutionsBusinessNeeds ---
+// Business Needs
 const needsHeaderRef = ref<HTMLElement | null>(null)
 const { isRevealed: isNeedsHeaderRevealed } = useScrollReveal(needsHeaderRef, { threshold: 0.12 })
 
@@ -111,7 +114,7 @@ const storytellingPairs = [
   }
 ]
 
-// --- 3. SolutionsAreas ---
+// Solution Areas & Approach
 const activePhase = ref(1)
 
 const areasHeaderRef = ref<HTMLElement | null>(null)
@@ -122,6 +125,12 @@ const { isRevealed: isAreasSchematicRevealed } = useScrollReveal(areasSchematicR
 
 const solutionAreasRef = ref<HTMLElement | null>(null)
 const { isRevealed: isSolutionAreasRevealed } = useScrollReveal(solutionAreasRef, { threshold: 0.12 })
+
+const schematicNodes = [
+  { cx: 150, color: '#10b981' },
+  { cx: 450, color: '#06b6d4' },
+  { cx: 750, color: '#34d399' }
+]
 
 const solutionAreas = [
   {
@@ -207,7 +216,7 @@ const processSteps = [
   }
 ]
 
-// --- 4. SolutionsEvaluation ---
+// Evaluation
 const evalHeaderRef = ref<HTMLElement | null>(null)
 const { isRevealed: isEvalHeaderRevealed } = useScrollReveal(evalHeaderRef, { threshold: 0.12 })
 
@@ -247,7 +256,7 @@ const considerations = [
   }
 ]
 
-// --- 5. SolutionsIndustries ---
+// Industries
 const industriesHeaderRef = ref<HTMLElement | null>(null)
 const { isRevealed: isIndustriesHeaderRevealed } = useScrollReveal(industriesHeaderRef, { threshold: 0.12 })
 
@@ -289,19 +298,17 @@ const industries = [
   }
 ]
 
-// --- 6. SolutionsClosingCta ---
+// Closing CTA
 const solutionsCtaRef = ref<HTMLElement | null>(null)
 const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, { threshold: 0.12 })
 </script>
 
 <template>
   <div class="min-h-screen bg-[#0b0f14] text-white">
-    <!-- 1. Hero Section -->
     <section
       ref="heroRef"
       class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]"
     >
-      <!-- Atmospheric Ambient Lighting & Tech Grid Overlay with Organic Drift -->
       <div
         class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
@@ -313,7 +320,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
       <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none -z-10" aria-hidden="true" />
 
       <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Top HUD Telemetry Metadata Bar -->
         <div
           class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
           :class="{ 'is-revealed': isHeroRevealed }"
@@ -334,11 +340,8 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           </div>
         </div>
 
-        <!-- Main Editorial Layout: Asymmetric 12-Column Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
-          <!-- Left: Narrative Headline & Business Storytelling -->
           <div class="lg:col-span-7 space-y-7">
-            <!-- Eyebrow Tag -->
             <div
               class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
               :class="{ 'is-revealed': isHeroRevealed }"
@@ -347,7 +350,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               <span>OUR SOLUTIONS</span>
             </div>
 
-            <!-- Hero Headline with WordReveal -->
             <WordReveal
               text="Connected Solutions. Meaningful Business Progress."
               as="h1"
@@ -357,7 +359,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               :immediate="true"
             />
 
-            <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
             <p
               class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
               :class="{ 'is-revealed': isHeroRevealed }"
@@ -366,7 +367,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               visibility, and move forward with greater confidence.
             </p>
 
-            <!-- Dual Action CTAs -->
             <div
               class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
               :class="{ 'is-revealed': isHeroRevealed }"
@@ -394,7 +394,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               </NuxtLink>
             </div>
 
-            <!-- Strategic Principles Strip -->
             <div
               class="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-6 max-w-lg font-ui reveal-base transition-editorial duration-700 delay-800"
               :class="{ 'is-revealed': isHeroRevealed }"
@@ -414,28 +413,25 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             </div>
           </div>
 
-          <!-- Right: Photographic Architecture Canvas with Selective Workplace/Technology Imagery -->
           <div
             class="lg:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isHeroRevealed }"
           >
-            <!-- Ambient Halo -->
             <div
               class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-70 pointer-events-none"
               aria-hidden="true"
             />
 
-            <!-- Editorial Image Composition Card -->
             <div
               class="relative rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-6 sm:p-7 shadow-[0_30px_70px_rgba(0,0,0,0.8)] backdrop-blur-xl"
             >
-              <!-- Corner Crosshairs inspired by Active Theory -->
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+              <div
+                v-for="pos in cornerCrosshairs3"
+                :key="pos"
+                :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+                aria-hidden="true"
+              >+</div>
 
-              <!-- Header Bar -->
               <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
                 <div class="flex items-center gap-2.5">
                   <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-brand/10 border border-brand/30 text-brand">
@@ -456,7 +452,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <!-- Realistic Workplace / Technology Image Panel -->
               <div class="my-5 relative h-52 rounded-xl overflow-hidden border border-white/[0.08] group">
                 <img
                   src="/images/architectural-workspace.webp"
@@ -478,7 +473,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <!-- Nodal Flow Visualizer Ribbon -->
               <div class="space-y-2.5 font-mono text-xs">
                 <div class="p-3 rounded-lg border border-white/[0.06] bg-[#070b10] flex items-center justify-between">
                   <span class="text-zinc-400">01. OPERATIONAL ANALYSIS</span>
@@ -497,7 +491,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <!-- Card Footer -->
               <div class="mt-5 pt-3.5 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-zinc-400 font-mono">
                 <span class="flex items-center gap-1.5">
                   <ShieldCheck class="h-3.5 w-3.5 text-brand" />
@@ -511,10 +504,8 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
       </div>
     </section>
 
-    <!-- 2. Common Business Needs Section -->
     <section class="py-24 md:py-36 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Editorial Header with Scroll Reveal -->
         <div
           ref="needsHeaderRef"
           class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
@@ -532,20 +523,19 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           </p>
         </div>
 
-        <!-- Asymmetrical Narrative Storytelling Layout (Image on Left, Comparative Progression on Right) -->
         <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start font-ui">
-          <!-- Left: Realistic High-Resolution Technology Photography with Contextual Annotation -->
           <div
             ref="needsStickyRef"
             class="lg:col-span-5 sticky top-28 space-y-6 reveal-base transition-editorial duration-700"
             :class="{ 'is-revealed': isNeedsStickyRevealed }"
           >
             <div class="rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl relative group">
-              <!-- Corner Crosshairs -->
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
+              <div
+                v-for="pos in cornerCrosshairs3"
+                :key="pos"
+                :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none z-10', pos]"
+                aria-hidden="true"
+              >+</div>
 
               <div class="relative h-[380px] sm:h-[460px] w-full overflow-hidden">
                 <img
@@ -575,7 +565,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               </div>
             </div>
 
-            <!-- Editorial Pull-Quote -->
             <div class="p-6 rounded-xl border border-white/[0.08] bg-[#0c141e]/80 backdrop-blur-md">
               <p class="font-editorial text-lg text-zinc-300 italic leading-relaxed">
                 “True technological efficiency is not measured by the quantity of applications deployed, but by how cleanly information moves between them.”
@@ -586,7 +575,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             </div>
           </div>
 
-          <!-- Right: Business Problem vs. Connected Solution Storytelling Cards -->
           <div ref="needsCardsRef" class="lg:col-span-7 space-y-6">
             <div
               v-for="(item, idx) in storytellingPairs"
@@ -594,7 +582,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               class="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 backdrop-blur-xl relative hover:border-brand/40 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.5)] group reveal-card transition-editorial duration-700"
               :class="[{ 'is-revealed': isNeedsCardsRevealed }, 'stagger-' + (idx + 1)]"
             >
-              <!-- Corner Crosshair -->
               <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
 
               <div class="flex items-center justify-between pb-3 border-b border-white/[0.06]">
@@ -606,7 +593,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </span>
               </div>
 
-              <!-- Problem Block -->
               <div class="mt-5 space-y-2">
                 <div class="flex items-center gap-2 text-rose-400 text-xs font-semibold uppercase tracking-wider font-mono">
                   <AlertCircle class="h-3.5 w-3.5" />
@@ -620,7 +606,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </p>
               </div>
 
-              <!-- Visual Flow Arrow Divider -->
               <div class="my-5 flex items-center gap-3">
                 <div class="h-[1px] flex-1 bg-white/[0.08]" />
                 <div class="text-[10px] font-mono text-brand uppercase px-2.5 py-0.5 rounded border border-brand/25 bg-brand/[0.06] flex items-center gap-1.5">
@@ -630,7 +615,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 <div class="h-[1px] flex-1 bg-white/[0.08]" />
               </div>
 
-              <!-- Solution Block -->
               <div class="space-y-2">
                 <div class="flex items-center gap-2 text-brand text-xs font-semibold uppercase tracking-wider font-mono">
                   <CheckCircle2 class="h-3.5 w-3.5" />
@@ -644,7 +628,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </p>
               </div>
 
-              <!-- Related Product Link with Verified Deep Anchor -->
               <div class="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
                 <span class="text-zinc-400">POWERED BY:</span>
                 <NuxtLink
@@ -661,16 +644,13 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
       </div>
     </section>
 
-    <!-- 3. Solution Areas & Connected Approach Section -->
     <section class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] overflow-hidden">
-      <!-- Ambient emerald atmospheric glow with Organic Drift -->
       <div
         class="absolute top-1/3 right-1/4 w-[650px] h-[650px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Header with Scroll Reveal -->
         <div
           ref="areasHeaderRef"
           class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
@@ -688,17 +668,17 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           </p>
         </div>
 
-        <!-- PART 1: CUSTOM SVG CONNECTED WORKFLOW DIAGRAM -->
         <div
           ref="areasSchematicRef"
           class="mt-16 rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-12 shadow-2xl backdrop-blur-xl relative reveal-card transition-editorial duration-700"
           :class="{ 'is-revealed': isAreasSchematicRevealed }"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+          <div
+            v-for="pos in cornerCrosshairs3"
+            :key="pos"
+            :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+            aria-hidden="true"
+          >+</div>
 
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
             <div class="flex items-center gap-3">
@@ -721,12 +701,9 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             </div>
           </div>
 
-          <!-- Custom SVG Connected Workflow Schematic Header -->
           <div class="my-6 hidden md:block">
             <svg class="w-full h-12" viewBox="0 0 900 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Background Static Track -->
               <path d="M 150 24 L 750 24" stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-dasharray="4 4" />
-              <!-- Animated Flowing Beam (Self-drawing line) -->
               <path
                 d="M 150 24 L 750 24"
                 stroke="url(#flowGradient)"
@@ -736,22 +713,14 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 :class="{ 'is-revealed': isAreasSchematicRevealed }"
               />
               
-              <!-- Stage 1 Node -->
-              <g class="draw-node" :class="{ 'is-revealed': isAreasSchematicRevealed }">
-                <circle cx="150" cy="24" r="10" fill="#0c141e" stroke="#10b981" stroke-width="2" />
-                <circle cx="150" cy="24" r="4" fill="#10b981" />
-              </g>
-              
-              <!-- Stage 2 Node -->
-              <g class="draw-node" :class="{ 'is-revealed': isAreasSchematicRevealed }">
-                <circle cx="450" cy="24" r="10" fill="#0c141e" stroke="#06b6d4" stroke-width="2" />
-                <circle cx="450" cy="24" r="4" fill="#06b6d4" />
-              </g>
-              
-              <!-- Stage 3 Node -->
-              <g class="draw-node" :class="{ 'is-revealed': isAreasSchematicRevealed }">
-                <circle cx="750" cy="24" r="10" fill="#0c141e" stroke="#34d399" stroke-width="2" />
-                <circle cx="750" cy="24" r="4" fill="#34d399" />
+              <g
+                v-for="node in schematicNodes"
+                :key="node.cx"
+                class="draw-node"
+                :class="{ 'is-revealed': isAreasSchematicRevealed }"
+              >
+                <circle :cx="node.cx" cy="24" r="10" fill="#0c141e" :stroke="node.color" stroke-width="2" />
+                <circle :cx="node.cx" cy="24" r="4" :fill="node.color" />
               </g>
 
               <defs>
@@ -764,7 +733,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             </svg>
           </div>
 
-          <!-- Connected Line Process Cards (Interactive 3-Step Lifecycle) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative font-ui">
             <div
               v-for="(step, idx) in processSteps"
@@ -777,7 +745,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               ]"
               @click="activePhase = idx"
             >
-              <!-- Step Header with Number & Status -->
               <div class="flex items-center justify-between pb-4 border-b border-white/[0.06]">
                 <div class="flex items-center gap-2">
                   <span class="font-mono text-sm font-semibold text-brand">[ {{ step.number }} ]</span>
@@ -795,7 +762,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="mt-5 space-y-2">
                 <div class="font-editorial text-xl font-medium text-white leading-snug">
                   {{ step.tagline }}
@@ -812,7 +778,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             </div>
           </div>
 
-          <!-- Connection Pipeline Ribbon -->
           <div class="mt-8 pt-5 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400">
             <span class="flex items-center gap-2 text-zinc-300">
               <span class="h-2 w-2 rounded-full bg-brand animate-pulse-subtle" />
@@ -825,14 +790,12 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           </div>
         </div>
 
-        <!-- PART 2: CORE SOLUTION AREAS WITH PRODUCT INTEGRATION -->
         <div ref="solutionAreasRef" class="mt-20">
           <div class="flex items-center justify-between pb-6 border-b border-white/[0.08] font-mono text-xs text-zinc-400">
             <span class="text-brand font-semibold">[ 04 // CAPABILITY APPLICATION ]</span>
             <span class="text-zinc-400">CONNECTED SOLUTIONS MATRIX</span>
           </div>
 
-          <!-- Asymmetric 3-Column Solution Cards with Direct Product Deep Links -->
           <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8 font-ui">
             <div
               v-for="(area, i) in solutionAreas"
@@ -840,7 +803,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               class="p-8 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-300 flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)] reveal-card transition-editorial duration-700"
               :class="[{ 'is-revealed': isSolutionAreasRevealed }, 'stagger-' + (i + 1)]"
             >
-              <!-- Corner Crosshair -->
               <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
               <div class="space-y-5">
@@ -865,7 +827,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                   {{ area.description }}
                 </p>
 
-                <!-- Capability Checklist -->
                 <div class="space-y-2.5 pt-2 text-xs text-zinc-300">
                   <div
                     v-for="(cap, capIdx) in area.capabilities"
@@ -878,7 +839,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <!-- Deep link to Product with Arrow hover -->
               <div class="mt-8 pt-5 border-t border-white/[0.06]">
                 <NuxtLink
                   :to="area.link"
@@ -894,10 +854,8 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
       </div>
     </section>
 
-    <!-- 4. How to Evaluate the Right Solution Section -->
     <section class="py-24 md:py-36 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Header with Scroll Reveal -->
         <div
           ref="evalHeaderRef"
           class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
@@ -915,7 +873,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           </p>
         </div>
 
-        <!-- Editorial Evaluation Ledger (3 Horizontal/Asymmetric Diagnostic Bands) -->
         <div ref="evalLedgerRef" class="mt-16 space-y-6 font-ui">
           <div
             v-for="(item, idx) in considerations"
@@ -923,11 +880,9 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             class="p-8 sm:p-10 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative hover:border-brand/40 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.5)] group reveal-card transition-editorial duration-700"
             :class="[{ 'is-revealed': isEvalLedgerRevealed }, 'stagger-' + (idx + 1)]"
           >
-            <!-- Corner Crosshair -->
             <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              <!-- Left Metadata Column -->
               <div class="lg:col-span-4 space-y-3">
                 <span class="font-mono text-xs text-brand font-semibold tracking-wider">
                   {{ item.category }}
@@ -946,7 +901,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <!-- Right Question & Analysis Column -->
               <div class="lg:col-span-8 space-y-4 lg:pl-8 lg:border-l border-white/[0.06]">
                 <div class="font-editorial text-xl sm:text-2xl text-white italic leading-snug">
                   “{{ item.question }}”
@@ -964,7 +918,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           </div>
         </div>
 
-        <!-- Consultative Guidance Footnote with Scroll Reveal -->
         <div
           ref="evalFootnoteRef"
           class="mt-12 rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-ui relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
@@ -992,7 +945,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
       </div>
     </section>
 
-    <!-- 5. Related Industries Section -->
     <section class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -1025,7 +977,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           </NuxtLink>
         </div>
 
-        <!-- 4 Verified Industry Visual Photographic Panels -->
         <div ref="industriesGridRef" class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-ui">
           <NuxtLink
             v-for="(item, idx) in industries"
@@ -1034,11 +985,9 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             class="rounded-2xl border border-white/[0.08] bg-[#0d141e] overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-xl relative reveal-card transition-editorial duration-700"
             :class="[{ 'is-revealed': isIndustriesGridRevealed }, 'stagger-' + (idx + 1)]"
           >
-            <!-- Corner Crosshair -->
             <div class="absolute top-2.5 right-2.5 font-mono text-xs text-brand/50 select-none pointer-events-none z-10" aria-hidden="true">+</div>
 
             <div>
-              <!-- Contextual Photograph with Gradient Scrim -->
               <div class="relative h-48 w-full overflow-hidden bg-zinc-900">
                 <img
                   :src="item.image"
@@ -1057,7 +1006,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <!-- Narrative Body -->
               <div class="p-6 space-y-2">
                 <div class="flex items-center gap-2 text-zinc-400 group-hover:text-brand transition-colors text-xs font-mono">
                   <component :is="item.icon" class="h-4 w-4" />
@@ -1072,7 +1020,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
               </div>
             </div>
 
-            <!-- Bottom Action -->
             <div class="px-6 pb-5 pt-3 border-t border-white/[0.05] flex items-center justify-between text-xs font-mono text-zinc-400 group-hover:text-brand transition-colors">
               <span>VIEW FRAMEWORK</span>
               <ArrowRight class="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
@@ -1082,11 +1029,9 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
       </div>
     </section>
 
-    <!-- 6. Final Closing CTA Section -->
     <section
       class="py-28 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <!-- Cinematic Emerald Lighting Halo with Organic Drift -->
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
@@ -1103,18 +1048,17 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
           class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isSolutionsCtaRevealed }"
         >
-          <!-- Corner Crosshairs inspired by Active Theory -->
-          <div class="absolute top-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+          <div
+            v-for="pos in cornerCrosshairs4"
+            :key="pos"
+            :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+            aria-hidden="true"
+          >+</div>
 
-          <!-- Top Chapter Tag (Standardized to CHAPTER 06) -->
           <div class="flex justify-center mb-6">
             <ChapterLabel label="Ready to Get Started?" />
           </div>
 
-          <!-- Headline with WordReveal -->
           <WordReveal
             as="h2"
             text="Let’s Find the Right Way Forward."
@@ -1122,14 +1066,12 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance-editorial max-w-3xl mx-auto"
           />
 
-          <!-- Supporting text (Standardized to Inter font-ui) -->
           <p
             class="mt-6 font-ui text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
           >
             Tell us about your business priorities and the challenges you want to address.
           </p>
 
-          <!-- Dual Action Buttons -->
           <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
@@ -1154,7 +1096,6 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             </NuxtLink>
           </div>
 
-          <!-- Verification Indicators Footer -->
           <div class="mt-12 pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] text-zinc-400">
             <div class="flex items-center gap-2">
               <ShieldCheck class="h-3.5 w-3.5 text-brand" />
