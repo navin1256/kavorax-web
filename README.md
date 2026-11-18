@@ -139,17 +139,12 @@ kavorax-web/
 │   │   └── css/
 │   │       └── main.css                 # Design tokens, typography, and technical grid classes
 │   ├── components/
-│   │   ├── about/                       # Corporate narrative and leadership components
-│   │   ├── contact/                     # Inquiry forms and office locations
-│   │   ├── demo/                        # Briefing request and walkthrough modules
-│   │   ├── home/                        # Homepage modular sections (Hero, Editorial, Topology, etc.)
-│   │   ├── industries/                  # Sector-specific architecture components
 │   │   ├── layout/                      # Global AppHeader, AppFooter, and MobileNavigation
-│   │   ├── pricing/                     # Engagement tiers, SLA telemetry, and FAQ accordion
-│   │   ├── products/                    # Solutions Console and capability showcases
-│   │   ├── solutions/                   # Systems architecture blueprint components
 │   │   ├── ui/                          # shadcn-vue accessible primitives (button, input, etc.)
-│   │   └── visual/                      # Technical badges, dividers, and architectural frames
+│   │   ├── visual/                      # Technical badges, dividers, and architectural frames
+│   │   ├── CookieBanner.vue             # GDPR/Privacy cookie consent banner
+│   │   ├── ProductPageTemplate.vue      # Shared enterprise product subpage template
+│   │   └── WhatsAppWidget.vue           # Floating support consultation widget
 │   ├── layouts/
 │   │   └── default.vue                  # Primary layout wrapper
 │   ├── pages/
