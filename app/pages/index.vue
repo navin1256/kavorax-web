@@ -373,7 +373,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             text="Technology that&#10;moves business forward."
             as="h1"
             highlight="forward"
-            highlight-class="italic font-light text-brand"
+            highlight-class="text-brand font-normal"
             :base-delay-ms="200"
             :stagger-ms="55"
             :immediate="true"
@@ -597,8 +597,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             <ScrollTextReveal
               text="The modern enterprise cannot afford fragmented systems. We architect unified technologies that connect people, data and physical operations in synchronized motion."
               as="h2"
-              :highlight="['synchronized', 'motion.']"
-              highlight-class="italic font-light text-brand"
               :start-offset="0.88"
               :end-offset="0.32"
               class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.08] tracking-[-0.02em] text-balance"
@@ -682,8 +680,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             <WordReveal
               text="How connected systems function in unison."
               as="h2"
-              highlight="unison."
-              highlight-class="italic font-light text-brand"
               :threshold="0.12"
               :base-delay-ms="100"
               :stagger-ms="55"
@@ -1358,8 +1354,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           <ScrollTextReveal
             text="“We believe enterprise technology should empower organisations to operate with absolute clarity, interconnect critical operations, and scale with unwavering durability.”"
             as="blockquote"
-            highlight="clarity"
-            highlight-class="italic font-light text-brand"
             :start-offset="0.88"
             :end-offset="0.32"
             class="text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.1] tracking-tight"
@@ -1428,8 +1422,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           <WordReveal
             text="Ready to move your business forward?"
             as="h2"
-            highlight="forward"
-            highlight-class="italic font-light text-brand"
             :threshold="0.15"
             :base-delay-ms="180"
             :stagger-ms="55"

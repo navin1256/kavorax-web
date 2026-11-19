@@ -87,31 +87,28 @@ export default {
         display: ['"Fraunces"', 'Georgia', 'serif'],
         editorial: ['"Fraunces"', 'Georgia', 'serif'],
         ui: [
-          'Inter',
+          '"Anek Latin"',
           'system-ui',
           '-apple-system',
-          'BlinkMacSystemFont',
           'Segoe UI',
           'Roboto',
           'sans-serif'
         ],
         sans: [
-          'Inter',
+          '"Anek Latin"',
           'system-ui',
           '-apple-system',
-          'BlinkMacSystemFont',
           'Segoe UI',
           'Roboto',
           'sans-serif'
         ],
         mono: [
-          '"JetBrains Mono"',
-          'ui-monospace',
-          'SFMono-Regular',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          'monospace'
+          '"Anek Latin"',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif'
         ]
       },
       transitionTimingFunction: {

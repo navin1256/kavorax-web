@@ -290,7 +290,8 @@ const expectSteps = [
               text="See What Better-Connected Business Looks Like."
               as="h1"
               class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words"
-              :italic-words="['Business', 'Looks', 'Like.']"
+              highlight="Looks Like."
+              highlight-class="text-brand font-normal"
               :delay="240"
               :immediate="true"
             />
@@ -487,10 +488,9 @@ const expectSteps = [
               <h2
                 class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
               >
-                Help Us Frame the
-                <span class="italic font-light text-brand">Discussion</span>.
+                Help Us Frame the Discussion.
               </h2>
-              <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light">
+              <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
                 Every business runs on different operational systems and workflows. Providing context
                 in advance enables us to focus on the capabilities most relevant to your goals.
               </p>
@@ -939,8 +939,7 @@ const expectSteps = [
           <h2
             class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
           >
-            What to Expect from
-            <span class="italic font-light text-brand">the Conversation</span>.
+            What to Expect from the Conversation.
           </h2>
           <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
             Our demonstration conversations are designed to be focused, collaborative, and grounded in
@@ -1024,8 +1023,7 @@ const expectSteps = [
           <h2
             class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
           >
-            Let’s Explore
-            <span class="italic font-light text-brand">What’s Possible</span>.
+            Let’s Explore What’s Possible.
           </h2>
 
           <p
