@@ -50,6 +50,15 @@ const scrollToSection = (id: string) => {
   }
 }
 
+const cornerCrosshairs3 = ['top-3 left-3', 'top-3 right-3', 'bottom-3 left-3', 'bottom-3 right-3']
+const cornerCrosshairs4 = ['top-4 left-4', 'top-4 right-4', 'bottom-4 left-4', 'bottom-4 right-4']
+
+const overviewNavButtons = [
+  { section: 'operations-platform', icon: Cpu, label: 'Operations' },
+  { section: 'analytics-insights', icon: BarChart3, label: 'Analytics' },
+  { section: 'integration-hub', icon: Network, label: 'Integration' }
+]
+
 // --- 1. ProductsHero ---
 const isHeroMounted = ref(false)
 const activeOrb = ref(0)
@@ -442,9 +451,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
 
 <template>
   <div class="relative bg-[#0b0f14] overflow-x-hidden">
-    <!-- 1. Products Hero Section -->
     <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
-      <!-- Ambient Atmospheric Lighting -->
       <div
         class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] bg-brand/[0.08] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
@@ -453,12 +460,9 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         class="absolute bottom-10 right-10 w-[420px] h-[420px] bg-brand/[0.04] blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
       />
-
-      <!-- Architectural Tech Grid Background -->
       <div class="absolute inset-0 bg-tech-grid opacity-50 pointer-events-none -z-10" aria-hidden="true" />
 
       <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Top HUD Telemetry Metadata Strip -->
         <div
           class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
           :class="{ 'is-revealed': isHeroMounted }"
@@ -475,9 +479,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          <!-- Left Column: Editorial Headline, Storytelling & CTAs -->
           <div class="lg:col-span-6 xl:col-span-7 space-y-7">
-            <!-- Subtle Eyebrow Label -->
             <div
               class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
               :class="{ 'is-revealed': isHeroMounted }"
@@ -485,8 +487,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
               <span>Products &amp; Capabilities</span>
             </div>
-
-            <!-- Hero Headline with WordReveal -->
             <WordReveal
               text="Connected Solutions for Modern Businesses."
               as="h1"
@@ -495,8 +495,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               :delay="240"
               :immediate="true"
             />
-
-            <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
             <p
               class="font-ui text-base sm:text-lg text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
               :class="{ 'is-revealed': isHeroMounted }"
@@ -504,8 +502,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               Explore connected business solutions designed to simplify operations, improve visibility
               and help your organisation scale with confidence.
             </p>
-
-            <!-- Dual CTAs -->
             <div
               class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
               :class="{ 'is-revealed': isHeroMounted }"
@@ -529,8 +525,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 <ArrowDown class="h-4 w-4 text-brand group-hover:translate-y-0.5 transition-transform" />
               </button>
             </div>
-
-            <!-- Editorial Architecture Overview Indicators -->
             <div
               class="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-6 max-w-lg font-ui reveal-base transition-editorial duration-700 delay-800"
               :class="{ 'is-revealed': isHeroMounted }"
@@ -549,29 +543,21 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               </div>
             </div>
           </div>
-
-          <!-- Right Column: Bespoke Product Fabric Matrix Console -->
           <div
             class="lg:col-span-6 xl:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            <!-- Ambient Halo -->
             <div
               class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/20 via-transparent to-brand/10 blur-2xl opacity-75 pointer-events-none"
               aria-hidden="true"
             />
-
-            <!-- Matrix Console Container -->
             <div
               class="relative rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-6 sm:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl"
             >
-              <!-- Corner Crosshairs inspired by Active Theory -->
               <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
               <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
               <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
               <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
-              <!-- Console Header -->
               <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
                 <div class="flex items-center gap-2.5">
                   <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-brand/10 border border-brand/30 text-brand">
@@ -592,8 +578,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                   <span>3 Platforms Active</span>
                 </div>
               </div>
-
-              <!-- Interactive Tier List -->
               <div class="py-5 space-y-3 font-ui">
                 <div
                   v-for="(tier, index) in productTiers"
@@ -644,8 +628,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                       </div>
                     </div>
                   </div>
-
-                  <!-- Expanded Telemetry Panel when Active with Smooth Crossfade -->
                   <Transition name="tier-fade" mode="out-in">
                     <div
                       v-if="activeOrb === index"
@@ -675,8 +657,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                   </Transition>
                 </div>
               </div>
-
-              <!-- Inter-Tier Connection Visual Wire -->
               <div class="px-2 py-3 rounded-lg bg-[#070b10] border border-white/[0.05] flex items-center justify-between font-mono text-[10px] text-zinc-400">
                 <span class="flex items-center gap-1.5">
                   <CheckCircle2 class="h-3.5 w-3.5 text-brand" />
@@ -685,8 +665,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 <span class="text-emerald-400 font-medium">STANDARDIZED API BUS</span>
                 <span class="text-zinc-500">TLS 1.3 / mTLS</span>
               </div>
-
-              <!-- Bottom Console Footer -->
               <div class="pt-4 mt-2 border-t border-white/[0.08] flex items-center justify-between font-mono text-[11px] text-zinc-400">
                 <span class="flex items-center gap-1.5">
                   <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
@@ -699,10 +677,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         </div>
       </div>
     </section>
-
-    <!-- 2. Three Solution Categories Overview -->
     <div id="solutions-overview" class="py-24 md:py-32 bg-[#0b0f14] relative border-b border-white/[0.08]">
-      <!-- Background Ambient Refraction with Slow Drift -->
       <div
         class="absolute top-1/3 left-10 w-[500px] h-[500px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
@@ -713,7 +688,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Editorial Header with Scroll Reveal -->
         <section
           id="solutions-spectrum-header"
           ref="overviewHeaderRef"
@@ -733,56 +707,37 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               specifications, operational telemetry, and bespoke interface demonstrations.
             </p>
           </div>
-
-          <!-- Sticky Quick Jump Anchor Navigator -->
           <div
             class="flex flex-wrap items-center gap-2 p-1.5 rounded-xl border border-white/10 bg-[#0c131d]/90 backdrop-blur-md font-ui shrink-0 shadow-lg"
           >
             <button
+              v-for="btn in overviewNavButtons"
+              :key="btn.section"
               type="button"
               class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all flex items-center gap-2 cursor-pointer"
-              @click="scrollToSection('operations-platform')"
+              @click="scrollToSection(btn.section)"
             >
-              <Cpu class="h-3.5 w-3.5 text-brand" />
-              <span>Operations</span>
-            </button>
-            <button
-              type="button"
-              class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all flex items-center gap-2 cursor-pointer"
-              @click="scrollToSection('analytics-insights')"
-            >
-              <BarChart3 class="h-3.5 w-3.5 text-brand" />
-              <span>Analytics</span>
-            </button>
-            <button
-              type="button"
-              class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all flex items-center gap-2 cursor-pointer"
-              @click="scrollToSection('integration-hub')"
-            >
-              <Network class="h-3.5 w-3.5 text-brand" />
-              <span>Integration</span>
+              <component :is="btn.icon" class="h-3.5 w-3.5 text-brand" />
+              <span>{{ btn.label }}</span>
             </button>
           </div>
         </section>
-
-        <!-- PRODUCT 1: OPERATIONS PLATFORM (Workflow Orchestration) -->
         <section
           id="operations-platform"
           ref="product1Ref"
           class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isProduct1Revealed }"
         >
-          <!-- Invisible alias target for deep link #operations -->
           <div id="operations" class="absolute -top-32 left-0 pointer-events-none" />
 
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+          <div
+            v-for="pos in cornerCrosshairs3"
+            :key="pos"
+            :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+            aria-hidden="true"
+          >+</div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <!-- Left Info Column -->
             <div class="lg:col-span-6 space-y-6">
               <div class="flex items-center gap-3">
                 <div
@@ -804,8 +759,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
                 {{ products[0].description }}
               </p>
-
-              <!-- Verified Capabilities -->
               <div class="space-y-3 pt-2 font-ui">
                 <div
                   v-for="(cap, idx) in products[0].capabilities"
@@ -816,16 +769,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                   <span>{{ cap }}</span>
                 </div>
               </div>
-
-              <!-- Telemetry Metrics Bar -->
               <div class="pt-6 border-t border-white/[0.06] grid grid-cols-3 gap-4 font-ui">
                 <div v-for="m in products[0].metrics" :key="m.label">
                   <div class="text-[11px] text-zinc-400 font-mono">{{ m.label }}</div>
                   <div class="font-mono text-base font-semibold text-white mt-1">{{ m.value }}</div>
                 </div>
               </div>
-
-              <!-- CTAs -->
               <div class="pt-4 flex flex-wrap items-center gap-4 font-ui">
                 <NuxtLink :to="products[0].ctaLink">
                   <Button
@@ -843,16 +792,11 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 </NuxtLink>
               </div>
             </div>
-
-            <!-- Right: Bespoke Custom Interface Illustration (Interactive Workflow State Machine Canvas) -->
             <div class="lg:col-span-6">
               <div
                 class="rounded-xl border border-white/[0.1] bg-[#070b10] p-6 space-y-5 font-mono text-xs shadow-2xl relative overflow-hidden"
               >
-                <!-- Top Glow Bar -->
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand to-transparent opacity-75" />
-
-                <!-- Console Header -->
                 <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-zinc-400">
                   <div class="flex items-center gap-2">
                     <Workflow class="h-4 w-4 text-brand" />
@@ -862,8 +806,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     <TelemetryBadge label="DISPATCH" metric="6MS" status="active" />
                   </div>
                 </div>
-
-                <!-- Interactive Step Nodes -->
                 <div class="space-y-3 font-ui">
                   <div
                     v-for="(stg, index) in opsStages"
@@ -901,8 +843,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
                       {{ stg.desc }}
                     </p>
-
-                    <!-- Smooth Crossfade for Target Dispatch -->
                     <Transition name="console-fade" mode="out-in">
                       <div
                         :key="activeOpsStage"
@@ -915,8 +855,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     </Transition>
                   </div>
                 </div>
-
-                <!-- Terminal Telemetry Footer -->
                 <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400 font-mono">
                   <span class="flex items-center gap-1.5">
                     <ShieldCheck class="h-3.5 w-3.5 text-brand" />
@@ -928,33 +866,27 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             </div>
           </div>
         </section>
-
-        <!-- PRODUCT 2: ANALYTICS & INSIGHTS (Continuous Telemetry) -->
         <section
           id="analytics-insights"
           ref="product2Ref"
           class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isProduct2Revealed }"
         >
-          <!-- Invisible alias target for deep link #analytics-intelligence -->
           <div id="analytics-intelligence" class="absolute -top-32 left-0 pointer-events-none" />
 
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+          <div
+            v-for="pos in cornerCrosshairs3"
+            :key="pos"
+            :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+            aria-hidden="true"
+          >+</div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <!-- Left: Bespoke Custom Interface Illustration (Interactive Telemetry Cockpit & Sparklines) -->
             <div class="lg:col-span-6 order-2 lg:order-1">
               <div
                 class="rounded-xl border border-white/[0.1] bg-[#070b10] p-6 space-y-5 font-mono text-xs shadow-2xl relative overflow-hidden"
               >
-                <!-- Top Glow Bar -->
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-75" />
-
-                <!-- Cockpit Header -->
                 <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-zinc-400">
                   <div class="flex items-center gap-2">
                     <BarChart3 class="h-4 w-4 text-cyan-400" />
@@ -965,8 +897,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     <span>STREAMING</span>
                   </div>
                 </div>
-
-                <!-- Multi-Channel Selector -->
                 <div class="flex items-center gap-2 p-1 rounded-lg bg-[#0b1018] border border-white/[0.05] text-[11px]">
                   <button
                     type="button"
@@ -993,8 +923,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     Anomaly Radar
                   </button>
                 </div>
-
-                <!-- Signal Visualizer Graph Display with Smooth Panel Crossfade -->
                 <Transition name="console-fade" mode="out-in">
                   <div
                     :key="activeAnalyticsChannel"
@@ -1004,8 +932,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                       <span class="text-white font-semibold">{{ channelData[activeAnalyticsChannel].title }}</span>
                       <span class="text-cyan-400 font-mono">{{ channelData[activeAnalyticsChannel].rate }}</span>
                     </div>
-
-                    <!-- Dynamic Visual Bars Spectrum -->
                     <div class="h-28 flex items-end gap-2 pt-3 px-1 border-b border-white/[0.05] pb-2">
                       <div
                         v-for="(height, bIdx) in channelData[activeAnalyticsChannel].bars"
@@ -1028,8 +954,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     </div>
                   </div>
                 </Transition>
-
-                <!-- Cockpit Telemetry Footer -->
                 <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400">
                   <span class="flex items-center gap-1.5">
                     <Activity class="h-3.5 w-3.5 text-cyan-400" />
@@ -1039,8 +963,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 </div>
               </div>
             </div>
-
-            <!-- Right Info Column -->
             <div class="lg:col-span-6 space-y-6 order-1 lg:order-2">
               <div class="flex items-center gap-3">
                 <div
@@ -1062,8 +984,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
                 {{ products[1].description }}
               </p>
-
-              <!-- Verified Capabilities -->
               <div class="space-y-3 pt-2 font-ui">
                 <div
                   v-for="(cap, idx) in products[1].capabilities"
@@ -1074,16 +994,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                   <span>{{ cap }}</span>
                 </div>
               </div>
-
-              <!-- Telemetry Metrics Bar -->
               <div class="pt-6 border-t border-white/[0.06] grid grid-cols-3 gap-4 font-ui">
                 <div v-for="m in products[1].metrics" :key="m.label">
                   <div class="text-[11px] text-zinc-400 font-mono">{{ m.label }}</div>
                   <div class="font-mono text-base font-semibold text-white mt-1">{{ m.value }}</div>
                 </div>
               </div>
-
-              <!-- CTAs -->
               <div class="pt-4 flex flex-wrap items-center gap-4 font-ui">
                 <NuxtLink :to="products[1].ctaLink">
                   <Button
@@ -1103,25 +1019,22 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             </div>
           </div>
         </section>
-
-        <!-- PRODUCT 3: INTEGRATION HUB (Interoperability Fabric) -->
         <section
           id="integration-hub"
           ref="product3Ref"
           class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isProduct3Revealed }"
         >
-          <!-- Invisible alias target for deep link #integrations -->
           <div id="integrations" class="absolute -top-32 left-0 pointer-events-none" />
 
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+          <div
+            v-for="pos in cornerCrosshairs3"
+            :key="pos"
+            :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+            aria-hidden="true"
+          >+</div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <!-- Left Info Column -->
             <div class="lg:col-span-6 space-y-6">
               <div class="flex items-center gap-3">
                 <div
@@ -1143,8 +1056,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
                 {{ products[2].description }}
               </p>
-
-              <!-- Verified Capabilities -->
               <div class="space-y-3 pt-2 font-ui">
                 <div
                   v-for="(cap, idx) in products[2].capabilities"
@@ -1155,16 +1066,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                   <span>{{ cap }}</span>
                 </div>
               </div>
-
-              <!-- Telemetry Metrics Bar -->
               <div class="pt-6 border-t border-white/[0.06] grid grid-cols-3 gap-4 font-ui">
                 <div v-for="m in products[2].metrics" :key="m.label">
                   <div class="text-[11px] text-zinc-400 font-mono">{{ m.label }}</div>
                   <div class="font-mono text-base font-semibold text-white mt-1">{{ m.value }}</div>
                 </div>
               </div>
-
-              <!-- CTAs -->
               <div class="pt-4 flex flex-wrap items-center gap-4 font-ui">
                 <NuxtLink :to="products[2].ctaLink">
                   <Button
@@ -1182,16 +1089,11 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 </NuxtLink>
               </div>
             </div>
-
-            <!-- Right: Bespoke Custom Interface Illustration (Universal Protocol Bridge & Envelope Inspector) -->
             <div class="lg:col-span-6">
               <div
                 class="rounded-xl border border-white/[0.1] bg-[#070b10] p-6 space-y-5 font-mono text-xs shadow-2xl relative overflow-hidden"
               >
-                <!-- Top Glow Bar -->
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand to-transparent opacity-75" />
-
-                <!-- Console Header -->
                 <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-zinc-400">
                   <div class="flex items-center gap-2">
                     <Network class="h-4 w-4 text-emerald-400" />
@@ -1201,8 +1103,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     45+ ADAPTERS
                   </span>
                 </div>
-
-                <!-- Interactive Protocol Selector -->
                 <div class="flex items-center gap-2 p-1 rounded-lg bg-[#0b1018] border border-white/[0.05] text-[11px]">
                   <button
                     type="button"
@@ -1229,11 +1129,8 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     Event Pub/Sub
                   </button>
                 </div>
-
-                <!-- Protocol Bridge Flow Schematic with Self-Drawing SVG Conduit -->
                 <div class="p-4 rounded-xl bg-[#04070a] border border-white/[0.04] space-y-3">
                   <div class="flex items-center justify-between gap-3">
-                    <!-- Inbound Source -->
                     <div class="flex-1 p-3.5 rounded-lg border border-white/[0.08] bg-[#0c121a] text-center">
                       <div class="text-[10px] text-zinc-500">SOURCE NODE</div>
                       <div class="text-xs font-semibold text-white mt-1">Enterprise ERP</div>
@@ -1247,8 +1144,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                       <ArrowRightLeft class="h-4 w-4 text-brand animate-pulse-subtle" />
                       <span class="text-[9px] font-mono text-zinc-500">{{ protocolDetails[activeProtocol].latency }}</span>
                     </div>
-
-                    <!-- Outbound Target -->
                     <div class="flex-1 p-3.5 rounded-lg border border-brand/30 bg-brand/[0.06] text-center">
                       <div class="text-[10px] text-brand">TARGET CLUSTER</div>
                       <div class="text-xs font-semibold text-white mt-1">Multi-Cloud SaaS</div>
@@ -1258,8 +1153,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                       </div>
                     </div>
                   </div>
-
-                  <!-- Self-Drawing Technical SVG Connector between Nodes -->
                   <div class="py-1 px-2" aria-hidden="true">
                     <svg class="w-full h-3 overflow-visible" viewBox="0 0 360 12" fill="none">
                       <line x1="8" y1="6" x2="352" y2="6" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 4" />
@@ -1274,8 +1167,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                       <circle cx="180" cy="6" r="2.5" fill="#10b981" class="animate-pulse-subtle" />
                     </svg>
                   </div>
-
-                  <!-- Live Encrypted Payload Envelope with Smooth Panel Crossfade -->
                   <Transition name="console-fade" mode="out-in">
                     <div
                       :key="activeProtocol"
@@ -1301,8 +1192,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     </div>
                   </Transition>
                 </div>
-
-                <!-- Terminal Telemetry Footer -->
                 <div class="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400 font-mono">
                   <span class="flex items-center gap-1.5">
                     <Zap class="h-3.5 w-3.5 text-brand" />
@@ -1314,8 +1203,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             </div>
           </div>
         </section>
-
-        <!-- INTER-PRODUCT INTELLIGENCE MESH (Supported by Real Data) -->
         <section id="system-mesh-section" class="mt-20 pt-16 border-t border-white/[0.08]">
           <div
             id="system-mesh"
@@ -1323,7 +1210,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             class="rounded-2xl border border-white/[0.08] bg-[#0a1017]/90 p-8 sm:p-12 backdrop-blur-xl relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
             :class="{ 'is-revealed': isMeshRevealed }"
           >
-            <!-- Crosshairs -->
             <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
             <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
@@ -1336,8 +1222,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 Operations emit real-time event signals. Analytics continuously ingest telemetry. Integration Hub synchronizes state with external systems.
               </p>
             </div>
-
-            <!-- Self-Drawing Interconnect Bus SVG Conduit -->
             <div class="hidden md:block relative w-full h-6 -mb-3 z-10 px-12 pointer-events-none" aria-hidden="true">
               <svg class="w-full h-6 overflow-visible" viewBox="0 0 800 24" fill="none">
                 <path
@@ -1361,14 +1245,11 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     <stop offset="100%" stop-color="#34d399" />
                   </linearGradient>
                 </defs>
-                <!-- Interactive node anchor points -->
                 <circle cx="130" cy="12" r="4" fill="#10b981" class="draw-node" :class="{ 'is-revealed': isMeshRevealed }" />
                 <circle cx="400" cy="12" r="4" fill="#06b6d4" class="draw-node" :class="{ 'is-revealed': isMeshRevealed }" />
                 <circle cx="670" cy="12" r="4" fill="#34d399" class="draw-node" :class="{ 'is-revealed': isMeshRevealed }" />
               </svg>
             </div>
-
-            <!-- Dynamic Connection Bridge Diagram with Staggered Card Entrance -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
               <div
                 class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-all reveal-card stagger-1"
@@ -1434,17 +1315,13 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         </section>
       </div>
     </div>
-
-    <!-- 3. Connected Architecture Interconnection Section -->
     <section class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
-      <!-- Ambient Depth Lighting with Drift -->
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Header with Scroll Reveal -->
         <div
           ref="connArchHeaderRef"
           class="max-w-3xl mx-auto text-center space-y-4 reveal-base transition-editorial duration-700"
@@ -1465,8 +1342,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             capabilities seamlessly tomorrow.
           </p>
         </div>
-
-        <!-- Architectural Matrix Diagram Container with Scroll Reveal -->
         <div
           ref="connArchMatrixRef"
           class="mt-16 max-w-5xl mx-auto reveal-base transition-editorial duration-700"
@@ -1475,13 +1350,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
           <div
             class="rounded-2xl border border-white/[0.1] bg-[#0c131c]/90 p-6 sm:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl relative"
           >
-            <!-- Corner Crosshairs -->
-            <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
-            <!-- Top Diagram Telemetry Bar -->
+            <div
+              v-for="pos in cornerCrosshairs3"
+              :key="pos"
+              :class="['absolute font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
+              aria-hidden="true"
+            >+</div>
             <div
               class="flex items-center justify-between pb-6 mb-8 border-b border-white/[0.08] font-ui text-xs"
             >
@@ -1494,8 +1368,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 <span class="text-brand font-semibold">ACTIVE MESH</span>
               </div>
             </div>
-
-            <!-- Central Architectural Quad Matrix with Staggered Entrance -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
               <div
                 v-for="(node, index) in nodes"
@@ -1546,8 +1418,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                     {{ node.description }}
                   </p>
                 </div>
-
-                <!-- Node Telemetry Footer -->
                 <div
                   class="mt-6 pt-3.5 border-t border-white/[0.06] flex items-center justify-between font-mono text-[11px] text-zinc-400"
                 >
@@ -1559,8 +1429,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 </div>
               </div>
             </div>
-
-            <!-- Bottom Visual Ribbon: Unified Synchronization Status -->
             <div
               class="mt-8 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400"
             >
@@ -1577,17 +1445,13 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         </div>
       </div>
     </section>
-
-    <!-- 4. Business Value Foundations -->
     <section class="py-24 md:py-32 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
-      <!-- Ambient Depth Lighting with Drift -->
       <div
         class="absolute top-1/2 right-10 -translate-y-1/2 w-[500px] h-[400px] bg-brand/[0.03] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Header with Scroll Reveal -->
         <div
           ref="valueHeaderRef"
           class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
@@ -1606,8 +1470,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             value.
           </p>
         </div>
-
-        <!-- Architectural Value Continuum Ledger with Staggered Card Reveals -->
         <div
           ref="valueGridRef"
           class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8"
@@ -1621,11 +1483,9 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               isValueGridRevealed ? 'is-revealed' : ''
             ]"
           >
-            <!-- Corner Crosshair -->
             <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
 
             <div>
-              <!-- Top Ledger Index & Pillar -->
               <div class="flex items-center justify-between pb-6 border-b border-white/[0.06] mb-6">
                 <div class="flex items-center gap-2">
                   <span class="font-mono text-xs text-brand font-semibold">{{ item.index }} //</span>
@@ -1649,8 +1509,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
                 {{ item.description }}
               </p>
             </div>
-
-            <!-- Bottom Telemetry Metric -->
             <div class="mt-8 pt-5 border-t border-white/[0.06] flex items-center justify-between font-mono text-[11px]">
               <span class="text-zinc-500">KAVORAX PRINCIPLE</span>
               <span class="text-emerald-400 flex items-center gap-1">
@@ -1662,17 +1520,13 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         </div>
       </div>
     </section>
-
-    <!-- 5. Solution Selection / Guidance -->
     <section class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
-      <!-- Ambient Depth Lighting with Drift -->
       <div
         class="absolute top-1/3 left-10 w-[550px] h-[450px] bg-brand/[0.03] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Header with Scroll Reveal -->
         <div
           ref="selectionHeaderRef"
           class="max-w-3xl space-y-4 reveal-base transition-editorial duration-700"
@@ -1690,8 +1544,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             resolve immediate challenges, then interconnect additional layers over time.
           </p>
         </div>
-
-        <!-- Scenarios List with Staggered Card Entrance -->
         <div
           ref="scenariosRef"
           class="mt-14 space-y-5"
@@ -1705,7 +1557,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               isScenariosRevealed ? 'is-revealed' : ''
             ]"
           >
-            <!-- Corner Crosshair -->
             <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
             <div class="space-y-2.5 max-w-3xl">
@@ -1743,14 +1594,11 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
             </div>
           </div>
         </div>
-
-        <!-- Bottom Advisory Banner with Scroll Reveal -->
         <div
           ref="advisoryRef"
           class="mt-14 rounded-2xl border border-white/[0.1] bg-[#0e1622]/90 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isAdvisoryRevealed }"
         >
-          <!-- Top Glow Accent -->
           <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand to-transparent opacity-80" />
 
           <div class="space-y-2">
@@ -1780,12 +1628,9 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         </div>
       </div>
     </section>
-
-    <!-- 6. Final Products Call to Action -->
     <section
       class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <!-- Cinematic Ambient Depth Lighting with Drift -->
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
@@ -1794,8 +1639,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         class="absolute bottom-0 right-1/4 w-[360px] h-[360px] bg-cyan-500/[0.04] blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
         aria-hidden="true"
       />
-
-      <!-- Subtle Tech Grid -->
       <div class="absolute inset-0 bg-tech-grid opacity-35 pointer-events-none -z-10" aria-hidden="true" />
 
       <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -1804,33 +1647,24 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
           class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isCtaRevealed }"
         >
-          <!-- Corner Crosshairs inspired by Active Theory -->
           <div class="absolute top-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
           <div class="absolute top-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
           <div class="absolute bottom-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
           <div class="absolute bottom-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
-          <!-- Top Chapter & Status Tag -->
           <div class="flex justify-center mb-6">
             <ChapterLabel label="Get Started" />
           </div>
-
-          <!-- Headline with WordReveal -->
           <WordReveal
             as="h2"
             text="Let's Build a More Connected Business."
             :italic-words="['Connected', 'Business.']"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.08] text-balance-editorial max-w-3xl mx-auto"
           />
-
-          <!-- Supporting Copy -->
           <p
             class="mt-6 font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
           >
             Tell us about your requirements and start a conversation with KavoraX.
           </p>
-
-          <!-- Action CTAs -->
           <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
@@ -1853,8 +1687,6 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
               </Button>
             </NuxtLink>
           </div>
-
-          <!-- Verification Indicators Footer -->
           <div class="mt-12 pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] text-zinc-400">
             <div class="flex items-center gap-2">
               <ShieldCheck class="h-3.5 w-3.5 text-brand" />
