@@ -1,22 +1,48 @@
 # KavoraX — Brand Overrides (these rules take priority over everything below)
 
-- Company: KavoraX Global Private Limited. Brand: **KavoraX**. Primary domain: **kavorax.com**.
-- Brand Green: `#08E888` (alt `#08EC8D`), Black: `#0A0A0A`, White: `#FFFFFF`.
-  The existing KavoraX logo and its **green gradient/glow character must be kept**.
-  Do NOT change these brand colours to the blue/navy palette suggested by the skill.
-- Neutral scale: Neutral Dark `#0F172A`, Neutral Medium `#475569`, Neutral Light `#94A3B8`,
-  Off-White `#F8FAFC`. Pure Black `#000000` for deep backgrounds.
-- Fonts: Fraunces (editorial serif) for hero/display titles; Inter for body copy and UI;
-  Anek Devanagari / Anek Tamil / IBM Plex Sans Arabic for regional scripts.
-- Markets: India first (₹ pricing), then Oman/GCC (OMR).
-- Positioning: B2B SaaS "complete business operations platform" for retail, hospitality,
-  restaurants and salons. A serious business-technology platform, **not a basic POS tool**.
-- Technical stack: Nuxt 4 + Vue 3 (Composition API, `<script setup lang="ts">`) + Tailwind CSS v4 +
-  shadcn-vue (NOT React shadcn/ui) + lucide-vue-next icons. Use `--stack nuxtjs` or
-  `--stack vue` for stack guidance, never React stacks.
-- Every page must stay SSR/prerendered. Use logical CSS properties (`ms-`, `me-`,
-  `ps-`, `pe-`, `start-`, `end-`) so Arabic RTL works.
-- No new files in `app/pages/` other than real routes.
+The generated content further down is reference material only. Where it conflicts with
+this section, this section wins. IGNORE the generated Style (glassmorphism), Colors
+(blue / orange / slate) and Typography recommendations.
+
+## Product & audience
+- KavoraX Global Private Limited: B2B business-operations platform — POS & Billing,
+  Inventory & Stock, Kitchen Display (KDS), Digital Ordering, CRM & Loyalty, Delivery
+  Management, Business Analytics, Multi-Location Management, E-commerce, Business Management.
+- Customers: restaurants, cafes, hospitality, retail & convenience stores, salons,
+  e-commerce and growing SMEs. India first (₹ INR, GST), then Oman / GCC (OMR).
+
+## Colours
+- Brand Green #08E888 (alt #08EC8D), Black #0A0A0A, White #FFFFFF.
+- Neutrals are pure grey/black: #0A0A0A, #111111, #161616, #1C1C1C; borders
+  rgba(255,255,255,.08/.14); text #FFFFFF, #A3A3A3, #737373. Light sections: #FFFFFF /
+  #F5F5F4 with #0A0A0A and #525252 text.
+- Never: #10B981, #34D399, emerald-*, slate-* (#0F172A, #475569, #94A3B8, #F8FAFC),
+  navy surfaces, cyan, blue, orange, purple.
+- Brand green is never text on white. On light backgrounds it is only a fill, border,
+  icon background or chart colour.
+
+## Typography (decided)
+- Fraunces: large display headlines only, upright. No green-italic "last words" pattern.
+- Inter: body, UI, navigation, forms, tables, H3–H6, and all prices/figures (tabular-nums).
+- JetBrains Mono: rare small technical details only. Never for prices or ₹ (no ₹ glyph).
+- Hindi / Tamil / Arabic companion fonts will be chosen when those languages launch.
+
+## Signature effect
+- The logo's green glow is the single signature effect, used at most once or twice
+  per page. No ambient blur blobs.
+
+## Avoid (AI-generated tells)
+- Glassmorphism / backdrop-blur cards, corner "+" crosshairs, fake HUD or monospace
+  telemetry labels, tiny uppercase pills everywhere, word-by-word reveal on every heading.
+- The same centred hero + 3-card grid + CTA box on every page; identical section padding.
+- Stock photos of offices, skyscrapers, server racks or hospitals.
+- Invented metrics, SLAs, certifications, customer logos or testimonials.
+- Buzzwords: seamless, empower, unlock, elevate, revolutionise, transform, cutting-edge,
+  next-generation, synergy, telemetry, orchestration, mission-critical.
+
+## Stack rules
+- Nuxt 4 + Vue 3 + Tailwind v4 + shadcn-vue + lucide-vue-next. SSR/prerendered pages.
+- Logical CSS properties for RTL. No new files in app/pages/.
 
 ---
 
