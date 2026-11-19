@@ -37,6 +37,15 @@ useHead({
   ]
 })
 
+const cornerCrosshairs3 = ['top-3 left-3', 'top-3 right-3', 'bottom-3 left-3', 'bottom-3 right-3']
+
+const archSvgNodes = [
+  { id: 'operations' as const, cx: 80, label: 'OPERATIONS' },
+  { id: 'telemetry' as const, cx: 320, label: 'ANALYTICS' },
+  { id: 'integration' as const, cx: 600, label: 'INTEGRATIONS' },
+  { id: 'governance' as const, cx: 880, label: 'SECURITY' }
+]
+
 // --- 1. HeroSection ---
 const heroRef = ref<HTMLElement | null>(null)
 const capRef = ref<HTMLElement | null>(null)
@@ -50,7 +59,7 @@ const { isRevealed: isCapRevealed } = useScrollReveal(capRef, { threshold: 0.15 
 onMounted(() => {
   if (typeof window !== 'undefined' && 'IntersectionObserver' in window && heroRef.value) {
     const obs = new IntersectionObserver(([entry]) => {
-      isHeroVisible.value = entry.isIntersecting
+      isHeroVisible.value = entry ? entry.isIntersecting : false
     }, { rootMargin: '100px 0px 100px 0px' })
     obs.observe(heroRef.value)
     onUnmounted(() => obs.disconnect())
@@ -304,14 +313,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
 
 <template>
   <div class="relative bg-[#080c10] overflow-x-hidden">
-    <!-- 1. Cinematic Hero with focal point & scroll indicator -->
     <div class="relative bg-[#070D10] text-white">
-      <!-- 1. CINEMATIC OPENING HERO SECTION -->
       <section
         ref="heroRef"
         class="hero-cinematic-bg relative min-h-[660px] sm:min-h-[700px] md:min-h-[740px] lg:min-h-[780px] xl:min-h-[820px] flex flex-col justify-between overflow-hidden bg-[#070D10] text-white selection:bg-brand/20 selection:text-brand"
       >
-        <!-- Background Architectural Photography Visual -->
         <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <img
             src="/images/fintech-headquarters.webp"
@@ -324,16 +330,12 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             class="h-full w-full object-cover object-[center_32%] md:object-[center_28%] lg:object-[center_25%] opacity-40 filter brightness-[0.75] contrast-[1.10] scale-[1.01] animate-hero-drift"
             :style="{ animationPlayState: isHeroVisible ? 'running' : 'paused' }"
           >
-
-          <!-- Layered Dark Linear Gradients -->
           <div class="absolute inset-0 bg-[#070D10]/65" />
           <div class="absolute inset-0 bg-gradient-to-r from-[#070D10]/85 via-transparent to-[#070D10]/85" />
           <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#070D10] via-[#070D10]/85 to-transparent" />
           <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#070D10] via-[#070D10]/95 to-transparent" />
           <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none animate-ambient-drift" />
         </div>
-
-        <!-- Top Metadata Ribbon (Clean Enterprise Identity) -->
         <div
           class="relative z-10 pt-7 sm:pt-9 reveal-base delay-75"
           :class="{ 'is-revealed': isHeroRevealed }"
@@ -357,10 +359,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             </div>
           </div>
         </div>
-
-        <!-- Centered Hero Typography & Core CTA Area -->
         <div class="relative z-10 container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-12 sm:pb-16 text-center my-auto">
-          <!-- Eyebrow Pill -->
           <div
             class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 backdrop-blur-md shadow-sm reveal-base delay-100"
             :class="{ 'is-revealed': isHeroRevealed }"
@@ -370,8 +369,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               Connected Business Solutions
             </span>
           </div>
-
-          <!-- Headline: Word-by-word reveal with italic emerald flourish -->
           <WordReveal
             text="Technology that&#10;moves business forward."
             as="h1"
@@ -382,8 +379,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             :immediate="true"
             class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-normal tracking-[-0.025em] text-white leading-[1.08] max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
           />
-
-          <!-- Supporting Text -->
           <p
             class="mt-5 sm:mt-6 font-editorial text-lg sm:text-xl md:text-[1.45rem] lg:text-[1.55rem] text-zinc-200 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed text-pretty font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] reveal-base delay-500"
             :class="{ 'is-revealed': isHeroRevealed }"
@@ -391,8 +386,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             KavoraX builds connected business solutions that help organisations operate smarter,
             serve customers better and scale with confidence.
           </p>
-
-          <!-- Dual CTAs -->
           <div
             class="mt-8 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui reveal-base delay-700"
             :class="{ 'is-revealed': isHeroRevealed }"
@@ -421,8 +414,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             </NuxtLink>
           </div>
         </div>
-
-        <!-- Scroll Indicator -->
         <div
           class="relative z-10 pb-6 sm:pb-8 flex justify-center reveal-base delay-800"
           :class="{ 'is-revealed': isHeroRevealed }"
@@ -438,26 +429,22 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           </button>
         </div>
       </section>
-
-      <!-- 2. ENTERPRISE ARCHITECTURE SHOWCASE & 3 CAPABILITY CARDS -->
       <section
         id="enterprise-capabilities"
         ref="capRef"
         class="relative z-10 pt-4 pb-16 sm:pb-20 border-b border-white/[0.08] bg-[#070D10] bg-technical-grid"
       >
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <!-- Visual Architecture System Stage -->
           <div
             class="relative rounded-2xl border border-white/[0.09] bg-[#0c131d]/90 p-6 sm:p-8 md:p-10 overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)] mb-8 reveal-base"
             :class="{ 'is-revealed': isCapRevealed }"
           >
-            <!-- Corner Crosshairs -->
-            <div class="absolute top-3 left-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-3 right-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 left-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 right-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-
-            <!-- Section Label & Architecture Indicator -->
+            <div
+              v-for="pos in cornerCrosshairs3"
+              :key="pos"
+              :class="['absolute z-30 font-mono text-xs text-brand/60 select-none pointer-events-none', pos]"
+              aria-hidden="true"
+            >+</div>
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-6 mb-8">
               <div class="space-y-1">
                 <div class="flex items-center gap-2">
@@ -481,10 +468,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 </span>
               </div>
             </div>
-
-            <!-- Interactive Enterprise Architecture Flow Diagram -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-              <!-- Node A: Universal Integration -->
               <div class="rounded-xl border border-white/[0.08] bg-[#0f1722] p-5 flex flex-col justify-between h-full relative group hover:border-brand/30 transition-colors">
                 <div class="space-y-3">
                   <div class="flex items-center justify-between text-xs font-ui text-zinc-400">
@@ -506,8 +490,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                   <span class="px-2 py-0.5 rounded bg-black/50 border border-white/5">Real-Time Sync</span>
                 </div>
               </div>
-
-              <!-- Central Bridge Connector -->
               <div class="rounded-xl border border-brand/25 bg-brand/[0.04] p-5 flex flex-col justify-between h-full relative group hover:border-brand/40 transition-colors">
                 <div class="space-y-3">
                   <div class="flex items-center justify-between text-xs font-ui text-brand">
@@ -529,8 +511,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                   <span class="px-2 py-0.5 rounded bg-black/50 border border-white/5">Zero-Latency Bus</span>
                 </div>
               </div>
-
-              <!-- Node B: Continuous Telemetry -->
               <div class="rounded-xl border border-white/[0.08] bg-[#0f1722] p-5 flex flex-col justify-between h-full relative group hover:border-brand/30 transition-colors">
                 <div class="space-y-3">
                   <div class="flex items-center justify-between text-xs font-ui text-zinc-400">
@@ -554,8 +534,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </div>
             </div>
           </div>
-
-          <!-- 3 CAPABILITY CARDS -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-ui items-stretch">
             <div
               v-for="(cap, cIdx) in enterpriseCapabilities"
@@ -597,31 +575,24 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </section>
     </div>
-
-    <!-- 2. Editorial Introduction -->
     <section
       id="editorial-intro"
       ref="introSectionRef"
       class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
     >
-      <!-- Subtle Background Ambient Glow -->
       <div
         class="absolute top-1/2 -left-48 w-96 h-96 bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Eyebrow Tag -->
         <div
           class="pb-8 border-b border-white/[0.08] mb-16 flex items-center justify-between reveal-base"
           :class="{ 'is-revealed': isIntroRevealed }"
         >
           <ChapterLabel label="Technology That Works Better Together" />
         </div>
-
-        <!-- Asymmetrical Editorial Spread -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <!-- Left: Oversized Typographic Manifesto & Context -->
           <div class="lg:col-span-7 space-y-8">
             <ScrollTextReveal
               text="The modern enterprise cannot afford fragmented systems. We architect unified technologies that connect people, data and physical operations in synchronized motion."
@@ -662,8 +633,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </NuxtLink>
             </div>
           </div>
-
-          <!-- Right: Sequential Editorial Continuum -->
           <div class="lg:col-span-5 space-y-8 font-ui">
             <div class="space-y-8">
               <div
@@ -694,20 +663,16 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </div>
     </section>
-
-    <!-- 3. Connected Architecture Visual -->
     <section
       ref="archTargetRef"
       class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
     >
-      <!-- Ambient emerald atmospheric glows -->
       <div
         class="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Chapter Header -->
         <div
           class="pb-8 border-b border-white/[0.08] mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isArchRevealed }"
@@ -729,8 +694,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             KavoraX architecture connects your tools, workflows, and data into a synchronized system engineered for business growth and stability.
           </p>
         </div>
-
-        <!-- Technical Architecture Interconnect Bus -->
         <div
           class="mb-12 rounded-2xl border border-white/10 bg-[#0c1420]/80 backdrop-blur-md p-5 sm:p-7 relative overflow-hidden reveal-card transition-editorial duration-700 delay-100"
           :class="{ 'is-revealed': isArchRevealed }"
@@ -746,8 +709,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <span class="text-brand font-semibold hidden sm:inline">SYNCHRONIZED</span>
             </div>
           </div>
-
-          <!-- SVG Technical Connection Canvas -->
           <div class="relative w-full overflow-hidden">
             <svg
               viewBox="0 0 960 70"
@@ -756,11 +717,8 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               xmlns="http://www.w3.org/2000/svg"
               aria-label="KavoraX Interconnected Systems Architecture Schematic"
             >
-              <!-- 1. Background static guide tracks (fine dotted hairline) -->
               <line x1="80" y1="35" x2="880" y2="35" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="4 6" />
               <line x1="80" y1="52" x2="880" y2="52" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-
-              <!-- 2. Secondary telemetry paths -->
               <path
                 d="M 80 52 L 320 52 L 320 35 M 320 52 L 600 52 L 600 35 M 600 52 L 880 52 L 880 35"
                 stroke="#64748b"
@@ -770,8 +728,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 class="draw-path-secondary"
                 :class="{ 'is-revealed': isArchRevealed }"
               />
-
-              <!-- 3. Primary Connection Backbone -->
               <path
                 d="M 80 35 L 880 35"
                 stroke="#10b981"
@@ -780,46 +736,22 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 class="draw-path-primary drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]"
                 :class="{ 'is-revealed': isArchRevealed }"
               />
-
-              <!-- 4. Interactive Layer Nodes -->
-              <!-- Node 01: Workflows & Operations -->
-              <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isArchRevealed }" @click="activeLayerId = 'operations'">
-                <circle v-if="activeLayerId === 'operations'" cx="80" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
-                <circle cx="80" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'operations' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
-                <circle cx="80" cy="35" r="5" :fill="activeLayerId === 'operations' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-                <text x="80" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">OPERATIONS</text>
-              </g>
-
-              <!-- Node 02: Data & Telemetry -->
-              <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isArchRevealed }" @click="activeLayerId = 'telemetry'">
-                <circle v-if="activeLayerId === 'telemetry'" cx="320" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
-                <circle cx="320" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'telemetry' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
-                <circle cx="320" cy="35" r="5" :fill="activeLayerId === 'telemetry' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-                <text x="320" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">ANALYTICS</text>
-              </g>
-
-              <!-- Node 03: Universal Integration -->
-              <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isArchRevealed }" @click="activeLayerId = 'integration'">
-                <circle v-if="activeLayerId === 'integration'" cx="600" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
-                <circle cx="600" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'integration' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
-                <circle cx="600" cy="35" r="5" :fill="activeLayerId === 'integration' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-                <text x="600" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">INTEGRATIONS</text>
-              </g>
-
-              <!-- Node 04: Governance & Security -->
-              <g class="draw-node cursor-pointer group" :class="{ 'is-revealed': isArchRevealed }" @click="activeLayerId = 'governance'">
-                <circle v-if="activeLayerId === 'governance'" cx="880" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
-                <circle cx="880" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === 'governance' ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
-                <circle cx="880" cy="35" r="5" :fill="activeLayerId === 'governance' ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-                <text x="880" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">SECURITY</text>
+              <g
+                v-for="node in archSvgNodes"
+                :key="node.id"
+                class="draw-node cursor-pointer group"
+                :class="{ 'is-revealed': isArchRevealed }"
+                @click="activeLayerId = node.id"
+              >
+                <circle v-if="activeLayerId === node.id" :cx="node.cx" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
+                <circle :cx="node.cx" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === node.id ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
+                <circle :cx="node.cx" cy="35" r="5" :fill="activeLayerId === node.id ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
+                <text :x="node.cx" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">{{ node.label }}</text>
               </g>
             </svg>
           </div>
         </div>
-
-        <!-- Interactive Architecture Schematic -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start font-ui">
-          <!-- Left: Interactive Layer Navigator Stack -->
           <div
             class="lg:col-span-5 space-y-3 reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isArchRevealed }"
@@ -864,8 +796,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </div>
             </div>
           </div>
-
-          <!-- Right: Layer Details View -->
           <div
             class="lg:col-span-7 relative reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isArchRevealed }"
@@ -873,7 +803,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             <div
               class="rounded-2xl border border-white/10 bg-[#0c1420]/95 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] relative overflow-hidden group"
             >
-              <!-- Top Status Bar -->
               <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.08] font-ui text-xs gap-2">
                 <div class="flex items-center gap-2 text-brand">
                   <span class="h-2 w-2 rounded-full bg-brand shrink-0" />
@@ -881,8 +810,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 </div>
                 <span class="text-zinc-400 font-ui text-xs">Connected Platform</span>
               </div>
-
-              <!-- Content Area -->
               <div class="py-6 sm:py-8 space-y-6">
                 <div class="flex items-center gap-3.5">
                   <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/10 border border-brand/30 text-brand">
@@ -901,8 +828,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 <p class="font-editorial text-lg sm:text-xl text-zinc-200 leading-relaxed font-normal">
                   {{ currentLayer.summary }}
                 </p>
-
-                <!-- Capability List -->
                 <div class="pt-4 border-t border-white/[0.06] space-y-3 font-ui text-sm">
                   <div class="text-xs font-ui text-zinc-400 font-medium">
                     Key Capabilities:
@@ -917,8 +842,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                   </div>
                 </div>
               </div>
-
-              <!-- Footer Deep Link -->
               <div class="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between font-ui text-xs gap-3">
                 <span class="text-zinc-400 font-ui text-xs">KavoraX Unified Platform</span>
                 <NuxtLink
@@ -934,11 +857,8 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </div>
     </section>
-
-    <!-- 4. Product Showcases -->
     <section id="product-showcases" class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden">
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Chapter Header -->
         <div
           ref="productsHeaderRef"
           class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08] reveal-base transition-editorial duration-700"
@@ -961,8 +881,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             </span>
           </NuxtLink>
         </div>
-
-        <!-- SHOWCASE 1: Operations Platform (Wide Asymmetrical Editorial Canvas) -->
         <div
           ref="productCard1Ref"
           class="mt-16 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-12 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 corner-crosshair reveal-base transition-editorial duration-700"
@@ -1012,16 +930,12 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 </NuxtLink>
               </div>
             </div>
-
-            <!-- Visual Treatment 1: Clean Workflow State Diagram -->
             <div class="lg:col-span-6">
               <div class="rounded-xl border border-white/10 bg-[#070b10] p-5 sm:p-6 space-y-4 font-ui text-xs shadow-inner">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.08] text-zinc-300 gap-2">
                   <span class="font-semibold text-white">Workflow Routing Pipeline</span>
                   <span class="text-brand text-xs font-medium">Coordinated</span>
                 </div>
-
-                <!-- Workflow Stage Nodes -->
                 <div class="space-y-3">
                   <div class="p-3.5 sm:p-4 rounded-lg border border-brand/30 bg-brand/[0.05] flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -1065,13 +979,10 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             </div>
           </div>
         </div>
-
-        <!-- SHOWCASES 2 & 3: 2-Column Split (Analytics vs Integration) -->
         <div
           ref="productCards23Ref"
           class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 font-ui items-stretch"
         >
-          <!-- Showcase 2: Analytics & Intelligence -->
           <div
             class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700"
             :class="{ 'is-revealed': isProductCards23Revealed }"
@@ -1089,15 +1000,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
                 Transform continuous business signals into immediate visibility. Identify trends, track margins, and spot bottlenecks before they affect growth.
               </p>
-
-              <!-- Visual Treatment 2: Clean Telemetry Distribution -->
               <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-ui text-xs space-y-4">
                 <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
                   <span class="font-semibold text-white">Daily Performance Overview</span>
                   <span class="text-brand font-medium">Live Telemetry</span>
                 </div>
-
-                <!-- Bar chart visualization -->
                 <div class="h-20 flex items-end gap-2 pt-2">
                   <div
                     v-for="(bar, bIdx) in telemetryBars"
@@ -1130,8 +1037,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </NuxtLink>
             </div>
           </div>
-
-          <!-- Showcase 3: Integration Architecture -->
           <div
             class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isProductCards23Revealed }"
@@ -1149,15 +1054,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
                 Standardize disparate protocols, legacy ERPs, databases, and modern cloud endpoints into a single, high-throughput integration pipeline.
               </p>
-
-              <!-- Visual Treatment 3: Clean Multi-System Bridge Map -->
               <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-ui text-xs space-y-3.5">
                 <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
                   <span class="font-semibold text-white">System Connectivity Map</span>
                   <span class="text-brand font-medium">Encrypted &amp; Secure</span>
                 </div>
-
-                <!-- Integration Map Nodes -->
                 <div class="space-y-2 font-ui">
                   <div class="p-3 rounded-lg bg-[#0e1622] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
                     <span class="flex items-center gap-2">
@@ -1207,30 +1108,23 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </div>
     </section>
-
-    <!-- 5. Solutions Section -->
     <section
       ref="solutionsTargetRef"
       class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
     >
-      <!-- Ambient emerald atmospheric glow -->
       <div
         class="absolute bottom-10 left-1/3 w-[600px] h-[600px] bg-brand/[0.035] blur-[170px] rounded-full pointer-events-none"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
         <div
           class="pb-8 border-b border-white/[0.08] mb-16 flex items-center justify-between reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isSolutionsRevealed }"
         >
           <ChapterLabel label="Solutions Built Around Your Business" />
         </div>
-
-        <!-- Main Photography-Led Asymmetrical Composition -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <!-- Left: Photographic Showcase with Reusable ArchitecturalFrame -->
           <div
             class="lg:col-span-7 relative reveal-base transition-editorial duration-700 delay-75"
             :class="{ 'is-revealed': isSolutionsRevealed }"
@@ -1250,8 +1144,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </template>
             </ArchitecturalFrame>
           </div>
-
-          <!-- Right: Editorial Narrative & Solution Pillars -->
           <div
             class="lg:col-span-5 space-y-6 font-ui reveal-base transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': isSolutionsRevealed }"
@@ -1306,14 +1198,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </div>
     </section>
-
-    <!-- 6. Industry Preview -->
     <section
       ref="industryTargetRef"
       class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Chapter Header -->
         <div
           class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-white/[0.08] reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isIndustryRevealed }"
@@ -1335,10 +1224,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             </span>
           </NuxtLink>
         </div>
-
-        <!-- Asymmetrical Interactive Showcase -->
         <div class="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch font-ui">
-          <!-- Left: Sector Navigators -->
           <div
             class="lg:col-span-5 space-y-3 flex flex-col justify-between reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isIndustryRevealed }"
@@ -1387,13 +1273,10 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </div>
             </div>
           </div>
-
-          <!-- Right: Immersive Photographic Stage with Details -->
           <div
             class="lg:col-span-7 relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl corner-crosshair flex flex-col justify-between reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isIndustryRevealed }"
           >
-            <!-- Active Photographic Background -->
             <div class="absolute inset-0 z-0">
               <img
                 :src="industries[industrySelectedIndex]?.image"
@@ -1407,8 +1290,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/75 to-[#080c10]/40" />
               <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/85 via-[#080c10]/45 to-transparent" />
             </div>
-
-            <!-- Foreground Narrative Overlay -->
             <div class="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between space-y-6">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.1] pb-4 gap-2">
                 <span class="text-xs font-ui text-brand font-medium">
@@ -1427,8 +1308,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 <p class="font-ui text-base text-zinc-200 leading-relaxed max-w-xl font-normal">
                   {{ industries[industrySelectedIndex]?.description }}
                 </p>
-
-                <!-- Metric checklist -->
                 <div class="pt-4 space-y-2 text-xs font-ui text-zinc-200">
                   <div
                     v-for="metric in industries[industrySelectedIndex]?.metrics"
@@ -1457,21 +1336,17 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </div>
     </section>
-
-    <!-- 7. Why Businesses Choose KavoraX -->
     <section
       id="brand-statement"
       ref="brandSectionRef"
       class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
     >
-      <!-- Atmospheric Emerald Glow -->
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none"
         aria-hidden="true"
       />
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <!-- Section Header -->
         <div
           class="pb-8 border-b border-white/[0.08] mb-16 flex items-center justify-between reveal-base"
           :class="{ 'is-revealed': isBrandRevealed }"
@@ -1479,8 +1354,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           <ChapterLabel label="Why Businesses Choose KavoraX" />
           <h2 class="sr-only">Why Businesses Choose KavoraX</h2>
         </div>
-
-        <!-- Editorial Brand Quote with Scroll-Progress Stream Reveal -->
         <div class="max-w-5xl mx-auto text-center space-y-8 mb-20">
           <ScrollTextReveal
             text="“We believe enterprise technology should empower organisations to operate with absolute clarity, interconnect critical operations, and scale with unwavering durability.”"
@@ -1499,8 +1372,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             KavoraX Global Private Limited builds dependable, connected technology solutions that transform operational complexity into clarity and momentum.
           </p>
         </div>
-
-        <!-- Principles Ledger -->
         <div
           class="rounded-2xl border border-white/10 bg-[#0c131e]/90 backdrop-blur-xl p-6 sm:p-8 md:p-12 font-ui divide-y divide-white/[0.08] reveal-base delay-300"
           :class="{ 'is-revealed': isBrandRevealed }"
@@ -1514,7 +1385,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               idx === 0 ? 'delay-200' : idx === 1 ? 'delay-300' : 'delay-400'
             ]"
           >
-            <!-- Left: Icon -->
             <div class="lg:col-span-3 flex items-center gap-4">
               <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#111a26] border border-white/10 text-brand group-hover:scale-105 group-hover:border-brand/40 transition-all">
                 <component :is="item.icon" class="h-5 w-5" />
@@ -1523,15 +1393,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 Core Principle
               </div>
             </div>
-
-            <!-- Middle: Title -->
             <div class="lg:col-span-4">
               <h3 class="font-editorial text-2xl sm:text-3xl font-semibold text-white group-hover:text-brand transition-colors">
                 {{ item.title }}
               </h3>
             </div>
-
-            <!-- Right: Description -->
             <div class="lg:col-span-5">
               <p class="font-ui text-sm sm:text-base text-zinc-300 leading-relaxed font-normal">
                 {{ item.description }}
@@ -1541,14 +1407,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </div>
     </section>
-
-    <!-- 8. Closing CTA -->
     <section
       id="final-cta"
       ref="finalCtaRef"
       class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
     >
-      <!-- Cinematic Emerald Lighting Halo -->
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10"
         aria-hidden="true"
@@ -1559,12 +1422,9 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-6 sm:p-12 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] corner-crosshair group reveal-base"
           :class="{ 'is-revealed': isFinalCtaRevealed }"
         >
-          <!-- Eyebrow -->
           <div class="flex justify-center mb-8 reveal-base delay-75" :class="{ 'is-revealed': isFinalCtaRevealed }">
             <ChapterLabel label="Let's Build Something Better Together" />
           </div>
-
-          <!-- Headline -->
           <WordReveal
             text="Ready to move your business forward?"
             as="h2"
@@ -1575,16 +1435,12 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             :stagger-ms="55"
             class="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-medium tracking-tight text-white leading-[1.08] max-w-3xl mx-auto text-balance"
           />
-
-          <!-- Subheading -->
           <p
             class="mt-6 font-ui text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal reveal-base delay-250"
             :class="{ 'is-revealed': isFinalCtaRevealed }"
           >
             Schedule a walkthrough with our specialists to explore our connected solutions, system integrations, and implementation roadmap.
           </p>
-
-          <!-- CTAs -->
           <div
             class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui reveal-base delay-350"
             :class="{ 'is-revealed': isFinalCtaRevealed }"
@@ -1610,8 +1466,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </Button>
             </NuxtLink>
           </div>
-
-          <!-- Trust Badges -->
           <div
             class="mt-12 pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400 font-ui reveal-base delay-450"
             :class="{ 'is-revealed': isFinalCtaRevealed }"
