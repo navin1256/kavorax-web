@@ -22,10 +22,7 @@ this section, this section wins. IGNORE the generated Style (glassmorphism), Col
   icon background or chart colour.
 
 ## Typography (decided)
-- Fraunces: large display headlines only, upright. No green-italic "last words" pattern.
-- Inter: body, UI, navigation, forms, tables, H3–H6, and all prices/figures (tabular-nums).
-- JetBrains Mono: rare small technical details only. Never for prices or ₹ (no ₹ glyph).
-- Hindi / Tamil / Arabic companion fonts will be chosen when those languages launch.
+Decided: Fraunces (headlines, upright, no italic) + Anek Latin (body, UI, figures with tabular-nums). Future scripts: Anek Devanagari, Anek Tamil, Readex Pro. Inter and JetBrains Mono are not used.
 
 ## Signature effect
 - The logo's green glow is the single signature effect, used at most once or twice
