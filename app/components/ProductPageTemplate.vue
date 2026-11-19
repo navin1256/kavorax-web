@@ -1,8 +1,6 @@
 <template>
   <div class="bg-technical-grid text-white antialiased overflow-x-hidden selection:bg-brand selection:text-black">
-    <!-- HERO SECTION -->
     <section class="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-gradient-to-b from-transparent via-[#080c0f]/60 to-[#080c0f]">
-      <!-- Cinematic Horizon Arc & Atmospheric Glow -->
       <div class="absolute inset-0 bg-cinematic-radial pointer-events-none"></div>
       <div class="absolute -right-24 top-12 w-[650px] h-[650px] opacity-[0.035] pointer-events-none select-none">
         <img alt="KavoraX Brand" class="w-full h-full object-contain filter grayscale contrast-200" src="/logo.png" loading="lazy" decoding="async" width="650" height="650" />
@@ -77,8 +75,6 @@
         </div>
       </div>
     </section>
-
-    <!-- KEY FEATURES GRID -->
     <section class="py-24 bg-transparent border-t border-white/5 relative">
       <div class="max-w-[1440px] mx-auto px-6 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-16">
@@ -98,8 +94,6 @@
         </div>
       </div>
     </section>
-
-    <!-- INTERACTIVE SHOWCASE -->
     <section class="py-24 bg-[#0b1114]/60 backdrop-blur-sm border-t border-white/5 relative" id="showcase">
       <div class="max-w-[1440px] mx-auto px-6 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-12">
@@ -152,8 +146,6 @@
         </div>
       </div>
     </section>
-
-    <!-- WORKS WITH -->
     <section class="py-24 bg-transparent border-t border-white/5 relative" v-if="integrationModules.length > 0">
       <div class="max-w-[1440px] mx-auto px-6 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-16">
@@ -178,8 +170,6 @@
         </div>
       </div>
     </section>
-
-    <!-- FAQ -->
     <section class="py-24 bg-[#0b1114]/60 backdrop-blur-sm border-t border-white/5 relative">
       <div class="max-w-3xl mx-auto px-6 md:px-12">
         <div class="text-center mb-12">
@@ -204,8 +194,6 @@
         </div>
       </div>
     </section>
-
-    <!-- CTA BAND -->
     <section class="w-full max-w-[1440px] mx-auto px-6 md:px-12 py-16 mb-8 text-center">
       <div class="relative kavorax-cta-banner bg-[#0b1114] border border-[rgba(110,150,140,0.20)] p-10 lg:p-14 rounded-3xl overflow-hidden shadow-none max-w-4xl mx-auto">
         <h2 class="font-editorial text-3xl md:text-4xl lg:text-5xl text-white tracking-tight mb-4 max-w-2xl mx-auto">
@@ -246,7 +234,7 @@ const props = defineProps<{
   module: Module
 }>()
 
-const activeTab = ref(props.module.tabs.length > 0 ? props.module.tabs[0].id : '')
+const activeTab = ref(props.module.tabs.length > 0 ? (props.module.tabs[0]?.id || '') : '')
 
 const activeTabData = computed(() => {
   return props.module.tabs.find(t => t.id === activeTab.value) || props.module.tabs[0]
