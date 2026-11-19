@@ -210,7 +210,8 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
               text="Building Technology That Moves Business Forward."
               as="h1"
               class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
-              :italic-words="['Moves', 'Business', 'Forward.']"
+              highlight="Forward."
+              highlight-class="text-brand font-normal"
               :delay="200"
               :immediate="true"
             />
@@ -336,7 +337,7 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
                     </span>
                     <span class="text-zinc-400 text-xs">Registered Entity</span>
                   </div>
-                  <p class="font-editorial text-base text-zinc-200 italic leading-snug">
+                  <p class="font-editorial text-base text-zinc-200 leading-snug">
                     "Engineering enterprise platforms that unify fragmented software, workflows, and operational intelligence."
                   </p>
                   <div class="pt-2 flex items-center justify-between border-t border-white/[0.06] text-xs text-zinc-400">
@@ -384,7 +385,6 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
               text="Technology with business at its core."
               as="h2"
               class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.12]"
-              :italic-words="['business', 'at', 'its', 'core.']"
               :delay="100"
             />
 
@@ -393,8 +393,7 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
                 <ScrollTextReveal
                   text="Modern enterprises frequently struggle with fragmented software landscapes where critical workflows, operational telemetry, and cross-departmental handoffs remain trapped in disconnected tools."
                   as="blockquote"
-                  class="font-editorial text-xl sm:text-2xl leading-relaxed italic"
-                  :highlight="['fragmented', 'software', 'landscapes', 'disconnected', 'tools.']"
+                  class="font-editorial text-xl sm:text-2xl leading-relaxed text-white font-normal"
                   :start-offset="0.88"
                   :end-offset="0.32"
                 />
@@ -495,7 +494,7 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
                     <span class="text-zinc-200 font-semibold">Operational Alignment</span>
                     <span class="text-zinc-400 text-xs">Strategy</span>
                   </div>
-                  <p class="text-zinc-400 font-editorial italic text-xs leading-snug">
+                  <p class="text-zinc-400 font-editorial text-xs leading-snug">
                     Aligning technology investments with operational reality and accountability.
                   </p>
                 </div>
@@ -632,7 +631,6 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             text="Connected thinking. Practical solutions."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-            :italic-words="['Practical', 'solutions.']"
             :delay="100"
           />
           <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
@@ -722,7 +720,7 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
                     </div>
                     <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-3">
                       <span class="font-ui text-xs font-semibold text-zinc-200 block">Baseline Process Audit</span>
-                      <p class="font-editorial text-xs italic text-zinc-400 mt-0.5">
+                      <p class="font-editorial text-xs text-zinc-400 mt-0.5">
                         Mapping data lifecycles and manual handoffs before touching code.
                       </p>
                     </div>
@@ -986,7 +984,6 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             text="A More Connected View of Business."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-            :italic-words="['View', 'of', 'Business.']"
             :delay="100"
           />
 
@@ -1116,7 +1113,7 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
                     <span class="text-brand font-medium">Connected &amp; Monitored</span>
                   </div>
                 </div>
-                <p class="mt-3 text-xs sm:text-sm text-zinc-300 leading-relaxed font-editorial italic">
+                <p class="mt-3 text-xs sm:text-sm text-zinc-300 leading-relaxed font-editorial">
                   "In a mature enterprise, no single dimension operates as an island. Operational processes trigger data records, software systems capture transactions, and governance rules continuously ensure auditable integrity."
                 </p>
               </div>
@@ -1171,7 +1168,6 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             text="What guides us: Pragmatic values."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-            :italic-words="['Pragmatic', 'values.']"
             :delay="100"
           />
           <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
@@ -1222,7 +1218,7 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             </div>
 
             <div class="mt-8 pt-5 border-t border-white/[0.06] space-y-3">
-              <div class="font-editorial italic text-base text-zinc-200">
+              <div class="font-editorial text-base text-zinc-200">
                 "{{ item.quote }}"
               </div>
               <div class="flex items-center gap-2 text-xs text-zinc-400">
@@ -1275,7 +1271,6 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             text="Let's Move Your Business Forward."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-            :italic-words="['Business', 'Forward.']"
             :delay="120"
           />
 

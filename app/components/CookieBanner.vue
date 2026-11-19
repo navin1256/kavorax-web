@@ -37,7 +37,7 @@ const rejectAll = () => {
     class="fixed bottom-2.5 left-2.5 right-2.5 md:bottom-0 md:left-0 md:right-0 z-50 bg-[#0c141e]/95 backdrop-blur-xl border border-white/10 md:border-x-0 md:border-b-0 md:border-t rounded-xl md:rounded-none p-3 md:py-2.5 md:px-6 lg:px-8 shadow-[0_20px_50px_rgba(0,0,0,0.85)] font-ui text-zinc-300"
   >
     <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-6">
-      <p class="text-[11px] sm:text-xs md:text-sm text-zinc-300 leading-snug sm:leading-relaxed font-light">
+      <p class="text-[11px] sm:text-xs md:text-sm text-zinc-300 leading-snug sm:leading-relaxed font-normal">
         We use cookies to analyze site traffic and enhance our connected enterprise software experience. Learn more in our <NuxtLink to="/privacy-policy" class="text-brand hover:underline font-normal">Privacy Policy</NuxtLink>.
       </p>
       <div class="flex items-center gap-2.5 shrink-0 w-full md:w-auto justify-end">

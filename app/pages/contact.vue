@@ -341,7 +341,8 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             text="Let’s Start a Conversation."
             as="h1"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
-            :italic-words="['Conversation.']"
+            highlight="Conversation."
+            highlight-class="text-brand font-normal"
             :delay="240"
             :immediate="true"
           />
@@ -442,11 +443,10 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                 text="What to Share With Our Team."
                 as="h2"
                 class="font-editorial text-3xl sm:text-5xl font-medium tracking-tight text-white leading-[1.12]"
-                :italic-words="['Our Team.']"
                 :delay="120"
               />
               <p
-                class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-150"
+                class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-150"
                 :class="{ 'is-revealed': isFormRevealed }"
               >
                 To help us prepare for an informative initial exchange, consider sharing the general
@@ -907,11 +907,10 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             text="Verified Channels for Enterprise Dialogue."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-            :italic-words="['Enterprise Dialogue.']"
             :delay="120"
           />
           <p
-            class="font-ui text-xl sm:text-2xl text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-200"
+            class="font-ui text-xl sm:text-2xl text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': isChannelsRevealed }"
           >
             Select the channel that best matches your timeline, preferred communication style, and
@@ -1017,12 +1016,11 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             text="Let’s Move Your Business Forward."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-            :italic-words="['Business Forward.']"
             :delay="120"
           />
 
           <p
-            class="mt-6 font-ui text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-light reveal-base transition-editorial duration-700 delay-200"
+            class="mt-6 font-ui text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': isClosingRevealed }"
           >
             Start a conversation about your business goals and technology needs with our solutions team.

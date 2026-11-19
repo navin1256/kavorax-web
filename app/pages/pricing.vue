@@ -301,7 +301,8 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               text="A Solution Model Built Around Your Business."
               as="h1"
               class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
-              :italic-words="['Around', 'Your', 'Business.']"
+              highlight="Business."
+              highlight-class="text-brand font-normal"
               :delay="240"
               :immediate="true"
             />
@@ -444,7 +445,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             text="How we shape engagements around your operational reality."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
-            :italic-words="['operational', 'reality.']"
             :delay="120"
             :threshold="0.12"
           />
@@ -543,7 +543,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               text="Three solution pillars, shaped to your architecture."
               as="h2"
               class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
-              :italic-words="['shaped', 'to', 'your', 'architecture.']"
               :delay="120"
               :threshold="0.12"
             />
@@ -719,7 +718,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           </div>
 
           <div class="overflow-x-auto mt-6">
-            <table class="w-full text-left text-xs font-ui min-w-[640px]">
+            <table class="w-full text-left text-xs font-ui min-w-[640px] tabular-nums">
               <thead>
                 <tr class="border-b border-white/[0.08] text-zinc-400 font-mono text-[11px]">
                   <th class="py-3.5 px-4 font-semibold">CAPABILITY DIMENSION</th>
@@ -777,7 +776,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             text="Let's Discuss the Right Approach for Your Business."
             as="h2"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial max-w-3xl mx-auto"
-            :italic-words="['Right', 'Approach', 'for', 'Your', 'Business.']"
             :delay="120"
             :threshold="0.12"
           />
@@ -937,7 +935,6 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             text="Ready to Explore Connected Solutions for Your Organization?"
             as="h2"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance-editorial max-w-3xl mx-auto"
-            :italic-words="['Connected', 'Solutions', 'for', 'Your', 'Organization?']"
             :delay="120"
             :threshold="0.12"
           />

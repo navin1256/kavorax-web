@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
   as: 'h2',
   highlight: '',
   italicWords: '',
-  highlightClass: 'italic font-light text-brand',
+  highlightClass: 'text-brand font-normal',
   staggerMs: 55,
   baseDelayMs: 120,
   delay: undefined,

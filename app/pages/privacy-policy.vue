@@ -40,7 +40,7 @@ useHead({
         <h1 class="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-medium tracking-tight leading-[1.08] mb-4">
           Privacy Policy
         </h1>
-        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light max-w-2xl">
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal max-w-2xl">
           Effective Date: January 1, 2026 · Last Updated: October 2026.<br />
           How KavoraX Global Private Limited collects, secures, encrypts, and processes venue operational information and customer data.
         </p>
