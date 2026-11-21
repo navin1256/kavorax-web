@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import PosBillingScreen from '~/components/product-ui/PosBillingScreen.vue'
+import UiDeviceFrame from '~/components/shared/UiDeviceFrame.vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
@@ -1104,24 +1106,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             class="lg:col-span-7 relative reveal-base transition-editorial duration-700 delay-75"
             :class="{ 'is-revealed': isSolutionsRevealed }"
           >
-            <div class="relative rounded-2xl border border-white/10 bg-[#111111] overflow-hidden shadow-2xl">
-              <div class="relative w-full aspect-[16/10] overflow-hidden bg-zinc-900">
-                <img
-                  src="/images/architectural-workspace.webp"
-                  alt="Collaborative systems engineering workspace representing KavoraX enterprise advisory"
-                  loading="lazy"
-                  decoding="async"
-                  width="1200"
-                  height="750"
-                  class="h-full w-full object-cover opacity-85 hover:opacity-100 transition-opacity"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/35 to-transparent pointer-events-none" aria-hidden="true" />
-              </div>
-              <div class="p-4 sm:p-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-ui text-xs text-zinc-200">
-                <span class="text-white font-medium">Collaborative Implementation</span>
-                <span class="text-brand text-xs">Tailored To Your Scale</span>
-              </div>
-            </div>
+            <div class="w-full">
+  <UiDeviceFrame type="terminal" title="POS Counter Operations">
+    <PosBillingScreen embedded />
+  </UiDeviceFrame>
+</div>
           </div>
           <div
             class="lg:col-span-5 space-y-6 font-ui reveal-base transition-editorial duration-700 delay-200"

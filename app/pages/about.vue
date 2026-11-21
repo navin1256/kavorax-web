@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import PosBillingScreen from '~/components/product-ui/PosBillingScreen.vue'
+import KdsBoard from '~/components/product-ui/KdsBoard.vue'
+import QrOrderPhone from '~/components/product-ui/QrOrderPhone.vue'
+import OutletsOverview from '~/components/product-ui/OutletsOverview.vue'
+import UiDeviceFrame from '~/components/shared/UiDeviceFrame.vue'
 import { ref, onMounted } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
@@ -277,61 +282,10 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             class="lg:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            <div
-              class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-60 pointer-events-none"
-              aria-hidden="true"
-            />
-
-            <div
-              class="relative rounded-2xl border border-white/10 bg-[#111111] overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
-            >
-              
-
-              <div class="relative h-96 sm:h-[460px] w-full overflow-hidden bg-zinc-950">
-                <img
-                  src="/images/architectural-workspace.webp"
-                  alt="Modern enterprise architecture engineering workspace and design studio"
-                  loading="eager"
-                  fetchpriority="high"
-                  decoding="async"
-                  width="800"
-                  height="460"
-                  class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity animate-hero-drift"
-                >
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"
-                />
-
-                <div class="absolute top-6 left-6 right-6 flex items-center justify-between font-ui text-xs text-zinc-300">
-                  <span class="px-2.5 py-1 rounded bg-black/75 border border-white/10 text-white flex items-center gap-1.5">
-                    <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                    <span>Systems Engineering</span>
-                  </span>
-                  <span class="px-2 py-0.5 rounded bg-black/75 border border-white/10 text-brand">
-                    Architecture &amp; Design
-                  </span>
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6 rounded-xl border border-white/10 bg-[#161616] p-5 space-y-2 font-ui">
-                  <div class="flex items-center justify-between text-xs">
-                    <span class="text-brand font-medium flex items-center gap-1.5">
-                      <Building2 class="h-3.5 w-3.5 text-brand" />
-                      KavoraX Global Private Limited
-                    </span>
-                    <span class="text-zinc-400 text-xs">Registered Entity</span>
-                  </div>
-                  <p class="font-editorial text-base text-zinc-200 leading-snug">
-                    "Engineering enterprise platforms that unify fragmented software, workflows, and operational intelligence."
-                  </p>
-                  <div class="pt-2 flex items-center justify-between border-t border-white/[0.06] text-xs text-zinc-400">
-                    <span class="flex items-center gap-1 text-zinc-300">
-                      <ShieldCheck class="h-3 w-3 text-brand" />
-                      Auditable Systems
-                    </span>
-                    <span class="text-zinc-500">Reliable &amp; Secure</span>
-                  </div>
-                </div>
-              </div>
+            <div class="w-full">
+              <UiDeviceFrame type="terminal" title="Operations Management">
+                <OutletsOverview embedded />
+              </UiDeviceFrame>
             </div>
           </div>
         </div>
@@ -436,44 +390,13 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             class="lg:col-span-5 space-y-6 reveal-base transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': isWhoWeAreRevealed }"
           >
-            <div class="relative rounded-2xl border border-white/10 bg-[#111111] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group">
-              
-
-              <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-950">
-                <img
-                  src="/images/executive-briefing.webp"
-                  alt="Executive briefing room where technology strategy aligns with business operations"
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="288"
-                  class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
-
-                <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-ui text-xs text-zinc-300">
-                  <span class="px-2.5 py-1 rounded bg-black/80 border border-white/10 text-white flex items-center gap-1.5">
-                    <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                    <span>Executive Briefing</span>
-                  </span>
-                  <span class="px-2 py-0.5 rounded bg-black/80 border border-white/10 text-brand text-xs">
-                    Strategic Alignment
-                  </span>
-                </div>
-
-                <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#161616] p-3.5 space-y-1 font-ui">
-                  <div class="flex items-center justify-between text-xs">
-                    <span class="text-zinc-200 font-semibold">Operational Alignment</span>
-                    <span class="text-zinc-400 text-xs">Strategy</span>
-                  </div>
-                  <p class="text-zinc-400 font-editorial text-xs leading-snug">
-                    Aligning technology investments with operational reality and accountability.
-                  </p>
-                </div>
-              </div>
+            <div class="w-full">
+              <UiDeviceFrame type="tablet" title="Kitchen Display (KDS)">
+                <KdsBoard embedded />
+              </UiDeviceFrame>
             </div>
 
-            <div class="rounded-2xl border border-white/10 bg-[#0c131e]/90 p-6 sm:p-7 space-y-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] font-ui">
+            <div class="rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-7 space-y-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] font-ui">
               <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-xs">
                 <div class="flex items-center gap-2 text-zinc-200 font-medium">
                   <Building2 class="h-4 w-4 text-brand" />
@@ -659,26 +582,11 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
 
               <div class="lg:col-span-5">
                 <div class="rounded-xl border border-white/10 overflow-hidden bg-zinc-950 relative group">
-                  <div class="relative h-64 sm:h-72 w-full">
-                    <img
-                      src="/images/tech-infrastructure.webp"
-                      alt="Process mapping and business analysis studio"
-                      loading="lazy"
-                      decoding="async"
-                      width="600"
-                      height="288"
-                      class="h-full w-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
-                    >
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
-                    <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-ui text-xs text-zinc-300">
-                      <span class="px-2.5 py-1 rounded bg-black/80 border border-white/10 flex items-center gap-1.5 text-white">
-                        <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                        Process Mapping
-                      </span>
-                      <span class="px-2 py-0.5 rounded bg-black/80 border border-white/10 text-brand">
-                        Operational Analysis
-                      </span>
-                    </div>
+                  <div class="w-full p-2">
+  <UiDeviceFrame type="phone" title="Digital QR Ordering">
+    <QrOrderPhone embedded />
+  </UiDeviceFrame>
+</div>
                     <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#161616] p-3">
                       <span class="font-ui text-xs font-semibold text-zinc-200 block">Baseline Process Audit</span>
                       <p class="font-editorial text-xs text-zinc-400 mt-0.5">
@@ -903,7 +811,6 @@ const { isRevealed: isAboutCtaRevealed } = useScrollReveal(aboutCtaSectionRef, {
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <section

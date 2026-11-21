@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import PosBillingScreen from '~/components/product-ui/PosBillingScreen.vue'
+import InventoryTable from '~/components/product-ui/InventoryTable.vue'
+import UiDeviceFrame from '~/components/shared/UiDeviceFrame.vue'
 import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
@@ -433,25 +436,10 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
                 </div>
               </div>
 
-              <div class="my-5 relative h-52 rounded-xl overflow-hidden border border-white/[0.08] group">
-                <img
-                  src="/images/architectural-workspace.webp"
-                  alt="KavoraX collaborative systems architecture workshop"
-                  loading="eager"
-                  fetchpriority="high"
-                  decoding="async"
-                  width="600"
-                  height="208"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent" />
-                <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono">
-                  <span class="text-white flex items-center gap-1.5">
-                    <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                    <span>CONSULTATIVE ENGAGEMENT</span>
-                  </span>
-                  <span class="text-zinc-400">STAGE: STRATEGY &amp; SCOPE</span>
-                </div>
+              <div class="my-5">
+                <UiDeviceFrame type="terminal" title="Counter Billing Terminal">
+                  <PosBillingScreen embedded />
+                </UiDeviceFrame>
               </div>
 
               <div class="space-y-2.5 font-mono text-xs">
@@ -506,33 +494,10 @@ const { isRevealed: isSolutionsCtaRevealed } = useScrollReveal(solutionsCtaRef, 
             :class="{ 'is-revealed': isNeedsStickyRevealed }"
           >
             <div class="rounded-2xl overflow-hidden border border-white/[0.1] bg-[#111111] shadow-2xl relative group">
-              
-
-              <div class="relative h-[380px] sm:h-[460px] w-full overflow-hidden">
-                <img
-                  src="/images/tech-infrastructure.webp"
-                  alt="Modern cloud data center and high-throughput networking infrastructure"
-                  loading="lazy"
-                  decoding="async"
-                  width="700"
-                  height="460"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
-                <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/60 via-transparent to-transparent" />
-
-                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0A0A0A]/90 p-3.5 font-mono text-xs">
-                  <div class="text-brand font-semibold flex items-center gap-1.5">
-                    <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                    <span>INFRASTRUCTURE RESILIENCE</span>
-                  </div>
-                  <div class="text-xs text-zinc-400 mt-0.5">ELIMINATING OPERATIONAL BOTTLENECKS</div>
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6 font-mono text-xs text-zinc-400">
-                  <span class="text-white block font-ui font-semibold text-sm">Deterministic System Bridge</span>
-                  <span class="text-xs text-zinc-400">Transforming disconnected tools into coherent business advantage.</span>
-                </div>
+              <div class="w-full">
+                <UiDeviceFrame type="tablet" title="Inventory & Stock Control">
+                  <InventoryTable embedded />
+                </UiDeviceFrame>
               </div>
             </div>
 

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import OutletsOverview from '~/components/product-ui/OutletsOverview.vue'
+import UiDeviceFrame from '~/components/shared/UiDeviceFrame.vue'
 import { ref, reactive, nextTick } from 'vue'
 import { z } from 'zod'
 import { Button } from '~/components/ui/button'
@@ -428,30 +430,15 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             >
               
 
-              <div class="relative h-60 sm:h-72 w-full overflow-hidden bg-zinc-950">
-                <img
-                  src="/images/executive-briefing.webp"
-                  alt="Architectural briefing room where technology strategy aligns with business operations"
-                  loading="eager"
-                  fetchpriority="high"
-                  decoding="async"
-                  width="600"
-                  height="288"
-                  class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
-
-                <div class="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-[#161616] p-4 space-y-1">
-                  <div class="flex items-center justify-between font-ui text-xs">
-                    <span class="text-zinc-200 font-semibold flex items-center gap-1.5">
-                      <Building2 class="h-3.5 w-3.5 text-brand" />
-                      Direct Product Advisory
-                    </span>
-                  </div>
-                  <p class="text-zinc-400 font-ui text-xs leading-snug">
-                    Connect directly with our solutions team to discuss your operational requirements.
-                  </p>
-                </div>
+              <div class="w-full p-2">
+                <UiDeviceFrame type="terminal" title="Direct Advisory">
+                  <OutletsOverview embedded />
+                </UiDeviceFrame>
+              </div>
+              <div class="p-4 border-t border-white/10 bg-[#161616]">
+                <p class="text-zinc-400 font-ui text-xs leading-snug">
+                  Connect directly with our solutions team to discuss your operational requirements.
+                </p>
               </div>
             </div>
 
