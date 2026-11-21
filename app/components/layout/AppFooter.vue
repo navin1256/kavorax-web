@@ -19,14 +19,14 @@ const footerNav = {
 </script>
 
 <template>
-  <footer class="border-t border-white/[0.08] bg-[#070b0f] bg-technical-grid py-16 md:py-20 text-zinc-400 font-ui">
+  <footer class="border-t border-white/[0.08] bg-[#0A0A0A] py-16 md:py-20 text-zinc-400 font-ui">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12">
         <!-- Brand Narrative Column -->
         <div class="md:col-span-5 lg:col-span-6 space-y-4">
           <NuxtLink to="/" class="flex items-center gap-3 group">
             <div
-              class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0e1620] border border-brand/35 text-brand shadow-[0_0_12px_-2px_rgba(16,185,129,0.2)]"
+              class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#161616] border border-brand/35 text-brand"
             >
               <span class="text-xs font-bold font-ui">KX</span>
             </div>

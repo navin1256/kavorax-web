@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-technical-grid text-white antialiased overflow-x-hidden selection:bg-brand selection:text-black">
+  <div class=" text-white antialiased overflow-x-hidden selection:bg-brand selection:text-black">
     <section class="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-gradient-to-b from-transparent via-[#080c0f]/60 to-[#080c0f]">
-      <div class="absolute inset-0 bg-cinematic-radial pointer-events-none"></div>
+      <div class="absolute inset-0 pointer-events-none"></div>
       <div class="absolute -right-24 top-12 w-[650px] h-[650px] opacity-[0.035] pointer-events-none select-none">
         <img alt="KavoraX Brand" class="w-full h-full object-contain filter grayscale contrast-200" src="/logo.png" loading="lazy" decoding="async" width="650" height="650" />
       </div>
-      <div class="absolute top-1/4 left-1/3 -translate-x-1/2 w-[520px] h-[520px] bg-brand/10 rounded-full blur-[140px] pointer-events-none"></div>
+      
       <div class="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
 
         <nav class="flex items-center gap-2 mb-6 font-sans text-sm text-zinc-400">
@@ -17,7 +17,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           <div class="lg:col-span-6 flex flex-col items-start text-left">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand/10 border border-brand/30 mb-6">
-              <span class="w-2 h-2 rounded-full bg-brand shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
               <span class="text-brand text-xs font-semibold tracking-wider uppercase font-sans">{{ module.name }}</span>
             </div>
             <h1 class="font-editorial text-4xl md:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1] mb-6">
@@ -36,7 +36,7 @@
             </div>
 
             <div class="flex flex-wrap gap-2 mt-2">
-              <div v-for="user in module.whoUsesIt" :key="user" class="px-3 py-1 bg-[#0e1620] border border-white/10 rounded-full text-xs text-zinc-300 flex items-center gap-1 font-sans">
+              <div v-for="user in module.whoUsesIt" :key="user" class="px-3 py-1 bg-[#161616] border border-white/10 rounded-full text-xs text-zinc-300 flex items-center gap-1 font-sans">
                 <Check class="w-3.5 h-3.5 text-brand" /> {{ user }}
               </div>
             </div>
@@ -45,8 +45,8 @@
           <div class="lg:col-span-6 relative flex justify-center">
             <div class="relative w-full max-w-[620px]">
               <div class="absolute -inset-4 bg-gradient-to-tr from-brand/20 to-transparent rounded-3xl blur-2xl -z-10"></div>
-              <div class="bg-[#0e1620]/90 backdrop-blur-xl border border-white/10 p-2 md:p-3 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] rounded-2xl group relative">
-                <div class="relative w-full aspect-video bg-[#080c10] rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
+              <div class="bg-[#161616] border border-white/10 p-2 md:p-3 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] rounded-2xl group relative">
+                <div class="relative w-full aspect-video bg-[#0A0A0A] rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
                   <img
                     :src="moduleImage"
                     :alt="module.name"
@@ -60,7 +60,7 @@
                   <div class="absolute inset-0 bg-gradient-to-t from-[#0e141a]/60 via-transparent to-transparent"></div>
                 </div>
 
-                <div class="absolute bottom-6 -left-2 sm:-left-4 md:-left-6 bg-[#080c10]/95 backdrop-blur-xl border border-brand/30 p-3 sm:p-4 rounded-xl shadow-2xl flex items-center gap-3 z-10">
+                <div class="absolute bottom-6 -left-2 sm:-left-4 md:-left-6 bg-[#0A0A0A]/95 border border-brand/30 p-3 sm:p-4 rounded-xl shadow-2xl flex items-center gap-3 z-10">
                   <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center text-brand shrink-0">
                     <Zap class="w-5 h-5" />
                   </div>
@@ -85,7 +85,7 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div v-for="feature in module.features" :key="feature" class="bg-[#0e1620]/80 border border-white/10 p-6 flex flex-col justify-center items-start hover:border-brand/40 hover:-translate-y-1 transition-all duration-200 group rounded-2xl">
+          <div v-for="feature in module.features" :key="feature" class="bg-[#161616] border border-white/10 p-6 flex flex-col justify-center items-start hover:border-brand/40 hover:-translate-y-1 transition-all duration-200 group rounded-2xl">
             <div class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/30 text-brand flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <CheckCircle2 class="w-5 h-5" />
             </div>
@@ -94,7 +94,7 @@
         </div>
       </div>
     </section>
-    <section class="py-24 bg-[#0b1114]/60 backdrop-blur-sm border-t border-white/5 relative" id="showcase">
+    <section class="py-24 bg-[#0b1114]/60 border-t border-white/5 relative" id="showcase">
       <div class="max-w-[1440px] mx-auto px-6 md:px-12">
         <div class="text-center max-w-2xl mx-auto mb-12">
           <span class="text-brand text-xs font-medium font-sans">Platform Preview</span>
@@ -103,17 +103,17 @@
           </h2>
         </div>
         <div class="flex justify-center mb-12 flex-wrap gap-2">
-          <div class="inline-flex p-1.5 rounded-full bg-[#0e1620] border border-white/10 overflow-x-auto max-w-full">
+          <div class="inline-flex p-1.5 rounded-full bg-[#161616] border border-white/10 overflow-x-auto max-w-full">
             <button
               v-for="tab in module.tabs" :key="tab.id"
               @click="activeTab = tab.id"
-              :class="activeTab === tab.id ? 'bg-brand text-black font-semibold shadow-[0_0_16px_rgba(16,185,129,0.35)]' : 'text-zinc-400 hover:text-white'"
+              :class="activeTab === tab.id ? 'bg-brand text-black font-semibold' : 'text-zinc-400 hover:text-white'"
               class="px-5 py-2 rounded-full text-sm font-sans transition-all whitespace-nowrap cursor-pointer"
             >{{ tab.label }}</button>
           </div>
         </div>
 
-        <div class="bg-[#0e1620]/70 border border-white/10 rounded-2xl p-6 lg:p-10 relative overflow-hidden backdrop-blur-md min-h-[400px]">
+        <div class="bg-[#161616] border border-white/10 rounded-2xl p-6 lg:p-10 relative overflow-hidden min-h-[400px]">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
             <div class="lg:col-span-5">
               <h3 class="font-editorial text-2xl md:text-3xl text-white mb-4">
@@ -129,8 +129,8 @@
                 </li>
               </ul>
             </div>
-            <div class="lg:col-span-7 bg-[#080c10] rounded-xl border border-white/10 p-8 shadow-2xl h-full flex flex-col items-center justify-center text-center min-h-[300px]">
-              <div class="w-16 h-16 rounded-2xl bg-brand/10 border border-brand/30 flex items-center justify-center text-brand mb-4 shadow-[0_0_24px_rgba(16,185,129,0.2)]">
+            <div class="lg:col-span-7 bg-[#0A0A0A] rounded-xl border border-white/10 p-8 shadow-2xl h-full flex flex-col items-center justify-center text-center min-h-[300px]">
+              <div class="w-16 h-16 rounded-2xl bg-brand/10 border border-brand/30 flex items-center justify-center text-brand mb-4">
                 <LayoutDashboard class="w-9 h-9" />
               </div>
               <div class="text-lg text-white font-semibold font-sans">{{ activeTabData?.label }} Live Workflow</div>
@@ -159,7 +159,7 @@
             v-for="integration in integrationModules"
             :key="integration.slug"
             :to="getIntegrationRoute(integration.slug)"
-            class="bg-[#0e1620] border border-white/10 p-6 flex flex-col hover:border-brand/40 hover:-translate-y-1 transition-all duration-200 group rounded-2xl"
+            class="bg-[#161616] border border-white/10 p-6 flex flex-col hover:border-brand/40 hover:-translate-y-1 transition-all duration-200 group rounded-2xl"
           >
             <h3 class="text-lg text-white mb-2 font-semibold group-hover:text-brand transition-colors font-sans">{{ integration.name }}</h3>
             <p class="text-sm text-zinc-400 mb-4 flex-1 font-sans">
@@ -170,7 +170,7 @@
         </div>
       </div>
     </section>
-    <section class="py-24 bg-[#0b1114]/60 backdrop-blur-sm border-t border-white/5 relative">
+    <section class="py-24 bg-[#0b1114]/60 border-t border-white/5 relative">
       <div class="max-w-3xl mx-auto px-6 md:px-12">
         <div class="text-center mb-12">
           <h2 class="font-editorial text-3xl md:text-4xl text-white tracking-tight">
@@ -178,7 +178,7 @@
           </h2>
         </div>
         <div class="space-y-4">
-          <div v-for="(item, index) in module.faq" :key="index" class="bg-[#0e1620] border border-white/10 rounded-xl overflow-hidden hover:border-brand/40 transition-colors">
+          <div v-for="(item, index) in module.faq" :key="index" class="bg-[#161616] border border-white/10 rounded-xl overflow-hidden hover:border-brand/40 transition-colors">
             <details class="group">
               <summary class="flex justify-between items-center text-base font-medium cursor-pointer list-none p-6 text-white font-sans">
                 <span>{{ item.question }}</span>

@@ -81,12 +81,12 @@ export default defineNuxtPlugin(() => {
     const style = document.createElement('style')
     style.innerHTML = `
       .in-kavorax-studio *:hover {
-        outline: 1px dashed rgba(16, 185, 129, 0.5);
+        outline: 1px dashed rgba(8, 232, 136, 0.5);
         cursor: pointer !important;
       }
       .in-kavorax-studio .studio-selected-el {
-        outline: 2px solid #10b981 !important;
-        box-shadow: 0 0 10px rgba(16, 185, 129, 0.3) !important;
+        outline: 2px solid #08E888 !important;
+        box-shadow: 0 0 10px rgba(8, 232, 136, 0.3) !important;
       }
       .in-kavorax-studio a {
         pointer-events: none; /* Prevent navigation in studio */

@@ -12,18 +12,18 @@ const props = withDefaults(defineProps<Props>(), {
 
 const dotColors = {
   active: 'bg-brand',
-  synced: 'bg-[#34d399]',
-  verified: 'bg-emerald-400',
+  synced: 'bg-[#08EC8D]',
+  verified: 'bg-brand',
   neutral: 'bg-zinc-400'
 }
 </script>
 
 <template>
   <span
-    class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#0e1622]/90 px-2.5 py-1 font-mono text-[11px] text-zinc-300 shadow-sm backdrop-blur-sm"
+    class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#161616] px-2.5 py-1 font-ui text-xs text-zinc-300 shadow-sm"
   >
     <span
-      :class="['h-1.5 w-1.5 rounded-full shrink-0', dotColors[props.status], props.status === 'active' ? 'animate-pulse-subtle' : '']"
+      :class="['h-1.5 w-1.5 rounded-full shrink-0', dotColors[props.status], props.status === 'active' ? '' : '']"
       aria-hidden="true"
     />
     <span class="tracking-wider uppercase text-zinc-400">{{ props.label }}</span>

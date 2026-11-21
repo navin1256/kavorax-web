@@ -47,8 +47,8 @@ function isHighlighted(word: string): boolean {
 
 /**
  * Calculates per-word activation based on current scroll progress.
- * Inactive text remains legible at 0.42 opacity (#94a3b8) on dark surfaces,
- * transitioning smoothly to 1.0 (#ffffff) and emerald (#10b981) as the section moves through the viewport.
+ * Inactive text remains legible at 0.42 opacity (#A1A1AA) on dark surfaces,
+ * transitioning smoothly to 1.0 (#ffffff) and brand green (#08E888) as the section moves through the viewport.
  */
 const renderedWords = computed(() => {
   const currentProgress = progress.value
@@ -61,7 +61,7 @@ const renderedWords = computed(() => {
 
     let isActive = false
     let opacity = 0.42
-    let color: string | undefined = '#94a3b8'
+    let color: string | undefined = '#A1A1AA'
 
     if (currentProgress >= endRatio) {
       isActive = true
@@ -70,7 +70,7 @@ const renderedWords = computed(() => {
     } else if (currentProgress <= startRatio) {
       isActive = false
       opacity = 0.42
-      color = '#94a3b8'
+      color = '#A1A1AA'
     } else {
       const partial = (currentProgress - startRatio) / (endRatio - startRatio)
       isActive = partial > 0.4

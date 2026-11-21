@@ -30,13 +30,13 @@ const closeMenu = () => {
     </SheetTrigger>
     <SheetContent
       side="right"
-      class="w-[300px] sm:w-[350px] bg-[#0b0f14] border-l border-white/[0.08] text-zinc-100 p-6 flex flex-col justify-between"
+      class="w-[300px] sm:w-[350px] bg-[#0A0A0A] border-l border-white/[0.08] text-zinc-100 p-6 flex flex-col justify-between"
     >
       <div>
         <SheetHeader class="text-left pb-5 border-b border-white/[0.07]">
           <SheetTitle class="flex items-center gap-2.5 text-white">
             <span
-              class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0e1620] border border-brand/35 text-brand"
+              class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#161616] border border-brand/35 text-brand"
             >
               <span class="font-ui text-xs font-bold tracking-wider">KX</span>
             </span>
@@ -64,7 +64,7 @@ const closeMenu = () => {
       <div class="pt-6 border-t border-white/[0.07] flex flex-col gap-3 font-ui">
         <NuxtLink to="/demo" @click="closeMenu">
           <Button
-            class="w-full h-11 bg-brand text-black font-semibold hover:bg-brand/90 glow-emerald-sm rounded-md"
+            class="w-full h-11 bg-brand text-black font-semibold hover:bg-brand/90 rounded-md"
           >
             Book a Demo
           </Button>
@@ -72,7 +72,7 @@ const closeMenu = () => {
         <NuxtLink to="/contact" @click="closeMenu">
           <Button
             variant="outline"
-            class="w-full h-11 border-white/10 bg-[#0f1620] text-zinc-300 hover:text-white hover:bg-white/[0.04] rounded-md"
+            class="w-full h-11 border-white/10 bg-[#161616] text-zinc-300 hover:text-white hover:bg-white/[0.04] rounded-md"
           >
             Contact Sales
           </Button>

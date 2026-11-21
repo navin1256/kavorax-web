@@ -26,13 +26,13 @@ const aspectClasses = {
 
 <template>
   <div
-    class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden group shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
+    class="relative rounded-2xl border border-white/10 bg-[#111111] overflow-hidden group shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)]"
   >
     <!-- Corner Crosshairs inspired by Active Theory -->
-    <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-    <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-    <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-    <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+    
+    
+    
+    
 
     <!-- Image Container with Smooth Zoom -->
     <div :class="['relative w-full overflow-hidden bg-zinc-900', aspectClasses[props.aspectRatio]]">
@@ -49,25 +49,25 @@ const aspectClasses = {
 
       <!-- Cinematic Vignette Scrim -->
       <div
-        class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/35 to-transparent pointer-events-none"
+        class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/35 to-transparent pointer-events-none"
         aria-hidden="true"
       />
 
       <!-- Floating HUD Coordinate Strip -->
       <div
         v-if="props.badgeText || props.coordinate"
-        class="absolute top-3 sm:top-5 left-3 sm:left-5 right-3 sm:right-5 z-10 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-zinc-300"
+        class="absolute top-3 sm:top-5 left-3 sm:left-5 right-3 sm:right-5 z-10 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-zinc-300"
       >
         <span
           v-if="props.badgeText"
-          class="px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-white/10 text-white flex items-center gap-1.5"
+          class="px-2.5 py-1 rounded bg-black/75 border border-white/10 text-white flex items-center gap-1.5"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-brand" />
           {{ props.badgeText }}
         </span>
         <span
           v-if="props.coordinate"
-          class="px-2 py-0.5 rounded bg-black/65 backdrop-blur-md border border-white/10 text-brand"
+          class="px-2 py-0.5 rounded bg-black/65 border border-white/10 text-brand"
         >
           {{ props.coordinate }}
         </span>
