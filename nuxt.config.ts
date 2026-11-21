@@ -98,6 +98,14 @@ export default defineNuxtConfig({
     '/demo': { prerender: true },
     '/pos-and-billing': { prerender: true },
     '/kitchen-display': { prerender: true },
+    '/inventory-and-stock': { prerender: true },
+    '/digital-ordering': { prerender: true },
+    '/crm': { prerender: true },
+    '/multi-location': { prerender: true },
+    '/business-analytics': { prerender: true },
+    '/delivery-management': { prerender: true },
+    '/e-commerce': { prerender: true },
+    '/business-management': { prerender: true },
     '/privacy-policy': { prerender: true },
     '/terms-of-service': { prerender: true },
     '/contact-us': { redirect: { to: '/contact', statusCode: 301 } },
@@ -109,7 +117,7 @@ export default defineNuxtConfig({
     '/convenience-stores': { redirect: { to: '/industries', statusCode: 301 } },
     '/hospitality': { redirect: { to: '/industries', statusCode: 301 } },
     '/salons': { redirect: { to: '/industries', statusCode: 301 } },
-    '/ecommerce': { redirect: { to: '/solutions', statusCode: 301 } },
+    '/ecommerce': { redirect: { to: '/e-commerce', statusCode: 301 } },
   },
 
   nitro: {
@@ -126,6 +134,14 @@ export default defineNuxtConfig({
         '/demo',
         '/pos-and-billing',
         '/kitchen-display',
+        '/inventory-and-stock',
+        '/digital-ordering',
+        '/crm',
+        '/multi-location',
+        '/business-analytics',
+        '/delivery-management',
+        '/e-commerce',
+        '/business-management',
         '/privacy-policy',
         '/terms-of-service'
       ]

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive, nextTick } from 'vue'
+import PosBillingScreen from '~/components/product-ui/PosBillingScreen.vue'
+import UiDeviceFrame from '~/components/shared/UiDeviceFrame.vue'
+import { ref, reactive, nextTick, onMounted } from 'vue'
 import { z } from 'zod'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
@@ -138,6 +140,31 @@ const interestOptions = [
   },
   { value: 'Other', label: 'Other / Custom Inquiry' }
 ]
+
+const route = useRoute()
+const moduleSlugNameMap: Record<string, string> = {
+  'pos-and-billing': 'POS & Billing',
+  'kitchen-display': 'Kitchen Display (KDS)',
+  'inventory-and-stock': 'Inventory & Stock',
+  'digital-ordering': 'Digital Ordering',
+  'crm': 'CRM & Loyalty',
+  'multi-location': 'Multi-Location',
+  'business-analytics': 'Business Analytics',
+  'delivery-management': 'Delivery Management',
+  'e-commerce': 'E-commerce',
+  'business-management': 'Business Management'
+}
+
+onMounted(() => {
+  const queryModule = route.query.module as string
+  if (queryModule && moduleSlugNameMap[queryModule]) {
+    const modName = moduleSlugNameMap[queryModule]
+    if (!interestOptions.some(opt => opt.value === modName)) {
+      interestOptions.unshift({ value: modName, label: modName })
+    }
+    formData.areaOfInterest = modName
+  }
+})
 
 
 const validateField = (field: keyof DemoFormData) => {
