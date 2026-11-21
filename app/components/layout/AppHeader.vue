@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
 
 <template>
   <header
-    class="sticky top-0 z-50 w-full border-b border-white/[0.07] bg-[#0b0f14]/80 backdrop-blur-xl transition-all"
+    class="sticky top-0 z-50 w-full border-b border-white/[0.07] bg-[#0A0A0A]/80 transition-all"
   >
     <div
       class="container mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
@@ -23,7 +23,7 @@ const navItems: NavItem[] = [
       <!-- Brand Logo / Wordmark -->
       <NuxtLink to="/" class="flex items-center gap-3 group transition-opacity hover:opacity-95">
         <div
-          class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-[#0e1620] border border-brand/35 shadow-[0_0_16px_-3px_rgba(16,185,129,0.25)] group-hover:border-brand/60 transition-colors"
+          class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-[#161616] border border-brand/35 group-hover:border-brand/60 transition-colors"
         >
           <svg
             class="h-4 w-4 text-brand"
@@ -64,7 +64,7 @@ const navItems: NavItem[] = [
         <NuxtLink to="/demo" class="hidden sm:inline-flex">
           <Button
             size="sm"
-            class="font-ui bg-brand text-black font-semibold hover:bg-brand/90 transition-all duration-200 px-4 py-2 h-9 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] hover:shadow-[0_0_24px_0px_rgba(16,185,129,0.45)]"
+            class="font-ui bg-brand text-black font-semibold hover:bg-brand/90 transition-all duration-200 px-4 py-2 h-9 text-xs rounded-md"
           >
             Book a Demo
           </Button>

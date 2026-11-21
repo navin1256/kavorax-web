@@ -61,18 +61,30 @@ export default {
           foreground: 'hsl(var(--card-foreground))'
         },
         brand: {
-          DEFAULT: '#10b981',
-          secondary: '#34d399',
-          hover: '#059669',
-          dark: '#047857',
-          glow: 'rgba(16, 185, 129, 0.18)',
-          subtle: 'rgba(16, 185, 129, 0.08)'
+          DEFAULT: '#08E888',
+          light: '#08EC8D',
+          hover: '#08EC8D',
+          secondary: '#08EC8D',
+          dark: '#06b86c',
+          glow: 'rgba(8, 232, 136, 0.18)',
+          subtle: 'rgba(8, 232, 136, 0.08)'
+        },
+        bg: '#0A0A0A',
+        surface: {
+          DEFAULT: '#111111',
+          2: '#161616',
+          3: '#1C1C1C'
+        },
+        fg: {
+          DEFAULT: '#FFFFFF',
+          muted: '#A3A3A3',
+          subtle: '#737373'
         },
         canvas: {
-          DEFAULT: '#0b0f14',
-          secondary: '#080c10',
-          card: '#0f161f',
-          surface: '#121a24'
+          DEFAULT: '#0A0A0A',
+          secondary: '#111111',
+          card: '#161616',
+          surface: '#1C1C1C'
         }
       },
       borderRadius: {

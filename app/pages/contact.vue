@@ -6,7 +6,6 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Textarea } from '~/components/ui/textarea'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
-import WordReveal from '~/components/visual/WordReveal.vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 import { useKavoraxApi } from '~/composables/useKavoraxApi'
 import {
@@ -38,8 +37,6 @@ useHead({
   ]
 })
 
-const cornerCrosshairs3 = ['top-3 left-3', 'top-3 right-3', 'bottom-3 left-3', 'bottom-3 right-3']
-const cornerCrosshairs4 = ['top-4 left-4', 'top-4 right-4', 'bottom-4 left-4', 'bottom-4 right-4']
 
 // Hero
 const isHeroMounted = ref(true)
@@ -305,13 +302,10 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
 </script>
 
 <template>
-  <div class="relative bg-[#0b0f14] overflow-x-hidden">
-    <section class="relative pt-20 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
-      <div
-        class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
-        aria-hidden="true"
-      />
-      <div class="absolute inset-0 bg-tech-grid opacity-35 pointer-events-none -z-10" aria-hidden="true" />
+  <div class="relative bg-[#0A0A0A] overflow-x-hidden">
+    <section class="relative pt-20 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#0A0A0A] border-b border-white/[0.08]">
+      
+      <div class="absolute inset-0 opacity-35 pointer-events-none -z-10" aria-hidden="true" />
 
       <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -319,33 +313,20 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
           :class="{ 'is-revealed': isHeroMounted }"
         >
           <ChapterLabel label="Contact Us" />
-          <div class="flex items-center gap-6 text-[10px] text-zinc-400">
-            <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-              CONFIDENTIAL ADVISORY
-            </span>
-            <span class="text-zinc-600 hidden sm:inline">|</span>
-            <span class="hidden sm:inline font-mono">DIRECT TECHNICAL LEADERSHIP</span>
-          </div>
         </div>
 
         <div class="max-w-4xl space-y-7">
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
+            <span class="flex h-1.5 w-1.5 rounded-full bg-brand" />
             <span>START A CONVERSATION</span>
           </div>
 
-          <WordReveal
-            text="Let’s Start a Conversation."
-            as="h1"
-            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
-            highlight="Conversation."
-            highlight-class="text-brand font-normal"
-            :delay="240"
-            :immediate="true"
-          />
+          <h1 class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words reveal-base transition-editorial duration-700 delay-200" :class="{ 'is-revealed': isHeroMounted }">
+  Let’s Start a <span class="text-brand font-normal">Conversation.</span>
+</h1>
 
           <p
             class="font-editorial text-xl sm:text-2xl md:text-3xl text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
@@ -371,7 +352,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             <a href="#inquiry-form" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-all duration-200 group"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md transition-all duration-200 group"
               >
                 <span>Send an Inquiry</span>
                 <ArrowDown class="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
@@ -394,7 +375,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             <div
               v-for="item in heroPrinciples"
               :key="item.title"
-              class="rounded-xl border border-white/[0.06] bg-[#0c131d]/60 p-5 space-y-2 relative group hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700"
+              class="rounded-xl border border-white/[0.06] bg-[#111111] p-5 space-y-2 relative group hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700"
               :class="{ 'is-revealed': isHeroMounted }"
               :style="{ transitionDelay: isHeroMounted ? item.delay : '0ms' }"
             >
@@ -414,12 +395,9 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
     <section
       id="inquiry-form"
       ref="formSectionRef"
-      class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] scroll-mt-20 overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] relative border-t border-white/[0.08] scroll-mt-20 overflow-hidden"
     >
-      <div
-        class="absolute top-1/3 -right-36 w-96 h-96 bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
-        aria-hidden="true"
-      />
+      
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -427,24 +405,14 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
           :class="{ 'is-revealed': isFormRevealed }"
         >
           <ChapterLabel label="Send Us a Message" />
-          <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-            <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-              SECURE TRANSMISSION
-            </span>
-            <span class="text-zinc-600 hidden sm:inline">|</span>
-            <span class="hidden sm:inline font-mono">ENCRYPTED TLS</span>
-          </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div class="lg:col-span-5 space-y-8">
             <div class="space-y-4">
-              <WordReveal
-                text="What to Share With Our Team."
-                as="h2"
-                class="font-editorial text-3xl sm:text-5xl font-medium tracking-tight text-white leading-[1.12]"
-                :delay="120"
-              />
+              <h2 class="font-editorial text-3xl sm:text-5xl font-medium tracking-tight text-white leading-[1.12]">
+  What to Share With Our Team.
+</h2>
               <p
                 class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-150"
                 :class="{ 'is-revealed': isFormRevealed }"
@@ -455,15 +423,10 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             </div>
 
             <div
-              class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group reveal-card transition-editorial duration-700 delay-100"
+              class="relative rounded-2xl border border-white/10 bg-[#111111] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group reveal-card transition-editorial duration-700 delay-100"
               :class="{ 'is-revealed': isFormRevealed }"
             >
-              <div
-                v-for="pos in cornerCrosshairs3"
-                :key="pos"
-                :class="['absolute z-20 font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
-                aria-hidden="true"
-              >+</div>
+              
 
               <div class="relative h-60 sm:h-72 w-full overflow-hidden bg-zinc-950">
                 <img
@@ -476,28 +439,17 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                   height="288"
                   class="h-full w-full object-cover img-editorial-zoom opacity-85 group-hover:opacity-100 transition-opacity"
                 >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
 
-                <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] text-zinc-300">
-                  <span class="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-white/10 text-white flex items-center gap-1.5">
-                    <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                    <span>CONSULTATION CONTEXT</span>
-                  </span>
-                  <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 text-brand font-mono">
-                    DIRECT_DIALOGUE
-                  </span>
-                </div>
-
-                <div class="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-4 space-y-1">
+                <div class="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-[#161616] p-4 space-y-1">
                   <div class="flex items-center justify-between font-ui text-xs">
                     <span class="text-zinc-200 font-semibold flex items-center gap-1.5">
                       <Building2 class="h-3.5 w-3.5 text-brand" />
-                      Direct Architectural Review
+                      Direct Product Advisory
                     </span>
-                    <span class="font-mono text-zinc-400 text-[10px]">VERIFIED</span>
                   </div>
                   <p class="text-zinc-400 font-ui text-xs leading-snug">
-                    Direct engagement with solutions engineers to evaluate system compatibility and workflow cohesion.
+                    Connect directly with our solutions team to discuss your operational requirements.
                   </p>
                 </div>
               </div>
@@ -508,7 +460,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                 v-for="point in preparationPoints"
                 :key="point.num"
                 :class="[
-                  'rounded-xl border border-white/[0.07] bg-[#0c141e]/80 p-4.5 space-y-1.5 hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700',
+                  'rounded-xl border border-white/[0.07] bg-[#111111] p-4.5 space-y-1.5 hover:border-brand/30 transition-colors reveal-card transition-editorial duration-700',
                   point.stagger,
                   { 'is-revealed': isFormRevealed }
                 ]"
@@ -524,12 +476,11 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             </div>
 
             <div
-              class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-6 space-y-4 font-ui reveal-card transition-editorial duration-700 delay-300"
+              class="rounded-2xl border border-white/[0.08] bg-[#111111] p-6 space-y-4 font-ui reveal-card transition-editorial duration-700 delay-300"
               :class="{ 'is-revealed': isFormRevealed }"
             >
               <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-xs">
                 <span class="font-semibold text-white uppercase tracking-wider">Direct Advisory Channels</span>
-                <span class="font-mono text-[10px] text-brand">OFFICIAL</span>
               </div>
               <div class="space-y-3 text-xs">
                 <div class="flex items-center justify-between">
@@ -537,7 +488,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                     <Mail class="h-3.5 w-3.5 text-brand" />
                     Written Inquiries:
                   </span>
-                  <a href="mailto:contact@kavorax.com" class="text-white hover:text-brand font-mono transition-colors">
+                  <a href="mailto:contact@kavorax.com" class="text-white hover:text-brand transition-colors">
                     contact@kavorax.com
                   </a>
                 </div>
@@ -550,9 +501,9 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                     Schedule Demo →
                   </NuxtLink>
                 </div>
-                <div class="flex items-center justify-between pt-1 border-t border-white/[0.04] text-[11px] text-zinc-500 font-mono">
-                  <span>CORPORATE ENTITY:</span>
-                  <span class="text-zinc-400">KAVORAX GLOBAL PVT LTD</span>
+                <div class="flex items-center justify-between pt-1 border-t border-white/[0.04] text-xs text-zinc-400">
+                  <span>Entity:</span>
+                  <span class="text-zinc-300">KavoraX Global Pvt Ltd</span>
                 </div>
               </div>
             </div>
@@ -560,25 +511,20 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
 
           <div class="lg:col-span-7 relative">
             <div
-              class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none animate-ambient-drift"
+              class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none"
               aria-hidden="true"
             />
 
             <div
-              class="relative rounded-3xl border border-white/10 bg-[#0c141e]/95 p-7 sm:p-12 lg:p-14 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-card transition-editorial duration-700 delay-150"
+              class="relative rounded-3xl border border-white/10 bg-[#111111] p-7 sm:p-12 lg:p-14 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-card transition-editorial duration-700 delay-150"
               :class="{ 'is-revealed': isFormRevealed }"
             >
-              <div
-                v-for="pos in cornerCrosshairs4"
-                :key="pos"
-                :class="['absolute z-20 font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
-                aria-hidden="true"
-              >+</div>
+              
 
               <div class="pb-6 border-b border-white/[0.08]">
                 <div class="flex items-center justify-between mb-2">
-                  <span class="font-mono text-xs text-brand uppercase tracking-wider">FORM // CORRESPONDENCE</span>
-                  <span class="font-mono text-[11px] text-zinc-500">FIELDS WITH <span class="text-brand">*</span> REQUIRED</span>
+                  <span class="font-ui text-xs text-brand uppercase tracking-wider font-medium">Contact Form</span>
+                  <span class="font-ui text-xs text-zinc-400">Fields with <span class="text-brand">*</span> are required</span>
                 </div>
                 <h3 class="font-editorial text-2xl sm:text-4xl font-semibold text-white">
                   Send an Inquiry
@@ -590,7 +536,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
 
               <div
                 v-if="submissionStatus === 'success'"
-                class="mt-6 rounded-2xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4 shadow-[0_0_30px_rgba(16,185,129,0.18)]"
+                class="mt-6 rounded-2xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4"
                 role="status"
               >
                 <div class="flex items-start gap-3.5">
@@ -607,7 +553,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                       <Button
                         variant="outline"
                         size="sm"
-                        class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#0e1622] hover:bg-[#142030]"
+                        class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#161616] hover:bg-[#1C1C1C]"
                         @click="handleReset"
                       >
                         <RotateCcw class="mr-1.5 h-3.5 w-3.5" />
@@ -640,7 +586,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
               >
                 <div class="space-y-5">
                   <div class="flex items-center gap-2 pb-2 border-b border-white/[0.06]">
-                    <span class="font-mono text-[11px] text-brand tracking-widest uppercase">01 // CONTACT DETAILS</span>
+                    <span class="font-ui text-xs text-brand font-medium tracking-wider uppercase">01. Contact Details</span>
                   </div>
 
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -656,7 +602,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                           v-model="formData.fullName"
                           type="text"
                           placeholder="e.g. Eleanor Vance"
-                          class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                          class="h-12 text-sm bg-[#111111] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111] focus-visible:border-brand transition-all"
                           :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.fullName }"
                           :aria-invalid="!!errors.fullName"
                           :aria-describedby="errors.fullName ? 'fullName-error' : undefined"
@@ -667,7 +613,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                       <p
                         v-if="errors.fullName"
                         id="fullName-error"
-                        class="text-[11px] text-red-400 font-mono flex items-center gap-1.5 mt-1"
+                        class="text-xs text-red-400 font-ui flex items-center gap-1.5 mt-1"
                         role="alert"
                       >
                         <AlertCircle class="h-3 w-3 shrink-0" />
@@ -687,7 +633,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                           v-model="formData.workEmail"
                           type="email"
                           placeholder="e.g. eleanor.vance@company.com"
-                          class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                          class="h-12 text-sm bg-[#111111] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111] focus-visible:border-brand transition-all"
                           :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.workEmail }"
                           :aria-invalid="!!errors.workEmail"
                           :aria-describedby="errors.workEmail ? 'workEmail-error' : undefined"
@@ -698,7 +644,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                       <p
                         v-if="errors.workEmail"
                         id="workEmail-error"
-                        class="text-[11px] text-red-400 font-mono flex items-center gap-1.5 mt-1"
+                        class="text-xs text-red-400 font-ui flex items-center gap-1.5 mt-1"
                         role="alert"
                       >
                         <AlertCircle class="h-3 w-3 shrink-0" />
@@ -710,7 +656,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
 
                 <div class="space-y-5">
                   <div class="flex items-center gap-2 pb-2 border-b border-white/[0.06]">
-                    <span class="font-mono text-[11px] text-brand tracking-widest uppercase">02 // ORGANIZATION & SCOPE</span>
+                    <span class="font-ui text-xs text-brand font-medium tracking-wider uppercase">02. Organization & Scope</span>
                   </div>
 
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -718,7 +664,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                       <div class="flex items-center justify-between">
                         <Label for="companyName" class="text-xs font-medium text-zinc-200">
                           Company Name
-                          <span class="text-zinc-500 font-mono text-[10px] ml-1">(Optional)</span>
+                          <span class="text-zinc-500 font-ui text-xs ml-1">(Optional)</span>
                         </Label>
                       </div>
                       <div class="relative">
@@ -727,7 +673,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                           v-model="formData.companyName"
                           type="text"
                           placeholder="e.g. Acme Enterprises Ltd"
-                          class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                          class="h-12 text-sm bg-[#111111] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111] focus-visible:border-brand transition-all"
                           :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.companyName }"
                           :aria-invalid="!!errors.companyName"
                           :aria-describedby="errors.companyName ? 'companyName-error' : undefined"
@@ -738,7 +684,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                       <p
                         v-if="errors.companyName"
                         id="companyName-error"
-                        class="text-[11px] text-red-400 font-mono flex items-center gap-1.5 mt-1"
+                        class="text-xs text-red-400 font-ui flex items-center gap-1.5 mt-1"
                         role="alert"
                       >
                         <AlertCircle class="h-3 w-3 shrink-0" />
@@ -757,7 +703,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                           id="inquiryType"
                           v-model="formData.inquiryType"
                           :class="[
-                            'flex h-12 w-full rounded-lg border border-white/15 bg-[#090e16] px-4 py-2 font-ui text-sm shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand cursor-pointer appearance-none',
+                            'flex h-12 w-full rounded-lg border border-white/15 bg-[#111111] px-4 py-2 font-ui text-sm shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111] focus-visible:border-brand cursor-pointer appearance-none',
                             formData.inquiryType ? 'text-white' : 'text-zinc-500',
                             errors.inquiryType ? 'border-red-500/70 focus-visible:ring-red-500' : ''
                           ]"
@@ -765,14 +711,14 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                           :aria-describedby="errors.inquiryType ? 'inquiryType-error' : undefined"
                           @change="validateField('inquiryType')"
                         >
-                          <option value="" disabled selected class="bg-[#0c121a] text-zinc-500">
+                          <option value="" disabled selected class="bg-[#111111] text-zinc-500">
                             Select an inquiry category
                           </option>
                           <option
                             v-for="opt in inquiryOptions"
                             :key="opt.value"
                             :value="opt.value"
-                            class="bg-[#0e1622] text-white py-2"
+                            class="bg-[#161616] text-white py-2"
                           >
                             {{ opt.label }}
                           </option>
@@ -786,7 +732,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                       <p
                         v-if="errors.inquiryType"
                         id="inquiryType-error"
-                        class="text-[11px] text-red-400 font-mono flex items-center gap-1.5 mt-1"
+                        class="text-xs text-red-400 font-ui flex items-center gap-1.5 mt-1"
                         role="alert"
                       >
                         <AlertCircle class="h-3 w-3 shrink-0" />
@@ -798,8 +744,8 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
 
                 <div class="space-y-5">
                   <div class="flex items-center justify-between pb-2 border-b border-white/[0.06]">
-                    <span class="font-mono text-[11px] text-brand tracking-widest uppercase">03 // PROJECT CONTEXT</span>
-                    <span class="font-mono text-[10px] text-zinc-500">{{ formData.message.length }} / 2000 chars</span>
+                    <span class="font-ui text-xs text-brand font-medium tracking-wider uppercase">03. Project Context</span>
+                    <span class="font-ui text-xs text-zinc-500">{{ formData.message.length }} / 2000 chars</span>
                   </div>
 
                   <div class="space-y-2">
@@ -813,7 +759,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                       v-model="formData.message"
                       placeholder="Share a brief overview of your business challenges, current systems, and what you are looking to achieve..."
                       rows="5"
-                      class="min-h-[140px] text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                      class="min-h-[140px] text-sm bg-[#111111] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111] focus-visible:border-brand transition-all"
                       :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.message }"
                       :aria-invalid="!!errors.message"
                       :aria-describedby="errors.message ? 'message-error' : undefined"
@@ -823,7 +769,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                     <p
                       v-if="errors.message"
                       id="message-error"
-                      class="text-[11px] text-red-400 font-mono flex items-center gap-1.5 mt-1"
+                      class="text-xs text-red-400 font-ui flex items-center gap-1.5 mt-1"
                       role="alert"
                     >
                       <AlertCircle class="h-3 w-3 shrink-0" />
@@ -832,7 +778,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                   </div>
                 </div>
 
-                <div class="rounded-xl border border-white/[0.06] bg-[#090e16]/80 p-4 flex items-start gap-3 text-xs text-zinc-400 leading-relaxed">
+                <div class="rounded-xl border border-white/[0.06] bg-[#111111]/80 p-4 flex items-start gap-3 text-xs text-zinc-400 leading-relaxed">
                   <Lock class="h-4 w-4 text-brand shrink-0 mt-0.5" />
                   <span>
                     Your inquiry is reviewed directly by KavoraX solution specialists. We maintain strict non-disclosure across all prospective architecture discussions.
@@ -848,7 +794,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                   <p
                     v-if="errors.turnstile"
                     id="turnstile-error"
-                    class="text-[11px] text-red-400 font-mono flex items-center gap-1.5 mt-1"
+                    class="text-xs text-red-400 font-ui flex items-center gap-1.5 mt-1"
                     role="alert"
                   >
                     <AlertCircle class="h-3 w-3 shrink-0" />
@@ -861,7 +807,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                     type="submit"
                     size="lg"
                     :disabled="isSubmitting"
-                    class="w-full h-14 bg-brand text-black font-semibold hover:bg-brand/90 text-base rounded-lg shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_32px_0px_rgba(16,185,129,0.48)] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group/btn"
+                    class="w-full h-14 bg-brand text-black font-semibold hover:bg-brand/90 text-base rounded-lg transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group/btn"
                   >
                     <Loader2 v-if="isSubmitting" class="mr-2.5 h-5 w-5 animate-spin text-black" />
                     <Send v-else class="mr-2.5 h-4 w-4 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -869,12 +815,11 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
                   </Button>
                 </div>
 
-                <div class="pt-3 flex items-center justify-between font-mono text-[10px] text-zinc-500">
+                <div class="pt-3 flex items-center justify-between font-ui text-xs text-zinc-400">
                   <span class="flex items-center gap-1.5">
-                    <ShieldCheck class="h-3 w-3 text-brand" />
-                    Zero Spam · Non-Disclosure Respected
+                    <ShieldCheck class="h-3.5 w-3.5 text-brand" />
+                    Zero spam · Non-disclosure respected
                   </span>
-                  <span>AUTHENTICITY GUARANTEED</span>
                 </div>
               </form>
             </div>
@@ -885,7 +830,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
 
     <section
       ref="channelsSectionRef"
-      class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.08] overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] relative border-t border-white/[0.08] overflow-hidden"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -893,22 +838,12 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
           :class="{ 'is-revealed': isChannelsRevealed }"
         >
           <ChapterLabel label="Direct Contact Channels" />
-          <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-            <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-              OFFICIAL ADVISORY
-            </span>
-            <span class="text-zinc-600 hidden sm:inline">|</span>
-            <span class="hidden sm:inline font-mono">AUTHENTIC DIRECT REACH</span>
-          </div>
         </div>
 
         <div class="max-w-3xl space-y-4 mb-16">
-          <WordReveal
-            text="Verified Channels for Enterprise Dialogue."
-            as="h2"
-            class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-            :delay="120"
-          />
+          <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
+  Verified Channels for Direct Dialogue.
+</h2>
           <p
             class="font-ui text-xl sm:text-2xl text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-200"
             :class="{ 'is-revealed': isChannelsRevealed }"
@@ -922,27 +857,21 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
           <div
             v-for="ch in channels"
             :key="ch.title"
-            class="rounded-2xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-10 backdrop-blur-xl hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative reveal-card transition-editorial duration-700"
+            class="rounded-2xl border border-white/10 bg-[#111111] p-8 sm:p-10 hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between relative reveal-card transition-editorial duration-700"
             :class="[ch.staggerClass, { 'is-revealed': isChannelsRevealed }]"
           >
-            <div
-              v-for="pos in cornerCrosshairs3"
-              :key="pos"
-              :class="['absolute z-20 font-mono text-xs text-brand/50 select-none pointer-events-none', pos]"
-              aria-hidden="true"
-            >+</div>
+            
 
             <div>
               <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
                 <div class="flex items-center gap-3.5">
                   <div
-                    class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#121c29] border border-white/10 text-brand group-hover:scale-105 transition-transform"
+                    class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1C1C1C] border border-white/10 text-brand group-hover:scale-105 transition-transform"
                   >
                     <component :is="ch.icon" class="h-5 w-5" />
                   </div>
                   <div>
-                    <span class="font-mono text-xs text-brand uppercase tracking-wider block">{{ ch.category }}</span>
-                    <div class="font-mono text-[10px] text-zinc-500">{{ ch.code }}</div>
+                    <span class="font-ui text-xs text-brand uppercase tracking-wider block font-medium">{{ ch.category }}</span>
                   </div>
                 </div>
               </div>
@@ -959,10 +888,10 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
               </div>
 
               <div class="mt-6 pt-5 border-t border-white/[0.06] font-ui">
-                <span class="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block">
+                <span class="text-xs font-ui text-zinc-400 uppercase tracking-wider block">
                   Primary Channel
                 </span>
-                <span class="text-xs text-white font-mono font-medium mt-1 block">
+                <span class="text-xs text-white font-ui font-medium mt-1 block">
                   {{ ch.contactText }}
                 </span>
               </div>
@@ -986,24 +915,16 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
 
     <section
       ref="closingSectionRef"
-      class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
-        aria-hidden="true"
-      />
+      
 
       <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div
-          class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-card transition-editorial duration-700"
+          class="rounded-3xl border border-white/10 bg-[#111111] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-card transition-editorial duration-700"
           :class="{ 'is-revealed': isClosingRevealed }"
         >
-          <div
-            v-for="pos in cornerCrosshairs4"
-            :key="pos"
-            :class="['absolute z-20 font-mono text-xs text-brand/70 select-none pointer-events-none', pos]"
-            aria-hidden="true"
-          >+</div>
+          
 
           <div
             class="flex justify-center mb-8 reveal-base transition-editorial duration-700 delay-75"
@@ -1012,12 +933,12 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             <ChapterLabel label="Schedule a Briefing" />
           </div>
 
-          <WordReveal
-            text="Let’s Move Your Business Forward."
-            as="h2"
-            class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-            :delay="120"
-          />
+          <h2
+            class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight reveal-base transition-editorial duration-700 delay-150"
+            :class="{ 'is-revealed': isClosingRevealed }"
+          >
+            Let’s Move Your Business Forward.
+          </h2>
 
           <p
             class="mt-6 font-ui text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-200"
@@ -1033,7 +954,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
             <NuxtLink to="/demo" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200 group/btn"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md transition-all duration-200 group/btn"
               >
                 <Calendar class="mr-2 h-4 w-4" />
                 <span>Book an Executive Demo</span>
@@ -1045,7 +966,7 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
               <Button
                 variant="outline"
                 size="lg"
-                class="w-full sm:w-auto border-white/10 bg-[#111a26]/60 hover:bg-[#111a26] text-zinc-200 hover:text-white px-7 py-6 text-base transition-colors"
+                class="w-full sm:w-auto border-white/10 bg-[#1C1C1C] hover:bg-[#1C1C1C] text-zinc-200 hover:text-white px-7 py-6 text-base transition-colors"
               >
                 <Layers class="mr-2 h-4 w-4 text-brand" />
                 <span>Explore Platform Products</span>
@@ -1054,12 +975,11 @@ const { isRevealed: isClosingRevealed } = useScrollReveal(closingSectionRef, {
           </div>
 
           <div
-            class="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-400 reveal-base transition-editorial duration-700 delay-400"
+            class="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-ui text-zinc-400 reveal-base transition-editorial duration-700 delay-400"
             :class="{ 'is-revealed': isClosingRevealed }"
           >
-            <span>KAVORAX GLOBAL PRIVATE LIMITED</span>
-            <span class="text-zinc-400 font-ui text-[11px]">Enterprise Technology & Operations · Direct Advisory</span>
-            <span class="text-brand">CONFIDENTIAL REVIEW</span>
+            <span>KavoraX Global Private Limited</span>
+            <span>Enterprise Operations Platform · Direct Advisory</span>
           </div>
         </div>
       </div>

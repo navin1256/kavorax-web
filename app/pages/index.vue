@@ -4,7 +4,6 @@ import { Button } from '~/components/ui/button'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
 import WordReveal from '~/components/visual/WordReveal.vue'
 import ScrollTextReveal from '~/components/visual/ScrollTextReveal.vue'
-import ArchitecturalFrame from '~/components/visual/ArchitecturalFrame.vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 import {
   ArrowRight,
@@ -37,7 +36,6 @@ useHead({
   ]
 })
 
-const cornerCrosshairs3 = ['top-3 left-3', 'top-3 right-3', 'bottom-3 left-3', 'bottom-3 right-3']
 
 const archSvgNodes = [
   { id: 'operations' as const, cx: 80, label: 'OPERATIONS' },
@@ -312,11 +310,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
 </script>
 
 <template>
-  <div class="relative bg-[#080c10] overflow-x-hidden">
-    <div class="relative bg-[#070D10] text-white">
+  <div class="relative bg-[#0A0A0A] overflow-x-hidden">
+    <div class="relative bg-[#0A0A0A] text-white">
       <section
         ref="heroRef"
-        class="hero-cinematic-bg relative min-h-[660px] sm:min-h-[700px] md:min-h-[740px] lg:min-h-[780px] xl:min-h-[820px] flex flex-col justify-between overflow-hidden bg-[#070D10] text-white selection:bg-brand/20 selection:text-brand"
+        class="hero-cinematic-bg relative min-h-[660px] sm:min-h-[700px] md:min-h-[740px] lg:min-h-[780px] xl:min-h-[820px] flex flex-col justify-between overflow-hidden bg-[#0A0A0A] text-white selection:bg-brand/20 selection:text-brand"
       >
         <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <img
@@ -330,11 +328,11 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             class="h-full w-full object-cover object-[center_32%] md:object-[center_28%] lg:object-[center_25%] opacity-40 filter brightness-[0.75] contrast-[1.10] scale-[1.01] animate-hero-drift"
             :style="{ animationPlayState: isHeroVisible ? 'running' : 'paused' }"
           >
-          <div class="absolute inset-0 bg-[#070D10]/65" />
-          <div class="absolute inset-0 bg-gradient-to-r from-[#070D10]/85 via-transparent to-[#070D10]/85" />
-          <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#070D10] via-[#070D10]/85 to-transparent" />
-          <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#070D10] via-[#070D10]/95 to-transparent" />
-          <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none animate-ambient-drift" />
+          <div class="absolute inset-0 bg-[#0A0A0A]/65" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/85 via-transparent to-[#0A0A0A]/85" />
+          <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A]/85 to-transparent" />
+          <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/95 to-transparent" />
+          
         </div>
         <div
           class="relative z-10 pt-7 sm:pt-9 reveal-base delay-75"
@@ -345,7 +343,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               class="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-3.5 font-ui text-xs text-zinc-400"
             >
               <div class="flex items-center gap-2.5">
-                <span class="flex h-2 w-2 rounded-full bg-brand animate-pulse-subtle" />
+                <span class="flex h-2 w-2 rounded-full bg-brand" />
                 <span class="text-zinc-200 font-medium tracking-wide">
                   KavoraX Global Private Limited
                 </span>
@@ -361,7 +359,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
         <div class="relative z-10 container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-12 sm:pb-16 text-center my-auto">
           <div
-            class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 backdrop-blur-md shadow-sm reveal-base delay-100"
+            class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 shadow-sm reveal-base delay-100"
             :class="{ 'is-revealed': isHeroRevealed }"
           >
             <span class="h-1.5 w-1.5 rounded-full bg-brand" />
@@ -393,7 +391,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             <NuxtLink to="/demo" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-9 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.45)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.65)] transition-all duration-300 group"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-9 py-6 text-base rounded-md transition-all duration-300 group"
               >
                 <span>Book a Demo</span>
                 <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -404,7 +402,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <Button
                 variant="outline"
                 size="lg"
-                class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.09] text-white px-8 py-6 text-base rounded-md backdrop-blur-md transition-all duration-200 group"
+                class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.09] text-white px-8 py-6 text-base rounded-md transition-all duration-200 group"
               >
                 <span>Explore Our Solutions</span>
                 <ArrowUpRight
@@ -420,7 +418,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         >
           <button
             type="button"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/50 hover:bg-black/75 hover:border-brand/40 backdrop-blur-md font-ui text-xs text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand/50 group"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/50 hover:bg-black/75 hover:border-brand/40 font-ui text-xs text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand/50 group"
             aria-label="Scroll to enterprise capabilities"
             @click="scrollToContent"
           >
@@ -432,19 +430,14 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
       <section
         id="enterprise-capabilities"
         ref="capRef"
-        class="relative z-10 pt-4 pb-16 sm:pb-20 border-b border-white/[0.08] bg-[#070D10] bg-technical-grid"
+        class="relative z-10 pt-4 pb-16 sm:pb-20 border-b border-white/[0.08] bg-[#0A0A0A]"
       >
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
-            class="relative rounded-2xl border border-white/[0.09] bg-[#0c131d]/90 p-6 sm:p-8 md:p-10 overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)] mb-8 reveal-base"
+            class="relative rounded-2xl border border-white/[0.09] bg-[#111111] p-6 sm:p-8 md:p-10 overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)] mb-8 reveal-base"
             :class="{ 'is-revealed': isCapRevealed }"
           >
-            <div
-              v-for="pos in cornerCrosshairs3"
-              :key="pos"
-              :class="['absolute z-30 font-mono text-xs text-brand/60 select-none pointer-events-none', pos]"
-              aria-hidden="true"
-            >+</div>
+            
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-6 mb-8">
               <div class="space-y-1">
                 <div class="flex items-center gap-2">
@@ -485,7 +478,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     Connects diverse business tools: legacy systems, relational databases, cloud apps, and external partner APIs.
                   </p>
                 </div>
-                <div class="pt-4 flex flex-wrap gap-1.5 font-ui text-[11px] text-zinc-400">
+                <div class="pt-4 flex flex-wrap gap-1.5 font-ui text-xs text-zinc-400">
                   <span class="px-2 py-0.5 rounded bg-black/50 border border-white/5">Multi-Protocol</span>
                   <span class="px-2 py-0.5 rounded bg-black/50 border border-white/5">Real-Time Sync</span>
                 </div>
@@ -506,7 +499,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     Automated execution pipelines eliminating handoff delays and operational bottlenecks across teams.
                   </p>
                 </div>
-                <div class="pt-4 flex flex-wrap gap-1.5 font-ui text-[11px] text-zinc-400">
+                <div class="pt-4 flex flex-wrap gap-1.5 font-ui text-xs text-zinc-400">
                   <span class="px-2 py-0.5 rounded bg-brand/10 border border-brand/20 text-brand">Synchronized</span>
                   <span class="px-2 py-0.5 rounded bg-black/50 border border-white/5">Zero-Latency Bus</span>
                 </div>
@@ -527,7 +520,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     Real-time operational observability, throughput tracking, and automated bottleneck detection for leadership.
                   </p>
                 </div>
-                <div class="pt-4 flex flex-wrap gap-1.5 font-ui text-[11px] text-zinc-400">
+                <div class="pt-4 flex flex-wrap gap-1.5 font-ui text-xs text-zinc-400">
                   <span class="px-2 py-0.5 rounded bg-black/50 border border-white/5">Full Visibility</span>
                   <span class="px-2 py-0.5 rounded bg-black/50 border border-white/5">Audit Trails</span>
                 </div>
@@ -538,7 +531,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             <div
               v-for="(cap, cIdx) in enterpriseCapabilities"
               :key="cap.id"
-              class="rounded-xl border border-white/[0.08] bg-[#0c131d]/85 p-6 flex flex-col justify-between h-full hover:border-brand/40 hover:bg-[#0e1622] transition-all duration-300 group relative reveal-base"
+              class="rounded-xl border border-white/[0.08] bg-[#111111] p-6 flex flex-col justify-between h-full hover:border-brand/40 hover:bg-[#161616] transition-all duration-300 group relative reveal-base"
               :class="[
                 isCapRevealed ? 'is-revealed' : '',
                 cIdx === 0 ? 'delay-100' : cIdx === 1 ? 'delay-200' : 'delay-300'
@@ -578,12 +571,9 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
     <section
       id="editorial-intro"
       ref="introSectionRef"
-      class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <div
-        class="absolute top-1/2 -left-48 w-96 h-96 bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none"
-        aria-hidden="true"
-      />
+      
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -663,12 +653,9 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
     </section>
     <section
       ref="archTargetRef"
-      class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <div
-        class="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none"
-        aria-hidden="true"
-      />
+      
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -677,21 +664,16 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         >
           <div>
             <ChapterLabel label="One Connected Technology Ecosystem" />
-            <WordReveal
-              text="How connected systems function in unison."
-              as="h2"
-              :threshold="0.12"
-              :base-delay-ms="100"
-              :stagger-ms="55"
-              class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mt-4"
-            />
+            <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mt-4 reveal-base transition-editorial duration-700 delay-150" :class="{ 'is-revealed': isArchRevealed }">
+  How connected systems function in unison.
+</h2>
           </div>
           <p class="font-ui text-base sm:text-lg text-zinc-300 max-w-md leading-relaxed font-normal">
             KavoraX architecture connects your tools, workflows, and data into a synchronized system engineered for business growth and stability.
           </p>
         </div>
         <div
-          class="mb-12 rounded-2xl border border-white/10 bg-[#0c1420]/80 backdrop-blur-md p-5 sm:p-7 relative overflow-hidden reveal-card transition-editorial duration-700 delay-100"
+          class="mb-12 rounded-2xl border border-white/10 bg-[#111111] p-5 sm:p-7 relative overflow-hidden reveal-card transition-editorial duration-700 delay-100"
           :class="{ 'is-revealed': isArchRevealed }"
         >
           <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.06] font-ui text-xs gap-2">
@@ -717,7 +699,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <line x1="80" y1="52" x2="880" y2="52" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
               <path
                 d="M 80 52 L 320 52 L 320 35 M 320 52 L 600 52 L 600 35 M 600 52 L 880 52 L 880 35"
-                stroke="#64748b"
+                stroke="#52525B"
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -726,10 +708,10 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               />
               <path
                 d="M 80 35 L 880 35"
-                stroke="#10b981"
+                stroke="#08E888"
                 stroke-width="2.5"
                 stroke-linecap="round"
-                class="draw-path-primary drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+                class="draw-path-primary"
                 :class="{ 'is-revealed': isArchRevealed }"
               />
               <g
@@ -739,10 +721,10 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 :class="{ 'is-revealed': isArchRevealed }"
                 @click="activeLayerId = node.id"
               >
-                <circle v-if="activeLayerId === node.id" :cx="node.cx" cy="35" r="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.4" class="animate-ping" />
-                <circle :cx="node.cx" cy="35" r="14" fill="#080c10" :stroke="activeLayerId === node.id ? '#10b981' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
-                <circle :cx="node.cx" cy="35" r="5" :fill="activeLayerId === node.id ? '#10b981' : '#64748b'" class="transition-colors duration-300" />
-                <text :x="node.cx" y="16" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">{{ node.label }}</text>
+                <circle v-if="activeLayerId === node.id" :cx="node.cx" cy="35" r="20" fill="none" stroke="#08E888" stroke-width="1.5" opacity="0.4" class="animate-ping" />
+                <circle :cx="node.cx" cy="35" r="14" fill="#0A0A0A" :stroke="activeLayerId === node.id ? '#08E888' : 'rgba(255,255,255,0.2)'" stroke-width="2" class="transition-colors duration-300" />
+                <circle :cx="node.cx" cy="35" r="5" :fill="activeLayerId === node.id ? '#08E888' : '#52525B'" class="transition-colors duration-300" />
+                <text :x="node.cx" y="16" fill="#A1A1AA" font-size="10" font-family="'Anek Latin', sans-serif" text-anchor="middle" font-weight="600">{{ node.label }}</text>
               </g>
             </svg>
           </div>
@@ -758,8 +740,8 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               class="p-5 rounded-xl border transition-all duration-300 cursor-pointer relative group"
               :class="[
                 activeLayerId === layer.id
-                  ? 'border-brand/50 bg-[#111a26] shadow-[0_8px_30px_rgba(16,185,129,0.16)]'
-                  : 'border-white/[0.06] bg-[#0c131c]/60 hover:border-white/20 hover:bg-[#0e1622]'
+                  ? 'border-brand/50 bg-[#1C1C1C]'
+                  : 'border-white/[0.06] bg-[#111111] hover:border-white/20 hover:bg-[#161616]'
               ]"
               @click="activeLayerId = layer.id"
             >
@@ -770,7 +752,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     :class="[
                       activeLayerId === layer.id
                         ? 'border-brand/40 bg-brand/20 text-brand'
-                        : 'border-white/10 bg-[#121c29] text-zinc-400 group-hover:text-white'
+                        : 'border-white/10 bg-[#1C1C1C] text-zinc-400 group-hover:text-white'
                     ]"
                   >
                     <component :is="layer.icon" class="h-5 w-5" />
@@ -787,7 +769,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
 
                 <div
                   class="h-2 w-2 rounded-full transition-colors"
-                  :class="activeLayerId === layer.id ? 'bg-brand shadow-[0_0_8px_#10b981]' : 'bg-transparent'"
+                  :class="activeLayerId === layer.id ? 'bg-brand shadow-[0_0_8px_#08E888]' : 'bg-transparent'"
                 />
               </div>
             </div>
@@ -797,7 +779,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             :class="{ 'is-revealed': isArchRevealed }"
           >
             <div
-              class="rounded-2xl border border-white/10 bg-[#0c1420]/95 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] relative overflow-hidden group"
+              class="rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] relative overflow-hidden group"
             >
               <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.08] font-ui text-xs gap-2">
                 <div class="flex items-center gap-2 text-brand">
@@ -853,7 +835,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
       </div>
     </section>
-    <section id="product-showcases" class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden">
+    <section id="product-showcases" class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden">
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           ref="productsHeaderRef"
@@ -871,7 +853,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           </div>
 
           <NuxtLink to="/products" class="shrink-0 font-ui">
-            <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#0f1620] text-zinc-200 hover:text-white hover:border-brand/40 transition-all shadow-sm">
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#161616] text-zinc-200 hover:text-white hover:border-brand/40 transition-all shadow-sm">
               <span>Explore All Products</span>
               <ArrowRight class="h-3.5 w-3.5 text-brand" />
             </span>
@@ -879,7 +861,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
         </div>
         <div
           ref="productCard1Ref"
-          class="mt-16 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-12 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 corner-crosshair reveal-base transition-editorial duration-700"
+          class="mt-16 rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-8 md:p-12 relative group hover:border-brand/40 transition-all duration-500 reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isProductCard1Revealed }"
         >
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center font-ui">
@@ -927,7 +909,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </div>
             </div>
             <div class="lg:col-span-6">
-              <div class="rounded-xl border border-white/10 bg-[#070b10] p-5 sm:p-6 space-y-4 font-ui text-xs shadow-inner">
+              <div class="rounded-xl border border-white/10 bg-[#0A0A0A] p-5 sm:p-6 space-y-4 font-ui text-xs shadow-inner">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/[0.08] text-zinc-300 gap-2">
                   <span class="font-semibold text-white">Workflow Routing Pipeline</span>
                   <span class="text-brand text-xs font-medium">Coordinated</span>
@@ -944,18 +926,18 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     <span class="text-brand text-xs font-semibold shrink-0 ml-2">Verified</span>
                   </div>
 
-                  <div class="p-3.5 sm:p-4 rounded-lg border border-white/[0.1] bg-[#0d141e] flex items-center justify-between">
+                  <div class="p-3.5 sm:p-4 rounded-lg border border-white/[0.1] bg-[#111111] flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                      <span class="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
+                      <span class="h-2 w-2 rounded-full bg-brand shrink-0" />
                       <div>
                         <div class="text-white font-semibold font-ui text-sm">Cross-Team Dispatch</div>
                         <div class="text-xs text-zinc-400 font-sans mt-0.5">Automated routing across operational and administrative units</div>
                       </div>
                     </div>
-                    <span class="text-emerald-400 text-xs font-semibold shrink-0 ml-2">Synced</span>
+                    <span class="text-brand text-xs font-semibold shrink-0 ml-2">Synced</span>
                   </div>
 
-                  <div class="p-3.5 sm:p-4 rounded-lg border border-white/[0.06] bg-[#090e15] flex items-center justify-between text-zinc-400">
+                  <div class="p-3.5 sm:p-4 rounded-lg border border-white/[0.06] bg-[#0A0A0A] flex items-center justify-between text-zinc-400">
                     <div class="flex items-center gap-3">
                       <span class="h-2 w-2 rounded-full bg-brand/40 shrink-0" />
                       <div>
@@ -980,7 +962,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 font-ui items-stretch"
         >
           <div
-            class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700"
+            class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-8 md:p-10 relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between h-full reveal-base transition-editorial duration-700"
             :class="{ 'is-revealed': isProductCards23Revealed }"
           >
             <div class="space-y-6">
@@ -996,7 +978,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
                 Transform continuous business signals into immediate visibility. Identify trends, track margins, and spot bottlenecks before they affect growth.
               </p>
-              <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-ui text-xs space-y-4">
+              <div class="rounded-xl border border-white/[0.08] bg-[#0A0A0A] p-5 sm:p-6 font-ui text-xs space-y-4">
                 <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
                   <span class="font-semibold text-white">Daily Performance Overview</span>
                   <span class="text-brand font-medium">Live Telemetry</span>
@@ -1007,7 +989,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     :key="bIdx"
                     class="w-full rounded-t transition-[height,opacity] duration-700 transition-editorial"
                     :class="[
-                      bar.highlight ? 'bg-brand shadow-[0_0_12px_rgba(16,185,129,0.5)]' : bar.brandShade
+                      bar.highlight ? 'bg-brand' : bar.brandShade
                     ]"
                     :style="{
                       height: isProductCards23Revealed ? bar.height : '8%',
@@ -1034,7 +1016,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             </div>
           </div>
           <div
-            class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700 delay-150"
+            class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-8 md:p-10 relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between h-full reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isProductCards23Revealed }"
           >
             <div class="space-y-6">
@@ -1050,13 +1032,13 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <p class="font-ui text-base text-zinc-300 leading-relaxed font-normal">
                 Standardize disparate protocols, legacy ERPs, databases, and modern cloud endpoints into a single, high-throughput integration pipeline.
               </p>
-              <div class="rounded-xl border border-white/[0.08] bg-[#070b10] p-5 sm:p-6 font-ui text-xs space-y-3.5">
+              <div class="rounded-xl border border-white/[0.08] bg-[#0A0A0A] p-5 sm:p-6 font-ui text-xs space-y-3.5">
                 <div class="flex items-center justify-between text-zinc-300 pb-2 border-b border-white/[0.06]">
                   <span class="font-semibold text-white">System Connectivity Map</span>
                   <span class="text-brand font-medium">Encrypted &amp; Secure</span>
                 </div>
                 <div class="space-y-2 font-ui">
-                  <div class="p-3 rounded-lg bg-[#0e1622] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
+                  <div class="p-3 rounded-lg bg-[#161616] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
                     <span class="flex items-center gap-2">
                       <Database class="h-3.5 w-3.5 text-zinc-400" />
                       Databases &amp; Enterprise ERPs
@@ -1068,7 +1050,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     <div class="w-px h-3 bg-gradient-to-b from-white/20 to-brand/40" />
                   </div>
 
-                  <div class="p-3 rounded-lg bg-brand/[0.08] border border-brand/30 flex items-center justify-between text-xs text-white font-medium shadow-[0_0_16px_-4px_rgba(16,185,129,0.25)]">
+                  <div class="p-3 rounded-lg bg-brand/[0.08] border border-brand/30 flex items-center justify-between text-xs text-white font-medium">
                     <span class="flex items-center gap-2">
                       <GitBranch class="h-3.5 w-3.5 text-brand" />
                       KavoraX Unified Integration Bus
@@ -1080,7 +1062,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     <div class="w-px h-3 bg-gradient-to-b from-brand/40 to-white/20" />
                   </div>
 
-                  <div class="p-3 rounded-lg bg-[#0e1622] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
+                  <div class="p-3 rounded-lg bg-[#161616] border border-white/[0.06] flex items-center justify-between text-xs text-zinc-200">
                     <span class="flex items-center gap-2">
                       <ShieldCheck class="h-3.5 w-3.5 text-zinc-400" />
                       Cloud APIs &amp; External Services
@@ -1106,12 +1088,9 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
     </section>
     <section
       ref="solutionsTargetRef"
-      class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <div
-        class="absolute bottom-10 left-1/3 w-[600px] h-[600px] bg-brand/[0.035] blur-[170px] rounded-full pointer-events-none"
-        aria-hidden="true"
-      />
+      
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -1125,20 +1104,24 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             class="lg:col-span-7 relative reveal-base transition-editorial duration-700 delay-75"
             :class="{ 'is-revealed': isSolutionsRevealed }"
           >
-            <ArchitecturalFrame
-              src="/images/architectural-workspace.webp"
-              alt="Collaborative systems engineering workspace representing KavoraX enterprise advisory"
-              aspect-ratio="wide"
-              badge-text="Solutions Advisory"
-              coordinate="Modern Business Technology"
-            >
-              <template #caption>
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-3.5 rounded-xl border border-white/10 bg-[#080c10]/85 backdrop-blur-md font-ui text-xs text-zinc-200">
-                  <span class="text-white font-medium">Collaborative Implementation</span>
-                  <span class="text-brand text-xs">Tailored To Your Scale</span>
-                </div>
-              </template>
-            </ArchitecturalFrame>
+            <div class="relative rounded-2xl border border-white/10 bg-[#111111] overflow-hidden shadow-2xl">
+              <div class="relative w-full aspect-[16/10] overflow-hidden bg-zinc-900">
+                <img
+                  src="/images/architectural-workspace.webp"
+                  alt="Collaborative systems engineering workspace representing KavoraX enterprise advisory"
+                  loading="lazy"
+                  decoding="async"
+                  width="1200"
+                  height="750"
+                  class="h-full w-full object-cover opacity-85 hover:opacity-100 transition-opacity"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/35 to-transparent pointer-events-none" aria-hidden="true" />
+              </div>
+              <div class="p-4 sm:p-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-ui text-xs text-zinc-200">
+                <span class="text-white font-medium">Collaborative Implementation</span>
+                <span class="text-brand text-xs">Tailored To Your Scale</span>
+              </div>
+            </div>
           </div>
           <div
             class="lg:col-span-5 space-y-6 font-ui reveal-base transition-editorial duration-700 delay-200"
@@ -1159,7 +1142,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
 
             <div class="space-y-4 pt-2 text-sm text-zinc-300">
               <div
-                class="p-4 rounded-xl border border-white/[0.07] bg-[#0c131c]/60 flex items-start gap-3.5 reveal-card delay-150"
+                class="p-4 rounded-xl border border-white/[0.07] bg-[#111111] flex items-start gap-3.5 reveal-card delay-150"
                 :class="{ 'is-revealed': isSolutionsRevealed }"
               >
                 <CheckCircle2 class="h-5 w-5 text-brand shrink-0 mt-0.5" />
@@ -1170,7 +1153,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               </div>
 
               <div
-                class="p-4 rounded-xl border border-white/[0.07] bg-[#0c131c]/60 flex items-start gap-3.5 reveal-card delay-250"
+                class="p-4 rounded-xl border border-white/[0.07] bg-[#111111] flex items-start gap-3.5 reveal-card delay-250"
                 :class="{ 'is-revealed': isSolutionsRevealed }"
               >
                 <CheckCircle2 class="h-5 w-5 text-brand shrink-0 mt-0.5" />
@@ -1184,7 +1167,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             <div class="pt-4">
               <NuxtLink
                 to="/solutions"
-                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-md border border-brand/30 bg-brand/10 hover:bg-brand/20 text-brand hover:text-white transition-all text-xs font-semibold font-ui group shadow-[0_0_20px_-3px_rgba(16,185,129,0.2)]"
+                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-md border border-brand/30 bg-brand/10 hover:bg-brand/20 text-brand hover:text-white transition-all text-xs font-semibold font-ui group"
               >
                 <span>Explore All Solutions</span>
                 <ArrowUpRight class="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -1196,7 +1179,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
     </section>
     <section
       ref="industryTargetRef"
-      class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
@@ -1214,7 +1197,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           </div>
 
           <NuxtLink to="/industries" class="shrink-0 font-ui">
-            <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#0f1620] text-zinc-200 hover:text-white hover:border-brand/40 transition-all shadow-sm">
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#161616] text-zinc-200 hover:text-white hover:border-brand/40 transition-all shadow-sm">
               <span>Explore All Industries</span>
               <ArrowRight class="h-3.5 w-3.5 text-brand" />
             </span>
@@ -1231,8 +1214,8 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               class="p-5 rounded-xl border transition-all duration-300 cursor-pointer relative group"
               :class="[
                 industrySelectedIndex === index
-                  ? 'border-brand/40 bg-[#101924] shadow-[0_4px_24px_rgba(16,185,129,0.12)]'
-                  : 'border-white/[0.06] bg-[#0c131c]/60 hover:border-white/15 hover:bg-[#0c131c]'
+                  ? 'border-brand/40 bg-[#1C1C1C]'
+                  : 'border-white/[0.06] bg-[#111111] hover:border-white/15 hover:bg-[#111111]'
               ]"
               @mouseenter="industrySelectedIndex = index"
               @click="industrySelectedIndex = index"
@@ -1256,7 +1239,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                     </span>
                     <div
                       class="h-1.5 w-1.5 rounded-full transition-colors"
-                      :class="industrySelectedIndex === index ? 'bg-brand shadow-[0_0_6px_#10b981]' : 'bg-transparent'"
+                      :class="industrySelectedIndex === index ? 'bg-brand shadow-[0_0_6px_#08E888]' : 'bg-transparent'"
                     />
                   </div>
                   <h3 class="font-editorial text-xl font-semibold text-white mt-1">
@@ -1270,7 +1253,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             </div>
           </div>
           <div
-            class="lg:col-span-7 relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl corner-crosshair flex flex-col justify-between reveal-base transition-editorial duration-700 delay-300"
+            class="lg:col-span-7 relative min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] rounded-2xl overflow-hidden border border-white/[0.1] bg-[#111111] shadow-2xl flex flex-col justify-between reveal-base transition-editorial duration-700 delay-300"
             :class="{ 'is-revealed': isIndustryRevealed }"
           >
             <div class="absolute inset-0 z-0">
@@ -1283,8 +1266,8 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
                 height="520"
                 class="w-full h-full object-cover img-editorial-zoom transition-all duration-700"
               >
-              <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/75 to-[#080c10]/40" />
-              <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/85 via-[#080c10]/45 to-transparent" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/75 to-[#0A0A0A]/40" />
+              <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/85 via-[#0A0A0A]/45 to-transparent" />
             </div>
             <div class="relative z-10 p-6 sm:p-8 md:p-10 h-full flex flex-col justify-between space-y-6">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.1] pb-4 gap-2">
@@ -1335,12 +1318,9 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
     <section
       id="brand-statement"
       ref="brandSectionRef"
-      class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none"
-        aria-hidden="true"
-      />
+      
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div
@@ -1367,7 +1347,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
           </p>
         </div>
         <div
-          class="rounded-2xl border border-white/10 bg-[#0c131e]/90 backdrop-blur-xl p-6 sm:p-8 md:p-12 font-ui divide-y divide-white/[0.08] reveal-base delay-300"
+          class="rounded-2xl border border-white/10 bg-[#0c131e]/90 p-6 sm:p-8 md:p-12 font-ui divide-y divide-white/[0.08] reveal-base delay-300"
           :class="{ 'is-revealed': isBrandRevealed }"
         >
           <div
@@ -1380,7 +1360,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             ]"
           >
             <div class="lg:col-span-3 flex items-center gap-4">
-              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#111a26] border border-white/10 text-brand group-hover:scale-105 group-hover:border-brand/40 transition-all">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1C1C1C] border border-white/10 text-brand group-hover:scale-105 group-hover:border-brand/40 transition-all">
                 <component :is="item.icon" class="h-5 w-5" />
               </div>
               <div class="font-ui text-xs text-brand font-medium">
@@ -1404,29 +1384,21 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
     <section
       id="final-cta"
       ref="finalCtaRef"
-      class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+      class="py-24 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
     >
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10"
-        aria-hidden="true"
-      />
+      
 
       <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div
-          class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-6 sm:p-12 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] corner-crosshair group reveal-base"
+          class="rounded-3xl border border-white/10 bg-[#111111] p-6 sm:p-12 lg:p-16 text-center relative overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] group reveal-base"
           :class="{ 'is-revealed': isFinalCtaRevealed }"
         >
           <div class="flex justify-center mb-8 reveal-base delay-75" :class="{ 'is-revealed': isFinalCtaRevealed }">
             <ChapterLabel label="Let's Build Something Better Together" />
           </div>
-          <WordReveal
-            text="Ready to move your business forward?"
-            as="h2"
-            :threshold="0.15"
-            :base-delay-ms="180"
-            :stagger-ms="55"
-            class="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-medium tracking-tight text-white leading-[1.08] max-w-3xl mx-auto text-balance"
-          />
+          <h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-medium tracking-tight text-white leading-[1.08] max-w-3xl mx-auto text-balance reveal-base delay-150" :class="{ 'is-revealed': isFinalCtaRevealed }">
+  Ready to move your business forward?
+</h2>
           <p
             class="mt-6 font-ui text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal reveal-base delay-250"
             :class="{ 'is-revealed': isFinalCtaRevealed }"
@@ -1440,7 +1412,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
             <NuxtLink to="/demo" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.45)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.65)] transition-all duration-300 group"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md transition-all duration-300 group"
               >
                 <span>Book a Demo</span>
                 <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -1451,7 +1423,7 @@ const { isRevealed: isFinalCtaRevealed } = useScrollReveal(finalCtaRef, { thresh
               <Button
                 variant="outline"
                 size="lg"
-                class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.08] text-white px-8 py-6 text-base rounded-md backdrop-blur-md transition-all duration-200"
+                class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.08] text-white px-8 py-6 text-base rounded-md transition-all duration-200"
               >
                 <Mail class="mr-2 h-4 w-4 text-brand" />
                 <span>Contact Our Team</span>

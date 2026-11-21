@@ -23,12 +23,12 @@ const whatsappUrl = computed(() => {
       :href="whatsappUrl"
       target="_blank"
       rel="noopener noreferrer"
-      class="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0b0f14] border border-emerald-500/30 text-emerald-400 shadow-[0_4px_24px_-4px_rgba(16,185,129,0.3)] hover:shadow-[0_8px_32px_rgba(16,185,129,0.5)] hover:border-emerald-400 hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080c10]"
+      class="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0A0A0A] border border-brand/30 text-brand hover:border-brand hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]"
       aria-label="Connect with KavoraX Enterprise Solutions on WhatsApp"
     >
       <!-- Subtle pulsing halo -->
       <span
-        class="absolute -inset-1 rounded-full bg-emerald-500/10 group-hover:bg-emerald-500/20 animate-pulse pointer-events-none"
+        class="absolute -inset-1 rounded-full bg-brand/10 group-hover:bg-brand/10 animate-pulse pointer-events-none"
         aria-hidden="true"
       />
 
@@ -46,7 +46,7 @@ const whatsappUrl = computed(() => {
 
       <!-- Hover Tooltip -->
       <span
-        class="absolute right-16 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-md bg-[#0f161f] border border-emerald-500/20 text-slate-200 text-xs font-medium whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl"
+        class="absolute right-16 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-md bg-[#161616] border border-brand/30 text-zinc-200 text-xs font-medium whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl"
         role="tooltip"
       >
         Chat on WhatsApp

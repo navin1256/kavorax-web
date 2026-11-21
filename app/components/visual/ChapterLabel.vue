@@ -12,8 +12,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="inline-flex items-center gap-2 font-ui text-xs tracking-wide">
-    <span class="flex h-2 w-2 rounded-full bg-brand animate-pulse-subtle shrink-0" aria-hidden="true" />
+  <div class="inline-flex items-center gap-2 font-ui text-[13px] tracking-wide">
     <span class="font-medium text-brand">
       {{ label }}
     </span>

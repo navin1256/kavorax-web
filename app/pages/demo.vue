@@ -5,7 +5,6 @@ import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Textarea } from '~/components/ui/textarea'
-import WordReveal from '~/components/visual/WordReveal.vue'
 import { useKavoraxApi } from '~/composables/useKavoraxApi'
 import {
   AlertCircle,
@@ -269,32 +268,24 @@ const expectSteps = [
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0b0f14] text-white">
-    <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden bg-cinematic-radial">
-      <div
-        class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[360px] bg-brand/5 blur-[130px] rounded-full pointer-events-none -z-10"
-      />
+  <div class="min-h-screen bg-[#0A0A0A] text-white">
+    <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
+      
 
       <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           <div class="lg:col-span-6 xl:col-span-7 space-y-6">
             <div
-              class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-75"
+              class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-75"
               :class="{ 'is-revealed': isHeroMounted }"
             >
               <span class="flex h-2 w-2 rounded-full bg-brand" />
               <span>Schedule a Demo</span>
             </div>
 
-            <WordReveal
-              text="See What Better-Connected Business Looks Like."
-              as="h1"
-              class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words"
-              highlight="Looks Like."
-              highlight-class="text-brand font-normal"
-              :delay="240"
-              :immediate="true"
-            />
+            <h1 class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words reveal-base transition-editorial duration-700 delay-200" :class="{ 'is-revealed': isHeroMounted }">
+  See What Better-Connected Business <span class="text-brand font-normal">Looks Like.</span>
+</h1>
 
             <p
               class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
@@ -311,7 +302,7 @@ const expectSteps = [
               <a href="#demo-form" class="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
+                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md transition-all duration-200"
                 >
                   Request a Demo
                   <ArrowDown class="ml-2 h-4 w-4" />
@@ -322,7 +313,7 @@ const expectSteps = [
                 <Button
                   variant="outline"
                   size="lg"
-                  class="w-full sm:w-auto border-white/10 bg-[#111a26]/60 hover:bg-[#111a26] text-zinc-200 hover:text-white px-7 py-6 text-base transition-colors"
+                  class="w-full sm:w-auto border-white/10 bg-[#1C1C1C] hover:bg-[#1C1C1C] text-zinc-200 hover:text-white px-7 py-6 text-base transition-colors"
                 >
                   <Layers class="mr-2 h-4 w-4 text-brand" />
                   View Solutions
@@ -358,7 +349,7 @@ const expectSteps = [
             />
 
             <div
-              class="relative rounded-2xl border border-white/[0.08] bg-[#0d141d]/90 overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl group"
+              class="relative rounded-2xl border border-white/[0.08] bg-[#111111] overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group"
             >
               <div class="relative h-44 w-full overflow-hidden bg-zinc-900">
                 <img
@@ -372,25 +363,25 @@ const expectSteps = [
                   class="h-full w-full object-cover img-editorial-zoom opacity-70 group-hover:opacity-90 transition-opacity"
                 >
                 <div
-                  class="absolute inset-0 bg-gradient-to-t from-[#0d141d] via-[#0d141d]/60 to-transparent"
+                  class="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/60 to-transparent"
                 />
                 <div class="absolute top-3 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-2">
                   <span
-                    class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-zinc-300 border border-white/10 shrink-0 truncate max-w-[210px] sm:max-w-none"
+                    class="text-xs uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 text-zinc-300 border border-white/10 shrink-0 truncate max-w-[210px] sm:max-w-none"
                   >
-                    SYSTEMS ARCHITECTURE SESSION
+                    Product Demo Session
                   </span>
                   <span
-                    class="font-ui text-[11px] text-brand bg-brand/20 px-2.5 py-0.5 rounded border border-brand/30 flex items-center gap-1.5 shrink-0 whitespace-nowrap"
+                    class="font-ui text-xs text-brand bg-brand/20 px-2.5 py-0.5 rounded border border-brand/30 flex items-center gap-1.5 shrink-0 whitespace-nowrap"
                   >
-                    <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
+                    <span class="h-1.5 w-1.5 rounded-full bg-brand" />
                     Live Walkthrough
                   </span>
                 </div>
               </div>
 
               <div class="p-6 sm:p-7 space-y-3 font-ui">
-                <div class="rounded-xl border border-white/[0.07] bg-[#111a26]/80 p-3.5">
+                <div class="rounded-xl border border-white/[0.07] bg-[#1C1C1C] p-3.5">
                   <div class="flex items-start gap-3">
                     <div
                       class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 border border-white/10 text-brand shrink-0"
@@ -434,7 +425,7 @@ const expectSteps = [
                   <div class="h-3 w-px bg-brand/30" />
                 </div>
 
-                <div class="rounded-xl border border-white/[0.07] bg-[#111a26]/80 p-4">
+                <div class="rounded-xl border border-white/[0.07] bg-[#1C1C1C] p-4">
                   <div class="flex items-start gap-3">
                     <div
                       class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 border border-white/10 text-zinc-300 shrink-0"
@@ -460,7 +451,7 @@ const expectSteps = [
                   <ShieldCheck class="h-4 w-4 text-brand" />
                   Structured Around Your Real Priorities
                 </span>
-                <span class="font-mono text-[11px] text-zinc-400 shrink-0 pr-1">KavoraX Platform</span>
+                <span class="font-mono text-xs text-zinc-400 shrink-0 pr-1">KavoraX Platform</span>
               </div>
             </div>
           </div>
@@ -470,11 +461,9 @@ const expectSteps = [
 
     <section
       id="demo-form"
-      class="py-24 md:py-32 bg-[#080c10] relative border-t border-white/[0.06] scroll-mt-20"
+      class="py-24 md:py-32 bg-[#0A0A0A] relative border-t border-white/[0.06] scroll-mt-20"
     >
-      <div
-        class="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
-      />
+      
 
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -497,7 +486,7 @@ const expectSteps = [
             </div>
 
             <div class="space-y-4 font-ui">
-              <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
+              <div class="rounded-xl border border-white/[0.06] bg-[#161616] p-5 space-y-2">
                 <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
                   <span
                     class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
@@ -512,7 +501,7 @@ const expectSteps = [
                 </p>
               </div>
 
-              <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
+              <div class="rounded-xl border border-white/[0.06] bg-[#161616] p-5 space-y-2">
                 <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
                   <span
                     class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
@@ -527,7 +516,7 @@ const expectSteps = [
                 </p>
               </div>
 
-              <div class="rounded-xl border border-white/[0.06] bg-[#0f1620]/60 p-5 space-y-2">
+              <div class="rounded-xl border border-white/[0.06] bg-[#161616] p-5 space-y-2">
                 <h3 class="text-sm font-semibold text-white flex items-center gap-2 font-ui">
                   <span
                     class="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono"
@@ -570,7 +559,7 @@ const expectSteps = [
             />
 
             <div
-              class="relative rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+              class="relative rounded-2xl border border-white/[0.08] bg-[#111111] p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             >
               <div class="pb-6 border-b border-white/[0.06]">
                 <div class="flex items-center justify-between">
@@ -592,7 +581,7 @@ const expectSteps = [
 
               <div
                 v-if="submissionStatus === 'success'"
-                class="mt-6 rounded-xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4 shadow-[0_0_25px_rgba(16,185,129,0.18)]"
+                class="mt-6 rounded-xl border border-brand/40 bg-brand/[0.08] p-6 font-ui space-y-4"
                 role="status"
               >
                 <div class="flex items-start gap-3.5">
@@ -614,7 +603,7 @@ const expectSteps = [
                   <Button
                     variant="outline"
                     size="sm"
-                    class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#0e1622] hover:bg-[#142030]"
+                    class="border-white/15 text-xs text-zinc-300 hover:text-white bg-[#161616] hover:bg-[#1C1C1C]"
                     @click="handleReset"
                   >
                     <RotateCcw class="mr-1.5 h-3.5 w-3.5" />
@@ -651,7 +640,7 @@ const expectSteps = [
                     <span
                       v-if="errors.fullName"
                       id="fullName-error"
-                      class="text-[11px] text-red-400 font-mono"
+                      class="text-xs text-red-400 font-mono"
                       role="alert"
                     >
                       {{ errors.fullName }}
@@ -677,7 +666,7 @@ const expectSteps = [
                     <span
                       v-if="errors.workEmail"
                       id="workEmail-error"
-                      class="text-[11px] text-red-400 font-mono"
+                      class="text-xs text-red-400 font-mono"
                       role="alert"
                     >
                       {{ errors.workEmail }}
@@ -704,7 +693,7 @@ const expectSteps = [
                       <span
                         v-if="errors.companyName"
                         id="companyName-error"
-                        class="text-[11px] text-red-400 font-mono"
+                        class="text-xs text-red-400 font-mono"
                         role="alert"
                       >
                         {{ errors.companyName }}
@@ -726,12 +715,12 @@ const expectSteps = [
                     <div class="flex items-center justify-between">
                       <Label for="jobTitle">
                         Job Title
-                        <span class="text-zinc-500 font-normal font-mono text-[10px]">(Optional)</span>
+                        <span class="text-zinc-500 font-normal font-mono text-xs">(Optional)</span>
                       </Label>
                       <span
                         v-if="errors.jobTitle"
                         id="jobTitle-error"
-                        class="text-[11px] text-red-400 font-mono"
+                        class="text-xs text-red-400 font-mono"
                         role="alert"
                       >
                         {{ errors.jobTitle }}
@@ -758,7 +747,7 @@ const expectSteps = [
                     <span
                       v-if="errors.industry"
                       id="industry-error"
-                      class="text-[11px] text-red-400 font-mono"
+                      class="text-xs text-red-400 font-mono"
                       role="alert"
                     >
                       {{ errors.industry }}
@@ -769,7 +758,7 @@ const expectSteps = [
                       id="industry"
                       v-model="formData.industry"
                       :class="[
-                        'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
+                        'flex h-11 w-full rounded-md border border-white/10 bg-[#111111] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
                         formData.industry ? 'text-white' : 'text-zinc-500',
                         errors.industry ? 'border-red-500/50 focus-visible:ring-red-500' : ''
                       ]"
@@ -777,14 +766,14 @@ const expectSteps = [
                       :aria-describedby="errors.industry ? 'industry-error' : undefined"
                       @change="validateField('industry')"
                     >
-                      <option value="" disabled selected class="bg-[#0c121a] text-zinc-500">
+                      <option value="" disabled selected class="bg-[#111111] text-zinc-500">
                         Select your industry
                       </option>
                       <option
                         v-for="opt in industryOptions"
                         :key="opt.value"
                         :value="opt.value"
-                        class="bg-[#0e1622] text-white py-1"
+                        class="bg-[#161616] text-white py-1"
                       >
                         {{ opt.label }}
                       </option>
@@ -812,7 +801,7 @@ const expectSteps = [
                     <span
                       v-if="errors.areaOfInterest"
                       id="areaOfInterest-error"
-                      class="text-[11px] text-red-400 font-mono"
+                      class="text-xs text-red-400 font-mono"
                       role="alert"
                     >
                       {{ errors.areaOfInterest }}
@@ -823,7 +812,7 @@ const expectSteps = [
                       id="areaOfInterest"
                       v-model="formData.areaOfInterest"
                       :class="[
-                        'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
+                        'flex h-11 w-full rounded-md border border-white/10 bg-[#111111] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
                         formData.areaOfInterest ? 'text-white' : 'text-zinc-500',
                         errors.areaOfInterest ? 'border-red-500/50 focus-visible:ring-red-500' : ''
                       ]"
@@ -831,14 +820,14 @@ const expectSteps = [
                       :aria-describedby="errors.areaOfInterest ? 'areaOfInterest-error' : undefined"
                       @change="validateField('areaOfInterest')"
                     >
-                      <option value="" disabled selected class="bg-[#0c121a] text-zinc-500">
+                      <option value="" disabled selected class="bg-[#111111] text-zinc-500">
                         Select area of interest
                       </option>
                       <option
                         v-for="opt in interestOptions"
                         :key="opt.value"
                         :value="opt.value"
-                        class="bg-[#0e1622] text-white py-1"
+                        class="bg-[#161616] text-white py-1"
                       >
                         {{ opt.label }}
                       </option>
@@ -866,7 +855,7 @@ const expectSteps = [
                     <span
                       v-if="errors.businessChallenge"
                       id="businessChallenge-error"
-                      class="text-[11px] text-red-400 font-mono"
+                      class="text-xs text-red-400 font-mono"
                       role="alert"
                     >
                       {{ errors.businessChallenge }}
@@ -895,7 +884,7 @@ const expectSteps = [
                   <span
                     v-if="errors.turnstile"
                     id="turnstile-error"
-                    class="text-[11px] text-red-400 font-mono flex items-center gap-1.5"
+                    class="text-xs text-red-400 font-mono flex items-center gap-1.5"
                     role="alert"
                   >
                     <AlertCircle class="h-3 w-3 shrink-0" />
@@ -908,7 +897,7 @@ const expectSteps = [
                     type="submit"
                     size="lg"
                     :disabled="isSubmitting"
-                    class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-6 text-base rounded-md shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_0px_rgba(16,185,129,0.4)] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-6 text-base rounded-md transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <Loader2 v-if="isSubmitting" class="mr-2 h-4 w-4 animate-spin text-black" />
                     <Send v-else class="mr-2 h-4 w-4" />
@@ -928,7 +917,7 @@ const expectSteps = [
       </div>
     </section>
 
-    <section class="py-24 md:py-32 bg-[#0b0f14] relative overflow-hidden border-t border-white/[0.06]">
+    <section class="py-24 md:py-32 bg-[#0A0A0A] relative overflow-hidden border-t border-white/[0.06]">
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl space-y-4">
           <div
@@ -951,7 +940,7 @@ const expectSteps = [
           <div
             v-for="item in expectSteps"
             :key="item.step"
-            class="rounded-2xl border border-white/[0.08] bg-[#0e1620]/80 p-7 sm:p-8 backdrop-blur-sm relative group hover:border-brand/30 transition-all duration-300 flex flex-col justify-between"
+            class="rounded-2xl border border-white/[0.08] bg-[#161616] p-7 sm:p-8 relative group hover:border-brand/30 transition-all duration-300 flex flex-col justify-between"
           >
             <div>
               <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">
@@ -986,7 +975,7 @@ const expectSteps = [
         </div>
 
         <div
-          class="mt-12 rounded-xl border border-white/[0.07] bg-[#090e15] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-ui text-xs text-zinc-400"
+          class="mt-12 rounded-xl border border-white/[0.07] bg-[#0A0A0A] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-ui text-xs text-zinc-400"
         >
           <div class="flex items-start sm:items-center gap-3">
             <div class="h-2 w-2 rounded-full bg-brand shrink-0 mt-1 sm:mt-0" />
@@ -996,7 +985,7 @@ const expectSteps = [
               practical technical context without aggressive sales sequences.
             </p>
           </div>
-          <span class="font-mono text-[11px] text-zinc-500 shrink-0">
+          <span class="font-mono text-xs text-zinc-500 shrink-0">
             KavoraX Global Advisory
           </span>
         </div>
@@ -1004,15 +993,13 @@ const expectSteps = [
     </section>
 
     <section
-      class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.06] relative overflow-hidden"
+      class="py-24 md:py-32 bg-[#0A0A0A] border-t border-white/[0.06] relative overflow-hidden"
     >
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10"
-      />
+      
 
       <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div
-          class="rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-14 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+          class="rounded-2xl border border-white/[0.08] bg-[#111111] p-8 sm:p-14 text-center relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
         >
           <div
             class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-3.5 py-1 text-xs font-ui text-brand font-medium mb-6"
@@ -1036,7 +1023,7 @@ const expectSteps = [
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md transition-all duration-200"
               >
                 <MessageSquare class="mr-2 h-4 w-4" />
                 Contact Us
