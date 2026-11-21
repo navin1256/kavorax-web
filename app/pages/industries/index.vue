@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import OutletsOverview from '~/components/product-ui/OutletsOverview.vue'
+import UiDeviceFrame from '~/components/shared/UiDeviceFrame.vue'
 import { ref, type Component } from 'vue'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 import ChapterLabel from '~/components/visual/ChapterLabel.vue'
@@ -492,25 +494,10 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 }
                 FIELD TESTED
               </span>
             </div>
-            <div class="my-5 relative h-60 rounded-xl overflow-hidden border border-white/[0.08] group">
-              <img
-                src="/images/fintech-headquarters.webp"
-                alt="Institutional enterprise environment"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-                width="600"
-                height="240"
-                class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-opacity"
-              >
-              <div class="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent" />
-              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono">
-                <span class="text-white flex items-center gap-1.5">
-                  <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                  <span>CRITICAL INFRASTRUCTURE</span>
-                </span>
-                <span class="text-zinc-400">SOC2 / ISO COMPLIANT</span>
-              </div>
+            <div class="my-5">
+              <UiDeviceFrame type="terminal" title="Multi-Outlet Operations">
+                <OutletsOverview embedded />
+              </UiDeviceFrame>
             </div>
 
             <p class="font-ui text-xs sm:text-sm text-zinc-300 leading-relaxed">
