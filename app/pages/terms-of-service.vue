@@ -9,7 +9,7 @@ useHead({
     {
       name: 'description',
       content:
-        'Official Terms of Service governing access to KavoraX Global software platform, enterprise cloud telemetry, and connected venue applications.'
+        'The terms for using KavoraX Global Private Limited software and apps.'
     }
   ]
 })
@@ -17,29 +17,23 @@ useHead({
 
 <template>
   <div class="relative bg-[#0A0A0A] text-zinc-300 py-16 md:py-24 overflow-x-hidden">
-    <!-- Ambient emerald backlight glow -->
-    
 
     <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <!-- Breadcrumb Navigation -->
       <nav class="flex items-center gap-2 mb-8 font-ui text-xs text-zinc-400" aria-label="Breadcrumb">
         <NuxtLink to="/" class="hover:text-white transition-colors">Home</NuxtLink>
         <span class="text-zinc-600">/</span>
-        <span class="text-brand font-medium">Terms of Service</span>
+        <span class="text-zinc-300">Terms of Service</span>
       </nav>
 
       <!-- Editorial Header -->
       <div class="border-b border-white/[0.08] pb-10 mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/[0.08] border border-brand/25 text-brand text-xs font-ui tracking-wider uppercase mb-5">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand" />
-          <span>LEGAL &amp; COMPLIANCE</span>
-        </div>
         <h1 class="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-medium tracking-tight leading-[1.08] mb-4">
           Terms of Service
         </h1>
         <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal max-w-2xl">
           Effective Date: January 1, 2026 · Last Updated: October 2026.<br />
-          These terms govern your access to and use of KavoraX Global Private Limited's software platform, cloud telemetry, and connected venue applications.
+          These terms govern your access to and use of KavoraX Global Private Limited's software platform and apps.
         </p>
       </div>
 

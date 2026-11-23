@@ -80,7 +80,7 @@ const staticNavLinks = [
 
             <div v-if="isProductsAccordionOpen" class="px-4 pb-3 space-y-4 pt-1 border-t border-white/[0.04]">
               <div v-for="grp in productNavGroups" :key="grp.name" class="space-y-1.5">
-                <div class="text-[11px] font-semibold text-brand uppercase tracking-wider">
+                <div class="text-sm font-semibold text-white">
                   {{ grp.name }}
                 </div>
                 <div class="space-y-1 pl-1">

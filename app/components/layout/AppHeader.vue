@@ -112,7 +112,7 @@ const navItems: NavItem[] = [
               <div class="grid grid-cols-3 gap-6">
                 <div v-for="grp in productNavGroups" :key="grp.name" class="space-y-3">
                   <div class="pb-2 border-b border-white/[0.08]">
-                    <span class="font-ui text-xs font-semibold text-brand uppercase tracking-wider">
+                    <span class="font-ui text-sm font-semibold text-white">
                       {{ grp.name }}
                     </span>
                     <p class="font-ui text-[11px] text-zinc-500 mt-0.5 leading-snug">

@@ -12,11 +12,11 @@ definePageMeta({
 const module = getModuleBySlug('e-commerce')!
 
 useHead({
-  title: 'E-commerce | Online Store & Real-Time Stock Sync | KavoraX',
+  title: 'Online store for shops and restaurants | KavoraX',
   meta: [
     {
       name: 'description',
-      content: 'Sell online without a second system. Branded storefront, live inventory sync with POS, automated orders, payment links, and coupons.'
+      content: 'Sell online with the same items, prices and stock as your shop. Orders, payment links and coupons included.'
     }
   ]
 })

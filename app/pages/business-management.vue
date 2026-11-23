@@ -8,11 +8,11 @@ import { getModuleBySlug } from '~/composables/useModules'
 const module = getModuleBySlug('business-management')!
 
 useHead({
-  title: 'Business Management | Staff, Attendance & Expenses | KavoraX',
+  title: 'Staff, attendance and expenses | KavoraX',
   meta: [
     {
       name: 'description',
-      content: 'Run daily business operations without the chaos. Staff management, attendance, expense tracking, role permissions, and full audit trails.'
+      content: 'Staff shifts, attendance, expenses and role permissions for restaurants and shops.'
     }
   ]
 })

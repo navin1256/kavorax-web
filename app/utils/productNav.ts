@@ -18,21 +18,21 @@ export const productNavItems: ProductNavItem[] = [
     slug: 'pos-and-billing',
     name: 'POS & Billing',
     href: '/pos-and-billing',
-    description: 'High-speed counter billing with GST, split tender & offline sync.',
+    description: 'GST bills, UPI/card/cash, and billing that works offline.',
     group: 'Sell'
   },
   {
     slug: 'digital-ordering',
     name: 'Digital Ordering',
     href: '/digital-ordering',
-    description: 'QR table ordering, contactless payments & takeaway queues.',
+    description: 'Guests order and pay from a QR code on the table.',
     group: 'Sell'
   },
   {
     slug: 'e-commerce',
     name: 'E-commerce',
     href: '/e-commerce',
-    description: 'Branded online storefront with real-time stock sync.',
+    description: 'Your own online store, using the same stock as the shop.',
     group: 'Sell'
   },
 
@@ -41,21 +41,21 @@ export const productNavItems: ProductNavItem[] = [
     slug: 'inventory-and-stock',
     name: 'Inventory & Stock',
     href: '/inventory-and-stock',
-    description: 'Real-time stock counts, recipe costing & low-stock alerts.',
+    description: 'Stock that goes down as you sell, and a list of what to reorder.',
     group: 'Operate'
   },
   {
     slug: 'kitchen-display',
     name: 'Kitchen Display (KDS)',
     href: '/kitchen-display',
-    description: 'Live order routing and station prep timing for busy kitchens.',
+    description: 'Orders on a kitchen screen by station, instead of paper KOTs.',
     group: 'Operate'
   },
   {
     slug: 'delivery-management',
     name: 'Delivery Management',
     href: '/delivery-management',
-    description: 'Rider dispatch, route optimization & delivery status tracking.',
+    description: 'Assign riders and see which orders are out for delivery.',
     group: 'Operate'
   },
 
@@ -64,28 +64,28 @@ export const productNavItems: ProductNavItem[] = [
     slug: 'crm',
     name: 'CRM & Loyalty',
     href: '/crm',
-    description: 'Customer profiles, loyalty rewards & repeat visit campaigns.',
+    description: 'Know your regulars, give them points, send them offers.',
     group: 'Grow & manage'
   },
   {
     slug: 'business-analytics',
     name: 'Business Analytics',
     href: '/business-analytics',
-    description: 'Real-time sales dashboards, product margins & performance reports.',
+    description: 'Sales by item, hour and payment type, on your phone.',
     group: 'Grow & manage'
   },
   {
     slug: 'multi-location',
     name: 'Multi-Location',
     href: '/multi-location',
-    description: 'Centralized menu, pricing & stock control across all outlets.',
+    description: 'One menu and price list for every branch, with branch-wise reports.',
     group: 'Grow & manage'
   },
   {
     slug: 'business-management',
     name: 'Business Management',
     href: '/business-management',
-    description: 'Staff shifts, attendance, expense logs & role permissions.',
+    description: 'Staff shifts, attendance, expenses and who can see what.',
     group: 'Grow & manage'
   }
 ]
@@ -93,17 +93,17 @@ export const productNavItems: ProductNavItem[] = [
 export const productNavGroups: ProductNavGroup[] = [
   {
     name: 'Sell',
-    tagline: 'Front-of-house counters, online channels & digital ordering',
+    tagline: 'Counter, table and online orders',
     items: productNavItems.filter(item => item.group === 'Sell')
   },
   {
     name: 'Operate',
-    tagline: 'Kitchen operations, stock management & dispatch logistics',
+    tagline: 'Kitchen, stock and deliveries',
     items: productNavItems.filter(item => item.group === 'Operate')
   },
   {
     name: 'Grow & manage',
-    tagline: 'Customer retention, analytics intelligence & multi-outlet scale',
+    tagline: 'Customers, reports and more branches',
     items: productNavItems.filter(item => item.group === 'Grow & manage')
   }
 ]

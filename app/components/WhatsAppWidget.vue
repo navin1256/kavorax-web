@@ -6,7 +6,7 @@ const whatsappNumber = computed(() => {
   return config.public.whatsappNumber || '919629579358'
 })
 
-const defaultMessage = 'Hello KavoraX Global team, I would like to learn more about your enterprise POS and commerce architectures.'
+const defaultMessage = 'Hi KavoraX, I would like to know more about your POS.'
 
 const whatsappUrl = computed(() => {
   const cleanNumber = whatsappNumber.value.replace(/\D/g, '')
@@ -24,7 +24,7 @@ const whatsappUrl = computed(() => {
       target="_blank"
       rel="noopener noreferrer"
       class="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0A0A0A] border border-brand/30 text-brand hover:border-brand hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]"
-      aria-label="Connect with KavoraX Enterprise Solutions on WhatsApp"
+      aria-label="Message KavoraX on WhatsApp"
     >
       <!-- Subtle pulsing halo -->
       <span
