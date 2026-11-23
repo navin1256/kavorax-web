@@ -1,1500 +1,236 @@
 <script setup lang="ts">
-import OutletsOverview from '~/components/product-ui/OutletsOverview.vue'
+import KdsBoard from '~/components/product-ui/KdsBoard.vue'
+import InventoryTable from '~/components/product-ui/InventoryTable.vue'
+import CrmProfile from '~/components/product-ui/CrmProfile.vue'
+import DeliveryTracker from '~/components/product-ui/DeliveryTracker.vue'
 import UiDeviceFrame from '~/components/shared/UiDeviceFrame.vue'
-import { ref, type Component } from 'vue'
-import { useScrollReveal } from '~/composables/useScrollReveal'
-import ChapterLabel from '~/components/visual/ChapterLabel.vue'
-import { Button } from '~/components/ui/button'
-import {
-  Activity,
-  ArrowDown,
-  ArrowDownRight,
-  ArrowRight,
-  ArrowUpRight,
-  BarChart3,
-  Building2,
-  CheckCircle2,
-  Cpu,
-  Landmark,
-  Layers,
-  Mail,
-  Network,
-  Radio,
-  ShieldCheck,
-  Truck,
-  Workflow
-} from 'lucide-vue-next'
+import TalkToUs from '~/components/site/TalkToUs.vue'
 
 useHead({
-  title: 'Enterprise Industries & Solutions | KavoraX Global',
+  title: 'Industries | Restaurants, cafes, cloud kitchens, retail and salons | KavoraX',
   meta: [
     {
       name: 'description',
       content:
-        'Explore how KavoraX builds connected business solutions designed to improve visibility, streamline operations and adapt across enterprise industries.'
+        'How KavoraX is set up for restaurants, cafes and bakeries, cloud kitchens, retail and convenience stores, salons and online sellers.'
     }
   ]
 })
 
-const heroSectorChips = [
-  { href: '#enterprise-tech', icon: Building2, label: 'Technology & SaaS' },
-  { href: '#financial-services', icon: Landmark, label: 'Financial Services' },
-  { href: '#healthcare', icon: Activity, label: 'Healthcare' },
-  { href: '#supply-chain', icon: Truck, label: 'Logistics' }
-]
-
-// --- IndustriesHero ---
-const { isRevealed: isHeroMounted } = useScrollReveal({ immediate: true })
-const scrollToSectors = () => {
-  const el = document.getElementById('industry-overview')
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-}
-
-// --- IndustriesOverview ---
-const overviewRef = ref<HTMLElement | null>(null)
-const { isRevealed: isOverviewRevealed } = useScrollReveal(overviewRef, { threshold: 0.1 })
-const overviewIndustries = [
-  {
-    id: 'enterprise-tech',
-    name: 'Enterprise Technology & SaaS',
-    tag: 'Digital Operations',
-    icon: Building2,
-    colSpan: 'lg:col-span-7',
-    description:
-      'Fast-moving software and technology providers coordinating complex product lifecycles, cross-functional handoffs, and multi-tenant operational toolchains.',
-    keyFocus: 'Workflow execution & toolchain interoperability',
-    primaryAnchor: '#enterprise-tech',
-    ctaLabel: 'Explore SaaS Context',
-    image: '/images/tech-infrastructure.webp',
-    alt: 'High-density enterprise computing and telemetry infrastructure'
-  },
-  {
-    id: 'financial-services',
-    name: 'Financial Services & FinTech',
-    tag: 'Auditable Systems',
-    icon: Landmark,
-    colSpan: 'lg:col-span-5',
-    description:
-      'Banking, payment, and financial institutions requiring continuous operational visibility, strict governance, and synchronized data exchange across distributed platforms.',
-    keyFocus: 'Operational telemetry & multi-system exchange',
-    primaryAnchor: '#financial-services',
-    ctaLabel: 'Explore FinTech Context',
-    image: '/images/fintech-headquarters.webp',
-    alt: 'Modern financial architectural headquarters with glass facade'
-  },
-  {
-    id: 'healthcare',
-    name: 'Healthcare & Life Sciences',
-    tag: 'Care Delivery Workflows',
-    icon: Activity,
-    colSpan: 'lg:col-span-5',
-    description:
-      'Clinical operations and health networks managing distributed administrative processes, cross-facility coordination, and complex stakeholder communications.',
-    keyFocus: 'Operational coordination & bottleneck visibility',
-    primaryAnchor: '#healthcare',
-    ctaLabel: 'Explore Healthcare Context',
-    image: '/images/healthcare-diagnostics.webp',
-    alt: 'Modern laboratory instrumentation and clinical diagnostics'
-  },
-  {
-    id: 'supply-chain',
-    name: 'Supply Chain & Logistics',
-    tag: 'Fulfillment & Freight',
-    icon: Truck,
-    colSpan: 'lg:col-span-7',
-    description:
-      'Logistics providers and fulfillment operators requiring dependable interoperability between distributed inventory, freight tracking, and back-office ERP systems.',
-    keyFocus: 'Ecosystem bridging & milestone tracking',
-    primaryAnchor: '#supply-chain',
-    ctaLabel: 'Explore Logistics Context',
-    image: '/images/logistics-terminal.webp',
-    alt: 'Modern automated intermodal logistics terminal'
-  }
-]
-
-// --- IndustryDetailSections ---
-const s0Ref = ref<HTMLElement | null>(null)
-const s1Ref = ref<HTMLElement | null>(null)
-const s2Ref = ref<HTMLElement | null>(null)
-const s3Ref = ref<HTMLElement | null>(null)
-const { isRevealed: s0Revealed } = useScrollReveal(s0Ref, { threshold: 0.1 })
-const { isRevealed: s1Revealed } = useScrollReveal(s1Ref, { threshold: 0.1 })
-const { isRevealed: s2Revealed } = useScrollReveal(s2Ref, { threshold: 0.1 })
-const { isRevealed: s3Revealed } = useScrollReveal(s3Ref, { threshold: 0.1 })
-interface IndustryDetailItem {
+interface Industry {
   id: string
-  number: string
-  category: string
   name: string
-  subtitle: string
-  icon: Component
-  image: string
-  imageAlt: string
-  imageBadge: string
-  imageCaption: string
-  context: string
-  commonNeeds: { title: string; desc: string }[]
-  solutionTitle: string
-  solutionDesc: string
-  solutionLink: string
-  solutionIcon: Component
-  capabilities: string[]
-  primaryCta: string
-  secondaryCta: string
+  problem: string
+  handles: string[]
+  products: { label: string; href: string }[]
+  screen?: { component: unknown; title: string; device: 'terminal' | 'tablet' }
 }
-const detailIndustries: [IndustryDetailItem, IndustryDetailItem, IndustryDetailItem, IndustryDetailItem] = [
-  {
-    id: 'enterprise-tech',
-    number: '01',
-    category: 'DIGITAL OPERATIONS',
-    name: 'Enterprise Technology & SaaS',
-    subtitle: 'Streamlining cross-functional execution and multi-system digital operations.',
-    icon: Building2,
-    image: '/images/tech-infrastructure.webp',
-    imageAlt: 'High-density cloud infrastructure and telemetry servers',
-    imageBadge: 'HIGH-CONCURRENCY MESH',
-    imageCaption: 'Distributed Cloud Cluster · Sub-10ms Routing',
-    context:
-      'Modern software and technology companies operate in fast-paced environments where engineering, product, customer support, and go-to-market teams rely on heavily decentralized toolchains. Maintaining clear visibility over cross-functional deliverables without slowing down release cycles remains a continuous operational challenge.',
-    commonNeeds: [
-      {
-        title: 'Cross-Departmental Task Coordination',
-        desc: 'Minimizing friction during critical handoffs between engineering sprints, customer success onboarding, and back-office billing.'
-      },
-      {
-        title: 'Decoupled Toolchain Interoperability',
-        desc: 'Synchronizing data records between issue trackers, customer engagement tools, and internal admin panels without brittle custom scripts.'
-      },
-      {
-        title: 'Operational Bottleneck Detection',
-        desc: 'Identifying workflow lags and systemic delays across service provisioning and customer lifecycle milestones.'
-      }
-    ],
-    solutionTitle: 'Operations Platform & Integration Hub',
-    solutionDesc:
-      'KavoraX Operations Platform establishes unified workflow coordination across distributed teams, while Integration Hub maintains reliable data synchronization between disconnected SaaS services.',
-    solutionLink: '/products#operations-platform',
-    solutionIcon: Cpu,
-    capabilities: [
-      'Multi-tenant toolchain data synchronization',
-      'Automated service milestone routing and notification',
-      'Real-time bottleneck and handoff lag visibility'
-    ],
-    primaryCta: 'Discuss Tech Operations',
-    secondaryCta: 'Explore Operations Platform'
-  },
-  {
-    id: 'financial-services',
-    number: '02',
-    category: 'AUDITABLE ARCHITECTURE',
-    name: 'Financial Services & FinTech',
-    subtitle: 'Auditable transaction architectures, rigorous data segregation, and governance.',
-    icon: Landmark,
-    image: '/images/fintech-headquarters.webp',
-    imageAlt: 'Modern financial architectural headquarters with glass facade',
-    imageBadge: 'REGULATORY COMPLIANCE',
-    imageCaption: 'Institutional Governance · End-to-End Cryptography',
-    context:
-      'Financial institutions and fintech organizations navigate stringent regulatory frameworks, rigorous audit requirements, and zero-tolerance expectations for transactional errors. Software systems must coordinate high-volume transactions while preserving full operational transparency and data lineage.',
-    commonNeeds: [
-      {
-        title: 'Auditable Operational Logging',
-        desc: 'Ensuring every state transition, user authorization, and system event is immutably recorded for regulatory scrutiny.'
-      },
-      {
-        title: 'Rigorous Data Segregation',
-        desc: 'Maintaining strict organizational boundaries and role-based permissions across sensitive accounts and customer portfolios.'
-      },
-      {
-        title: 'Reconciliation Traceability',
-        desc: 'Automating multi-system balance reconciliations and identifying ledger discrepancies before settlement windows close.'
-      }
-    ],
-    solutionTitle: 'Analytics & Insights & Operations Platform',
-    solutionDesc:
-      'KavoraX Analytics & Insights delivers continuous operational telemetry and anomaly detection, paired with policy-governed task execution for compliance workflows.',
-    solutionLink: '/products#analytics-insights',
-    solutionIcon: BarChart3,
-    capabilities: [
-      'Continuous compliance audit event aggregation',
-      'Multi-entity policy governance and permission gates',
-      'Real-time operational exception escalation'
-    ],
-    primaryCta: 'Discuss FinTech Governance',
-    secondaryCta: 'Explore Analytics Engine'
-  },
-  {
-    id: 'healthcare',
-    number: '03',
-    category: 'CARE CONTINUITY',
-    name: 'Healthcare & Life Sciences',
-    subtitle: 'Confidential clinical data pipelines and synchronized patient workflows.',
-    icon: Activity,
-    image: '/images/healthcare-diagnostics.webp',
-    imageAlt: 'Modern laboratory instrumentation and clinical diagnostics',
-    imageBadge: 'CLINICAL GRADE',
-    imageCaption: 'Encrypted Telemetry · Care Coordination',
-    context:
-      'Healthcare organizations, medical device manufacturers, and clinical laboratories must balance exceptional patient care standards with rigorous patient privacy mandates and fragmented legacy electronic record systems.',
-    commonNeeds: [
-      {
-        title: 'Multi-Department Scheduling & Handoffs',
-        desc: 'Coordinating operational workflows between laboratory diagnostics, clinical evaluation, and administrative billing.'
-      },
-      {
-        title: 'Confidential Diagnostics Routing',
-        desc: 'Transmitting sensitive patient telemetry and laboratory findings across authenticated endpoints without risk of exposure.'
-      },
-      {
-        title: 'Cross-System EHR Interoperability',
-        desc: 'Enabling legacy record databases to communicate with modern clinical scheduling and telemedicine portals.'
-      }
-    ],
-    solutionTitle: 'Operations Platform & Integration Hub',
-    solutionDesc:
-      'KavoraX Integration Hub provides cryptographically verified data pipelines for healthcare providers, while Operations Platform coordinates clinical task handoffs with strict privacy enforcement.',
-    solutionLink: '/products#operations-platform',
-    solutionIcon: Cpu,
-    capabilities: [
-      'Encrypted inter-departmental task routing',
-      'Confidential clinical data lineage tracking',
-      'Automated SLA monitoring for critical patient milestones'
-    ],
-    primaryCta: 'Discuss Healthcare Solutions',
-    secondaryCta: 'Explore Integration Hub'
-  },
-  {
-    id: 'supply-chain',
-    number: '04',
-    category: 'GLOBAL SYNCHRONIZATION',
-    name: 'Supply Chain & Logistics',
-    subtitle: 'Intermodal freight coordination, inventory synchronization, and milestone tracking.',
-    icon: Truck,
-    image: '/images/logistics-terminal.webp',
-    imageAlt: 'Modern automated intermodal container logistics terminal',
-    imageBadge: 'INTERMODAL LOGISTICS',
-    imageCaption: 'Multi-Terminal Hub · Real-Time Freight Sync',
-    context:
-      'Global logistics operators, freight coordinators, and warehouse networks face compounding complexity from fluctuating carrier capacity, weather disruptions, and heterogeneous inventory management software.',
-    commonNeeds: [
-      {
-        title: 'Multi-Vendor Freight Bridging',
-        desc: 'Unifying disparate EDI, API, and legacy transport management protocols into a single, predictable tracking stream.'
-      },
-      {
-        title: 'Automated Exception Routing',
-        desc: 'Triggering rapid mitigation workflows whenever shipment milestones or cold-chain temperature thresholds are breached.'
-      },
-      {
-        title: 'Warehouse & Inventory Synchronization',
-        desc: 'Maintaining cross-terminal inventory visibility to optimize dispatch timing and eliminate dwell time.'
-      }
-    ],
-    solutionTitle: 'Integration Hub & Operations Platform',
-    solutionDesc:
-      'KavoraX Integration Hub standardizes communication across global freight providers, while Operations Platform orchestrates automated exception resolution across distributed fulfillment teams.',
-    solutionLink: '/products#integration-hub',
-    solutionIcon: Network,
-    capabilities: [
-      'Multi-carrier operational protocol bridging',
-      'Automated freight exception handling workflows',
-      'Real-time multi-terminal inventory synchronization'
-    ],
-    primaryCta: 'Discuss Logistics Architecture',
-    secondaryCta: 'Explore Integration Hub'
-  }
-]
 
-// --- ConnectedOperations ---
-const connectedRef = ref<HTMLElement | null>(null)
-const { isRevealed: isConnectedRevealed } = useScrollReveal(connectedRef, { threshold: 0.1 })
-const operationalPillars = [
+const industries: Industry[] = [
   {
-    id: 'workflows',
-    number: '01',
-    title: 'Business Workflows',
-    subtitle: 'Execution & Coordination',
-    icon: Workflow,
-    description:
-      'Coordinating cross-functional execution and milestone progression so teams spend less time chasing status updates and more time moving initiatives forward.',
-    highlights: [
-      'Multi-team handoff synchronization',
-      'Automated task routing and escalation',
-      'Exception triage and bottleneck mitigation'
+    id: 'restaurants',
+    name: 'Restaurants',
+    problem:
+      'Friday night: the captain writes a KOT, the kitchen loses it, table 9 waits 25 minutes and the bill is wrong when it finally comes.',
+    handles: [
+      'Orders are kept by table, so the bill builds up as the meal goes on',
+      'Each dish goes to the right kitchen station with a timer',
+      'Merge tables, split bills, and split one bill across UPI and cash',
+      'GST bills on paper or on the guest’s WhatsApp'
+    ],
+    products: [
+      { label: 'POS & Billing', href: '/pos-and-billing' },
+      { label: 'Kitchen Display', href: '/kitchen-display' },
+      { label: 'Digital Ordering', href: '/digital-ordering' }
+    ],
+    screen: { component: KdsBoard, title: 'Kitchen · Hot station', device: 'tablet' }
+  },
+  {
+    id: 'cafes',
+    name: 'Cafes & bakeries',
+    problem:
+      'The morning queue is ten people deep, half of them regulars who order the same thing, and the counter is still typing it out every time.',
+    handles: [
+      'Favourites on the first screen, so a regular’s order is two taps',
+      'Guests can order and pay from a QR code while the queue moves',
+      'Loyalty points without a paper stamp card',
+      'Stock of milk, beans and baked goods goes down as you sell'
+    ],
+    products: [
+      { label: 'POS & Billing', href: '/pos-and-billing' },
+      { label: 'Digital Ordering', href: '/digital-ordering' },
+      { label: 'CRM & Loyalty', href: '/crm' }
     ]
   },
   {
-    id: 'data-insights',
-    number: '02',
-    title: 'Data & Insights',
-    subtitle: 'Visibility & Telemetry',
-    icon: BarChart3,
-    description:
-      'Aggregating operational telemetry into clear, real-time views so leadership can observe system health, workload throughput, and potential delivery risks.',
-    highlights: [
-      'Centralized operational telemetry feeds',
-      'Activity visibility across siloed units',
-      'Data-backed decision clarity'
-    ]
+    id: 'cloud-kitchens',
+    name: 'Cloud kitchens',
+    problem:
+      'Orders come in from your own link, from phone calls and from walk-ins, and nobody is sure which rider took which one.',
+    handles: [
+      'All orders in one kitchen queue, whatever the source',
+      'Assign orders to your riders and see which are out for delivery',
+      'Delivery charges set by area',
+      'Your own online ordering link'
+    ],
+    products: [
+      { label: 'Kitchen Display', href: '/kitchen-display' },
+      { label: 'Delivery Management', href: '/delivery-management' },
+      { label: 'Digital Ordering', href: '/digital-ordering' }
+    ],
+    screen: { component: DeliveryTracker, title: 'Deliveries', device: 'terminal' }
   },
   {
-    id: 'connected-systems',
-    number: '03',
-    title: 'Connected Systems',
-    subtitle: 'Interoperability & Bridging',
-    icon: Network,
-    description:
-      'Bridging legacy on-premise infrastructure, modern SaaS platforms, and external partner APIs into one coherent operational fabric without rip-and-replace.',
-    highlights: [
-      'Cross-platform event synchronization',
-      'Resilient multi-system data pipelines',
-      'Decoupled architecture compatibility'
-    ]
+    id: 'retail',
+    name: 'Retail & convenience stores',
+    problem:
+      'A customer asks for something, the system says there are six, and the shelf is empty. Nobody knows when it ran out.',
+    handles: [
+      'Barcode billing with your existing scanner',
+      'Stock goes down with every bill, and low items show on a reorder list',
+      'Purchase orders and supplier records',
+      'Batch and expiry dates for items that go off',
+      'Points and WhatsApp offers for regular customers'
+    ],
+    products: [
+      { label: 'POS & Billing', href: '/pos-and-billing' },
+      { label: 'Inventory & Stock', href: '/inventory-and-stock' },
+      { label: 'CRM & Loyalty', href: '/crm' }
+    ],
+    screen: { component: InventoryTable, title: 'Stock', device: 'terminal' }
   },
   {
-    id: 'governance',
-    number: '04',
-    title: 'Governance & Oversight',
-    subtitle: 'Policy & Auditability',
-    icon: ShieldCheck,
-    description:
-      'Ensuring that as workflows scale across systems and departments, administrative actions remain policy-compliant, traceable, and ready for internal audit.',
-    highlights: [
-      'Role-based authorization boundaries',
-      'Traceable operational audit trails',
-      'Consistent policy governance'
+    id: 'salons',
+    name: 'Salons',
+    problem:
+      'A customer comes back after two months. Nobody remembers what colour they had or who did it, and the product shelf count is a guess.',
+    handles: [
+      'Bill services and retail products on the same bill',
+      'Customer history: what they had and when',
+      'WhatsApp offers to customers who haven’t visited in a while',
+      'Staff attendance and shifts',
+      'Stock of products you sell and use'
+    ],
+    products: [
+      { label: 'POS & Billing', href: '/pos-and-billing' },
+      { label: 'CRM & Loyalty', href: '/crm' },
+      { label: 'Business Management', href: '/business-management' }
+    ],
+    screen: { component: CrmProfile, title: 'Customer', device: 'terminal' }
+  },
+  {
+    id: 'online',
+    name: 'Online sellers',
+    problem:
+      'You sell in the shop and online. Stock is kept in two places, and twice a week you sell something online that is already gone.',
+    handles: [
+      'An online store that uses the same stock as the shop',
+      'Online orders appear next to counter orders',
+      'Payment links and coupons',
+      'Delivery tracking with your own riders'
+    ],
+    products: [
+      { label: 'E-commerce', href: '/e-commerce' },
+      { label: 'Inventory & Stock', href: '/inventory-and-stock' },
+      { label: 'Delivery Management', href: '/delivery-management' }
     ]
   }
 ]
-
-// --- IndustriesConsultationCta ---
-const ctaRef = ref<HTMLElement | null>(null)
-const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 })
 </script>
 
 <template>
-  <div class="relative bg-[#0A0A0A] overflow-x-hidden">
-    <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#0A0A0A] border-b border-white/[0.08]">
-    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <img
-        src="/images/global-connectivity.webp"
-        alt="Connected global industries and infrastructure"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        width="1920"
-        height="1080"
-        class="w-full h-full object-cover object-center opacity-25 scale-105 animate-hero-drift"
-      >
-      <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/70" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-[#0A0A0A]/40" />
-      
-      <div class="absolute inset-0 opacity-40" />
-    </div>
-
-    <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div
-        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
-        :class="{ 'is-revealed': isHeroMounted }"
-      >
-        <div class="flex items-center gap-3">
-          <ChapterLabel label="Industries We Serve" />
-        </div>
-
-        <div class="flex items-center gap-4 text-xs text-zinc-400">
-          <span class="hidden md:inline-flex items-center gap-1.5">
-            <Radio class="h-3 w-3 text-brand" />
-            <span>VERTICAL INTEGRATION: <strong class="text-white font-mono">NOMINAL</strong></span>
-          </span>
-          <span class="text-zinc-600 hidden md:inline">|</span>
-          <span>4 SECTOR FRAMEWORKS</span>
-          <span class="text-zinc-600">|</span>
-          <span class="text-zinc-400 font-mono">Overview</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
-        <div class="lg:col-span-7 space-y-7">
-          <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-150"
-            :class="{ 'is-revealed': isHeroMounted }"
-          >
-            <span class="flex h-1.5 w-1.5 rounded-full bg-brand" />
-            <span>INDUSTRIES</span>
-          </div>
-          <h1 class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words">
-            Technology for the Industries Moving Business <span class="text-brand font-normal">Forward.</span>
+  <div>
+    <!-- Intro -->
+    <section class="pt-14 pb-16 md:pt-20 md:pb-20">
+      <div class="kx-wrap grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-7">
+          <h1 class="font-editorial text-[2.6rem] leading-[1.05] text-white md:text-6xl">
+            A restaurant and a kirana store don’t run the same way. So we don’t set them up the same way.
           </h1>
-          <p
-            class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
-            :class="{ 'is-revealed': isHeroMounted }"
-          >
-            Every industry has distinct operational needs. KavoraX builds connected business solutions
-            designed to help organisations improve visibility, streamline operations and adapt as
-            they grow.
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-[#A3A3A3]">
+            Below is what usually goes wrong in each kind of business, and which parts of
+            KavoraX fix it. If yours isn’t listed, ask us anyway.
           </p>
-          <div
-            class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-700"
-            :class="{ 'is-revealed': isHeroMounted }"
-          >
-            <NuxtLink to="/contact" class="w-full sm:w-auto">
-              <Button
-                size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md transition-all duration-200 group"
-              >
-                <span>Discuss Your Industry Needs</span>
-                <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </NuxtLink>
-
-            <button
-              type="button"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-medium text-zinc-200 hover:text-white transition-colors group border border-white/10 rounded-md bg-[#1C1C1C] hover:bg-[#1C1C1C] cursor-pointer"
-              @click="scrollToSectors"
-            >
-              <span>Explore Sectors</span>
-              <ArrowDown class="h-4 w-4 text-brand group-hover:translate-y-0.5 transition-transform" />
-            </button>
-          </div>
-          <div
-            class="pt-8 border-t border-white/[0.08] flex flex-wrap items-center gap-3 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-800"
-            :class="{ 'is-revealed': isHeroMounted }"
-          >
-            <a
-              v-for="chip in heroSectorChips"
-              :key="chip.href"
-              :href="chip.href"
-              class="px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] hover:border-brand/40 hover:text-white transition-colors flex items-center gap-2"
-            >
-              <component :is="chip.icon" class="h-3.5 w-3.5 text-brand" />
-              <span>{{ chip.label }}</span>
-            </a>
-          </div>
         </div>
-        <div
-          class="lg:col-span-5 relative reveal-base transition-editorial duration-700 delay-300"
-          :class="{ 'is-revealed': isHeroMounted }"
-        >
-          <div
-            class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-70 pointer-events-none"
-            aria-hidden="true"
-          />
-
-          <div
-            class="relative rounded-2xl border border-white/[0.1] bg-[#111111] p-6 sm:p-7 shadow-[0_30px_70px_rgba(0,0,0,0.8)]"
-          >
-            
-            <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-              <span class="font-mono text-xs font-semibold text-white tracking-wider">
-                DOMAINS OF OPERATION
-              </span>
-              <span class="font-mono text-xs text-brand bg-brand/10 border border-brand/20 px-2 py-0.5 rounded">
-                FIELD TESTED
-              </span>
-            </div>
-            <div class="my-5">
-              <UiDeviceFrame type="terminal" title="Multi-Outlet Operations">
-                <OutletsOverview embedded />
-              </UiDeviceFrame>
-            </div>
-
-            <p class="font-ui text-xs sm:text-sm text-zinc-300 leading-relaxed">
-              Every vertical demands distinct compliance, transaction velocity, and system integration patterns. We architect software that aligns with these operating realities.
-            </p>
-
-            <div class="mt-4 pt-3.5 border-t border-white/[0.08] flex items-center justify-between text-xs text-zinc-400 font-mono">
-              <span class="flex items-center gap-1.5">
-                <ShieldCheck class="h-3.5 w-3.5 text-brand" />
-                <span>INDEPENDENT DOMAIN ALIGNMENT</span>
-              </span>
-              <span class="text-brand">4 SECTORS</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-    <section
-    id="industry-overview"
-    ref="overviewRef"
-    class="py-24 md:py-36 bg-[#0A0A0A] relative border-t border-white/[0.08]"
-    :class="{ 'is-revealed': isOverviewRevealed }"
-  >
-    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl space-y-4">
-        <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isOverviewRevealed }">
-          <ChapterLabel label="Explore Industries" />
-        </div>
-        <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">Purposeful solutions tailored to enterprise operational realities.</h2>
-        <p
-          class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl reveal-paragraph transition-editorial duration-700 delay-300"
-          :class="{ 'is-revealed': isOverviewRevealed }"
-        >
-          KavoraX concentrates on four foundational enterprise verticals where operational
-          coordination, end-to-end visibility, and reliable interoperability are vital to
-          sustainable growth.
-        </p>
-      </div>
-      <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 font-ui">
-        <div
-          v-for="(ind, index) in overviewIndustries"
-          :key="ind.id"
-          :class="[
-            ind.colSpan,
-            'reveal-card',
-            `stagger-${index + 1}`,
-            isOverviewRevealed ? 'is-revealed' : '',
-            'rounded-2xl border border-white/[0.08] bg-[#111111] overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.5)] relative'
-          ]"
-        >
-          
-
-          <div>
-            <div class="relative h-56 sm:h-64 w-full overflow-hidden bg-zinc-950">
-              <img
-                :src="ind.image"
-                :alt="ind.alt"
-                loading="lazy"
-                decoding="async"
-                width="600"
-                height="256"
-                class="h-full w-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
-              >
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/50 to-transparent"
-              />
-              <div class="absolute top-3 left-3">
-                <span
-                  class="text-xs uppercase font-mono tracking-wider px-2.5 py-1 rounded bg-black/75 text-brand border border-white/10 flex items-center gap-1.5"
-                >
-                  <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-                  <span>{{ ind.tag }}</span>
-                </span>
-              </div>
-              <div class="absolute bottom-4 left-4">
-                <div
-                  class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0A0A0A]/90 border border-white/15 text-brand shadow-lg group-hover:border-brand/40 transition-colors"
-                >
-                  <component :is="ind.icon" class="h-5 w-5" />
-                </div>
-              </div>
-            </div>
-            <div class="p-6 sm:p-8">
-              <h3
-                class="font-editorial text-2xl sm:text-3xl font-semibold text-white group-hover:text-brand transition-colors leading-snug"
-              >
+        <nav aria-label="Industries on this page" class="lg:col-span-4 lg:col-start-9 lg:pt-3">
+          <ul class="divide-y divide-white/[0.08] border-y border-white/[0.08]">
+            <li v-for="ind in industries" :key="ind.id">
+              <a :href="`#${ind.id}`" class="flex items-center justify-between py-3 text-white hover:text-brand">
                 {{ ind.name }}
-              </h3>
-
-              <p class="mt-3 text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                {{ ind.description }}
-              </p>
-
-              <div class="mt-5 pt-4 border-t border-white/[0.06]">
-                <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider block">
-                  Primary Focus
-                </span>
-                <span class="text-xs text-zinc-200 mt-1 block font-medium">
-                  {{ ind.keyFocus }}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-6 sm:p-8 pt-0">
-            <div class="pt-4 border-t border-white/[0.06]">
-              <a
-                :href="ind.primaryAnchor"
-                class="inline-flex items-center justify-between w-full py-1 text-xs font-semibold text-brand hover:text-white transition-colors group/link cursor-pointer font-mono"
-              >
-                <span>{{ ind.ctaLabel }}</span>
-                <ArrowDownRight
-                  class="h-4 w-4 text-brand group-hover/link:translate-x-0.5 group-hover/link:translate-y-0.5 transition-transform"
-                />
+                <span aria-hidden="true" class="text-[#737373]">↓</span>
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-    <div class="relative bg-[#0A0A0A] overflow-hidden">
-    
-    <section
-      :id="detailIndustries[0].id"
-      ref="s0Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0A0A0A]"
-      :class="{ 'is-revealed': s0Revealed }"
-    >
-      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div class="lg:col-span-6 space-y-8 font-ui">
-            <div
-              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
-              :class="{ 'is-revealed': s0Revealed }"
-            >
-              <span
-                class="flex h-7 w-7 items-center justify-center rounded-md bg-brand/10 border border-brand/25 text-brand font-mono text-xs font-semibold"
-              >
-                {{ detailIndustries[0].number }}
-              </span>
-              <span class="text-xs font-mono font-semibold uppercase tracking-widest text-brand">
-                [ {{ detailIndustries[0].category }} ]
-              </span>
-            </div>
-
-            <div class="space-y-3">
-              <h2 class="font-editorial text-3xl sm:text-5xl lg:text-[3.25rem] font-normal tracking-tight text-white leading-[1.08] text-balance-editorial">detailIndustries[0].name</h2>
-              <p
-                class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
-                :class="{ 'is-revealed': s0Revealed }"
-              >
-                {{ detailIndustries[0].subtitle }}
-              </p>
-            </div>
-            <div
-              class="rounded-xl border border-white/[0.08] bg-[#111111] p-6 reveal-card transition-editorial duration-700 delay-250"
-              :class="{ 'is-revealed': s0Revealed }"
-            >
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                Operational Realities
-              </div>
-              <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                {{ detailIndustries[0].context }}
-              </p>
-            </div>
-            <div class="space-y-3">
-              <div
-                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
-                :class="{ 'is-revealed': s0Revealed }"
-              >
-                Key Industry Challenges Addressed
-              </div>
-              <div
-                v-for="(need, nIdx) in detailIndustries[0].commonNeeds"
-                :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#111111]/50 hover:border-brand/30 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s0Revealed ? 'is-revealed' : ''
-                ]"
-              >
-                <div class="flex items-start gap-3">
-                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">
-                    {{ nIdx + 1 }}
-                  </span>
-                  <div>
-                    <h3 class="text-sm font-semibold text-white font-ui">
-                      {{ need.title }}
-                    </h3>
-                    <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                      {{ need.desc }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
-              :class="{ 'is-revealed': s0Revealed }"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                  <component :is="detailIndustries[0].solutionIcon" class="h-4 w-4 text-brand" />
-                  <span class="text-xs font-semibold text-white">
-                    Relevant Architecture: {{ detailIndustries[0].solutionTitle }}
-                  </span>
-                </div>
-              </div>
-
-              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                {{ detailIndustries[0].solutionDesc }}
-              </p>
-
-              <div class="pt-3 border-t border-white/[0.06] space-y-2 text-xs text-zinc-300">
-                <div
-                  v-for="(cap, cIdx) in detailIndustries[0].capabilities"
-                  :key="cIdx"
-                  class="flex items-center gap-2.5"
-                >
-                  <CheckCircle2 class="h-3.5 w-3.5 text-brand shrink-0" />
-                  <span>{{ cap }}</span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
-              :class="{ 'is-revealed': s0Revealed }"
-            >
-              <NuxtLink to="/contact">
-                <Button
-                  size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md transition-all duration-200"
-                >
-                  <span>{{ detailIndustries[0].primaryCta }}</span>
-                  <ArrowRight class="ml-2 h-4 w-4" />
-                </Button>
-              </NuxtLink>
-
-              <NuxtLink
-                :to="detailIndustries[0].solutionLink"
-                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-medium text-zinc-300 hover:text-white transition-colors group"
-              >
-                <span>{{ detailIndustries[0].secondaryCta }}</span>
-                <ArrowUpRight class="h-3.5 w-3.5 text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </NuxtLink>
-            </div>
-          </div>
-          <div
-            class="lg:col-span-6 relative reveal-card transition-editorial duration-700 delay-200"
-            :class="{ 'is-revealed': s0Revealed }"
-          >
-            <div
-              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#111111] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
-            >
-              
-
-              <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
-                <img
-                  :src="detailIndustries[0].image"
-                  :alt="detailIndustries[0].imageAlt"
-                  loading="lazy"
-                  decoding="async"
-                  width="700"
-                  height="520"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
-                <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/60 via-transparent to-transparent" />
-                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0A0A0A]/85 p-3.5 font-mono text-xs shadow-xl">
-                  <div class="flex items-center gap-2 text-brand">
-                    <span class="h-2 w-2 rounded-full bg-brand" />
-                    <span class="font-semibold tracking-wider">{{ detailIndustries[0].imageBadge }}</span>
-                  </div>
-                  <div class="text-xs text-zinc-400 mt-1">
-                    SECTOR ARCHITECTURE SPECIFICATION
-                  </div>
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono text-zinc-300">
-                  <span class="font-ui font-medium text-white">{{ detailIndustries[0].imageCaption }}</span>
-                  <span class="text-brand">ACTIVE SPECIFICATION</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            </li>
+          </ul>
+        </nav>
       </div>
     </section>
 
-    
+    <!-- Industries -->
     <section
-      :id="detailIndustries[1].id"
-      ref="s1Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0A0A0A]"
-      :class="{ 'is-revealed': s1Revealed }"
+      v-for="(ind, i) in industries"
+      :id="ind.id"
+      :key="ind.id"
+      class="scroll-mt-20 border-t border-white/[0.08] py-20 md:py-24"
+      :class="i % 2 === 1 ? 'bg-[#111111]' : ''"
     >
-      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div
-            class="lg:col-span-6 relative order-2 lg:order-1 reveal-card transition-editorial duration-700 delay-200"
-            :class="{ 'is-revealed': s1Revealed }"
-          >
-            <div
-              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#111111] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
-            >
-              
-
-              <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
-                <img
-                  :src="detailIndustries[1].image"
-                  :alt="detailIndustries[1].imageAlt"
-                  loading="lazy"
-                  decoding="async"
-                  width="700"
-                  height="520"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
-                <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/60 via-transparent to-transparent" />
-                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0A0A0A]/85 p-3.5 font-mono text-xs shadow-xl">
-                  <div class="flex items-center gap-2 text-brand">
-                    <ShieldCheck class="h-4 w-4 text-brand" />
-                    <span class="font-semibold tracking-wider">{{ detailIndustries[1].imageBadge }}</span>
-                  </div>
-                  <div class="text-xs text-zinc-400 mt-1">
-                    AUDITABLE GOVERNANCE MATRIX
-                  </div>
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono text-zinc-300">
-                  <span class="font-ui font-medium text-white">{{ detailIndustries[1].imageCaption }}</span>
-                  <span class="text-brand">SOC2 COMPLIANT</span>
-                </div>
-              </div>
-            </div>
+      <div class="kx-wrap">
+        <div class="grid gap-12 lg:grid-cols-12">
+          <div v-if="!ind.screen" class="lg:col-span-5">
+            <h2 class="font-editorial text-4xl text-white md:text-5xl">{{ ind.name }}</h2>
+            <blockquote class="mt-6 border-s-2 border-brand ps-5 text-lg leading-relaxed text-[#D4D4D4]">
+              {{ ind.problem }}
+            </blockquote>
           </div>
-          <div class="lg:col-span-6 space-y-8 font-ui order-1 lg:order-2">
-            <div
-              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
-              :class="{ 'is-revealed': s1Revealed }"
-            >
-              <span
-                class="flex h-7 w-7 items-center justify-center rounded-md bg-brand/10 border border-brand/30 text-brand font-mono text-xs font-semibold"
-              >
-                {{ detailIndustries[1].number }}
-              </span>
-              <span class="text-xs font-mono font-semibold uppercase tracking-widest text-brand">
-                [ {{ detailIndustries[1].category }} ]
-              </span>
-            </div>
+          <div :class="ind.screen ? 'lg:col-span-5' : 'lg:col-span-6 lg:col-start-7'">
+            <template v-if="ind.screen">
+              <h2 class="font-editorial text-4xl text-white md:text-5xl">{{ ind.name }}</h2>
+              <blockquote class="mt-6 border-s-2 border-brand ps-5 text-lg leading-relaxed text-[#D4D4D4]">
+                {{ ind.problem }}
+              </blockquote>
+            </template>
 
-            <div class="space-y-3">
-              <h2 class="font-editorial text-3xl sm:text-5xl lg:text-[3.25rem] font-normal tracking-tight text-white leading-[1.08] text-balance-editorial">detailIndustries[1].name</h2>
-              <p
-                class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
-                :class="{ 'is-revealed': s1Revealed }"
-              >
-                {{ detailIndustries[1].subtitle }}
-              </p>
-            </div>
-            <div
-              class="rounded-xl border border-white/[0.08] bg-[#111111] p-6 reveal-card transition-editorial duration-700 delay-250"
-              :class="{ 'is-revealed': s1Revealed }"
-            >
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                Operational Realities
-              </div>
-              <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                {{ detailIndustries[1].context }}
-              </p>
-            </div>
-            <div class="space-y-3">
-              <div
-                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
-                :class="{ 'is-revealed': s1Revealed }"
-              >
-                Key Industry Challenges Addressed
-              </div>
-              <div
-                v-for="(need, nIdx) in detailIndustries[1].commonNeeds"
-                :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#111111]/50 hover:border-brand/20 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s1Revealed ? 'is-revealed' : ''
-                ]"
-              >
-                <div class="flex items-start gap-3">
-                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">
-                    {{ nIdx + 1 }}
-                  </span>
-                  <div>
-                    <h3 class="text-sm font-semibold text-white font-ui">
-                      {{ need.title }}
-                    </h3>
-                    <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                      {{ need.desc }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="rounded-xl border border-brand/30 bg-brand/10 p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
-              :class="{ 'is-revealed': s1Revealed }"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                  <component :is="detailIndustries[1].solutionIcon" class="h-4 w-4 text-brand" />
-                  <span class="text-xs font-semibold text-white">
-                    Relevant Architecture: {{ detailIndustries[1].solutionTitle }}
-                  </span>
-                </div>
-              </div>
+            <h3 class="text-sm font-semibold text-[#A3A3A3]" :class="ind.screen ? 'mt-10' : 'lg:mt-3'">What KavoraX does about it</h3>
+            <ul class="mt-3 space-y-3">
+              <li v-for="h in ind.handles" :key="h" class="flex gap-3 text-[#E5E5E5]">
+                <span class="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true" />
+                {{ h }}
+              </li>
+            </ul>
 
-              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                {{ detailIndustries[1].solutionDesc }}
-              </p>
-
-              <div class="pt-3 border-t border-white/[0.06] space-y-2 text-xs text-zinc-300">
-                <div
-                  v-for="(cap, cIdx) in detailIndustries[1].capabilities"
-                  :key="cIdx"
-                  class="flex items-center gap-2.5"
-                >
-                  <CheckCircle2 class="h-3.5 w-3.5 text-brand shrink-0" />
-                  <span>{{ cap }}</span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
-              :class="{ 'is-revealed': s1Revealed }"
-            >
-              <NuxtLink to="/contact">
-                <Button
-                  size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md transition-all duration-200"
-                >
-                  <span>{{ detailIndustries[1].primaryCta }}</span>
-                  <ArrowRight class="ml-2 h-4 w-4" />
-                </Button>
-              </NuxtLink>
-
-              <NuxtLink
-                :to="detailIndustries[1].solutionLink"
-                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-medium text-zinc-300 hover:text-white transition-colors group"
-              >
-                <span>{{ detailIndustries[1].secondaryCta }}</span>
-                <ArrowUpRight class="h-3.5 w-3.5 text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </NuxtLink>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-    <section
-      :id="detailIndustries[2].id"
-      ref="s2Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0A0A0A]"
-      :class="{ 'is-revealed': s2Revealed }"
-    >
-      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div class="lg:col-span-7 space-y-8 font-ui">
-            <div
-              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
-              :class="{ 'is-revealed': s2Revealed }"
-            >
-              <span
-                class="flex h-7 w-7 items-center justify-center rounded-md bg-brand/10 border border-brand/30 text-brand font-mono text-xs font-semibold"
-              >
-                {{ detailIndustries[2].number }}
-              </span>
-              <span class="text-xs font-mono font-semibold uppercase tracking-widest text-brand">
-                [ {{ detailIndustries[2].category }} ]
-              </span>
-            </div>
-
-            <div class="space-y-3">
-              <h2 class="font-editorial text-3xl sm:text-5xl lg:text-[3.25rem] font-normal tracking-tight text-white leading-[1.08] text-balance-editorial">detailIndustries[2].name</h2>
-              <p
-                class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
-                :class="{ 'is-revealed': s2Revealed }"
-              >
-                {{ detailIndustries[2].subtitle }}
-              </p>
-            </div>
-            <div
-              class="rounded-xl border border-white/[0.08] bg-[#111111] p-6 reveal-card transition-editorial duration-700 delay-250"
-              :class="{ 'is-revealed': s2Revealed }"
-            >
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                Operational Realities
-              </div>
-              <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                {{ detailIndustries[2].context }}
-              </p>
-            </div>
-            <div class="space-y-3">
-              <div
-                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
-                :class="{ 'is-revealed': s2Revealed }"
-              >
-                Key Industry Challenges Addressed
-              </div>
-              <div
-                v-for="(need, nIdx) in detailIndustries[2].commonNeeds"
-                :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#111111]/50 hover:border-brand/30 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s2Revealed ? 'is-revealed' : ''
-                ]"
-              >
-                <div class="flex items-start gap-3">
-                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">
-                    {{ nIdx + 1 }}
-                  </span>
-                  <div>
-                    <h3 class="text-sm font-semibold text-white font-ui">
-                      {{ need.title }}
-                    </h3>
-                    <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                      {{ need.desc }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="rounded-xl border border-brand/30 bg-brand/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
-              :class="{ 'is-revealed': s2Revealed }"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                  <component :is="detailIndustries[2].solutionIcon" class="h-4 w-4 text-brand" />
-                  <span class="text-xs font-semibold text-white">
-                    Relevant Architecture: {{ detailIndustries[2].solutionTitle }}
-                  </span>
-                </div>
-              </div>
-
-              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                {{ detailIndustries[2].solutionDesc }}
-              </p>
-
-              <div class="pt-3 border-t border-white/[0.06] space-y-2 text-xs text-zinc-300">
-                <div
-                  v-for="(cap, cIdx) in detailIndustries[2].capabilities"
-                  :key="cIdx"
-                  class="flex items-center gap-2.5"
-                >
-                  <CheckCircle2 class="h-3.5 w-3.5 text-brand shrink-0" />
-                  <span>{{ cap }}</span>
-                </div>
-              </div>
-            </div>
-            <div
-              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-500"
-              :class="{ 'is-revealed': s2Revealed }"
-            >
-              <NuxtLink to="/contact">
-                <Button
-                  size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md transition-all duration-200"
-                >
-                  <span>{{ detailIndustries[2].primaryCta }}</span>
-                  <ArrowRight class="ml-2 h-4 w-4" />
-                </Button>
-              </NuxtLink>
-
-              <NuxtLink
-                :to="detailIndustries[2].solutionLink"
-                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-medium text-zinc-300 hover:text-white transition-colors group"
-              >
-                <span>{{ detailIndustries[2].secondaryCta }}</span>
-                <ArrowUpRight class="h-3.5 w-3.5 text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </NuxtLink>
-            </div>
-          </div>
-          <div
-            class="lg:col-span-5 relative reveal-card transition-editorial duration-700 delay-200"
-            :class="{ 'is-revealed': s2Revealed }"
-          >
-            <div
-              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#111111] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
-            >
-              
-
-              <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
-                <img
-                  :src="detailIndustries[2].image"
-                  :alt="detailIndustries[2].imageAlt"
-                  loading="lazy"
-                  decoding="async"
-                  width="700"
-                  height="520"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
-                <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/60 via-transparent to-transparent" />
-                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0A0A0A]/85 p-3.5 font-mono text-xs shadow-xl">
-                  <div class="flex items-center gap-2 text-brand">
-                    <Radio class="h-4 w-4" />
-                    <span class="font-semibold tracking-wider">{{ detailIndustries[2].imageBadge }}</span>
-                  </div>
-                  <div class="text-xs text-zinc-400 mt-1">
-                    HIPAA / GDPR VERIFIED ENCLAVE
-                  </div>
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono text-zinc-300">
-                  <span class="font-ui font-medium text-white">{{ detailIndustries[2].imageCaption }}</span>
-                  <span class="text-brand">ZERO DATA LEAK</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-    <section
-      :id="detailIndustries[3].id"
-      ref="s3Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0A0A0A]"
-      :class="{ 'is-revealed': s3Revealed }"
-    >
-      <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div
-          class="mb-14 rounded-2xl overflow-hidden border border-white/[0.1] bg-[#111111] shadow-2xl relative group reveal-card transition-editorial duration-700 delay-150"
-          :class="{ 'is-revealed': s3Revealed }"
-        >
-          
-          
-          
-          
-
-          <div class="relative h-[280px] sm:h-[360px] w-full overflow-hidden bg-zinc-950">
-            <img
-              :src="detailIndustries[3].image"
-              :alt="detailIndustries[3].imageAlt"
-              loading="lazy"
-              decoding="async"
-              width="700"
-              height="360"
-              class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
-            <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/80 via-transparent to-transparent" />
-            <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0A0A0A]/90 p-3.5 font-mono text-xs shadow-xl">
-              <div class="flex items-center gap-2 text-brand">
-                <Truck class="h-4 w-4" />
-                <span class="font-semibold tracking-wider">{{ detailIndustries[3].imageBadge }}</span>
-              </div>
-              <div class="text-xs text-zinc-400 mt-1">
-                MULTI-TERMINAL FREIGHT NETWORK
-              </div>
-            </div>
-
-            <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono text-zinc-300">
-              <span class="font-ui font-medium text-white">{{ detailIndustries[3].imageCaption }}</span>
-              <span class="text-brand">REAL-TIME TELEMETRY</span>
-            </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div class="lg:col-span-6 space-y-6 font-ui">
-            <div
-              class="flex items-center gap-3 reveal-base transition-editorial duration-700 delay-75"
-              :class="{ 'is-revealed': s3Revealed }"
-            >
-              <span
-                class="flex h-7 w-7 items-center justify-center rounded-md bg-brand/10 border border-brand/25 text-brand font-mono text-xs font-semibold"
-              >
-                {{ detailIndustries[3].number }}
-              </span>
-              <span class="text-xs font-mono font-semibold uppercase tracking-widest text-brand">
-                [ {{ detailIndustries[3].category }} ]
-              </span>
-            </div>
-
-            <h2 class="font-editorial text-3xl sm:text-5xl font-normal tracking-tight text-white leading-tight text-balance-editorial">detailIndustries[3].name</h2>
-
-            <p
-              class="font-ui text-lg text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-200"
-              :class="{ 'is-revealed': s3Revealed }"
-            >
-              {{ detailIndustries[3].subtitle }}
+            <p class="mt-10 text-[#A3A3A3]">
+              Usually starts with
+              <template v-for="(p, pi) in ind.products" :key="p.href">
+                <NuxtLink :to="p.href" class="kx-link">{{ p.label }}</NuxtLink><span v-if="pi < ind.products.length - 2">, </span><span v-else-if="pi === ind.products.length - 2"> and </span>
+              </template>.
             </p>
-
-            <div
-              class="rounded-xl border border-white/[0.08] bg-[#111111] p-6 reveal-card transition-editorial duration-700 delay-250"
-              :class="{ 'is-revealed': s3Revealed }"
-            >
-              <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                Operational Realities
-              </div>
-              <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                {{ detailIndustries[3].context }}
-              </p>
-            </div>
-            <div
-              class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-base transition-editorial duration-700 delay-450"
-              :class="{ 'is-revealed': s3Revealed }"
-            >
-              <NuxtLink to="/contact">
-                <Button
-                  size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md transition-all duration-200"
-                >
-                  <span>{{ detailIndustries[3].primaryCta }}</span>
-                  <ArrowRight class="ml-2 h-4 w-4" />
-                </Button>
-              </NuxtLink>
-
-              <NuxtLink
-                :to="detailIndustries[3].solutionLink"
-                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-medium text-zinc-300 hover:text-white transition-colors group"
-              >
-                <span>{{ detailIndustries[3].secondaryCta }}</span>
-                <ArrowUpRight class="h-3.5 w-3.5 text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </NuxtLink>
-            </div>
           </div>
-          <div class="lg:col-span-6 space-y-6 font-ui">
-            <div class="space-y-3">
-              <div
-                class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-3 reveal-base transition-editorial duration-700 delay-300"
-                :class="{ 'is-revealed': s3Revealed }"
-              >
-                Key Industry Challenges Addressed
-              </div>
-              <div
-                v-for="(need, nIdx) in detailIndustries[3].commonNeeds"
-                :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#111111]/50 hover:border-brand/30 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s3Revealed ? 'is-revealed' : ''
-                ]"
-              >
-                <div class="flex items-start gap-3">
-                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">
-                    {{ nIdx + 1 }}
-                  </span>
-                  <div>
-                    <h3 class="text-sm font-semibold text-white font-ui">
-                      {{ need.title }}
-                    </h3>
-                    <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                      {{ need.desc }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="rounded-xl border border-brand/25 bg-brand/[0.04] p-6 space-y-4 reveal-card transition-editorial duration-700 delay-400"
-              :class="{ 'is-revealed': s3Revealed }"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                  <component :is="detailIndustries[3].solutionIcon" class="h-4 w-4 text-brand" />
-                  <span class="text-xs font-semibold text-white">
-                    Relevant Architecture: {{ detailIndustries[3].solutionTitle }}
-                  </span>
-                </div>
-              </div>
 
-              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                {{ detailIndustries[3].solutionDesc }}
-              </p>
-
-              <div class="pt-3 border-t border-white/[0.06] space-y-2 text-xs text-zinc-300">
-                <div
-                  v-for="(cap, cIdx) in detailIndustries[3].capabilities"
-                  :key="cIdx"
-                  class="flex items-center gap-2.5"
-                >
-                  <CheckCircle2 class="h-3.5 w-3.5 text-brand shrink-0" />
-                  <span>{{ cap }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <figure v-if="ind.screen" class="lg:col-span-7 lg:pt-16" :class="i % 2 === 1 ? 'lg:order-first' : ''">
+            <UiDeviceFrame :type="ind.screen.device" :title="ind.screen.title" status="Online">
+              <component :is="ind.screen.component" embedded />
+            </UiDeviceFrame>
+            <figcaption class="mt-3 text-sm text-[#737373]">Sample screen with demo data.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
-  </div>
-    <section
-    ref="connectedRef"
-    class="py-24 md:py-36 bg-[#0A0A0A] relative border-t border-white/[0.08] overflow-hidden"
-    :class="{ 'is-revealed': isConnectedRevealed }"
-  >
-    
 
-    <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <div class="reveal-base transition-editorial duration-700 delay-75" :class="{ 'is-revealed': isConnectedRevealed }">
-          <ChapterLabel label="Connected Operations" />
-        </div>
-
-        <h2 class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial">Connected Systems. Clearer Operations.</h2>
-
-        <p
-          class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl mx-auto reveal-paragraph transition-editorial duration-700 delay-300"
-          :class="{ 'is-revealed': isConnectedRevealed }"
-        >
-          Operational resilience depends on how effectively workflows, data, systems, and governance
-          interact. KavoraX designs solutions that reinforce these four essential pillars, creating
-          coherent operational foundations across varied business environments.
-        </p>
-      </div>
-      <div class="mt-16 sm:mt-20">
-        <div
-          class="rounded-2xl border border-white/[0.1] bg-[#111111] p-6 sm:p-10 md:p-12 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative reveal-card transition-editorial duration-700 delay-200"
-          :class="{ 'is-revealed': isConnectedRevealed }"
-        >
-          
-          
-          
-          
-          <div
-            class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 mb-8 border-b border-white/[0.08] gap-4 font-ui reveal-base transition-editorial duration-700 delay-300"
-            :class="{ 'is-revealed': isConnectedRevealed }"
-          >
-            <div class="flex items-center gap-3">
-              <div
-                class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10 border border-brand/25 text-brand"
-              >
-                <Layers class="h-5 w-5" />
-              </div>
-              <div>
-                <h3 class="text-base font-semibold text-white">
-                  The Four Operational Pillars of Connected Enterprise
-                </h3>
-                <p class="text-xs text-zinc-400">
-                  Illustrative architecture: Interdependent relationships driving business clarity
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-2 font-mono text-xs">
-              <span class="text-zinc-500">MODEL:</span>
-              <span
-                class="text-brand bg-brand/10 px-2.5 py-1 rounded border border-brand/20 font-semibold"
-              >
-                UNIFIED COHESION
-              </span>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 font-ui">
-            <div
-              v-for="(pillar, index) in operationalPillars"
-              :key="pillar.id"
-              :class="[
-                'group relative rounded-xl border border-white/[0.07] bg-[#1C1C1C] p-6 sm:p-7 hover:border-brand/35 transition-all duration-300 hover:bg-[#121d2c] reveal-card',
-                `stagger-${index + 1}`,
-                isConnectedRevealed ? 'is-revealed' : ''
-              ]"
-            >
-              <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center gap-3.5">
-                  <div
-                    class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1C1C1C] border border-white/10 text-brand group-hover:scale-105 transition-transform shrink-0"
-                  >
-                    <component :is="pillar.icon" class="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4
-                      class="font-editorial text-2xl font-semibold text-white group-hover:text-brand transition-colors"
-                    >
-                      {{ pillar.title }}
-                    </h4>
-                    <span class="text-xs font-mono text-zinc-400 block mt-0.5">
-                      {{ pillar.subtitle }}
-                    </span>
-                  </div>
-                </div>
-                <span class="font-mono text-xs text-brand font-semibold">[ {{ pillar.number }} ]</span>
-              </div>
-              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
-                {{ pillar.description }}
-              </p>
-              <div class="mt-6 pt-5 border-t border-white/[0.06] space-y-2 text-xs text-zinc-400">
-                <div
-                  v-for="(hl, hIdx) in pillar.highlights"
-                  :key="hIdx"
-                  class="flex items-center gap-2"
-                >
-                  <CheckCircle2 class="h-3.5 w-3.5 text-brand shrink-0" />
-                  <span class="text-zinc-300">{{ hl }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="mt-8 pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-500"
-            :class="{ 'is-revealed': isConnectedRevealed }"
-          >
-            <div class="flex items-center gap-2 text-zinc-300">
-              <span class="h-2 w-2 rounded-full bg-brand" />
-              <span>Conceptual Relationship: Workflows generate Data · Systems bridge Processes · Governance protects Operations</span>
-            </div>
-            <NuxtLink
-              to="/products"
-              class="inline-flex items-center gap-1.5 text-brand hover:text-white transition-colors group/link font-semibold"
-            >
-              <span>Explore KavoraX Connected Products</span>
-              <ArrowRight class="h-3.5 w-3.5 group-hover/link:translate-x-1 transition-transform" />
-            </NuxtLink>
-          </div>
+    <!-- Not listed -->
+    <section class="kx-light py-20 md:py-24">
+      <div class="kx-wrap grid gap-8 lg:grid-cols-12">
+        <h2 class="font-editorial text-3xl leading-tight md:text-4xl lg:col-span-6">
+          Sweet shop, juice bar, food court stall, gift shop?
+        </h2>
+        <div class="lg:col-span-5 lg:col-start-8">
+          <p class="text-lg leading-relaxed text-[#525252]">
+            If you sell things over a counter and need a bill, KavoraX probably fits. Tell us
+            how your day goes and we will tell you honestly whether it does.
+          </p>
+          <NuxtLink to="/contact" class="kx-btn mt-8">Ask us</NuxtLink>
         </div>
       </div>
-    </div>
-  </section>
-    <section
-    ref="ctaRef"
-    class="py-28 md:py-36 bg-[#0A0A0A] border-t border-white/[0.08] relative overflow-hidden"
-    :class="{ 'is-revealed': isCtaRevealed }"
-  >
-    
-    
-    <div class="absolute inset-0 opacity-35 pointer-events-none -z-10" aria-hidden="true" />
+    </section>
 
-    <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <div
-        class="rounded-3xl border border-white/[0.1] bg-[#111111] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.8)] reveal-card transition-editorial duration-700"
-        :class="{ 'is-revealed': isCtaRevealed }"
-      >
-        
-        <div
-          class="flex justify-center mb-6 reveal-base transition-editorial duration-700 delay-100"
-          :class="{ 'is-revealed': isCtaRevealed }"
-        >
-          <ChapterLabel label="Talk to an Industry Specialist" />
-        </div>
-        <h2 class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance-editorial max-w-3xl mx-auto">Let's Explore What Your Industry Needs Next.</h2>
-        <p
-          class="mt-6 font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed reveal-paragraph transition-editorial duration-700 delay-300"
-          :class="{ 'is-revealed': isCtaRevealed }"
-        >
-          Tell us about your organisation and priorities. The KavoraX team can help you explore
-          relevant business solutions.
-        </p>
-        <div
-          class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui reveal-base transition-editorial duration-700 delay-450"
-          :class="{ 'is-revealed': isCtaRevealed }"
-        >
-          <NuxtLink to="/contact" class="w-full sm:w-auto">
-            <Button
-              size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md transition-all duration-200 group"
-            >
-              <span>Discuss Your Requirements</span>
-              <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </NuxtLink>
-
-          <NuxtLink to="/demo" class="w-full sm:w-auto">
-            <Button
-              variant="outline"
-              size="lg"
-              class="w-full sm:w-auto border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-white hover:text-white px-8 py-6 text-base rounded-md transition-colors"
-            >
-              <Mail class="mr-2 h-4 w-4 text-brand" />
-              <span>Request Architecture Briefing</span>
-            </Button>
-          </NuxtLink>
-        </div>
-        <div
-          class="mt-12 pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-550"
-          :class="{ 'is-revealed': isCtaRevealed }"
-        >
-          <div class="flex items-center gap-2">
-            <ShieldCheck class="h-3.5 w-3.5 text-brand" />
-            <span>CONFIDENTIAL OPERATIONAL EVALUATION</span>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <CheckCircle2 class="h-3.5 w-3.5 text-brand" />
-            <span>ENTERPRISE STANDARDS VERIFIED</span>
-          </div>
-
-          <div class="text-zinc-500">
-            KavoraX Global Private Limited
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <TalkToUs />
   </div>
 </template>

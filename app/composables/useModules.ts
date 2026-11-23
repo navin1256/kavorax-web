@@ -195,7 +195,7 @@ export const initialModules: Module[] = [
     slug: 'delivery-management',
     name: 'Delivery Management',
     headline: 'Delivery Management',
-    subline: 'Every order delivered, tracked and on time.',
+    subline: 'Know which rider has which order, and where it is.',
     heroImageQuery: 'delivery rider checking a phone',
     heroDetail: 'Rider assigned to order',
     features: [
@@ -239,7 +239,7 @@ export const initialModules: Module[] = [
     slug: 'business-analytics',
     name: 'Business Analytics',
     headline: 'Business Analytics',
-    subline: 'Clear numbers, better decisions.',
+    subline: 'See what sold, when, and what you made on it.',
     heroImageQuery: 'owner reviewing charts on a tablet',
     heroDetail: "Today's report ready",
     features: [
@@ -327,7 +327,7 @@ export const initialModules: Module[] = [
     slug: 'business-management',
     name: 'Business Management',
     headline: 'Business Management',
-    subline: 'Run daily operations without the chaos.',
+    subline: 'Shifts, attendance, expenses and staff permissions in one place.',
     heroImageQuery: 'manager with a tablet checklist',
     heroDetail: 'Staff shift started',
     features: [
@@ -371,7 +371,7 @@ export const initialModules: Module[] = [
     slug: 'multi-location-management',
     name: 'Multi-Location Management',
     headline: 'Multi-Location Management',
-    subline: 'All your outlets, one dashboard.',
+    subline: 'Run every branch from the same menu, prices and reports.',
     heroImageQuery: 'owner with a laptop and an outlet map',
     heroDetail: '3 outlets synced',
     features: [
@@ -415,16 +415,16 @@ export const initialModules: Module[] = [
     slug: 'kitchen-display',
     name: 'Kitchen Display (KDS)',
     headline: 'Kitchen Display (KDS)',
-    subline: 'Eliminate lost paper tickets and kitchen confusion with real-time station routing and prep timers.',
-    heroImageQuery: '/images/architectural-workspace.webp',
+    subline: 'Every order on the kitchen screen, at the right station, with a timer.',
+    heroImageQuery: 'kitchen screen above a busy pass',
     heroDetail: 'Live order queue: 4 tickets in prep',
     features: [
-      'Color-coded ticket aging',
+      'Tickets change colour as they wait',
       'Station-wise item routing',
-      'Cook times & prep timers',
-      'Waiter bump bar & recall',
-      'Direct POS & QR order injection',
-      'Summary counts for rush hour prep'
+      'Prep timer on every ticket',
+      'Mark ready, and recall by mistake',
+      'Orders arrive from the counter and QR menu',
+      'Item totals for batch cooking in a rush'
     ],
     tabs: [
       {
@@ -443,7 +443,7 @@ export const initialModules: Module[] = [
         id: 'analytics',
         label: 'Kitchen Timing',
         description: 'Track average preparation speed and bottlenecks.',
-        bullets: ['Average preparation time per item', 'Peak rush bottleneck tracking', 'Cook velocity metrics']
+        bullets: ['Average preparation time per item', 'Peak rush bottleneck tracking', 'Slowest dishes during the rush']
       }
     ],
     whoUsesIt: ['Restaurants', 'Cafes', 'Cloud Kitchens', 'Bars & Breweries'],

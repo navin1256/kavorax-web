@@ -8,11 +8,11 @@ import { getModuleBySlug } from '~/composables/useModules'
 const module = getModuleBySlug('delivery-management')!
 
 useHead({
-  title: 'Delivery Management | Fleet Dispatch & Live Tracking | KavoraX',
+  title: 'Delivery management | KavoraX',
   meta: [
     {
       name: 'description',
-      content: 'Coordinate in-house delivery riders and third-party fleets with automated order dispatching, zone charges, and live GPS tracking.'
+      content: 'Assign orders to your riders, set delivery charges by area and see which orders are out for delivery.'
     }
   ]
 })

@@ -12,11 +12,11 @@ definePageMeta({
 const module = getModuleBySlug('inventory-and-stock')!
 
 useHead({
-  title: 'Inventory & Stock Management | Live Depletion & Procurement | KavoraX',
+  title: 'Inventory & stock management | KavoraX',
   meta: [
     {
       name: 'description',
-      content: 'Real-time stock depletion, automated vendor purchase orders, recipe-level ingredient deductions, expiry alerts, and batch variance tracking.'
+      content: 'Stock that goes down as you sell, low-stock alerts, purchase orders, batch and expiry tracking, and transfers between outlets.'
     }
   ]
 })

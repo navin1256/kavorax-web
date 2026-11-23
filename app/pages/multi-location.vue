@@ -12,11 +12,11 @@ definePageMeta({
 const module = getModuleBySlug('multi-location')!
 
 useHead({
-  title: 'Multi-Location Management | Central Chain Operations | KavoraX',
+  title: 'Multi-outlet management | KavoraX',
   meta: [
     {
       name: 'description',
-      content: 'Govern all your outlets from one single dashboard. Push centralized menu prices, authorize inter-store stock transfers, and view consolidated reports.'
+      content: 'One menu and price list for every branch, stock transfers between outlets and branch-wise reports.'
     }
   ]
 })

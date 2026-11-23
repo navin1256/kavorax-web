@@ -9,7 +9,7 @@ useHead({
     {
       name: 'description',
       content:
-        'Official Privacy Policy detailing data protection, encryption, and privacy commitments for KavoraX Global software and connected enterprise systems.'
+        'How KavoraX Global Private Limited collects, stores and uses information about your business and your customers.'
     }
   ]
 })
@@ -17,29 +17,23 @@ useHead({
 
 <template>
   <div class="relative bg-[#0A0A0A] text-zinc-300 py-16 md:py-24 overflow-x-hidden">
-    <!-- Ambient emerald backlight glow -->
-    
 
     <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <!-- Breadcrumb Navigation -->
       <nav class="flex items-center gap-2 mb-8 font-ui text-xs text-zinc-400" aria-label="Breadcrumb">
         <NuxtLink to="/" class="hover:text-white transition-colors">Home</NuxtLink>
         <span class="text-zinc-600">/</span>
-        <span class="text-brand font-medium">Privacy Policy</span>
+        <span class="text-zinc-300">Privacy Policy</span>
       </nav>
 
       <!-- Editorial Header -->
       <div class="border-b border-white/[0.08] pb-10 mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/[0.08] border border-brand/25 text-brand text-xs font-ui tracking-wider uppercase mb-5">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand" />
-          <span>DATA PRIVACY &amp; SECURITY</span>
-        </div>
         <h1 class="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-medium tracking-tight leading-[1.08] mb-4">
           Privacy Policy
         </h1>
         <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal max-w-2xl">
           Effective Date: January 1, 2026 · Last Updated: October 2026.<br />
-          How KavoraX Global Private Limited collects, secures, encrypts, and processes venue operational information and customer data.
+          How KavoraX Global Private Limited collects, stores and uses information about your business and your customers.
         </p>
       </div>
 

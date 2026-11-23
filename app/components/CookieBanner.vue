@@ -38,7 +38,7 @@ const rejectAll = () => {
   >
     <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-6">
       <p class="text-xs sm:text-xs md:text-sm text-zinc-300 leading-snug sm:leading-relaxed font-normal">
-        We use cookies to analyze site traffic and enhance our connected enterprise software experience. Learn more in our <NuxtLink to="/privacy-policy" class="text-brand hover:underline font-normal">Privacy Policy</NuxtLink>.
+        We use cookies to see how people use this site. Learn more in our <NuxtLink to="/privacy-policy" class="text-brand hover:underline font-normal">Privacy Policy</NuxtLink>.
       </p>
       <div class="flex items-center gap-2.5 shrink-0 w-full md:w-auto justify-end">
         <button

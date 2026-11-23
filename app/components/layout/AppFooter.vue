@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ShieldCheck } from 'lucide-vue-next'
 import { productNavItems } from '~/utils/productNav'
 
 const currentYear = new Date().getFullYear()
@@ -39,27 +38,24 @@ const legalLinks = [
           </NuxtLink>
 
           <p class="font-ui text-sm text-zinc-400 max-w-sm leading-relaxed">
-            KavoraX Global Private Limited builds connected business solutions that help
-            organisations operate smarter, serve customers better and scale with confidence.
+            Billing, kitchen, stock and customer software for restaurants, cafes and shops.
+            Made in India.
           </p>
 
-          <div class="pt-2 flex items-center gap-2 text-xs text-zinc-400">
-            <ShieldCheck class="h-4 w-4 text-brand" />
-            <span>Connected Operations · SaaS Architecture</span>
-          </div>
+          <a href="mailto:contact@kavorax.com" class="inline-block text-sm text-zinc-300 hover:text-white">contact@kavorax.com</a>
         </div>
 
         <!-- Links: Products (10 modules) -->
         <div class="md:col-span-4 lg:col-span-4 space-y-4">
           <div class="flex items-center justify-between pb-1 border-b border-white/[0.06]">
-            <h4 class="text-xs font-semibold text-white font-ui uppercase tracking-wider">
+            <h4 class="text-sm font-semibold text-white">
               Products
             </h4>
             <NuxtLink to="/products" class="text-xs text-brand hover:underline font-semibold">
               All Products →
             </NuxtLink>
           </div>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-xs">
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm">
             <li v-for="link in productNavItems" :key="link.slug">
               <NuxtLink
                 :to="link.href"
@@ -74,10 +70,10 @@ const legalLinks = [
         <!-- Links: Company & Legal -->
         <div class="md:col-span-4 lg:col-span-4 grid grid-cols-2 gap-8">
           <div class="space-y-4">
-            <h4 class="text-xs font-semibold text-white font-ui uppercase tracking-wider pb-1 border-b border-white/[0.06]">
+            <h4 class="text-sm font-semibold text-white pb-1 border-b border-white/[0.06]">
               Company
             </h4>
-            <ul class="space-y-2 text-xs">
+            <ul class="space-y-2 text-sm">
               <li v-for="link in companyLinks" :key="link.href">
                 <NuxtLink
                   :to="link.href"
@@ -90,10 +86,10 @@ const legalLinks = [
           </div>
 
           <div class="space-y-4">
-            <h4 class="text-xs font-semibold text-white font-ui uppercase tracking-wider pb-1 border-b border-white/[0.06]">
+            <h4 class="text-sm font-semibold text-white pb-1 border-b border-white/[0.06]">
               Legal
             </h4>
-            <ul class="space-y-2 text-xs">
+            <ul class="space-y-2 text-sm">
               <li v-for="link in legalLinks" :key="link.href">
                 <NuxtLink
                   :to="link.href"
@@ -120,8 +116,6 @@ const legalLinks = [
           <NuxtLink to="/terms-of-service" class="hover:text-zinc-200 transition-colors">
             Terms of Service
           </NuxtLink>
-          <span>·</span>
-          <span>Confidentiality Respected</span>
         </div>
       </div>
     </div>
