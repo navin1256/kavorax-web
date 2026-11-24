@@ -8,11 +8,11 @@ import { getModuleBySlug } from '~/composables/useModules'
 const module = getModuleBySlug('crm')!
 
 useHead({
-  title: 'CRM & loyalty for restaurants and shops | KavoraX',
+  title: 'CRM & Loyalty | Guest Profiles & Auto-Retention | KavoraX',
   meta: [
     {
       name: 'description',
-      content: 'Customer history, loyalty points and WhatsApp offers, so first-time customers come back.'
+      content: 'Turn first-time customers into regulars with automated purchase history, loyalty rewards, WhatsApp promotions, and visit frequency scoring.'
     }
   ]
 })
