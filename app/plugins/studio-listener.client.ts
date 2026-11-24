@@ -44,7 +44,7 @@ export default defineNuxtPlugin(() => {
     const el = e.target as HTMLElement
 
     // Check if the element is text-heavy, an image, or a link
-    const isText = el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE
+    const isText = el.childNodes.length === 1 && el.childNodes[0]?.nodeType === Node.TEXT_NODE
     const isImage = el.tagName === 'IMG'
     const isLink = el.tagName === 'A'
 

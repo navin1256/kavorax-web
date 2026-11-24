@@ -246,10 +246,10 @@ const props = defineProps<{
   module: Module
 }>()
 
-const activeTab = ref(props.module.tabs.length > 0 ? props.module.tabs[0].id : '')
+const activeTab = ref(props.module.tabs[0]?.id ?? '')
 
 const activeTabData = computed(() => {
-  return props.module.tabs.find(t => t.id === activeTab.value) || props.module.tabs[0]
+  return props.module.tabs.find(t => t.id === activeTab.value) ?? props.module.tabs[0]
 })
 
 const moduleImageMap: Record<string, string> = {

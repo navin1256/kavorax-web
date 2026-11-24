@@ -109,7 +109,7 @@ function getSharedObserver(threshold: number, rootMargin: string): ObserverRecor
  * - Unobserves strictly AFTER reveal has completed
  */
 export function useScrollReveal(
-  targetRefOrOptions?: Ref<HTMLElement | null> | ScrollRevealOptions,
+  targetRefOrOptions?: Ref<any> | ScrollRevealOptions,
   maybeOptions?: ScrollRevealOptions
 ) {
   const isRefProvided = targetRefOrOptions && typeof targetRefOrOptions === 'object' && 'value' in targetRefOrOptions

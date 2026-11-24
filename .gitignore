@@ -31,3 +31,7 @@ docs/perf-verification/
 # Antigravity skills (installed with npx ui-ux-pro-max-cli@2.15.0 init --ai antigravity)
 .agents/skills/
 
+# Scratch & local testing scripts
+scratch/
+
+

@@ -63,8 +63,10 @@ export interface DemoRequestResponse {
  */
 export interface ApiErrorResponse {
   status?: number
+  statusCode?: number
   error?: string
   message?: string
+  statusMessage?: string
   timestamp?: string
   validationErrors?: Record<string, string> | null
 }

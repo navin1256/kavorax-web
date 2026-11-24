@@ -94,7 +94,7 @@ function getScrollVisibilityObserver(): IntersectionObserver | null {
  * - Respects prefers-reduced-motion (instantly returns 1.0)
  */
 export function useScrollProgress(
-  targetRef: Ref<HTMLElement | null>,
+  targetRef: Ref<any>,
   options: ScrollProgressOptions = {}
 ) {
   const { startOffset = 0.85, endOffset = 0.25 } = options

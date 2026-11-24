@@ -25,10 +25,13 @@ const { isRevealed: isCapRevealed } = useScrollReveal(capRef, { threshold: 0.15 
 
 onMounted(() => {
   if (typeof window !== 'undefined' && 'IntersectionObserver' in window && heroRef.value) {
-    const obs = new IntersectionObserver(([entry]) => {
-      isHeroVisible.value = entry.isIntersecting
+    const obs = new IntersectionObserver((entries) => {
+      const entry = entries[0]
+      if (entry) {
+        isHeroVisible.value = entry.isIntersecting
+      }
     }, { rootMargin: '100px 0px 100px 0px' })
-    obs.observe(heroRef.value)
+    obs.observe(heroRef.value as unknown as Element)
     onUnmounted(() => obs.disconnect())
   }
 })
