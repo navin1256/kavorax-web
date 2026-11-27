@@ -24,9 +24,21 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.15 })
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl corner-crosshair group reveal-base"
+        class="rounded-3xl border border-white/10 bg-[#0c141e]/60 backdrop-blur-md p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl corner-crosshair group reveal-base"
         :class="{ 'is-revealed': isRevealed }"
       >
+        <!-- Visible Technical Grid Lines inside Card -->
+        <div
+          class="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:40px_40px]"
+          aria-hidden="true"
+        />
+        <!-- Subtle radial vignette overlay -->
+        <div
+          class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,#0c141e_100%)] opacity-40"
+          aria-hidden="true"
+        />
+
+        <div class="relative z-10">
         <!-- Eyebrow -->
         <div class="flex justify-center mb-8 reveal-base delay-75" :class="{ 'is-revealed': isRevealed }">
           <ChapterLabel label="Let's Build Something Better Together" />
@@ -92,6 +104,7 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.15 })
           <div>Direct Specialist Consultation</div>
           <span class="text-zinc-600 hidden sm:inline">·</span>
           <div>No Vendor Lock-in</div>
+        </div>
         </div>
       </div>
     </div>

@@ -14,45 +14,58 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-2xl border border-white/10 bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl corner-crosshair"
+        class="rounded-2xl border border-white/10 bg-[#0c141e]/60 backdrop-blur-md p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl corner-crosshair"
       >
-        <!-- Tag -->
+        <!-- Visible Technical Grid Lines inside Card -->
         <div
-          class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] px-3.5 py-1 text-xs font-ui text-emerald-400 font-medium tracking-normal mb-6"
-        >
-          <span>Direct Advisory</span>
-        </div>
+          class="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:40px_40px]"
+          aria-hidden="true"
+        />
+        <!-- Subtle radial vignette overlay -->
+        <div
+          class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,#0c141e_100%)] opacity-40"
+          aria-hidden="true"
+        />
 
-        <!-- Headline -->
-        <h2
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
-        >
-          Let’s Explore <span class="text-emerald-400">What’s Possible.</span>
-        </h2>
+        <div class="relative z-10">
+          <!-- Tag -->
+          <div
+            class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] px-3.5 py-1 text-xs font-ui text-emerald-400 font-medium tracking-normal mb-6"
+          >
+            <span>Direct Advisory</span>
+          </div>
 
-        <!-- Supporting text -->
-        <p
-          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
-        >
-          Start a conversation about your business needs and goals.
-        </p>
+          <!-- Headline -->
+          <h2
+            class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          >
+            Let’s Explore <span class="text-emerald-400">What’s Possible.</span>
+          </h2>
 
-        <!-- Action CTA: Link to existing /contact route -->
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
-          <NuxtLink to="/contact" class="w-full sm:w-auto">
-            <Button
-              size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-colors duration-200"
-            >
-              <MessageSquare class="mr-2 h-4 w-4" />
-              Contact Us
-              <ArrowRight class="ml-2 h-4 w-4" />
-            </Button>
-          </NuxtLink>
-        </div>
+          <!-- Supporting text -->
+          <p
+            class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
+          >
+            Start a conversation about your business needs and goals.
+          </p>
 
-        <div class="mt-8 pt-6 border-t border-white/[0.06] text-xs font-ui text-zinc-500">
-          KavoraX Global Private Limited · Enterprise Business Architecture
+          <!-- Action CTA: Link to existing /contact route -->
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-ui">
+            <NuxtLink to="/contact" class="w-full sm:w-auto">
+              <Button
+                size="lg"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-colors duration-200"
+              >
+                <MessageSquare class="mr-2 h-4 w-4" />
+                Contact Us
+                <ArrowRight class="ml-2 h-4 w-4" />
+              </Button>
+            </NuxtLink>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-white/[0.06] text-xs font-ui text-zinc-500">
+            KavoraX Global Private Limited · Enterprise Business Architecture
+          </div>
         </div>
       </div>
     </div>

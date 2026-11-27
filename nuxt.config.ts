@@ -36,14 +36,15 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: "Plus Jakarta Sans", provider: "google", weights: [400, 500, 600, 700], styles: ["normal"] },
-      { name: "Inter", provider: "google", weights: [400, 500, 600, 700], styles: ["normal"] },
+      { name: "Fraunces", provider: "google", weights: [300, 400, 500, 600, 700], styles: ["normal", "italic"] },
+      { name: "Inter", provider: "google", weights: [300, 400, 500, 600, 700], styles: ["normal", "italic"] },
       { name: "JetBrains Mono", provider: "google", weights: [400, 500, 600], styles: ["normal"] },
+      { name: "Anek Latin", provider: "google", weights: [400, 500, 600, 700], styles: ["normal"] },
     ],
     defaults: {
       preload: true,
-      weights: [400, 500, 600, 700],
-      styles: ["normal"],
+      weights: [400, 600],
+      styles: ["normal", "italic"],
       subsets: ["latin", "latin-ext"],
     },
   },

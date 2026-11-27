@@ -113,16 +113,16 @@ const scrollToContent = () => {
           </span>
         </div>
 
-        <!-- Headline: Clean modern sans-serif, bold, upright -->
+        <!-- Headline: Word-by-word reveal with selective accent -->
         <WordReveal
           text="Software built for real&#10;business operations."
           as="h1"
           highlight="operations."
-          highlight-class="not-italic font-bold text-emerald-400"
+          highlight-class="italic font-light text-brand"
           :base-delay-ms="200"
           :stagger-ms="55"
           :immediate="true"
-          class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.14] tracking-[-0.025em] not-italic text-white max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
+          class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-normal tracking-[-0.025em] text-white leading-[1.08] max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
         />
 
         <!-- Supporting Text -->

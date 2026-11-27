@@ -176,7 +176,7 @@ const industries = [
             </div>
 
             <div class="space-y-4 my-auto">
-              <h3 class="text-2xl sm:text-3xl lg:text-[2.25rem] font-semibold text-white leading-tight not-italic tracking-[-0.02em]">
+              <h3 class="font-editorial text-2xl sm:text-3xl lg:text-[2.25rem] font-medium text-white leading-tight tracking-[-0.02em]">
                 {{ industries[selectedIndex]?.headline }}
               </h3>
 

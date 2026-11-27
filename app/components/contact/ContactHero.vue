@@ -39,7 +39,8 @@ const isHeroMounted = ref(true)
         <WordReveal
           text="Let’s Start a Conversation."
           as="h1"
-          class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.14] tracking-[-0.025em] not-italic text-white max-w-full break-words"
+          class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
+          :italic-words="['Conversation.']"
           :delay="240"
           :immediate="true"
         />

@@ -22,7 +22,7 @@
               <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse"></span>
               <span class="text-emerald-400 text-xs sm:text-[13px] font-medium tracking-normal font-sans">{{ module.name }}</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.14] tracking-[-0.025em] not-italic text-white mb-4">
+            <h1 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-normal tracking-[-0.03em] text-white leading-[1.08] mb-4">
               {{ module.headline }}
             </h1>
             <p class="font-sans text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-xl mb-6">
