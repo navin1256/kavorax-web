@@ -22,11 +22,11 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
   <section
     id="who-we-are"
     ref="sectionRef"
-    class="py-24 md:py-36 bg-[#070b0f] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
+    class="py-14 md:py-20 bg-[#070b0f] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
   >
     <!-- Background Ambient Emerald Glow -->
     <div
-      class="absolute top-1/2 -left-48 w-96 h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 -left-48 w-96 h-96 ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -87,7 +87,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
               <span class="text-brand">Quality &amp; Transparency</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="rounded-xl border border-white/[0.08] bg-[#0c141e]/90 p-5 space-y-2 hover:border-brand/30 transition-colors">
+              <div class="rounded-xl border border-white/[0.08] bg-[#0c141e] p-5 space-y-2 hover:border-brand/30 transition-colors">
                 <div class="flex items-center gap-2.5 text-white font-medium text-sm">
                   <CheckCircle2 class="h-4 w-4 text-brand shrink-0" />
                   <span>Pragmatic Architecture</span>
@@ -96,7 +96,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
                   Engineered to work alongside existing enterprise investments, not mandate risky rip-and-replace deployments.
                 </p>
               </div>
-              <div class="rounded-xl border border-white/[0.08] bg-[#0c141e]/90 p-5 space-y-2 hover:border-brand/30 transition-colors">
+              <div class="rounded-xl border border-white/[0.08] bg-[#0c141e] p-5 space-y-2 hover:border-brand/30 transition-colors">
                 <div class="flex items-center gap-2.5 text-white font-medium text-sm">
                   <ShieldCheck class="h-4 w-4 text-brand shrink-0" />
                   <span>Transparent Governance</span>
@@ -132,12 +132,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
           :class="{ 'is-revealed': isRevealed }"
         >
           <!-- Photographic Frame -->
-          <div class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group">
-            <!-- Corner Crosshairs -->
-            <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
+          <div class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-xl group">
 
             <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-950">
               <img
@@ -154,30 +149,30 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
 
               <!-- Metadata Bar -->
               <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-ui text-xs text-zinc-300">
-                <span class="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-white/10 text-white flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded bg-black/80 border border-white/10 text-white flex items-center gap-1.5">
                   <span class="h-1.5 w-1.5 rounded-full bg-brand" />
                   <span>Executive Briefing</span>
                 </span>
-                <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 text-brand text-xs">
+                <span class="px-2 py-0.5 rounded bg-black/80 border border-white/10 text-brand text-xs">
                   Strategic Alignment
                 </span>
               </div>
 
               <!-- Caption -->
-              <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-3.5 space-y-1 font-ui">
+              <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#0e1622]/90 p-3.5 space-y-1 font-ui">
                 <div class="flex items-center justify-between text-xs">
                   <span class="text-zinc-200 font-semibold">Operational Alignment</span>
                   <span class="text-zinc-400 text-xs">Strategy</span>
                 </div>
                 <p class="text-zinc-400 font-editorial italic text-xs leading-snug">
-                  Aligning technology investments with operational reality and accountability.
+                  Aligning software systems with daily operations and accountability.
                 </p>
               </div>
             </div>
           </div>
 
           <!-- Architectural Convergence Schematic -->
-          <div class="rounded-2xl border border-white/10 bg-[#0c131e]/90 backdrop-blur-xl p-6 sm:p-7 space-y-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] font-ui">
+          <div class="rounded-2xl border border-white/10 bg-[#0c131e]/90 p-6 sm:p-7 space-y-5 shadow-xl font-ui">
             <!-- Header bar -->
             <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-xs">
               <div class="flex items-center gap-2 text-zinc-200 font-medium">
@@ -218,14 +213,14 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
                     stroke-width="1.5"
                     stroke-dasharray="20"
                     :stroke-dashoffset="isRevealed ? '0' : '20'"
-                    class="transition-all duration-700 delay-300 ease-out"
+                    class="transition-colors duration-700 delay-300 ease-out"
                   />
                 </svg>
               </div>
 
               <!-- KavoraX Connected Fabric Node -->
               <div
-                class="rounded-xl border border-brand/35 bg-brand/[0.06] p-3.5 space-y-1.5 relative overflow-hidden transition-all duration-700 delay-500"
+                class="rounded-xl border border-brand/35 bg-brand/[0.06] p-3.5 space-y-1.5 relative overflow-hidden transition-colors duration-700 delay-500"
                 :class="{ 'shadow-[0_0_24px_-4px_rgba(16,185,129,0.25)]': isRevealed }"
               >
                 <div class="flex items-center justify-between text-brand font-semibold text-xs">
@@ -255,7 +250,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
                     stroke-width="1.5"
                     stroke-dasharray="20"
                     :stroke-dashoffset="isRevealed ? '0' : '20'"
-                    class="transition-all duration-700 delay-700 ease-out"
+                    class="transition-colors duration-700 delay-700 ease-out"
                   />
                 </svg>
               </div>

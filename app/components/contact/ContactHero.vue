@@ -15,35 +15,20 @@ const isHeroMounted = ref(true)
 </script>
 
 <template>
-  <section class="relative pt-20 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
+  <section class="relative pt-20 pb-12 md:pt-24 md:pb-16 overflow-hidden bg-transparent border-b border-white/[0.08]">
     <!-- Ambient emerald backlight glow with subtle atmospheric drift -->
     <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
     <div class="absolute inset-0 bg-tech-grid opacity-35 pointer-events-none -z-10" aria-hidden="true" />
 
-    <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Editorial Eyebrow & Corporate Coordinate Header -->
-      <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-14 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
-        :class="{ 'is-revealed': isHeroMounted }"
-      >
-        <ChapterLabel label="Contact Us" />
-        <div class="flex items-center gap-6 text-[10px] text-zinc-400">
-          <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-            CONFIDENTIAL ADVISORY
-          </span>
-          <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span class="hidden sm:inline font-mono">DIRECT TECHNICAL LEADERSHIP</span>
-        </div>
-      </div>
-
+    <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
       <!-- Main Editorial Headline & Introduction Spread -->
       <div class="max-w-4xl space-y-7">
         <!-- Badge -->
         <div
-          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-150"
           :class="{ 'is-revealed': isHeroMounted }"
         >
           <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
@@ -60,13 +45,13 @@ const isHeroMounted = ref(true)
           :immediate="true"
         />
 
-        <!-- Supporting Text: Restored to Cormorant serif (font-editorial) per approved reference design -->
+        <!-- Supporting Text -->
         <p
           class="font-editorial text-xl sm:text-2xl md:text-3xl text-zinc-300 leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
           :class="{ 'is-revealed': isHeroMounted }"
         >
-          Tell us about your business, your challenges, and what you’re looking to achieve.
-          Let’s explore how KavoraX can help move your business forward.
+          Tell us about your venues, current software systems, and operational requirements.
+          Let’s discuss how KavoraX can support your team.
         </p>
 
         <!-- Narrative Context -->
@@ -74,9 +59,9 @@ const isHeroMounted = ref(true)
           class="font-ui text-base sm:text-lg text-zinc-400 max-w-3xl leading-relaxed reveal-base transition-editorial duration-700 delay-600"
           :class="{ 'is-revealed': isHeroMounted }"
         >
-          Enterprise technology discussions should be straightforward, thoughtful, and grounded in operational reality.
-          We operate without high-pressure sales funnels—connecting you directly with solution specialists who understand
-          interoperable systems, data governance, and long-term business objectives.
+          Technology discussions should be direct and focused on real-world workflows.
+          You’ll speak directly with product specialists who understand counter checkout speed,
+          kitchen routing, offline resilience, and multi-branch rollouts.
         </p>
 
         <!-- Action CTAs -->
@@ -87,7 +72,7 @@ const isHeroMounted = ref(true)
           <a href="#inquiry-form" class="w-full sm:w-auto">
             <Button
               size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-all duration-200 group"
+              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-colors duration-200 group"
             >
               <span>Send an Inquiry</span>
               <ArrowDown class="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />

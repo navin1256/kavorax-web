@@ -5,16 +5,16 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
 
 <template>
   <section
-    class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.06] relative overflow-hidden"
+    class="py-12 md:py-16 bg-[#080c10] border-t border-white/[0.06] relative overflow-hidden"
   >
     <!-- Subtle Ambient Glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-brand/5 blur-[120px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
     />
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-14 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+        class="rounded-2xl border border-white/[0.08] bg-[#0c141e] p-8 sm:p-14 text-center relative overflow-hidden shadow-xl"
       >
         <!-- Tag -->
         <div
@@ -43,7 +43,7 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
           <NuxtLink to="/contact" class="w-full sm:w-auto">
             <Button
               size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
+              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-colors duration-200"
             >
               <MessageSquare class="mr-2 h-4 w-4" />
               Contact Us

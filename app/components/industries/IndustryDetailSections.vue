@@ -215,7 +215,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 </script>
 
 <template>
-  <div class="relative bg-[#080c10] overflow-hidden">
+  <div class="relative bg-transparent overflow-hidden">
     <!-- ======================================================== -->
     <!-- INDUSTRY 01: ENTERPRISE TECHNOLOGY & SAAS               -->
     <!-- Layout: Content on Left, High-Density Cluster on Right  -->
@@ -223,7 +223,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <section
       :id="industries[0].id"
       ref="s0Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#080c10]"
+      class="py-14 md:py-20 border-t border-white/[0.08] relative scroll-mt-24 md:scroll-mt-28 bg-transparent"
       :class="{ 'is-revealed': s0Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -263,7 +263,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 
             <!-- Operational Context -->
             <div
-              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 reveal-card transition-editorial duration-700 delay-250"
               :class="{ 'is-revealed': s0Revealed }"
             >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
@@ -285,11 +285,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <div
                 v-for="(need, nIdx) in industries[0].commonNeeds"
                 :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s0Revealed ? 'is-revealed' : ''
-                ]"
+                :class="[ 'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors reveal-card', `stagger-${nIdx + 1}`, s0Revealed ? 'is-revealed' : '' ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">
@@ -345,7 +341,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <NuxtLink to="/contact">
                 <Button
                   size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-all duration-200"
+                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-colors duration-200"
                 >
                   <span>{{ industries[0].primaryCta }}</span>
                   <ArrowRight class="ml-2 h-4 w-4" />
@@ -368,12 +364,8 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             :class="{ 'is-revealed': s0Revealed }"
           >
             <div
-              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
+              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl group"
             >
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
 
               <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
                 <img
@@ -383,13 +375,13 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                   decoding="async"
                   width="700"
                   height="520"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
+                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-colors duration-700"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
                 <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/60 via-transparent to-transparent" />
 
                 <!-- Floating HUD Chip -->
-                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
+                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 font-mono text-xs shadow-xl">
                   <div class="flex items-center gap-2 text-brand">
                     <span class="h-2 w-2 rounded-full bg-brand animate-pulse-subtle" />
                     <span class="font-semibold tracking-wider">{{ industries[0].imageBadge }}</span>
@@ -417,7 +409,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <section
       :id="industries[1].id"
       ref="s1Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0b0f14]"
+      class="py-14 md:py-20 border-t border-white/[0.08] relative scroll-mt-24 md:scroll-mt-28 bg-transparent"
       :class="{ 'is-revealed': s1Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -428,12 +420,8 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             :class="{ 'is-revealed': s1Revealed }"
           >
             <div
-              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
+              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl group"
             >
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
 
               <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
                 <img
@@ -443,13 +431,13 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                   decoding="async"
                   width="700"
                   height="520"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
+                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-colors duration-700"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
                 <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/60 via-transparent to-transparent" />
 
                 <!-- Floating HUD Chip -->
-                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
+                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 font-mono text-xs shadow-xl">
                   <div class="flex items-center gap-2 text-cyan-400">
                     <ShieldCheck class="h-4 w-4 text-cyan-400" />
                     <span class="font-semibold tracking-wider">{{ industries[1].imageBadge }}</span>
@@ -502,7 +490,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 
             <!-- Operational Context -->
             <div
-              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 reveal-card transition-editorial duration-700 delay-250"
               :class="{ 'is-revealed': s1Revealed }"
             >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
@@ -524,11 +512,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <div
                 v-for="(need, nIdx) in industries[1].commonNeeds"
                 :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-cyan-500/30 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s1Revealed ? 'is-revealed' : ''
-                ]"
+                :class="[ 'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-cyan-500/30 transition-colors reveal-card', `stagger-${nIdx + 1}`, s1Revealed ? 'is-revealed' : '' ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mt-0.5">
@@ -584,7 +568,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <NuxtLink to="/contact">
                 <Button
                   size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-all duration-200"
+                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-colors duration-200"
                 >
                   <span>{{ industries[1].primaryCta }}</span>
                   <ArrowRight class="ml-2 h-4 w-4" />
@@ -611,7 +595,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <section
       :id="industries[2].id"
       ref="s2Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#080c10]"
+      class="py-14 md:py-20 border-t border-white/[0.08] relative scroll-mt-24 md:scroll-mt-28 bg-transparent"
       :class="{ 'is-revealed': s2Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -651,7 +635,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
 
             <!-- Operational Context -->
             <div
-              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 reveal-card transition-editorial duration-700 delay-250"
               :class="{ 'is-revealed': s2Revealed }"
             >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
@@ -673,11 +657,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <div
                 v-for="(need, nIdx) in industries[2].commonNeeds"
                 :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-emerald-500/30 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s2Revealed ? 'is-revealed' : ''
-                ]"
+                :class="[ 'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-emerald-500/30 transition-colors reveal-card', `stagger-${nIdx + 1}`, s2Revealed ? 'is-revealed' : '' ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono mt-0.5">
@@ -733,7 +713,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <NuxtLink to="/contact">
                 <Button
                   size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-all duration-200"
+                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-colors duration-200"
                 >
                   <span>{{ industries[2].primaryCta }}</span>
                   <ArrowRight class="ml-2 h-4 w-4" />
@@ -756,12 +736,8 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             :class="{ 'is-revealed': s2Revealed }"
           >
             <div
-              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-[0_30px_70px_rgba(0,0,0,0.8)] group"
+              class="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl group"
             >
-              <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-              <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
 
               <div class="relative h-[440px] sm:h-[520px] w-full overflow-hidden bg-zinc-950">
                 <img
@@ -771,13 +747,13 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
                   decoding="async"
                   width="700"
                   height="520"
-                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
+                  class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-colors duration-700"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/40 to-transparent" />
                 <div class="absolute inset-0 bg-gradient-to-r from-[#080c10]/60 via-transparent to-transparent" />
 
                 <!-- Floating HUD Chip -->
-                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
+                <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#080c10]/85 p-3.5 font-mono text-xs shadow-xl">
                   <div class="flex items-center gap-2 text-emerald-400">
                     <Radio class="h-4 w-4 animate-pulse-subtle" />
                     <span class="font-semibold tracking-wider">{{ industries[2].imageBadge }}</span>
@@ -805,7 +781,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
     <section
       :id="industries[3].id"
       ref="s3Ref"
-      class="py-24 md:py-36 border-t border-white/[0.08] relative scroll-mt-28 md:scroll-mt-32 bg-[#0b0f14]"
+      class="py-14 md:py-20 border-t border-white/[0.08] relative scroll-mt-24 md:scroll-mt-28 bg-transparent"
       :class="{ 'is-revealed': s3Revealed }"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -814,10 +790,6 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
           class="mb-14 rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0c141f] shadow-2xl relative group reveal-card transition-editorial duration-700 delay-150"
           :class="{ 'is-revealed': s3Revealed }"
         >
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none z-10" aria-hidden="true">+</div>
 
           <div class="relative h-[280px] sm:h-[360px] w-full overflow-hidden bg-zinc-950">
             <img
@@ -827,13 +799,13 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               decoding="async"
               width="700"
               height="360"
-              class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
+              class="w-full h-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-colors duration-700"
             >
             <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f14] via-[#0b0f14]/40 to-transparent" />
             <div class="absolute inset-0 bg-gradient-to-r from-[#0b0f14]/80 via-transparent to-transparent" />
 
             <!-- Floating Inset Banner -->
-            <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0b0f14]/90 p-3.5 backdrop-blur-md font-mono text-xs shadow-xl">
+            <div class="absolute top-6 left-6 rounded-lg border border-white/15 bg-[#0b0f14]/90 p-3.5 font-mono text-xs shadow-xl">
               <div class="flex items-center gap-2 text-brand">
                 <Truck class="h-4 w-4" />
                 <span class="font-semibold tracking-wider">{{ industries[3].imageBadge }}</span>
@@ -884,7 +856,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
             </p>
 
             <div
-              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 backdrop-blur-md reveal-card transition-editorial duration-700 delay-250"
+              class="rounded-xl border border-white/[0.08] bg-[#0c141e]/80 p-6 reveal-card transition-editorial duration-700 delay-250"
               :class="{ 'is-revealed': s3Revealed }"
             >
               <div class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 mb-2">
@@ -903,7 +875,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <NuxtLink to="/contact">
                 <Button
                   size="default"
-                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-all duration-200"
+                  class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs rounded-md shadow-[0_0_18px_-3px_rgba(16,185,129,0.3)] transition-colors duration-200"
                 >
                   <span>{{ industries[3].primaryCta }}</span>
                   <ArrowRight class="ml-2 h-4 w-4" />
@@ -933,11 +905,7 @@ const industries: [IndustryItem, IndustryItem, IndustryItem, IndustryItem] = [
               <div
                 v-for="(need, nIdx) in industries[3].commonNeeds"
                 :key="nIdx"
-                :class="[
-                  'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors reveal-card',
-                  `stagger-${nIdx + 1}`,
-                  s3Revealed ? 'is-revealed' : ''
-                ]"
+                :class="[ 'p-4 rounded-xl border border-white/[0.05] bg-[#0c131c]/50 hover:border-brand/30 transition-colors reveal-card', `stagger-${nIdx + 1}`, s3Revealed ? 'is-revealed' : '' ]"
               >
                 <div class="flex items-start gap-3">
                   <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-xs font-mono mt-0.5">

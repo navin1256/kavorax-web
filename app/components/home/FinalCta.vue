@@ -14,17 +14,17 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.15 })
   <section
     id="final-cta"
     ref="ctaRef"
-    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+    class="py-12 md:py-16 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Cinematic Emerald Lighting Halo -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-6 sm:p-12 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.8)] corner-crosshair group reveal-base"
+        class="rounded-3xl border border-white/10 bg-[#0c141e] p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl corner-crosshair group reveal-base"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Eyebrow -->
@@ -60,7 +60,7 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.15 })
           <NuxtLink to="/demo" class="w-full sm:w-auto">
             <Button
               size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.45)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.65)] transition-all duration-300 group"
+              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.45)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.65)] transition-colors duration-200 group"
             >
               <span>Book a Demo</span>
               <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -71,7 +71,7 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.15 })
             <Button
               variant="outline"
               size="lg"
-              class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.08] text-white px-8 py-6 text-base rounded-md backdrop-blur-md transition-all duration-200"
+              class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.08] text-white px-8 py-6 text-base rounded-md transition-colors duration-200"
             >
               <Mail class="mr-2 h-4 w-4 text-brand" />
               <span>Contact Our Team</span>

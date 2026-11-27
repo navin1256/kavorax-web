@@ -11,12 +11,7 @@ const props = defineProps<AccordionTriggerProps & { class?: HTMLAttributes['clas
   <AccordionHeader class="flex">
     <AccordionTrigger
       v-bind="props"
-      :class="
-        cn(
-          'flex flex-1 items-center justify-between py-5 font-editorial text-lg sm:text-xl font-medium text-white transition-all hover:text-brand [&[data-state=open]>svg]:rotate-180 text-left cursor-pointer',
-          props.class
-        )
-      "
+      :class="cn( 'flex flex-1 items-center justify-between py-5 font-editorial text-lg sm:text-xl font-medium text-white transition-colors hover:text-brand [&[data-state=open]>svg]:rotate-180 text-left cursor-pointer', props.class )"
     >
       <slot />
       <slot name="icon">

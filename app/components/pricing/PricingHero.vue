@@ -21,42 +21,20 @@ const scrollToComparison = () => {
 </script>
 
 <template>
-  <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
+  <section class="relative pt-20 pb-12 md:pt-24 md:pb-16 overflow-hidden bg-transparent border-b border-white/[0.08]">
     <!-- Ambient emerald backlight glow with subtle drift -->
     <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.06] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
-    <div class="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none -z-10" aria-hidden="true" />
 
-    <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- HUD Telemetry Top Bar -->
-      <div
-        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
-        :class="{ 'is-revealed': isHeroMounted }"
-      >
-        <div class="flex items-center gap-3">
-          <ChapterLabel label="Simple, Transparent Pricing" />
-        </div>
-
-        <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-          <span class="hidden md:inline-flex items-center gap-1.5">
-            <Radio class="h-3 w-3 text-brand animate-pulse-subtle" />
-            <span>TRANSPARENCY: <strong class="text-white font-mono">100% AUDITABLE</strong></span>
-          </span>
-          <span class="text-zinc-600 hidden md:inline">|</span>
-          <span>MODULAR SCOPE</span>
-          <span class="text-zinc-600">|</span>
-          <span class="text-zinc-400 font-mono">[ 01 // OVERVIEW ]</span>
-        </div>
-      </div>
-
+    <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
         <!-- Left Column: Editorial Headline & Copy -->
         <div class="lg:col-span-7 space-y-7">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
@@ -65,21 +43,21 @@ const scrollToComparison = () => {
 
           <!-- Hero Headline with WordReveal -->
           <WordReveal
-            text="A Solution Model Built Around Your Business."
+            text="Transparent Plans Built Around Your Business."
             as="h1"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
-            :italic-words="['Around', 'Your', 'Business.']"
+            :italic-words="['Business.']"
             :delay="240"
             :immediate="true"
           />
 
-          <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
+          <!-- Hero Supporting Copy -->
           <p
             class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            Every organisation has different operational needs. Let's discuss your requirements and
-            identify an approach that fits your business, priorities and scale.
+            Predictable modular pricing with zero hidden fees. Scale smoothly from a single
+            counter terminal to an enterprise multi-outlet network.
           </p>
 
           <!-- Dual CTAs -->
@@ -90,7 +68,7 @@ const scrollToComparison = () => {
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-all duration-200 group"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-colors duration-200 group"
               >
                 <span>Discuss Your Requirements</span>
                 <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -134,18 +112,14 @@ const scrollToComparison = () => {
         >
           <!-- Ambient Halo -->
           <div
-            class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-70 pointer-events-none"
+            class="absolute -inset-2 rounded-2xl card-ambient-glow pointer-events-none"
             aria-hidden="true"
           />
 
           <div
-            class="relative rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-6 sm:p-8 shadow-[0_30px_70px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+            class="relative rounded-2xl border border-white/[0.1] bg-[#0c141e] p-6 sm:p-8 shadow-2xl"
           >
             <!-- Corner Crosshairs inspired by Active Theory -->
-            <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
             <!-- Card Header -->
             <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">

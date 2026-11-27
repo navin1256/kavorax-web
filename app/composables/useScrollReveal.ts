@@ -68,7 +68,7 @@ function queueGlobalScrollCheck() {
 
 function ensureGlobalScrollListener() {
   if (globalScrollListenerAttached || typeof window === 'undefined') return
-  window.addEventListener('scroll', queueGlobalScrollCheck, { passive: true })
+  // Note: scroll event listener removed to eliminate getBoundingClientRect layout thrashing during scroll
   window.addEventListener('resize', queueGlobalScrollCheck, { passive: true })
   window.addEventListener('hashchange', runGlobalScrollCheck, { passive: true })
   window.addEventListener('popstate', runGlobalScrollCheck, { passive: true })

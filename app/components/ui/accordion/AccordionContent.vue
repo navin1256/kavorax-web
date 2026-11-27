@@ -9,7 +9,7 @@ const props = defineProps<AccordionContentProps & { class?: HTMLAttributes['clas
 <template>
   <AccordionContent
     v-bind="props"
-    class="overflow-hidden font-ui text-sm text-zinc-300 transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    class="overflow-hidden font-ui text-sm text-zinc-300 transition-colors data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
   >
     <div :class="cn('pb-5 pt-0 leading-relaxed text-zinc-300', props.class)">
       <slot />

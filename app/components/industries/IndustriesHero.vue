@@ -25,7 +25,7 @@ const scrollToSectors = () => {
 </script>
 
 <template>
-  <section class="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden bg-[#080c10] border-b border-white/[0.08]">
+  <section class="relative pt-20 pb-12 md:pt-24 md:pb-16 overflow-hidden bg-transparent border-b border-white/[0.08]">
     <!-- Visual Striking Photographic Hero with Multi-Stop Vignette -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <img
@@ -40,38 +40,17 @@ const scrollToSectors = () => {
       >
       <div class="absolute inset-0 bg-gradient-to-r from-[#080c10] via-[#080c10]/95 to-[#080c10]/70" />
       <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-[#080c10]/70 to-[#080c10]/40" />
-      <div class="absolute top-1/4 right-1/4 w-[650px] h-[650px] bg-brand/[0.05] blur-[160px] rounded-full animate-ambient-drift" />
-      <div class="absolute inset-0 bg-tech-grid opacity-40" />
+      <div class="absolute top-1/4 right-1/4 w-[650px] h-[650px] ambient-glow-emerald rounded-full pointer-events-none -z-10" />
+      <div class="absolute inset-0 bg-tech-grid opacity-90" />
     </div>
 
-    <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- HUD Telemetry Header Bar -->
-      <div
-        class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4 font-mono text-[11px] text-zinc-400 reveal-base transition-editorial duration-700 delay-75"
-        :class="{ 'is-revealed': isHeroMounted }"
-      >
-        <div class="flex items-center gap-3">
-          <ChapterLabel label="Industries We Serve" />
-        </div>
-
-        <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-          <span class="hidden md:inline-flex items-center gap-1.5">
-            <Radio class="h-3 w-3 text-brand animate-pulse-subtle" />
-            <span>VERTICAL INTEGRATION: <strong class="text-white font-mono">NOMINAL</strong></span>
-          </span>
-          <span class="text-zinc-600 hidden md:inline">|</span>
-          <span>4 SECTOR FRAMEWORKS</span>
-          <span class="text-zinc-600">|</span>
-          <span class="text-zinc-400 font-mono">[ 01 // OVERVIEW ]</span>
-        </div>
-      </div>
-
+    <div class="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
         <!-- Left: Editorial Headline & Copy -->
         <div class="lg:col-span-7 space-y-7">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-150"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
@@ -80,22 +59,21 @@ const scrollToSectors = () => {
 
           <!-- Hero Headline with WordReveal -->
           <WordReveal
-            text="Technology for the Industries Moving Business Forward."
+            text="Software Built for Industry-Specific Operations."
             as="h1"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
-            :italic-words="['Moving', 'Business', 'Forward.']"
+            :italic-words="['Operations.']"
             :delay="240"
             :immediate="true"
           />
 
-          <!-- Hero Supporting Copy: Reverted to Inter font-ui -->
+          <!-- Hero Supporting Copy -->
           <p
             class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            Every industry has distinct operational needs. KavoraX builds connected business solutions
-            designed to help organisations improve visibility, streamline operations and adapt as
-            they grow.
+            Specialized workflows engineered for retail stores, hospitality venues, supermarkets,
+            and multi-outlet restaurant chains.
           </p>
 
           <!-- Dual CTAs -->
@@ -106,7 +84,7 @@ const scrollToSectors = () => {
             <NuxtLink to="/contact" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-all duration-200 group"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-colors duration-200 group"
               >
                 <span>Discuss Your Industry Needs</span>
                 <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -154,18 +132,14 @@ const scrollToSectors = () => {
         >
           <!-- Ambient Halo -->
           <div
-            class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-70 pointer-events-none"
+            class="absolute -inset-2 rounded-2xl card-ambient-glow pointer-events-none"
             aria-hidden="true"
           />
 
           <div
-            class="relative rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-6 sm:p-7 shadow-[0_30px_70px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+            class="relative rounded-2xl border border-white/[0.1] bg-[#0c141e] p-6 sm:p-7 shadow-2xl"
           >
             <!-- Corner Crosshairs inspired by Active Theory -->
-            <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
             <!-- Header -->
             <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">

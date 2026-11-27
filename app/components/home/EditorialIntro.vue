@@ -34,11 +34,11 @@ const principles = [
   <section
     id="editorial-intro"
     ref="sectionRef"
-    class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+    class="py-14 md:py-20 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Subtle Background Ambient Glow -->
     <div
-      class="absolute top-1/2 -left-48 w-96 h-96 bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none"
+      class="absolute top-1/2 -left-48 w-96 h-96 ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -102,10 +102,7 @@ const principles = [
               v-for="(item, pIdx) in principles"
               :key="item.title"
               class="relative group space-y-2 pb-8 border-b border-white/[0.06] last:border-b-0 last:pb-0 reveal-card"
-              :class="[
-                isRevealed ? 'is-revealed' : '',
-                pIdx === 0 ? 'delay-150' : pIdx === 1 ? 'delay-250' : 'delay-350'
-              ]"
+              :class="[ isRevealed ? 'is-revealed' : '', pIdx === 0 ? 'delay-150' : pIdx === 1 ? 'delay-250' : 'delay-350' ]"
             >
               <div class="flex items-center justify-between">
                 <span class="text-xs text-brand font-medium">

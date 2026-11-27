@@ -210,30 +210,15 @@ const { isRevealed } = useScrollReveal(sectionRef, {
   <section
     id="inquiry-form"
     ref="sectionRef"
-    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] scroll-mt-20 overflow-hidden"
+    class="py-12 md:py-16 bg-[#080c10] relative border-t border-white/[0.08] scroll-mt-20 overflow-hidden"
   >
     <!-- Subtle ambient glow with gentle atmospheric drift -->
     <div
-      class="absolute top-1/3 -right-36 w-96 h-96 bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/3 -right-36 w-96 h-96 ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
-    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Section Tag & Coordinate Metadata Bar -->
-      <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
-        :class="{ 'is-revealed': isRevealed }"
-      >
-        <ChapterLabel label="Send Us a Message" />
-        <div class="flex items-center gap-4 text-[10px] text-zinc-400">
-          <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
-            SECURE TRANSMISSION
-          </span>
-          <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span class="hidden sm:inline font-mono">ENCRYPTED TLS</span>
-        </div>
-      </div>
-
+    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
       <!-- Main Asymmetric Spread: Visual Companion on Left + Form on Right -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
@@ -245,30 +230,22 @@ const { isRevealed } = useScrollReveal(sectionRef, {
               text="What to Share With Our Team."
               as="h2"
               class="font-editorial text-3xl sm:text-5xl font-medium tracking-tight text-white leading-[1.12]"
-              :italic-words="['Our Team.']"
+              :italic-words="['Team.']"
               :delay="120"
             />
-            <!-- Corrected to font-ui font-light -->
             <p
               class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-150"
               :class="{ 'is-revealed': isRevealed }"
             >
-              To help us prepare for an informative initial exchange, consider sharing the general
-              context of your business objectives and software environment.
+              Share a brief overview of your store locations, current software setup, and operational priorities.
             </p>
           </div>
 
-          <!-- The ONE Supporting Visual: Architectural Consultation Photo Frame with Reveal -->
+          <!-- Supporting Visual: Consultation Photo Frame with Reveal -->
           <div
-            class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group reveal-card transition-editorial duration-700 delay-100"
+            class="relative rounded-2xl border border-white/10 bg-[#0d141e] overflow-hidden shadow-xl group reveal-card transition-editorial duration-700 delay-100"
             :class="{ 'is-revealed': isRevealed }"
           >
-            <!-- Active Theory Corner Crosshairs -->
-            <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
             <div class="relative h-60 sm:h-72 w-full overflow-hidden bg-zinc-950">
               <img
                 src="/images/executive-briefing.webp"
@@ -284,17 +261,17 @@ const { isRevealed } = useScrollReveal(sectionRef, {
 
               <!-- Metadata Bar -->
               <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] text-zinc-300">
-                <span class="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-white/10 text-white flex items-center gap-1.5">
+                <span class="px-2.5 py-1 rounded bg-black/80 border border-white/10 text-white flex items-center gap-1.5">
                   <span class="h-1.5 w-1.5 rounded-full bg-brand" />
                   <span>CONSULTATION CONTEXT</span>
                 </span>
-                <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 text-brand font-mono">
+                <span class="px-2 py-0.5 rounded bg-black/80 border border-white/10 text-brand font-mono">
                   DIRECT_DIALOGUE
                 </span>
               </div>
 
               <!-- Editorial Photo Caption (Corrected to font-ui) -->
-              <div class="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-4 space-y-1">
+              <div class="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-[#0e1622]/90 p-4 space-y-1">
                 <div class="flex items-center justify-between font-ui text-xs">
                   <span class="text-zinc-200 font-semibold flex items-center gap-1.5">
                     <Building2 class="h-3.5 w-3.5 text-brand" />
@@ -391,20 +368,16 @@ const { isRevealed } = useScrollReveal(sectionRef, {
         <div class="lg:col-span-7 relative">
           <!-- Subtle Glow Backplate with Atmospheric Ambient Drift -->
           <div
-            class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none animate-ambient-drift"
+            class="absolute -inset-2 rounded-3xl card-ambient-glow pointer-events-none"
             aria-hidden="true"
           />
 
           <!-- Form Outer Container Card: Reveals as one unit approximately 150ms after guidance -->
           <div
-            class="relative rounded-3xl border border-white/10 bg-[#0c141e]/95 p-7 sm:p-12 lg:p-14 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-card transition-editorial duration-700 delay-150"
+            class="relative rounded-3xl border border-white/10 bg-[#0c141e]/95 p-7 sm:p-12 lg:p-14 shadow-xl group reveal-card transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isRevealed }"
           >
             <!-- Active Theory Corner Crosshairs -->
-            <div class="absolute top-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute top-4 right-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-            <div class="absolute bottom-4 right-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
             <!-- Form Header with Clear Title & Helper Note -->
             <div class="pb-6 border-b border-white/[0.08]">
@@ -493,8 +466,8 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                         id="fullName"
                         v-model="formData.fullName"
                         type="text"
-                        placeholder="e.g. Eleanor Vance"
-                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                        placeholder="e.g. Rohan Sharma"
+                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
                         :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.fullName }"
                         :aria-invalid="!!errors.fullName"
                         :aria-describedby="errors.fullName ? 'fullName-error' : undefined"
@@ -525,8 +498,8 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                         id="workEmail"
                         v-model="formData.workEmail"
                         type="email"
-                        placeholder="e.g. eleanor.vance@company.com"
-                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                        placeholder="e.g. rohan.sharma@company.in"
+                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
                         :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.workEmail }"
                         :aria-invalid="!!errors.workEmail"
                         :aria-describedby="errors.workEmail ? 'workEmail-error' : undefined"
@@ -567,8 +540,8 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                         id="companyName"
                         v-model="formData.companyName"
                         type="text"
-                        placeholder="e.g. Acme Enterprises Ltd"
-                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                        placeholder="e.g. Spice Route Hospitality"
+                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
                         :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.companyName }"
                         :aria-invalid="!!errors.companyName"
                         :aria-describedby="errors.companyName ? 'companyName-error' : undefined"
@@ -598,11 +571,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                       <select
                         id="inquiryType"
                         v-model="formData.inquiryType"
-                        :class="[
-                          'flex h-12 w-full rounded-lg border border-white/15 bg-[#090e16] px-4 py-2 font-ui text-sm shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand cursor-pointer appearance-none',
-                          formData.inquiryType ? 'text-white' : 'text-zinc-500',
-                          errors.inquiryType ? 'border-red-500/70 focus-visible:ring-red-500' : ''
-                        ]"
+                        :class="[ 'flex h-12 w-full rounded-lg border border-white/15 bg-[#090e16] px-4 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand cursor-pointer appearance-none', formData.inquiryType ? 'text-white' : 'text-zinc-500', errors.inquiryType ? 'border-red-500/70 focus-visible:ring-red-500' : '' ]"
                         :aria-invalid="!!errors.inquiryType"
                         :aria-describedby="errors.inquiryType ? 'inquiryType-error' : undefined"
                         @change="validateField('inquiryType')"
@@ -656,7 +625,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                     v-model="formData.message"
                     placeholder="Share a brief overview of your business challenges, current systems, and what you are looking to achieve..."
                     rows="5"
-                    class="min-h-[140px] text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-all"
+                    class="min-h-[140px] text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
                     :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.message }"
                     :aria-invalid="!!errors.message"
                     :aria-describedby="errors.message ? 'message-error' : undefined"
@@ -707,7 +676,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                   type="submit"
                   size="lg"
                   :disabled="isSubmitting"
-                  class="w-full h-14 bg-brand text-black font-semibold hover:bg-brand/90 text-base rounded-lg shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_32px_0px_rgba(16,185,129,0.48)] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group/btn"
+                  class="w-full h-14 bg-brand text-black font-semibold hover:bg-brand/90 text-base rounded-lg shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_32px_0px_rgba(16,185,129,0.48)] transition-colors duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group/btn"
                 >
                   <Loader2 v-if="isSubmitting" class="mr-2.5 h-5 w-5 animate-spin text-black" />
                   <Send v-else class="mr-2.5 h-4 w-4 group-hover/btn:translate-x-0.5 transition-transform" />

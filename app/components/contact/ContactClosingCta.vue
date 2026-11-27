@@ -16,25 +16,21 @@ const { isRevealed } = useScrollReveal(sectionRef, {
 <template>
   <section
     ref="sectionRef"
-    class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
+    class="py-12 md:py-16 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Subtle Ambient Glow with Atmospheric Drift -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <!-- Container Card with Progressive Reveal -->
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] group reveal-card transition-editorial duration-700"
+        class="rounded-3xl border border-white/10 bg-[#0c141e] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-xl group reveal-card transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Active Theory Corner Crosshairs -->
-        <div class="absolute top-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-4 right-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-4 left-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-4 right-4 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
         <!-- Chapter Label -->
         <div
@@ -69,7 +65,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
           <NuxtLink to="/demo" class="w-full sm:w-auto">
             <Button
               size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200 group/btn"
+              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-colors duration-200 group/btn"
             >
               <Calendar class="mr-2 h-4 w-4" />
               <span>Book an Executive Demo</span>

@@ -7,6 +7,8 @@ export interface Module {
   subline: string
   heroImageQuery: string
   heroDetail: string
+  capabilitiesHeading?: string
+  featureDescriptions?: Record<string, string>
   features: string[]
   tabs: { id: string; label: string; description: string; bullets: string[] }[]
   whoUsesIt: string[]
@@ -22,6 +24,15 @@ export const initialModules: Module[] = [
     subline: 'Bill faster, accept every payment method and keep selling even when the internet is down.',
     heroImageQuery: 'cashier at a POS in an Indian cafe',
     heroDetail: 'Bill total updates instantly',
+    capabilitiesHeading: 'Core billing capabilities.',
+    featureDescriptions: {
+      'Quick billing': 'Sub-second barcode scan and item search for fast checkout lines.',
+      'GST-ready invoices': 'Automated HSN code mapping and dynamic tax calculations on every bill.',
+      'Split and multiple payments (UPI, card, cash)': 'Accept multiple tender modes in a single transaction without friction.',
+      'Offers and discounts': 'Instant rule-based discounts, coupon codes, and promotional bundles.',
+      'Offline billing with auto-sync': 'Keep selling through network blackouts with automated background synchronization.',
+      'Receipts by print, WhatsApp or SMS': 'Print thermal receipts or dispatch digital slips directly to customer phones.'
+    },
     features: [
       'Quick billing',
       'GST-ready invoices',
@@ -66,6 +77,15 @@ export const initialModules: Module[] = [
     subline: 'Know exactly what you have, before you run out.',
     heroImageQuery: 'shop owner scanning shelf stock',
     heroDetail: 'Low-stock alert on 3 items',
+    capabilitiesHeading: 'Stock control at every shelf.',
+    featureDescriptions: {
+      'Live stock levels': 'Real-time deduction on every sale with synchronized warehouse counts.',
+      'Low-stock alerts': 'Automated threshold notifications before popular items go out of stock.',
+      'Purchase orders': 'Generate, approve, and send supplier orders with one click.',
+      'Supplier records': 'Centralized vendor pricing, delivery terms, and order history.',
+      'Batch and expiry tracking': 'FIFO stock rotation with expiry date warnings to prevent waste.',
+      'Stock transfers between outlets': 'Request, dispatch, and receive inter-store inventory seamlessly.'
+    },
     features: [
       'Live stock levels',
       'Low-stock alerts',
@@ -110,6 +130,15 @@ export const initialModules: Module[] = [
     subline: 'Turn first-time customers into regulars.',
     heroImageQuery: 'salon receptionist greeting a client',
     heroDetail: 'New loyalty member added',
+    capabilitiesHeading: 'Customer retention tools.',
+    featureDescriptions: {
+      'Customer profiles and history': 'Complete lifetime transaction logs, preferences, and visit records.',
+      'Loyalty points': 'Automated reward accrual and tiered redemption at the POS.',
+      'Feedback capture': 'Digital ratings and post-visit survey links via WhatsApp or SMS.',
+      'WhatsApp and SMS campaigns': 'Broadcast announcements, festive offers, and personalized coupons.',
+      'Birthday offers': 'Automated greetings and special discounts on customer milestones.',
+      'Customer segments': 'Group customers by frequency, average spend, or inactive duration.'
+    },
     features: [
       'Customer profiles and history',
       'Loyalty points',
@@ -154,6 +183,15 @@ export const initialModules: Module[] = [
     subline: 'Let customers order from their own phone.',
     heroImageQuery: 'diners scanning a QR code at a table',
     heroDetail: 'Order sent to kitchen',
+    capabilitiesHeading: 'Order flow from table to kitchen.',
+    featureDescriptions: {
+      'QR code menus': 'High-resolution digital menus accessed instantly without an app download.',
+      'Table ordering': 'Guests order and reorder directly from their table with live bill updates.',
+      'Online ordering link': 'Shareable web storefront for direct takeaway and local pickup orders.',
+      'Live kitchen display': 'Instant ticket injection directly onto kitchen prep screens.',
+      'Item availability control': 'Toggle 86\'d or sold-out items across all menus in one tap.',
+      'Order status updates': 'Real-time SMS and browser notifications as items are prepped.'
+    },
     features: [
       'QR code menus',
       'Table ordering',
@@ -198,6 +236,15 @@ export const initialModules: Module[] = [
     subline: 'Every order delivered, tracked and on time.',
     heroImageQuery: 'delivery rider checking a phone',
     heroDetail: 'Rider assigned to order',
+    capabilitiesHeading: 'Dispatch and delivery tracking.',
+    featureDescriptions: {
+      'Order dispatch': 'Central dispatch board matching active delivery queues with available drivers.',
+      'Rider assignment': 'Automated assignment rules based on distance, load, and proximity.',
+      'Live status tracking': 'Real-time GPS coordinates and route updates visible to managers and customers.',
+      'Delivery zones and charges': 'Configurable radial and polygon geofences with dynamic delivery fees.',
+      'Customer notifications': 'Live tracking links with estimated arrival times sent via WhatsApp.',
+      'Delivery reports': 'Average run times, driver punctuality ratings, and failed delivery audits.'
+    },
     features: [
       'Order dispatch',
       'Rider assignment',
@@ -242,6 +289,15 @@ export const initialModules: Module[] = [
     subline: 'Clear numbers, better decisions.',
     heroImageQuery: 'owner reviewing charts on a tablet',
     heroDetail: "Today's report ready",
+    capabilitiesHeading: 'Actionable numbers across outlets.',
+    featureDescriptions: {
+      'Sales and profit reports': 'Net margin breakdowns and revenue pacing by day, week, and month.',
+      'Best and slow-moving items': 'ABC inventory analysis revealing top grossing items and dead stock.',
+      'Hourly trends': 'Peak hour traffic patterns to optimize staffing and prep schedules.',
+      'Staff performance': 'Average ticket size, billing speed, and upselling rate per cashier.',
+      'Outlet comparison': 'Side-by-side revenue and profitability metrics across all branches.',
+      'Scheduled report emails': 'Automated EOD executive summaries delivered directly to your inbox.'
+    },
     features: [
       'Sales and profit reports',
       'Best and slow-moving items',
@@ -286,6 +342,15 @@ export const initialModules: Module[] = [
     subline: 'Sell online without a second system.',
     heroImageQuery: 'store owner packing parcels',
     heroDetail: 'New online order received',
+    capabilitiesHeading: 'Online selling synced with stock.',
+    featureDescriptions: {
+      'Online store': 'Fast, branded digital storefront with instant catalog browsing.',
+      'Real-time stock sync': 'Zero double-selling by sharing one unified inventory pool with retail POS.',
+      'Order management': 'Unified fulfillment pipeline for packing, shipping, and pickup.',
+      'Payment links': 'Generate secure instant checkout links for social media sales.',
+      'Coupons': 'Flexible discount rules, minimum order values, and limited-time coupons.',
+      'Shipping options': 'Integrated courier shipping labels, rate calculations, and tracking.'
+    },
     features: [
       'Online store',
       'Real-time stock sync',
@@ -330,6 +395,15 @@ export const initialModules: Module[] = [
     subline: 'Run daily operations without the chaos.',
     heroImageQuery: 'manager with a tablet checklist',
     heroDetail: 'Staff shift started',
+    capabilitiesHeading: 'Daily team and expense control.',
+    featureDescriptions: {
+      'Staff and roles': 'Granular permission sets tailored to cashiers, floor managers, and accountants.',
+      'Attendance': 'PIN and biometric clock-in logs with shift tracking and overtime calculation.',
+      'Expense tracking': 'Record petty cash, store maintenance, and daily utility expenses on the fly.',
+      'Tasks': 'Daily opening and closing checklists assigned directly to duty staff.',
+      'Permissions': 'Restricted access controls preventing unauthorized discounts or void bills.',
+      'Audit trail': 'Immutable chronological logs of every user action and data modification.'
+    },
     features: [
       'Staff and roles',
       'Attendance',
@@ -374,6 +448,15 @@ export const initialModules: Module[] = [
     subline: 'All your outlets, one dashboard.',
     heroImageQuery: 'owner with a laptop and an outlet map',
     heroDetail: '3 outlets synced',
+    capabilitiesHeading: 'Multi-outlet control.',
+    featureDescriptions: {
+      'Outlet dashboard': 'Real-time overview of active registers, daily revenue, and customer footfall.',
+      'Central menu and pricing': 'Publish global catalog updates or adjust pricing per local outlet.',
+      'Outlet-wise reports': 'Side-by-side sales performance, profitability, and operational benchmarks.',
+      'Stock transfers': 'Inter-branch stock requisitions, dispatch tracking, and inventory reconciliation.',
+      'Role-based access': 'Restrict store managers to their own branch while executives view all.',
+      'Consolidated billing view': 'Combined financial roll-up across franchise and corporate branches.'
+    },
     features: [
       'Outlet dashboard',
       'Central menu and pricing',
@@ -418,6 +501,15 @@ export const initialModules: Module[] = [
     subline: 'Eliminate lost paper tickets and kitchen confusion with real-time station routing and prep timers.',
     heroImageQuery: '/images/architectural-workspace.webp',
     heroDetail: 'Live order queue: 4 tickets in prep',
+    capabilitiesHeading: 'Built for fast kitchen stations.',
+    featureDescriptions: {
+      'Color-coded ticket aging': 'Instant visual status as orders progress from green to amber and alert red.',
+      'Station-wise item routing': 'Dishes automatically route to grill, wok, fryer, or beverage stations.',
+      'Cook times & prep timers': 'Item-level timers so multi-course orders complete simultaneously.',
+      'Waiter bump bar & recall': 'One-touch bump off ready dishes with single-tap recall for accidental taps.',
+      'Direct POS & QR order injection': 'Orders from cashiers and diner QR menus hit the kitchen in under 200ms.',
+      'Summary counts for rush hour prep': 'Consolidated batch counts (e.g. "8 Burgers on Fire") for kitchen rush.'
+    },
     features: [
       'Color-coded ticket aging',
       'Station-wise item routing',

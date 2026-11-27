@@ -58,10 +58,10 @@ const nodes = [
 </script>
 
 <template>
-  <section class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
+  <section class="py-14 md:py-18 bg-transparent border-t border-white/[0.08] relative overflow-hidden">
     <!-- Ambient Depth Lighting with Drift -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -95,13 +95,8 @@ const nodes = [
         :class="{ 'is-revealed': isMatrixRevealed }"
       >
         <div
-          class="rounded-2xl border border-white/[0.1] bg-[#0c131c]/90 p-6 sm:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl relative"
+          class="rounded-2xl border border-white/[0.1] bg-[#0c131c]/90 p-6 sm:p-10 shadow-xl relative"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <!-- Top Diagram Telemetry Bar -->
           <div
@@ -122,36 +117,22 @@ const nodes = [
             <div
               v-for="(node, index) in nodes"
               :key="node.title"
-              class="rounded-xl border p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between relative group reveal-card"
-              :class="[
-                `stagger-${index + 1}`,
-                isMatrixRevealed ? 'is-revealed' : '',
-                selectedNode === index
-                  ? 'border-brand/50 bg-[#121c2a] shadow-[0_4px_24px_rgba(16,185,129,0.18)] scale-[1.01]'
-                  : 'border-white/[0.08] bg-[#0e1622]/80 hover:border-white/20 hover:bg-[#101926]'
-              ]"
+              class="rounded-xl border p-6 transition-colors duration-200 cursor-pointer flex flex-col justify-between relative group reveal-card"
+              :class="[ `stagger-${index + 1}`, isMatrixRevealed ? 'is-revealed' : '', selectedNode === index ? 'border-brand/50 bg-[#121c2a] shadow-[0_4px_24px_rgba(16,185,129,0.18)] scale-[1.01]' : 'border-white/[0.08] bg-[#0e1622]/80 hover:border-white/20 hover:bg-[#101926]' ]"
               @click="selectedNode = index"
             >
               <div>
                 <div class="flex items-center justify-between mb-4">
                   <div
                     class="flex h-11 w-11 items-center justify-center rounded-lg border transition-colors"
-                    :class="[
-                      selectedNode === index
-                        ? 'border-brand/40 bg-brand/15 text-brand shadow-[0_0_12px_rgba(16,185,129,0.3)]'
-                        : 'border-white/10 bg-[#142131] text-zinc-300 group-hover:text-brand'
-                    ]"
+                    :class="[ selectedNode === index ? 'border-brand/40 bg-brand/15 text-brand shadow-[0_0_12px_rgba(16,185,129,0.3)]' : 'border-white/10 bg-[#142131] text-zinc-300 group-hover:text-brand' ]"
                   >
                     <component :is="node.icon" class="h-5 w-5" />
                   </div>
                   <div class="flex items-center gap-2">
                     <span
                       class="font-mono text-[10px] uppercase px-2.5 py-0.5 rounded border"
-                      :class="[
-                        selectedNode === index
-                          ? 'border-brand/30 bg-brand/15 text-brand font-semibold'
-                          : 'border-white/[0.06] bg-white/[0.04] text-zinc-400'
-                      ]"
+                      :class="[ selectedNode === index ? 'border-brand/30 bg-brand/15 text-brand font-semibold' : 'border-white/[0.06] bg-white/[0.04] text-zinc-400' ]"
                     >
                       {{ node.tag }}
                     </span>

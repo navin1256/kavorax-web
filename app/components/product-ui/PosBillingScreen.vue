@@ -96,7 +96,7 @@ const selectedPayment = ref('UPI')
           <div
             v-for="item in menuItems"
             :key="item.id"
-            class="group relative flex flex-col justify-between rounded-lg border border-white/[0.08] bg-[#141414] p-3 hover:border-brand/40 hover:bg-[#181818] transition-all cursor-pointer"
+            class="group relative flex flex-col justify-between rounded-lg border border-white/[0.08] bg-[#141414] p-3 hover:border-brand/40 hover:bg-[#181818] transition-colors cursor-pointer"
           >
             <div>
               <div v-if="item.tag" class="mb-1 text-xs font-semibold text-brand">

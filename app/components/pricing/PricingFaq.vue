@@ -45,7 +45,7 @@ const faqs = [
 <template>
   <section
     ref="faqRef"
-    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08]"
+    class="py-14 md:py-20 bg-transparent relative border-t border-white/[0.08]"
     :class="{ 'is-revealed': isRevealed }"
   >
     <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -74,12 +74,9 @@ const faqs = [
 
       <!-- FAQ Accordion -->
       <div
-        class="rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative reveal-card transition-editorial duration-700 delay-200"
+        class="rounded-2xl border border-white/[0.08] bg-[#0c141e] p-6 sm:p-10 shadow-xl relative reveal-card transition-editorial duration-700 delay-200"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <!-- Corner Crosshairs -->
-        <div class="absolute top-3 left-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
         <Accordion type="single" class="w-full font-ui" collapsible default-value="faq-1">
           <AccordionItem

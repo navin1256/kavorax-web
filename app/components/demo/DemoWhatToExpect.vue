@@ -30,7 +30,7 @@ const steps = [
 </script>
 
 <template>
-  <section class="py-24 md:py-32 bg-[#0b0f14] relative overflow-hidden border-t border-white/[0.06]">
+  <section class="py-12 md:py-16 bg-transparent relative overflow-hidden border-t border-white/[0.06]">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="max-w-3xl space-y-4">
@@ -43,11 +43,11 @@ const steps = [
           class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
         >
           What to Expect from
-          <span class="italic font-light text-brand">the Conversation</span>.
+          <span class="italic font-light text-brand">the Walkthrough</span>.
         </h2>
         <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
-          Our demonstration conversations are designed to be focused, collaborative, and grounded in
-          your operational reality.
+          Our demonstration sessions are designed to be focused, practical, and aligned with your
+          team's specific store workflows and software requirements.
         </p>
       </div>
 
@@ -56,7 +56,7 @@ const steps = [
         <div
           v-for="item in steps"
           :key="item.step"
-          class="rounded-2xl border border-white/[0.08] bg-[#0e1620]/80 p-7 sm:p-8 backdrop-blur-sm relative group hover:border-brand/30 transition-all duration-300 flex flex-col justify-between"
+          class="rounded-2xl border border-white/[0.08] bg-[#0e1620]/80 p-7 sm:p-8 relative group hover:border-brand/30 transition-colors duration-200 flex flex-col justify-between"
         >
           <!-- Top Row: Step Number & Icon -->
           <div>

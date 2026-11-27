@@ -46,7 +46,7 @@ const considerations = [
 </script>
 
 <template>
-  <section class="py-24 md:py-36 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
+  <section class="py-14 md:py-20 bg-transparent border-t border-white/[0.08] relative overflow-hidden">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header with Scroll Reveal -->
       <div
@@ -71,11 +71,10 @@ const considerations = [
         <div
           v-for="(item, idx) in considerations"
           :key="item.title"
-          class="p-8 sm:p-10 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative hover:border-brand/40 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.5)] group reveal-card transition-editorial duration-700"
+          class="p-8 sm:p-10 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 relative hover:border-brand/40 transition-colors duration-200 shadow-lg group reveal-card transition-editorial duration-700"
           :class="[{ 'is-revealed': isLedgerRevealed }, 'stagger-' + (idx + 1)]"
         >
           <!-- Corner Crosshair -->
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <!-- Left Metadata Column -->
@@ -118,7 +117,7 @@ const considerations = [
       <!-- Consultative Guidance Footnote with Scroll Reveal -->
       <div
         ref="footnoteRef"
-        class="mt-12 rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-ui relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+        class="mt-12 rounded-2xl border border-white/[0.08] bg-[#0c141e] p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-ui relative overflow-hidden shadow-xl reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isFootnoteRevealed }"
       >
         <div class="space-y-1.5">
@@ -133,7 +132,7 @@ const considerations = [
         <NuxtLink to="/contact" class="shrink-0 w-full sm:w-auto">
           <button
             type="button"
-            class="w-full sm:w-auto px-7 py-4 rounded-md border border-brand/40 bg-brand/10 hover:bg-brand/20 text-brand hover:text-white transition-all text-xs font-semibold tracking-wider uppercase font-mono flex items-center justify-center gap-2 shadow-[0_0_20px_-3px_rgba(16,185,129,0.25)] cursor-pointer"
+            class="w-full sm:w-auto px-7 py-4 rounded-md border border-brand/40 bg-brand/10 hover:bg-brand/20 text-brand hover:text-white transition-colors text-xs font-semibold tracking-wider uppercase font-mono flex items-center justify-center gap-2 shadow-[0_0_20px_-3px_rgba(16,185,129,0.25)] cursor-pointer"
           >
             <span>Request Diagnostic Scoping</span>
             <ArrowRight class="h-4 w-4" />

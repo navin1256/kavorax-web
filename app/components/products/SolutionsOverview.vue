@@ -241,14 +241,14 @@ watch(
 </script>
 
 <template>
-  <div id="solutions-overview" class="py-24 md:py-32 bg-[#0b0f14] relative border-b border-white/[0.08]">
+  <div id="solutions-overview" class="py-14 md:py-18 bg-transparent relative border-b border-white/[0.08]">
     <!-- Background Ambient Refraction with Slow Drift -->
     <div
-      class="absolute top-1/3 left-10 w-[500px] h-[500px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/3 left-10 w-[500px] h-[500px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
     <div
-      class="absolute bottom-1/4 right-10 w-[600px] h-[600px] bg-brand/[0.03] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute bottom-1/4 right-10 w-[600px] h-[600px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -276,11 +276,11 @@ watch(
 
         <!-- Sticky Quick Jump Anchor Navigator -->
         <div
-          class="flex flex-wrap items-center gap-2 p-1.5 rounded-xl border border-white/10 bg-[#0c131d]/90 backdrop-blur-md font-ui shrink-0 shadow-lg"
+          class="flex flex-wrap items-center gap-2 p-1.5 rounded-xl border border-white/10 bg-[#0c131d]/90 font-ui shrink-0 shadow-lg"
         >
           <button
             type="button"
-            class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all flex items-center gap-2 cursor-pointer"
+            class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors flex items-center gap-2 cursor-pointer"
             @click="scrollToSection('operations-platform')"
           >
             <Cpu class="h-3.5 w-3.5 text-brand" />
@@ -288,7 +288,7 @@ watch(
           </button>
           <button
             type="button"
-            class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all flex items-center gap-2 cursor-pointer"
+            class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors flex items-center gap-2 cursor-pointer"
             @click="scrollToSection('analytics-insights')"
           >
             <BarChart3 class="h-3.5 w-3.5 text-brand" />
@@ -296,7 +296,7 @@ watch(
           </button>
           <button
             type="button"
-            class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-all flex items-center gap-2 cursor-pointer"
+            class="px-3.5 py-2 text-xs font-medium rounded-lg text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors flex items-center gap-2 cursor-pointer"
             @click="scrollToSection('integration-hub')"
           >
             <Network class="h-3.5 w-3.5 text-brand" />
@@ -312,17 +312,11 @@ watch(
       <section
         id="operations-platform"
         ref="product1Ref"
-        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
+        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-xl relative reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isProduct1Revealed }"
       >
         <!-- Invisible alias target for deep link #operations -->
         <div id="operations" class="absolute -top-32 left-0 pointer-events-none" />
-
-        <!-- Corner Crosshairs -->
-        <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <!-- Left Info Column -->
@@ -372,7 +366,7 @@ watch(
             <div class="pt-4 flex flex-wrap items-center gap-4 font-ui">
               <NuxtLink :to="products[0].ctaLink">
                 <Button
-                  class="bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] transition-all flex items-center gap-2 group"
+                  class="bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] transition-colors flex items-center gap-2 group"
                 >
                   <span>{{ products[0].ctaText }}</span>
                   <ArrowRight class="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -380,7 +374,7 @@ watch(
               </NuxtLink>
               <NuxtLink
                 to="/demo"
-                class="px-5 py-2.5 rounded-md border border-white/10 text-xs font-medium text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-all"
+                class="px-5 py-2.5 rounded-md border border-white/10 text-xs font-medium text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-colors"
               >
                 Request Technical Demonstration
               </NuxtLink>
@@ -411,12 +405,8 @@ watch(
                 <div
                   v-for="(stg, index) in opsStages"
                   :key="stg.step"
-                  class="p-4 rounded-xl border transition-all duration-300 cursor-pointer relative"
-                  :class="[
-                    activeOpsStage === index
-                      ? 'border-brand/50 bg-[#101824] shadow-[0_0_20px_rgba(16,185,129,0.15)]'
-                      : 'border-white/[0.06] bg-[#0c121a]/80 hover:border-white/15'
-                  ]"
+                  class="p-4 rounded-xl border transition-colors duration-200 cursor-pointer relative"
+                  :class="[ activeOpsStage === index ? 'border-brand/50 bg-[#101824] shadow-[0_0_20px_rgba(16,185,129,0.15)]' : 'border-white/[0.06] bg-[#0c121a]/80 hover:border-white/15' ]"
                   @click="activeOpsStage = index"
                 >
                   <div class="flex items-center justify-between">
@@ -479,17 +469,11 @@ watch(
       <section
         id="analytics-insights"
         ref="product2Ref"
-        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
+        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-xl relative reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isProduct2Revealed }"
       >
         <!-- Invisible alias target for deep link #analytics-intelligence -->
         <div id="analytics-intelligence" class="absolute -top-32 left-0 pointer-events-none" />
-
-        <!-- Corner Crosshairs -->
-        <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <!-- Left: Bespoke Custom Interface Illustration (Interactive Telemetry Cockpit & Sparklines) -->
@@ -556,15 +540,9 @@ watch(
                     <div
                       v-for="(height, bIdx) in channelData[activeAnalyticsChannel].bars"
                       :key="bIdx"
-                      class="w-full rounded-t transition-all duration-500 group relative"
+                      class="w-full rounded-t transition-colors duration-500 group relative"
                       :style="{ height: `${height}%` }"
-                      :class="[
-                        height > 80
-                          ? 'bg-gradient-to-t from-cyan-600 to-brand shadow-[0_0_10px_rgba(6,182,212,0.5)]'
-                          : height > 50
-                            ? 'bg-cyan-500/60 hover:bg-cyan-400'
-                            : 'bg-white/10 hover:bg-white/20'
-                      ]"
+                      :class="[ height > 80 ? 'bg-gradient-to-t from-cyan-600 to-brand shadow-[0_0_10px_rgba(6,182,212,0.5)]' : height > 50 ? 'bg-cyan-500/60 hover:bg-cyan-400' : 'bg-white/10 hover:bg-white/20' ]"
                     />
                   </div>
 
@@ -633,7 +611,7 @@ watch(
             <div class="pt-4 flex flex-wrap items-center gap-4 font-ui">
               <NuxtLink :to="products[1].ctaLink">
                 <Button
-                  class="bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] transition-all flex items-center gap-2 group"
+                  class="bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] transition-colors flex items-center gap-2 group"
                 >
                   <span>{{ products[1].ctaText }}</span>
                   <ArrowRight class="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -641,7 +619,7 @@ watch(
               </NuxtLink>
               <NuxtLink
                 to="/demo"
-                class="px-5 py-2.5 rounded-md border border-white/10 text-xs font-medium text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-all"
+                class="px-5 py-2.5 rounded-md border border-white/10 text-xs font-medium text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-colors"
               >
                 Request Analytics Walkthrough
               </NuxtLink>
@@ -657,17 +635,11 @@ watch(
       <section
         id="integration-hub"
         ref="product3Ref"
-        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl relative reveal-base transition-editorial duration-700"
+        class="mt-16 scroll-mt-28 md:scroll-mt-32 rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-8 sm:p-12 lg:p-14 shadow-xl relative reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isProduct3Revealed }"
       >
         <!-- Invisible alias target for deep link #integrations -->
         <div id="integrations" class="absolute -top-32 left-0 pointer-events-none" />
-
-        <!-- Corner Crosshairs -->
-        <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <!-- Left Info Column -->
@@ -717,7 +689,7 @@ watch(
             <div class="pt-4 flex flex-wrap items-center gap-4 font-ui">
               <NuxtLink :to="products[2].ctaLink">
                 <Button
-                  class="bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] transition-all flex items-center gap-2 group"
+                  class="bg-brand text-black font-semibold hover:bg-brand/90 px-6 py-5 text-xs shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] transition-colors flex items-center gap-2 group"
                 >
                   <span>{{ products[2].ctaText }}</span>
                   <ArrowRight class="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -725,7 +697,7 @@ watch(
               </NuxtLink>
               <NuxtLink
                 to="/demo"
-                class="px-5 py-2.5 rounded-md border border-white/10 text-xs font-medium text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-all"
+                class="px-5 py-2.5 rounded-md border border-white/10 text-xs font-medium text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-colors"
               >
                 Request Architecture Briefing
               </NuxtLink>
@@ -871,12 +843,10 @@ watch(
         <div
           id="system-mesh"
           ref="meshRef"
-          class="rounded-2xl border border-white/[0.08] bg-[#0a1017]/90 p-8 sm:p-12 backdrop-blur-xl relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          class="rounded-2xl border border-white/[0.08] bg-[#0a1017]/90 p-8 sm:p-12 relative shadow-xl reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isMeshRevealed }"
         >
           <!-- Crosshairs -->
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
             <span class="text-xs font-mono text-brand uppercase tracking-widest">[ SYSTEM INTERACTION MESH ]</span>
@@ -922,7 +892,7 @@ watch(
           <!-- Dynamic Connection Bridge Diagram with Staggered Card Entrance -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
             <div
-              class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-all reveal-card stagger-1"
+              class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-colors reveal-card stagger-1"
               :class="{ 'is-revealed': isMeshRevealed }"
             >
               <div class="flex justify-center">
@@ -942,7 +912,7 @@ watch(
             </div>
 
             <div
-              class="p-6 rounded-xl border border-cyan-500/30 bg-cyan-500/[0.04] text-center space-y-3 relative group hover:border-cyan-500/50 transition-all reveal-card stagger-2"
+              class="p-6 rounded-xl border border-cyan-500/30 bg-cyan-500/[0.04] text-center space-y-3 relative group hover:border-cyan-500/50 transition-colors reveal-card stagger-2"
               :class="{ 'is-revealed': isMeshRevealed }"
             >
               <div class="flex justify-center">
@@ -962,7 +932,7 @@ watch(
             </div>
 
             <div
-              class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-all reveal-card stagger-3"
+              class="p-6 rounded-xl border border-white/[0.07] bg-[#0d141e] text-center space-y-3 relative group hover:border-brand/30 transition-colors reveal-card stagger-3"
               :class="{ 'is-revealed': isMeshRevealed }"
             >
               <div class="flex justify-center">

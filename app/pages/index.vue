@@ -9,7 +9,7 @@ import BrandStatement from '~/components/home/BrandStatement.vue'
 import FinalCta from '~/components/home/FinalCta.vue'
 
 useHead({
-  title: 'KavoraX Global | Technology that moves business forward',
+  title: 'KavoraX Global | Connected Retail & Hospitality Software',
   meta: [
     {
       name: 'description',
@@ -21,7 +21,7 @@ useHead({
 </script>
 
 <template>
-  <div class="relative bg-[#080c10] overflow-x-hidden">
+  <div class="relative bg-transparent overflow-x-hidden">
     <!-- 1. Cinematic Hero with focal point & scroll indicator -->
     <HeroSection />
 

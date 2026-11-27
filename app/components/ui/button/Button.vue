@@ -6,14 +6,17 @@ import { Primitive } from 'reka-ui'
 import { cn } from '@/utils'
 import { buttonVariants } from '.'
 
-interface Props extends /* @vue-ignore */ PrimitiveProps {
+interface Props {
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
   class?: HTMLAttributes['class']
+  as?: string
+  asChild?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  as: 'button'
+  as: 'button',
+  asChild: false
 })
 </script>
 

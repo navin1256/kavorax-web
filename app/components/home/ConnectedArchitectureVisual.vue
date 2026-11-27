@@ -83,11 +83,11 @@ const currentLayer = computed(() => {
 <template>
   <section
     ref="targetRef"
-    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+    class="py-14 md:py-20 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Ambient emerald atmospheric glows -->
     <div
-      class="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none"
+      class="absolute top-1/3 right-1/4 w-[600px] h-[600px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -117,7 +117,7 @@ const currentLayer = computed(() => {
 
       <!-- Technical Architecture Interconnect Bus -->
       <div
-        class="mb-12 rounded-2xl border border-white/10 bg-[#0c1420]/80 backdrop-blur-md p-5 sm:p-7 relative overflow-hidden reveal-card transition-editorial duration-700 delay-100"
+        class="mb-12 rounded-2xl border border-white/10 bg-[#0c1420]/80 p-5 sm:p-7 relative overflow-hidden reveal-card transition-editorial duration-700 delay-100"
         :class="{ 'is-revealed': isRevealed }"
       >
         <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-white/[0.06] font-ui text-xs gap-2">
@@ -212,23 +212,15 @@ const currentLayer = computed(() => {
           <div
             v-for="layer in layers"
             :key="layer.id"
-            class="p-5 rounded-xl border transition-all duration-300 cursor-pointer relative group"
-            :class="[
-              activeLayerId === layer.id
-                ? 'border-brand/50 bg-[#111a26] shadow-[0_8px_30px_rgba(16,185,129,0.16)]'
-                : 'border-white/[0.06] bg-[#0c131c]/60 hover:border-white/20 hover:bg-[#0e1622]'
-            ]"
+            class="p-5 rounded-xl border transition-colors duration-200 cursor-pointer relative group"
+            :class="[ activeLayerId === layer.id ? 'border-brand/50 bg-[#111a26] shadow-[0_8px_30px_rgba(16,185,129,0.16)]' : 'border-white/[0.06] bg-[#0c131c]/60 hover:border-white/20 hover:bg-[#0e1622]' ]"
             @click="activeLayerId = layer.id"
           >
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3.5">
                 <div
-                  class="flex h-10 w-10 items-center justify-center rounded-lg border transition-all"
-                  :class="[
-                    activeLayerId === layer.id
-                      ? 'border-brand/40 bg-brand/20 text-brand'
-                      : 'border-white/10 bg-[#121c29] text-zinc-400 group-hover:text-white'
-                  ]"
+                  class="flex h-10 w-10 items-center justify-center rounded-lg border transition-colors"
+                  :class="[ activeLayerId === layer.id ? 'border-brand/40 bg-brand/20 text-brand' : 'border-white/10 bg-[#121c29] text-zinc-400 group-hover:text-white' ]"
                 >
                   <component :is="layer.icon" class="h-5 w-5" />
                 </div>
@@ -256,7 +248,7 @@ const currentLayer = computed(() => {
           :class="{ 'is-revealed': isRevealed }"
         >
           <div
-            class="rounded-2xl border border-white/10 bg-[#0c1420]/95 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] relative overflow-hidden group"
+            class="rounded-2xl border border-white/10 bg-[#0c1420]/95 p-6 sm:p-8 md:p-10 shadow-xl relative overflow-hidden group"
           >
             <!-- Top Status Bar -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.08] font-ui text-xs gap-2">

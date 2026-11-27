@@ -54,7 +54,7 @@ const approachSteps = [
 <template>
   <section
     ref="approachRef"
-    class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.08]"
+    class="py-14 md:py-20 bg-transparent relative border-t border-white/[0.08]"
     :class="{ 'is-revealed': isRevealed }"
   >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -64,10 +64,10 @@ const approachSteps = [
           <ChapterLabel label="How Pricing Works" />
         </div>
         <WordReveal
-          text="How we shape engagements around your operational reality."
+          text="How we structure pricing around your business requirements."
           as="h2"
           class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
-          :italic-words="['operational', 'reality.']"
+          :italic-words="['requirements.']"
           :delay="120"
           :threshold="0.12"
         />
@@ -86,15 +86,9 @@ const approachSteps = [
         <div
           v-for="(step, index) in approachSteps"
           :key="step.step"
-          :class="[
-            'reveal-card',
-            `stagger-${index + 1}`,
-            isRevealed ? 'is-revealed' : '',
-            'rounded-2xl border border-white/[0.08] bg-[#0e151f]/90 p-8 hover:border-brand/35 transition-all duration-300 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl relative'
-          ]"
+          :class="[ 'reveal-card', `stagger-${index + 1}`, isRevealed ? 'is-revealed' : '', 'rounded-2xl border border-white/[0.08] bg-[#0e151f]/90 p-8 hover:border-brand/35 transition-colors duration-200 group flex flex-col justify-between shadow-lg relative' ]"
         >
           <!-- Corner Crosshair -->
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div>
             <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">

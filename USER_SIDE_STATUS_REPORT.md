@@ -31,7 +31,7 @@ This read-only audit examines the public, user-facing website codebase for **Kav
 | :--- | :---: | :--- | :--- |
 | Nuxt 4 Setup | **Done** | `package.json:27`, `nuxt.config.ts:3-135` | Built on Nuxt 4.6.1 with modern app directory layout and Nitro 2.13.4. |
 | Vue 3 Composition API | **Done** | `app/components/**/*.vue`, `app/pages/**/*.vue` | 100% of Vue components use `<script setup lang="ts">`. |
-| TypeScript Strict Mode | **Done** | `tsconfig.json:1-18`, `.nuxt/tsconfig.app.json:compilerOptions` | `strict: true` and `noImplicitAny: true` active. `pnpm typecheck` (`vue-tsc --noEmit`) passes with 0 errors. |
+| TypeScript Strict Mode | **Done** | `tsconfig.json:1-18`, `.nuxt/tsconfig.app.json:compilerOptions` | `strict: true` and `noImplicitAny: true` active. `npm run typecheck` (`vue-tsc --noEmit`) passes with 0 errors. |
 | Linting Configuration | **Partial** | `eslint.config.mjs:1-18`, `package.json:10,39-41` | `@nuxt/eslint` is installed but `eslint.config.mjs` only imports `eslintConfigPrettier`. No Vue, Nuxt, or TypeScript lint rules are active. |
 | Automated Tests | **Not Started** | Repository root, `package.json:5-13` | Zero test files exist. No Vitest, Jest, Playwright, or Cypress dependencies. Test tooling was explicitly removed in commit `f0dc353`. |
 | Component Library Primitives | **Done** | `app/components/ui/` (9 components), `components.json:1-19` | Implemented using shadcn-vue conventions on top of `radix-vue` and `reka-ui`. |

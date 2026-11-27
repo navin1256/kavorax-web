@@ -79,12 +79,12 @@ const operationalPillars = [
 <template>
   <section
     ref="connectedRef"
-    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] overflow-hidden"
+    class="py-14 md:py-20 bg-transparent relative border-t border-white/[0.08] overflow-hidden"
     :class="{ 'is-revealed': isRevealed }"
   >
     <!-- Ambient emerald depth lighting -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brand/[0.04] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -118,14 +118,9 @@ const operationalPillars = [
       <div class="mt-16 sm:mt-20">
         <!-- Center Interconnection Hub Board -->
         <div
-          class="rounded-2xl border border-white/[0.1] bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative reveal-card transition-editorial duration-700 delay-200"
+          class="rounded-2xl border border-white/[0.1] bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 shadow-xl relative reveal-card transition-editorial duration-700 delay-200"
           :class="{ 'is-revealed': isRevealed }"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <!-- Top Banner Bar -->
           <div
@@ -163,11 +158,7 @@ const operationalPillars = [
             <div
               v-for="(pillar, index) in operationalPillars"
               :key="pillar.id"
-              :class="[
-                'group relative rounded-xl border border-white/[0.07] bg-[#101925]/70 p-6 sm:p-7 hover:border-brand/35 transition-all duration-300 hover:bg-[#121d2c] reveal-card',
-                `stagger-${index + 1}`,
-                isRevealed ? 'is-revealed' : ''
-              ]"
+              :class="[ 'group relative rounded-xl border border-white/[0.07] bg-[#101925]/70 p-6 sm:p-7 hover:border-brand/35 transition-colors duration-200 hover:bg-[#121d2c] reveal-card', `stagger-${index + 1}`, isRevealed ? 'is-revealed' : '' ]"
             >
               <!-- Card Header -->
               <div class="flex items-start justify-between mb-4">

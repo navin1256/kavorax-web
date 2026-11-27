@@ -12,15 +12,15 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
 
 <template>
   <section
-    class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
+    class="py-12 md:py-16 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Cinematic Ambient Depth Lighting with Drift -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-brand/[0.07] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
     <div
-      class="absolute bottom-0 right-1/4 w-[360px] h-[360px] bg-cyan-500/[0.04] blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute bottom-0 right-1/4 w-[360px] h-[360px] ambient-glow-cyan rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -30,14 +30,10 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
         ref="ctaCardRef"
-        class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden backdrop-blur-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] reveal-base transition-editorial duration-700"
+        class="rounded-3xl border border-white/[0.1] bg-[#0c141e] p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-xl reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isCtaRevealed }"
       >
         <!-- Corner Crosshairs inspired by Active Theory -->
-        <div class="absolute top-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-4 left-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-4 right-4 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
         <!-- Top Chapter & Status Tag -->
         <div class="flex justify-center mb-6">
@@ -64,7 +60,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
           <NuxtLink to="/contact" class="w-full sm:w-auto">
             <Button
               size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-all duration-200 group"
+              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.38)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.5)] transition-colors duration-200 group"
             >
               <span>Discuss Your Requirements</span>
               <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

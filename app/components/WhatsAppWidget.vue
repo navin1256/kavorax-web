@@ -17,13 +17,13 @@ const whatsappUrl = computed(() => {
 <template>
   <aside
     aria-label="WhatsApp Quick Connect"
-    class="fixed bottom-20 md:bottom-16 right-5 sm:right-6 z-40 print:hidden select-none transition-all duration-300"
+    class="fixed bottom-20 md:bottom-16 right-5 sm:right-6 z-40 print:hidden select-none transition-colors duration-200"
   >
     <a
       :href="whatsappUrl"
       target="_blank"
       rel="noopener noreferrer"
-      class="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0A0A0A] border border-brand/30 text-brand hover:border-brand hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]"
+      class="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0A0A0A] border border-brand/30 text-brand hover:border-brand hover:scale-105 active:scale-95 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]"
       aria-label="Message KavoraX on WhatsApp"
     >
       <!-- Subtle pulsing halo -->

@@ -46,10 +46,10 @@ const values = [
 </script>
 
 <template>
-  <section class="py-24 md:py-32 bg-[#0b0f14] border-t border-white/[0.08] relative overflow-hidden">
+  <section class="py-14 md:py-18 bg-transparent border-t border-white/[0.08] relative overflow-hidden">
     <!-- Ambient Depth Lighting with Drift -->
     <div
-      class="absolute top-1/2 right-10 -translate-y-1/2 w-[500px] h-[400px] bg-brand/[0.03] blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 right-10 -translate-y-1/2 w-[500px] h-[400px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -82,14 +82,10 @@ const values = [
         <div
           v-for="(item, index) in values"
           :key="item.title"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/90 p-8 sm:p-10 flex flex-col justify-between hover:border-brand/35 transition-all duration-300 relative group shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl reveal-card"
-          :class="[
-            `stagger-${index + 1}`,
-            isGridRevealed ? 'is-revealed' : ''
-          ]"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/90 p-8 sm:p-10 flex flex-col justify-between hover:border-brand/35 transition-colors duration-200 relative group shadow-lg reveal-card"
+          :class="[ `stagger-${index + 1}`, isGridRevealed ? 'is-revealed' : '' ]"
         >
           <!-- Corner Crosshair -->
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div>
             <!-- Top Ledger Index & Pillar -->

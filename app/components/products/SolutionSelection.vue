@@ -41,10 +41,10 @@ const scenarios = [
 </script>
 
 <template>
-  <section class="py-24 md:py-32 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
+  <section class="py-14 md:py-18 bg-transparent border-t border-white/[0.08] relative overflow-hidden">
     <!-- Ambient Depth Lighting with Drift -->
     <div
-      class="absolute top-1/3 left-10 w-[550px] h-[450px] bg-brand/[0.03] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/3 left-10 w-[550px] h-[450px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -76,14 +76,10 @@ const scenarios = [
         <div
           v-for="(item, index) in scenarios"
           :key="item.recommendation"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/80 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-brand/35 transition-all relative group backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] reveal-card"
-          :class="[
-            `stagger-${index + 1}`,
-            isScenariosRevealed ? 'is-revealed' : ''
-          ]"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131c]/80 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-brand/35 transition-colors relative group shadow-lg reveal-card"
+          :class="[ `stagger-${index + 1}`, isScenariosRevealed ? 'is-revealed' : '' ]"
         >
           <!-- Corner Crosshair -->
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div class="space-y-2.5 max-w-3xl">
             <div class="flex flex-wrap items-center gap-3">
@@ -124,7 +120,7 @@ const scenarios = [
       <!-- Bottom Advisory Banner with Scroll Reveal -->
       <div
         ref="advisoryRef"
-        class="mt-14 rounded-2xl border border-white/[0.1] bg-[#0e1622]/90 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl reveal-base transition-editorial duration-700"
+        class="mt-14 rounded-2xl border border-white/[0.1] bg-[#0e1622]/90 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-xl reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isAdvisoryRevealed }"
       >
         <!-- Top Glow Accent -->
@@ -149,7 +145,7 @@ const scenarios = [
         <NuxtLink to="/demo" class="shrink-0 font-ui w-full sm:w-auto">
           <Button
             size="lg"
-            class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-sm shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
+            class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-sm shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-colors duration-200"
           >
             Book an Architectural Demo
           </Button>

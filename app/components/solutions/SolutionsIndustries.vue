@@ -55,7 +55,7 @@ const industries = [
 </script>
 
 <template>
-  <section class="py-24 md:py-36 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden">
+  <section class="py-14 md:py-20 bg-transparent border-t border-white/[0.08] relative overflow-hidden">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div
         ref="headerRef"
@@ -93,12 +93,9 @@ const industries = [
           v-for="(item, idx) in industries"
           :key="item.name"
           :to="item.anchor"
-          class="rounded-2xl border border-white/[0.08] bg-[#0d141e] overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-xl relative reveal-card transition-editorial duration-700"
+          class="rounded-2xl border border-white/[0.08] bg-[#0d141e] overflow-hidden hover:border-brand/40 transition-colors duration-500 group flex flex-col justify-between shadow-xl relative reveal-card transition-editorial duration-700"
           :class="[{ 'is-revealed': isGridRevealed }, 'stagger-' + (idx + 1)]"
         >
-          <!-- Corner Crosshair -->
-          <div class="absolute top-2.5 right-2.5 font-mono text-xs text-brand/50 select-none pointer-events-none z-10" aria-hidden="true">+</div>
-
           <div>
             <!-- Contextual Photograph with Gradient Scrim -->
             <div class="relative h-48 w-full overflow-hidden bg-zinc-900">
@@ -114,7 +111,7 @@ const industries = [
               <div
                 class="absolute inset-0 bg-gradient-to-t from-[#0d141e] via-[#0d141e]/50 to-transparent"
               />
-              <div class="absolute top-3 left-3 text-[10px] font-mono text-brand bg-[#0d141e]/90 border border-white/10 px-2 py-0.5 rounded backdrop-blur-sm">
+              <div class="absolute top-3 left-3 text-[10px] font-mono text-brand bg-[#0d141e]/90 border border-white/10 px-2 py-0.5 rounded">
                 {{ item.tag }}
               </div>
             </div>

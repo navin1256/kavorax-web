@@ -8,6 +8,11 @@ export default defineNuxtConfig({
     appManifest: false
   },
 
+  components: [
+    { path: '~/components/ui', pathPrefix: false, extensions: ['.vue'] },
+    '~/components',
+  ],
+
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -45,11 +50,28 @@ export default defineNuxtConfig({
   },
 
   css: ["~/assets/css/main.css"],
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: [
+        'lucide-vue-next',
+        'zod',
+        'class-variance-authority',
+        'clsx',
+        'tailwind-merge',
+        'reka-ui',
+        'radix-vue'
+      ]
+    }
+  },
 
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || "https://kavorax.com",
-    name: "KavoraX Global"
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://kavorax.com',
+    name: 'KavoraX'
+  },
+
+  sitemap: {
+    zeroRuntime: true
   },
 
   robots: {
@@ -64,7 +86,7 @@ export default defineNuxtConfig({
   },
 
   turnstile: {
-    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || '',
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA',
   },
 
   i18n: {
@@ -120,6 +142,9 @@ export default defineNuxtConfig({
     '/hospitality': { redirect: { to: '/industries', statusCode: 301 } },
     '/salons': { redirect: { to: '/industries', statusCode: 301 } },
     '/ecommerce': { redirect: { to: '/e-commerce', statusCode: 301 } },
+    '/product': { redirect: { to: '/products', statusCode: 301 } },
+    '/04_products': { redirect: { to: '/products', statusCode: 301 } },
+    '/04-products': { redirect: { to: '/products', statusCode: 301 } },
   },
 
   nitro: {

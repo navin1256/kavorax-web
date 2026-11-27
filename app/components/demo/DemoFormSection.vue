@@ -224,11 +224,11 @@ const handleReset = () => {
 <template>
   <section
     id="demo-form"
-    class="py-24 md:py-32 bg-[#080c10] relative border-t border-white/[0.06] scroll-mt-20"
+    class="py-12 md:py-16 bg-[#080c10] relative border-t border-white/[0.06] scroll-mt-20"
   >
     <!-- Background Ambient Glow -->
     <div
-      class="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/3 right-1/4 w-[500px] h-[350px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
     />
 
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -244,12 +244,11 @@ const handleReset = () => {
             <h2
               class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
             >
-              Help Us Frame the
-              <span class="italic font-light text-brand">Discussion</span>.
+              Help Us Plan Your
+              <span class="italic font-light text-brand">Demo</span>.
             </h2>
             <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-light">
-              Every business runs on different operational systems and workflows. Providing context
-              in advance enables us to focus on the capabilities most relevant to your goals.
+              Every business operates on different workflows and physical setups. Sharing a few details in advance helps us tailor the walkthrough directly to your team's priorities.
             </p>
           </div>
 
@@ -262,11 +261,10 @@ const handleReset = () => {
                 >
                   1
                 </span>
-                Current Operational Bottlenecks
+                Current Store &amp; Counter Setup
               </h3>
               <p class="text-xs text-zinc-400 leading-relaxed">
-                Highlight manual handoffs, disconnected software tools, or areas where operational
-                delays frequently occur.
+                Note any checkout bottlenecks, manual billing steps, or areas where orders back up during peak rush hours.
               </p>
             </div>
 
@@ -277,11 +275,10 @@ const handleReset = () => {
                 >
                   2
                 </span>
-                Existing Software & Toolchains
+                Existing Hardware &amp; Systems
               </h3>
               <p class="text-xs text-zinc-400 leading-relaxed">
-                Mention key systems, enterprise databases, cloud tools, or custom internal
-                applications you want to connect.
+                Mention receipt printers, barcode scanners, kitchen displays, or external accounting tools you currently use.
               </p>
             </div>
 
@@ -292,11 +289,10 @@ const handleReset = () => {
                 >
                   3
                 </span>
-                Target Outcomes & Scope
+                Operational Goals &amp; Scope
               </h3>
               <p class="text-xs text-zinc-400 leading-relaxed">
-                Outline what success looks like—whether higher execution speed, real-time telemetry,
-                or automated cross-departmental coordination.
+                Highlight what you want to achieve—such as faster counter billing, automated kitchen routing, or centralized multi-outlet reporting.
               </p>
             </div>
           </div>
@@ -327,11 +323,11 @@ const handleReset = () => {
         <div class="lg:col-span-7 relative">
           <!-- Subtle Glow Backplate -->
           <div
-            class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/10 via-transparent to-brand/5 blur-2xl opacity-50 pointer-events-none"
+            class="absolute -inset-2 rounded-2xl card-ambient-glow pointer-events-none"
           />
 
           <div
-            class="relative rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            class="relative rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 p-6 sm:p-10 shadow-xl"
           >
             <div class="pb-6 border-b border-white/[0.06]">
               <div class="flex items-center justify-between">
@@ -426,7 +422,7 @@ const handleReset = () => {
                   id="fullName"
                   v-model="formData.fullName"
                   type="text"
-                  placeholder="e.g. Eleanor Vance"
+                  placeholder="e.g. Rohan Sharma"
                   :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.fullName }"
                   :aria-invalid="!!errors.fullName"
                   :aria-describedby="errors.fullName ? 'fullName-error' : undefined"
@@ -453,7 +449,7 @@ const handleReset = () => {
                   id="workEmail"
                   v-model="formData.workEmail"
                   type="email"
-                  placeholder="e.g. eleanor.vance@company.com"
+                  placeholder="e.g. rohan.sharma@company.in"
                   :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.workEmail }"
                   :aria-invalid="!!errors.workEmail"
                   :aria-describedby="errors.workEmail ? 'workEmail-error' : undefined"
@@ -482,7 +478,7 @@ const handleReset = () => {
                     id="companyName"
                     v-model="formData.companyName"
                     type="text"
-                    placeholder="e.g. Acme Corporation"
+                    placeholder="e.g. Spice Route Hospitality"
                     :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.companyName }"
                     :aria-invalid="!!errors.companyName"
                     :aria-describedby="errors.companyName ? 'companyName-error' : undefined"
@@ -510,7 +506,7 @@ const handleReset = () => {
                     id="jobTitle"
                     v-model="formData.jobTitle"
                     type="text"
-                    placeholder="e.g. Head of Operations"
+                    placeholder="e.g. Operations Manager"
                     :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.jobTitle }"
                     :aria-invalid="!!errors.jobTitle"
                     :aria-describedby="errors.jobTitle ? 'jobTitle-error' : undefined"
@@ -538,11 +534,7 @@ const handleReset = () => {
                   <select
                     id="industry"
                     v-model="formData.industry"
-                    :class="[
-                      'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
-                      formData.industry ? 'text-white' : 'text-zinc-500',
-                      errors.industry ? 'border-red-500/50 focus-visible:ring-red-500' : ''
-                    ]"
+                    :class="[ 'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none', formData.industry ? 'text-white' : 'text-zinc-500', errors.industry ? 'border-red-500/50 focus-visible:ring-red-500' : '' ]"
                     :aria-invalid="!!errors.industry"
                     :aria-describedby="errors.industry ? 'industry-error' : undefined"
                     @change="validateField('industry')"
@@ -593,11 +585,7 @@ const handleReset = () => {
                   <select
                     id="areaOfInterest"
                     v-model="formData.areaOfInterest"
-                    :class="[
-                      'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none',
-                      formData.areaOfInterest ? 'text-white' : 'text-zinc-500',
-                      errors.areaOfInterest ? 'border-red-500/50 focus-visible:ring-red-500' : ''
-                    ]"
+                    :class="[ 'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none', formData.areaOfInterest ? 'text-white' : 'text-zinc-500', errors.areaOfInterest ? 'border-red-500/50 focus-visible:ring-red-500' : '' ]"
                     :aria-invalid="!!errors.areaOfInterest"
                     :aria-describedby="errors.areaOfInterest ? 'areaOfInterest-error' : undefined"
                     @change="validateField('areaOfInterest')"
@@ -649,9 +637,7 @@ const handleReset = () => {
                   v-model="formData.businessChallenge"
                   placeholder="Outline your current business friction, operational objectives, and what you would like to evaluate during the demonstration..."
                   rows="4"
-                  :class="{
-                    'border-red-500/50 focus-visible:ring-red-500': errors.businessChallenge
-                  }"
+                  :class="{ 'border-red-500/50 focus-visible:ring-red-500': errors.businessChallenge }"
                   :aria-invalid="!!errors.businessChallenge"
                   :aria-describedby="errors.businessChallenge ? 'businessChallenge-error' : undefined"
                   @blur="validateField('businessChallenge')"
@@ -682,7 +668,7 @@ const handleReset = () => {
                   type="submit"
                   size="lg"
                   :disabled="isSubmitting"
-                  class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-6 text-base rounded-md shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_0px_rgba(16,185,129,0.4)] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-6 text-base rounded-md shadow-[0_0_20px_-3px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_0px_rgba(16,185,129,0.4)] transition-colors duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Loader2 v-if="isSubmitting" class="mr-2 h-4 w-4 animate-spin text-black" />
                   <Send v-else class="mr-2 h-4 w-4" />

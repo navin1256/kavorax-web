@@ -113,10 +113,10 @@ const processSteps = [
 </script>
 
 <template>
-  <section class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] overflow-hidden">
+  <section class="py-14 md:py-20 bg-transparent relative border-t border-white/[0.08] overflow-hidden">
     <!-- Ambient emerald atmospheric glow with Organic Drift -->
     <div
-      class="absolute top-1/3 right-1/4 w-[650px] h-[650px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/3 right-1/4 w-[650px] h-[650px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -130,8 +130,8 @@ const processSteps = [
         <ChapterLabel label="Our Approach" />
         <WordReveal
           as="h2"
-          text="Architected for Organizational Coherence."
-          :italic-words="['Organizational', 'Coherence.']"
+          text="Architected for Dependable Day-to-Day Operations."
+          :italic-words="['Operations.']"
           class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
         />
         <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
@@ -144,15 +144,9 @@ const processSteps = [
       <!-- ======================================================== -->
       <div
         ref="schematicRef"
-        class="mt-16 rounded-2xl border border-white/[0.1] bg-[#0c141e]/90 p-8 sm:p-12 shadow-2xl backdrop-blur-xl relative reveal-card transition-editorial duration-700"
+        class="mt-16 rounded-2xl border border-white/[0.1] bg-[#0c141e] p-8 sm:p-12 shadow-2xl relative reveal-card transition-editorial duration-700"
         :class="{ 'is-revealed': isSchematicRevealed }"
       >
-        <!-- Corner Crosshairs -->
-        <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
           <div class="flex items-center gap-3">
             <div class="h-8 w-8 rounded-lg bg-brand/10 border border-brand/25 flex items-center justify-center text-brand">
@@ -222,12 +216,8 @@ const processSteps = [
           <div
             v-for="(step, idx) in processSteps"
             :key="step.number"
-            class="p-6 sm:p-7 rounded-xl border transition-all duration-200 ease-out relative group cursor-pointer"
-            :class="[
-              activePhase === idx
-                ? 'border-brand/50 bg-[#121c2a] shadow-[0_4px_24px_rgba(16,185,129,0.18)] scale-[1.01]'
-                : 'border-white/[0.07] bg-[#090e16]/80 hover:border-white/20 hover:bg-[#0d141e]'
-            ]"
+            class="p-6 sm:p-7 rounded-xl border transition-colors duration-200 ease-out relative group cursor-pointer"
+            :class="[ activePhase === idx ? 'border-brand/50 bg-[#121c2a] shadow-[0_4px_24px_rgba(16,185,129,0.18)] scale-[1.01]' : 'border-white/[0.07] bg-[#090e16]/80 hover:border-white/20 hover:bg-[#0d141e]' ]"
             @click="activePhase = idx"
           >
             <!-- Step Header with Number & Status -->
@@ -238,11 +228,7 @@ const processSteps = [
               </div>
               <div
                 class="flex h-9 w-9 items-center justify-center rounded-lg border transition-colors shrink-0"
-                :class="[
-                  activePhase === idx
-                    ? 'border-brand/40 bg-brand/15 text-brand shadow-[0_0_12px_rgba(16,185,129,0.3)]'
-                    : 'border-white/10 bg-white/[0.02] text-zinc-400'
-                ]"
+                :class="[ activePhase === idx ? 'border-brand/40 bg-brand/15 text-brand shadow-[0_0_12px_rgba(16,185,129,0.3)]' : 'border-white/10 bg-white/[0.02] text-zinc-400' ]"
               >
                 <component :is="step.icon" class="h-4 w-4" />
               </div>
@@ -292,11 +278,10 @@ const processSteps = [
           <div
             v-for="(area, i) in solutionAreas"
             :key="area.id"
-            class="p-8 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-300 flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)] reveal-card transition-editorial duration-700"
+            class="p-8 rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 relative group hover:border-brand/40 transition-colors duration-200 flex flex-col justify-between shadow-lg reveal-card transition-editorial duration-700"
             :class="[{ 'is-revealed': isAreasRevealed }, 'stagger-' + (i + 1)]"
           >
             <!-- Corner Crosshair -->
-            <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
             <div class="space-y-5">
               <div class="flex items-center justify-between pb-4 border-b border-white/[0.06]">

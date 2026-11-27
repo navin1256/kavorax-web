@@ -69,11 +69,11 @@ const principles = [
   <section
     id="guiding-principles"
     ref="targetRef"
-    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
+    class="py-14 md:py-20 bg-[#080c10] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
   >
     <!-- Ambient emerald backlight glow -->
     <div
-      class="absolute top-1/2 left-1/3 w-[600px] h-[400px] bg-brand/5 blur-[150px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/3 w-[600px] h-[400px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -95,10 +95,10 @@ const principles = [
         :class="{ 'is-revealed': isRevealed }"
       >
         <WordReveal
-          text="What guides us: Pragmatic values."
+          text="What guides us: Engineering principles."
           as="h2"
           class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-          :italic-words="['Pragmatic', 'values.']"
+          :italic-words="['principles.']"
           :delay="100"
         />
         <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
@@ -112,15 +112,10 @@ const principles = [
         <div
           v-for="(item, pIdx) in principles"
           :key="item.id"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131e]/90 p-8 sm:p-10 backdrop-blur-xl hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative reveal-base transition-editorial duration-700"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131e]/90 p-8 sm:p-10 hover:border-brand/40 transition-colors duration-200 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isRevealed }"
           :style="{ transitionDelay: isRevealed ? `${pIdx * 90 + 100}ms` : '0ms' }"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <!-- Top Row -->
           <div>

@@ -31,7 +31,7 @@ const telemetryBars = [
 </script>
 
 <template>
-  <section id="product-showcases" class="py-24 md:py-36 bg-[#0b0f14] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden">
+  <section id="product-showcases" class="py-14 md:py-20 bg-transparent border-t border-white/[0.08] relative overflow-hidden">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Chapter Header -->
       <div
@@ -50,7 +50,7 @@ const telemetryBars = [
         </div>
 
         <NuxtLink to="/products" class="shrink-0 font-ui">
-          <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#0f1620] text-zinc-200 hover:text-white hover:border-brand/40 transition-all shadow-sm">
+          <span class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-md border border-white/10 bg-[#0f1620] text-zinc-200 hover:text-white hover:border-brand/40 transition-colors shadow-sm">
             <span>Explore All Products</span>
             <ArrowRight class="h-3.5 w-3.5 text-brand" />
           </span>
@@ -60,7 +60,7 @@ const telemetryBars = [
       <!-- SHOWCASE 1: Operations Platform (Wide Asymmetrical Editorial Canvas) -->
       <div
         ref="card1Ref"
-        class="mt-16 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-12 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 corner-crosshair reveal-base transition-editorial duration-700"
+        class="mt-16 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-12 relative group hover:border-brand/40 transition-colors duration-500 corner-crosshair reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isCard1Revealed }"
       >
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center font-ui">
@@ -168,7 +168,7 @@ const telemetryBars = [
       >
         <!-- Showcase 2: Analytics & Intelligence -->
         <div
-          class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700"
+          class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 relative group hover:border-brand/40 transition-colors duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isCards23Revealed }"
         >
           <div class="space-y-6">
@@ -198,9 +198,7 @@ const telemetryBars = [
                   v-for="(bar, bIdx) in telemetryBars"
                   :key="bIdx"
                   class="w-full rounded-t transition-[height,opacity] duration-700 transition-editorial"
-                  :class="[
-                    bar.highlight ? 'bg-brand shadow-[0_0_12px_rgba(16,185,129,0.5)]' : bar.brandShade
-                  ]"
+                  :class="[ bar.highlight ? 'bg-brand shadow-[0_0_12px_rgba(16,185,129,0.5)]' : bar.brandShade ]"
                   :style="{
                     height: isCards23Revealed ? bar.height : '8%',
                     transitionDelay: isCards23Revealed ? `${bIdx * 45}ms` : '0ms'
@@ -228,7 +226,7 @@ const telemetryBars = [
 
         <!-- Showcase 3: Integration Architecture -->
         <div
-          class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 backdrop-blur-xl relative group hover:border-brand/40 transition-all duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700 delay-150"
+          class="lg:col-span-6 rounded-2xl border border-white/10 bg-[#0d141e]/90 p-6 sm:p-8 md:p-10 relative group hover:border-brand/40 transition-colors duration-500 flex flex-col justify-between corner-crosshair h-full reveal-base transition-editorial duration-700 delay-150"
           :class="{ 'is-revealed': isCards23Revealed }"
         >
           <div class="space-y-6">

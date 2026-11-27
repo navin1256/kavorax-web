@@ -51,7 +51,7 @@ const channels = [
 <template>
   <section
     ref="sectionRef"
-    class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.08] overflow-hidden"
+    class="py-12 md:py-16 bg-[#0b0f14] relative border-t border-white/[0.08] overflow-hidden"
   >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header with ChapterLabel -->
@@ -94,14 +94,10 @@ const channels = [
         <div
           v-for="ch in channels"
           :key="ch.title"
-          class="rounded-2xl border border-white/10 bg-[#0c141e]/90 p-8 sm:p-10 backdrop-blur-xl hover:border-brand/40 transition-all duration-300 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative reveal-card transition-editorial duration-700"
+          class="rounded-2xl border border-white/10 bg-[#0c141e] p-8 sm:p-10 hover:border-brand/40 transition-colors duration-200 group flex flex-col justify-between hover:shadow-[0_16px_36px_-8px_rgba(16,185,129,0.16)] relative reveal-card transition-editorial duration-700"
           :class="[ch.staggerClass, { 'is-revealed': isRevealed }]"
         >
           <!-- Active Theory Corner Crosshairs -->
-          <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div>
             <div class="flex items-center justify-between pb-6 border-b border-white/[0.06]">

@@ -23,11 +23,11 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
   <section
     id="our-approach"
     ref="headerRef"
-    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
+    class="py-14 md:py-20 bg-[#080c10] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
   >
     <!-- Background Ambient Glow -->
     <div
-      class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-brand/5 blur-[140px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/3 right-0 w-[500px] h-[500px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -62,20 +62,14 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
       </div>
 
       <!-- Alternating Chapters -->
-      <div class="space-y-16 lg:space-y-24">
+      <div class="space-y-10 lg:space-y-14">
 
         <!-- Phase 01: Left Narrative + Right Architectural Photo Frame -->
         <div
           ref="phase1Ref"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 relative group shadow-xl reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isPhase1Revealed }"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <!-- Left: Content -->
             <div class="lg:col-span-7 space-y-6">
@@ -137,15 +131,15 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
                   >
                   <div class="absolute inset-0 bg-gradient-to-t from-[#080c10] via-transparent to-transparent" />
                   <div class="absolute top-4 left-4 right-4 flex items-center justify-between font-ui text-xs text-zinc-300">
-                    <span class="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-white/10 flex items-center gap-1.5 text-white">
+                    <span class="px-2.5 py-1 rounded bg-black/80 border border-white/10 flex items-center gap-1.5 text-white">
                       <span class="h-1.5 w-1.5 rounded-full bg-brand" />
                       Process Mapping
                     </span>
-                    <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 text-brand">
+                    <span class="px-2 py-0.5 rounded bg-black/80 border border-white/10 text-brand">
                       Operational Analysis
                     </span>
                   </div>
-                  <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#0e1622]/90 backdrop-blur-md p-3">
+                  <div class="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-[#0e1622]/90 p-3">
                     <span class="font-ui text-xs font-semibold text-zinc-200 block">Baseline Process Audit</span>
                     <p class="font-editorial text-xs italic text-zinc-400 mt-0.5">
                       Mapping data lifecycles and manual handoffs before touching code.
@@ -160,15 +154,9 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
         <!-- Phase 02: Inverted Composition -->
         <div
           ref="phase2Ref"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 relative group shadow-xl reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isPhase2Revealed }"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <!-- Left: Multi-System Synchronization Board -->
             <div class="lg:col-span-5 order-2 lg:order-1 font-ui">
@@ -206,13 +194,13 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
                         stroke-width="1.5"
                         stroke-dasharray="18"
                         :stroke-dashoffset="isPhase2Revealed ? '0' : '18'"
-                        class="transition-all duration-700 delay-300 ease-out"
+                        class="transition-colors duration-700 delay-300 ease-out"
                       />
                     </svg>
                   </div>
 
                   <div
-                    class="rounded-lg border border-brand/30 bg-brand/10 p-3 flex items-center justify-between transition-all duration-700 delay-500"
+                    class="rounded-lg border border-brand/30 bg-brand/10 p-3 flex items-center justify-between transition-colors duration-700 delay-500"
                     :class="{ 'shadow-[0_0_20px_-3px_rgba(16,185,129,0.22)]': isPhase2Revealed }"
                   >
                     <div class="flex items-center gap-2 text-white font-medium">
@@ -235,7 +223,7 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
                         stroke-width="1.5"
                         stroke-dasharray="18"
                         :stroke-dashoffset="isPhase2Revealed ? '0' : '18'"
-                        class="transition-all duration-700 delay-700 ease-out"
+                        class="transition-colors duration-700 delay-700 ease-out"
                       />
                     </svg>
                   </div>
@@ -312,15 +300,9 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
         <!-- Phase 03: Distinct Architecture Ledger -->
         <div
           ref="phase3Ref"
-          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 backdrop-blur-xl relative group shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal-base transition-editorial duration-700"
+          class="rounded-2xl border border-white/[0.08] bg-[#0c131d]/90 p-8 sm:p-12 relative group shadow-xl reveal-base transition-editorial duration-700"
           :class="{ 'is-revealed': isPhase3Revealed }"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-
           <div class="space-y-8">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.06] font-ui">
               <div class="flex items-center gap-4">

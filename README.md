@@ -5,7 +5,7 @@
 [![TypeScript: 5+](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS: 3.4](https://img.shields.io/badge/Tailwind%20CSS-3.4.19-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![UI Primitives: shadcn-vue](https://img.shields.io/badge/UI-shadcn--vue-000000?logo=shadcnui&logoColor=white)](https://shadcn-vue.com/)
-[![Package Manager: pnpm](https://img.shields.io/badge/pnpm-Locked-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![Package Manager: npm](https://img.shields.io/badge/npm-Latest-CB3837?logo=npm&logoColor=white)](https://npmjs.com/)
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-emerald.svg)]()
 
 The official enterprise digital web platform for **KavoraX Global Private Limited**. Built on Nuxt 4, Vue 3, TypeScript, Tailwind CSS, and shadcn-vue primitives, engineered for high performance, zero-friction responsiveness, and sophisticated editorial enterprise storytelling.
@@ -58,7 +58,7 @@ KavoraX Global Private Limited architects connected business platforms, determin
 | **Validation** | [Zod](https://zod.dev/) (`v4.6.7`) | Schema and input validation |
 | **Motion** | [motion-v](https://motion.dev/) | Subtle, performant entrance transitions |
 | **Linting & Formatting** | [ESLint 10](https://eslint.org/) + Prettier 3 | Automated code cleanliness adhering to `@nuxt/eslint` |
-| **Package Manager** | [pnpm](https://pnpm.io/) | Fast, deterministic dependency management via `pnpm-lock.yaml` |
+| **Package Manager** | [npm](https://npmjs.com/) | Standard dependency management via `package-lock.json` |
 
 ---
 
@@ -165,13 +165,8 @@ kavorax-web/
 │   └── types/                           # Shared TypeScript interfaces
 ├── .env.example                         # Environment configuration template
 ├── .gitignore                           # Git ignore rules for build, deps, and secrets
-├── .npmrc                               # pnpm package installation configuration
-├── .prettierrc                          # Prettier code formatting rules
-├── components.json                      # shadcn-vue registry configuration
-├── eslint.config.mjs                    # ESLint 10 + @nuxt/eslint configuration
-├── nuxt.config.ts                       # Nuxt 4 configuration, modules, and SEO metadata
 ├── package.json                         # Project dependencies and script declarations
-├── pnpm-lock.yaml                       # Deterministic dependency lockfile
+├── package-lock.json                    # Deterministic dependency lockfile
 ├── tailwind.config.ts                   # Tailwind theme extensions and token definitions
 └── tsconfig.json                        # Strict TypeScript compiler options
 ```
@@ -188,16 +183,8 @@ Ensure your development environment meets the following minimum requirements:
 
 - **Node.js**: `v20.10.0` or higher (LTS recommended)
   - Verify with: `node -v`
-- **pnpm**: `v9.x` or higher (pnpm `10+` recommended)
-  - Install or update via Corepack:
-    ```bash
-    corepack enable
-    corepack prepare pnpm@latest --activate
-    ```
-  - Or install globally via npm:
-    ```bash
-    npm install -g pnpm
-    ```
+- **npm**: `v10.x` or higher (packaged with Node.js)
+  - Verify with: `npm -v`
 - **Git**: Installed and configured on your machine.
 
 ---
@@ -242,10 +229,10 @@ NODE_ENV=development
 
 ### 4. Install Dependencies
 
-Install all project dependencies deterministically using `pnpm`:
+Install all project dependencies using `npm`:
 
 ```bash
-pnpm install
+npm install
 ```
 
 > **Note**: This will generate the necessary Nuxt types and configure your `.nuxt` environment automatically via `nuxt prepare`.
@@ -257,7 +244,7 @@ pnpm install
 Start the local Nuxt development server with Hot Module Replacement (HMR):
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 Once compilation completes, open your browser and navigate to:
@@ -272,10 +259,10 @@ Verify code quality and formatting before committing changes:
 
 ```bash
 # Run ESLint across all components, pages, and layouts
-pnpm lint
+npm run lint
 
-# Automatically format code using Prettier
-pnpm format
+# Check TypeScript types
+npm run typecheck
 ```
 
 ---
@@ -286,17 +273,14 @@ Generate an optimized, production-ready build:
 
 ```bash
 # Compile client and Nitro server bundle
-pnpm build
+npm run build
 ```
 
 Preview the production build locally:
 
 ```bash
 # Preview via Nuxt CLI
-pnpm preview
-
-# Or launch the standalone Node Nitro server directly
-node .output/server/index.mjs
+npm run preview
 ```
 
 The production preview server runs at `http://localhost:3000`.
@@ -354,13 +338,13 @@ git push -u origin main
 
 | Command | Action | Description |
 | :--- | :--- | :--- |
-| `pnpm dev` | `nuxt dev` | Launches local development server on `http://localhost:3000` |
-| `pnpm build` | `nuxt build` | Compiles optimized production bundle into `.output/` |
-| `pnpm preview` | `nuxt preview` | Previews the compiled production build locally |
-| `pnpm generate` | `nuxt generate` | Pre-renders static HTML pages |
-| `pnpm postinstall` | `nuxt prepare` | Prepares Nuxt TypeScript declarations and auto-imports |
-| `pnpm lint` | `eslint .` | Runs ESLint 10 checks across the workspace |
-| `pnpm format` | `prettier --write .` | Formats all code according to `.prettierrc` rules |
+| `npm run dev` | `nuxt dev` | Launches local development server on `http://localhost:3000` |
+| `npm run build` | `nuxt build` | Compiles optimized production bundle into `.output/` |
+| `npm run preview` | `nuxt preview` | Previews the compiled production build locally |
+| `npm run generate` | `nuxt generate` | Pre-renders static HTML pages |
+| `npm run postinstall` | `nuxt prepare` | Prepares Nuxt TypeScript declarations and auto-imports |
+| `npm run lint` | `eslint .` | Runs ESLint checks across the workspace |
+| `npm run typecheck` | `vue-tsc -b --noEmit` | Validates strict TypeScript types across the project |
 
 ---
 

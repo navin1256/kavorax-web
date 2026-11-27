@@ -71,12 +71,8 @@ const tickets = [
       <div
         v-for="t in tickets"
         :key="t.kot"
-        class="flex flex-col justify-between rounded-lg border bg-[#141414] p-3.5 transition-all"
-        :class="[
-          t.urgency === 'urgent' ? 'border-red-500/50 bg-red-950/10' :
-          t.urgency === 'warning' ? 'border-amber-500/40 bg-amber-950/10' :
-          'border-white/[0.08]'
-        ]"
+        class="flex flex-col justify-between rounded-lg border bg-[#141414] p-3.5 transition-colors"
+        :class="[ t.urgency === 'urgent' ? 'border-red-500/50 bg-red-950/10' : t.urgency === 'warning' ? 'border-amber-500/40 bg-amber-950/10' : 'border-white/[0.08]' ]"
       >
         <div>
           <!-- Header -->
@@ -88,11 +84,7 @@ const tickets = [
             <div class="text-right">
               <span
                 class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-semibold"
-                :class="[
-                  t.urgency === 'urgent' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
-                  t.urgency === 'warning' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' :
-                  'bg-brand/10 text-brand border border-brand/20'
-                ]"
+                :class="[ t.urgency === 'urgent' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : t.urgency === 'warning' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-brand/10 text-brand border border-brand/20' ]"
               >
                 <Clock class="h-2.5 w-2.5" />
                 {{ t.time }} ({{ t.urgencyLabel }})
@@ -114,10 +106,7 @@ const tickets = [
         <!-- Action button -->
         <button
           class="mt-3 w-full h-8 rounded text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
-          :class="[
-            t.urgency === 'warning' ? 'bg-brand text-black hover:bg-brand-hover' :
-            'bg-white/10 text-white hover:bg-white/15'
-          ]"
+          :class="[ t.urgency === 'warning' ? 'bg-brand text-black hover:bg-brand-hover' : 'bg-white/10 text-white hover:bg-white/15' ]"
         >
           <CheckCircle2 class="h-3.5 w-3.5" />
           <span>{{ t.status }}</span>

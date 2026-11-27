@@ -8,10 +8,10 @@ const isHeroMounted = ref(true)
 </script>
 
 <template>
-  <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden bg-cinematic-radial">
+  <section class="relative pt-20 pb-12 md:pt-24 md:pb-16 overflow-hidden bg-cinematic-radial">
     <!-- Ambient emerald backlight glow -->
     <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[360px] bg-brand/5 blur-[130px] rounded-full pointer-events-none -z-10"
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[360px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
     />
 
     <div class="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,7 +20,7 @@ const isHeroMounted = ref(true)
         <div class="lg:col-span-6 xl:col-span-7 space-y-6">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium backdrop-blur-sm reveal-base transition-editorial duration-700 delay-75"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-75"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             <span class="flex h-2 w-2 rounded-full bg-brand" />
@@ -29,10 +29,10 @@ const isHeroMounted = ref(true)
 
           <!-- Hero Headline with WordReveal -->
           <WordReveal
-            text="See What Better-Connected Business Looks Like."
+            text="See What Better-Connected Operations Look Like."
             as="h1"
             class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words"
-            :italic-words="['Business', 'Looks', 'Like.']"
+            :italic-words="['Operations']"
             :delay="240"
             :immediate="true"
           />
@@ -54,7 +54,7 @@ const isHeroMounted = ref(true)
             <a href="#demo-form" class="w-full sm:w-auto">
               <Button
                 size="lg"
-                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-all duration-200"
+                class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-8 py-6 text-base rounded-md shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_0px_rgba(16,185,129,0.45)] transition-colors duration-200"
               >
                 Request a Demo
                 <ArrowDown class="ml-2 h-4 w-4" />
@@ -100,12 +100,12 @@ const isHeroMounted = ref(true)
         >
           <!-- Subtle Glow Backplate -->
           <div
-            class="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-brand/15 via-transparent to-brand/10 blur-2xl opacity-60 pointer-events-none"
+            class="absolute -inset-2 rounded-2xl card-ambient-glow pointer-events-none"
           />
 
           <!-- Architecture Composition Container -->
           <div
-            class="relative rounded-2xl border border-white/[0.08] bg-[#0d141d]/90 overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl group"
+            class="relative rounded-2xl border border-white/[0.08] bg-[#0d141d]/90 overflow-hidden shadow-xl group"
           >
             <!-- Executive Briefing Visual Header -->
             <div class="relative h-44 w-full overflow-hidden bg-zinc-900">
@@ -124,7 +124,7 @@ const isHeroMounted = ref(true)
               />
               <div class="absolute top-3 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-2">
                 <span
-                  class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-zinc-300 border border-white/10 shrink-0 truncate max-w-[210px] sm:max-w-none"
+                  class="text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 text-zinc-300 border border-white/10 shrink-0 truncate max-w-[210px] sm:max-w-none"
                 >
                   SYSTEMS ARCHITECTURE SESSION
                 </span>

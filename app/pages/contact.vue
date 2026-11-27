@@ -17,7 +17,7 @@ useHead({
 </script>
 
 <template>
-  <div class="relative bg-[#0b0f14] overflow-x-hidden">
+  <div class="relative bg-transparent overflow-x-hidden">
     <!-- Contact Hero -->
     <ContactHero />
 

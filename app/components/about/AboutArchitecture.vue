@@ -73,11 +73,11 @@ const selectDimension = (id: string) => {
   <section
     id="connected-architecture"
     ref="sectionRef"
-    class="py-24 md:py-36 bg-[#070b0f] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
+    class="py-14 md:py-20 bg-[#070b0f] bg-technical-grid border-b border-white/[0.08] relative overflow-hidden"
   >
     <!-- Background Ambient Emerald Drift Glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-brand/5 blur-[160px] rounded-full pointer-events-none -z-10 animate-ambient-drift"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -99,10 +99,10 @@ const selectDimension = (id: string) => {
         :class="{ 'is-revealed': isRevealed }"
       >
         <WordReveal
-          text="A More Connected View of Business."
+          text="A Unified Operational Architecture."
           as="h2"
           class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-          :italic-words="['View', 'of', 'Business.']"
+          :italic-words="['Architecture.']"
           :delay="100"
         />
 
@@ -115,15 +115,9 @@ const selectDimension = (id: string) => {
 
       <!-- Blueprint Frame -->
       <div
-        class="relative rounded-2xl border border-white/10 bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 backdrop-blur-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] group reveal-base transition-editorial duration-700 delay-200"
+        class="relative rounded-2xl border border-white/10 bg-[#0c131d]/90 p-6 sm:p-10 md:p-12 shadow-xl group reveal-base transition-editorial duration-700 delay-200"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <!-- Corner Crosshairs -->
-        <div class="absolute top-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 left-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute bottom-3 right-3 z-20 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-
         <!-- Center Blueprint Metadata Bar -->
         <div
           class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 mb-8 border-b border-white/[0.06] gap-4 font-ui"
@@ -158,24 +152,16 @@ const selectDimension = (id: string) => {
           <div
             v-for="dim in architecturalDimensions"
             :key="dim.id"
-            class="group/card relative rounded-xl border p-6 sm:p-7 transition-all duration-300 cursor-pointer"
-            :class="[
-              activeDimId === dim.id
-                ? 'border-brand/50 bg-[#121f2e] shadow-[0_0_30px_-5px_rgba(16,185,129,0.18)]'
-                : 'border-white/[0.08] bg-[#101925]/70 hover:border-brand/35 hover:bg-[#121d2c]'
-            ]"
+            class="group/card relative rounded-xl border p-6 sm:p-7 transition-colors duration-200 cursor-pointer"
+            :class="[ activeDimId === dim.id ? 'border-brand/50 bg-[#121f2e] shadow-[0_0_30px_-5px_rgba(16,185,129,0.18)]' : 'border-white/[0.08] bg-[#101925]/70 hover:border-brand/35 hover:bg-[#121d2c]' ]"
             @click="selectDimension(dim.id)"
           >
             <!-- Card Header -->
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center gap-3.5">
                 <div
-                  class="flex h-11 w-11 items-center justify-center rounded-lg border transition-all duration-300"
-                  :class="[
-                    activeDimId === dim.id
-                      ? 'bg-brand/20 border-brand text-brand'
-                      : 'bg-[#142030] border-white/10 text-brand group-hover/card:scale-105'
-                  ]"
+                  class="flex h-11 w-11 items-center justify-center rounded-lg border transition-colors duration-200"
+                  :class="[ activeDimId === dim.id ? 'bg-brand/20 border-brand text-brand' : 'bg-[#142030] border-white/10 text-brand group-hover/card:scale-105' ]"
                 >
                   <component :is="dim.icon" class="h-5 w-5" />
                 </div>

@@ -72,7 +72,7 @@ const industries = [
   <section
     id="industry-overview"
     ref="overviewRef"
-    class="py-24 md:py-36 bg-[#0b0f14] relative border-t border-white/[0.08]"
+    class="py-14 md:py-20 bg-transparent relative border-t border-white/[0.08]"
     :class="{ 'is-revealed': isRevealed }"
   >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -104,16 +104,9 @@ const industries = [
         <div
           v-for="(ind, index) in industries"
           :key="ind.id"
-          :class="[
-            ind.colSpan,
-            'reveal-card',
-            `stagger-${index + 1}`,
-            isRevealed ? 'is-revealed' : '',
-            'rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 overflow-hidden hover:border-brand/40 transition-all duration-500 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.5)] relative'
-          ]"
+          :class="[ ind.colSpan, 'reveal-card', `stagger-${index + 1}`, isRevealed ? 'is-revealed' : '', 'rounded-2xl border border-white/[0.08] bg-[#0d141e]/90 overflow-hidden hover:border-brand/40 transition-colors duration-500 group flex flex-col justify-between shadow-lg relative' ]"
         >
           <!-- Corner Crosshair -->
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/60 select-none pointer-events-none z-10" aria-hidden="true">+</div>
 
           <div>
             <!-- Contextual Photograph with Gradient Scrim -->
@@ -125,14 +118,14 @@ const industries = [
                 decoding="async"
                 width="600"
                 height="256"
-                class="h-full w-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-all duration-700"
+                class="h-full w-full object-cover img-editorial-zoom opacity-80 group-hover:opacity-100 transition-colors duration-700"
               >
               <div
                 class="absolute inset-0 bg-gradient-to-t from-[#0d141e] via-[#0d141e]/50 to-transparent"
               />
               <div class="absolute top-3 left-3">
                 <span
-                  class="text-[10px] uppercase font-mono tracking-wider px-2.5 py-1 rounded bg-black/75 backdrop-blur-md text-brand border border-white/10 flex items-center gap-1.5"
+                  class="text-[10px] uppercase font-mono tracking-wider px-2.5 py-1 rounded bg-black/75 text-brand border border-white/10 flex items-center gap-1.5"
                 >
                   <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
                   <span>{{ ind.tag }}</span>

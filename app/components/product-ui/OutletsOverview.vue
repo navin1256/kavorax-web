@@ -36,7 +36,7 @@ const outlets = [
       <div
         v-for="o in outlets"
         :key="o.name"
-        class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border border-white/[0.06] bg-[#141414] hover:border-white/15 transition-all gap-2"
+        class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border border-white/[0.06] bg-[#141414] hover:border-white/15 transition-colors gap-2"
       >
         <div class="flex items-center gap-3">
           <div class="h-8 w-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-zinc-300 font-bold text-xs">

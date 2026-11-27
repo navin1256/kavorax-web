@@ -5,12 +5,22 @@ const currentYear = new Date().getFullYear()
 
 const footerNav = {
   platform: [
-    { label: 'Products', href: '/products' },
-    { label: 'Solutions', href: '/solutions' },
-    { label: 'Industries', href: '/industries' },
-    { label: 'Pricing', href: '/pricing' }
+    { label: 'Products & Platforms', href: '/products' },
+    { label: 'POS & Billing', href: '/pos-and-billing' },
+    { label: 'Kitchen Display (KDS)', href: '/kitchen-display' },
+    { label: 'Inventory & Stock', href: '/inventory-and-stock' },
+    { label: 'Digital Ordering', href: '/digital-ordering' },
+    { label: 'CRM & Loyalty', href: '/crm' },
+    { label: 'Multi-Location', href: '/multi-location' },
+    { label: 'Business Analytics', href: '/business-analytics' },
+    { label: 'Delivery Management', href: '/delivery-management' },
+    { label: 'E-commerce Storefront', href: '/e-commerce' },
+    { label: 'Business Management', href: '/business-management' }
   ],
   company: [
+    { label: 'Solutions Overview', href: '/solutions' },
+    { label: 'Industries', href: '/industries' },
+    { label: 'Pricing Plans', href: '/pricing' },
     { label: 'About KavoraX', href: '/about' },
     { label: 'Contact', href: '/contact' },
     { label: 'Book a Demo', href: '/demo' }
@@ -19,7 +29,7 @@ const footerNav = {
 </script>
 
 <template>
-  <footer class="border-t border-white/[0.08] bg-[#070b0f] bg-technical-grid py-16 md:py-20 text-zinc-400 font-ui">
+  <footer class="border-t border-white/[0.08] bg-transparent py-10 md:py-12 text-zinc-400 font-ui">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12">
         <!-- Brand Narrative Column -->

@@ -115,7 +115,7 @@ const solutions = [
   <section
     id="solutions-comparison"
     ref="comparisonRef"
-    class="py-24 md:py-36 bg-[#080c10] relative border-t border-white/[0.08] scroll-mt-28 md:scroll-mt-32"
+    class="py-14 md:py-20 bg-transparent relative border-t border-white/[0.08] scroll-mt-28 md:scroll-mt-32"
     :class="{ 'is-revealed': isRevealed }"
   >
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -149,7 +149,7 @@ const solutions = [
         >
           <button
             type="button"
-            class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer"
+            class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors cursor-pointer"
             :class="activeScope === 'department' ? 'bg-brand text-black font-semibold' : 'text-zinc-400 hover:text-white'"
             @click="setScope('department')"
           >
@@ -157,7 +157,7 @@ const solutions = [
           </button>
           <button
             type="button"
-            class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer"
+            class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors cursor-pointer"
             :class="activeScope === 'enterprise' ? 'bg-brand text-black font-semibold' : 'text-zinc-400 hover:text-white'"
             @click="setScope('enterprise')"
           >
@@ -165,7 +165,7 @@ const solutions = [
           </button>
           <button
             type="button"
-            class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer"
+            class="px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors cursor-pointer"
             :class="activeScope === 'global' ? 'bg-brand text-black font-semibold' : 'text-zinc-400 hover:text-white'"
             @click="setScope('global')"
           >
@@ -176,7 +176,7 @@ const solutions = [
 
       <!-- Scope Profile Banner -->
       <div
-        class="mt-8 rounded-2xl border border-brand/20 bg-[#0c141f]/90 p-6 sm:p-7 font-ui backdrop-blur-xl relative reveal-card transition-editorial duration-700 delay-200"
+        class="mt-8 rounded-2xl border border-brand/20 bg-[#0c141f]/90 p-6 sm:p-7 font-ui relative reveal-card transition-editorial duration-700 delay-200"
         :class="{ 'is-revealed': isRevealed }"
       >
         <div
@@ -220,15 +220,9 @@ const solutions = [
         <div
           v-for="(sol, index) in solutions"
           :key="sol.id"
-          :class="[
-            'reveal-card',
-            `stagger-${index + 1}`,
-            isRevealed ? 'is-revealed' : '',
-            'rounded-2xl border border-white/[0.08] bg-[#0e151f]/90 hover:border-brand/35 transition-all duration-300 group flex flex-col justify-between shadow-[0_15px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl relative p-8'
-          ]"
+          :class="[ 'reveal-card', `stagger-${index + 1}`, isRevealed ? 'is-revealed' : '', 'rounded-2xl border border-white/[0.08] bg-[#0e151f]/90 hover:border-brand/35 transition-colors duration-200 group flex flex-col justify-between shadow-lg relative p-8' ]"
         >
           <!-- Corner Crosshair -->
-          <div class="absolute top-3 right-3 font-mono text-xs text-brand/50 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <div>
             <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
@@ -285,7 +279,7 @@ const solutions = [
           <div class="pt-6 mt-6 border-t border-white/[0.06] space-y-3">
             <NuxtLink :to="sol.contactLink" class="block">
               <Button
-                class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-5 text-xs rounded-md transition-all shadow-[0_0_15px_-3px_rgba(16,185,129,0.25)] flex items-center justify-center gap-2 group/btn"
+                class="w-full bg-brand text-black font-semibold hover:bg-brand/90 py-5 text-xs rounded-md transition-colors shadow-[0_0_15px_-3px_rgba(16,185,129,0.25)] flex items-center justify-center gap-2 group/btn"
               >
                 <span>{{ sol.ctaLabel }}</span>
                 <ArrowRight class="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -305,11 +299,9 @@ const solutions = [
 
       <!-- Responsive Mobile-Usable Comparison Matrix -->
       <div
-        class="mt-20 rounded-2xl border border-white/[0.08] bg-[#0c141e]/90 p-6 sm:p-10 backdrop-blur-xl shadow-2xl relative reveal-card transition-editorial duration-700 delay-300"
+        class="mt-20 rounded-2xl border border-white/[0.08] bg-[#0c141e] p-6 sm:p-10 shadow-2xl relative reveal-card transition-editorial duration-700 delay-300"
         :class="{ 'is-revealed': isRevealed }"
       >
-        <div class="absolute top-3 left-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
-        <div class="absolute top-3 right-3 font-mono text-xs text-brand/70 select-none pointer-events-none" aria-hidden="true">+</div>
 
         <div class="pb-6 border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>

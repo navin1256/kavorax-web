@@ -34,7 +34,7 @@ const rejectAll = () => {
     v-if="isVisible"
     role="region"
     aria-label="Cookie consent banner"
-    class="fixed bottom-2.5 left-2.5 right-2.5 md:bottom-0 md:left-0 md:right-0 z-50 bg-[#111111] border border-white/10 md:border-x-0 md:border-b-0 md:border-t rounded-xl md:rounded-none p-3 md:py-2.5 md:px-6 lg:px-8 shadow-[0_20px_50px_rgba(0,0,0,0.85)] font-ui text-zinc-300"
+    class="fixed bottom-2.5 left-2.5 right-2.5 md:bottom-0 md:left-0 md:right-0 z-50 bg-[#111111] border border-white/10 md:border-x-0 md:border-b-0 md:border-t rounded-xl md:rounded-none p-3 md:py-2.5 md:px-6 lg:px-8 shadow-xl font-ui text-zinc-300"
   >
     <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-6">
       <p class="text-xs sm:text-xs md:text-sm text-zinc-300 leading-snug sm:leading-relaxed font-normal">
@@ -51,7 +51,7 @@ const rejectAll = () => {
         <button
           type="button"
           @click="acceptAll"
-          class="px-4 py-1.5 rounded-lg bg-brand text-black font-semibold text-xs hover:bg-brand/90 transition-all cursor-pointer whitespace-nowrap"
+          class="px-4 py-1.5 rounded-lg bg-brand text-black font-semibold text-xs hover:bg-brand/90 transition-colors cursor-pointer whitespace-nowrap"
         >
           Accept All
         </button>

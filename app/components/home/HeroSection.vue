@@ -72,11 +72,11 @@ const scrollToContent = () => {
 </script>
 
 <template>
-  <div class="relative bg-[#070D10] text-white">
+  <div class="relative bg-transparent text-white">
     <!-- 1. CINEMATIC OPENING HERO SECTION -->
     <section
       ref="heroRef"
-      class="hero-cinematic-bg relative min-h-[660px] sm:min-h-[700px] md:min-h-[740px] lg:min-h-[780px] xl:min-h-[820px] flex flex-col justify-between overflow-hidden bg-[#070D10] text-white selection:bg-brand/20 selection:text-brand"
+      class="hero-cinematic-bg relative min-h-[560px] sm:min-h-[600px] md:min-h-[640px] lg:min-h-[680px] flex flex-col justify-between overflow-hidden bg-[#070D10] text-white selection:bg-brand/20 selection:text-brand"
     >
       <!-- Background Architectural Photography Visual -->
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -88,61 +88,36 @@ const scrollToContent = () => {
           decoding="async"
           width="1920"
           height="1080"
-          class="h-full w-full object-cover object-[center_32%] md:object-[center_28%] lg:object-[center_25%] opacity-40 filter brightness-[0.75] contrast-[1.10] scale-[1.01] animate-hero-drift"
+          class="h-full w-full object-cover object-[center_22%] md:object-[center_18%] lg:object-[center_15%] opacity-55 filter brightness-[0.88] contrast-[1.10] scale-[1.01] animate-hero-drift"
           :style="{ animationPlayState: isHeroVisible ? 'running' : 'paused' }"
         >
 
         <!-- Layered Dark Linear Gradients -->
-        <div class="absolute inset-0 bg-[#070D10]/65" />
-        <div class="absolute inset-0 bg-gradient-to-r from-[#070D10]/85 via-transparent to-[#070D10]/85" />
-        <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#070D10] via-[#070D10]/85 to-transparent" />
-        <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#070D10] via-[#070D10]/95 to-transparent" />
-        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none animate-ambient-drift" />
-      </div>
-
-      <!-- Top Metadata Ribbon (Clean Enterprise Identity) -->
-      <div
-        class="relative z-10 pt-7 sm:pt-9 reveal-base delay-75"
-        :class="{ 'is-revealed': isHeroRevealed }"
-      >
-        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div
-            class="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-3.5 font-ui text-xs text-zinc-400"
-          >
-            <div class="flex items-center gap-2.5">
-              <span class="flex h-2 w-2 rounded-full bg-brand animate-pulse-subtle" />
-              <span class="text-zinc-200 font-medium tracking-wide">
-                KavoraX Global Private Limited
-              </span>
-            </div>
-
-            <div class="hidden sm:flex items-center gap-4 text-xs text-zinc-400">
-              <span class="hidden md:inline">Enterprise Technology Consultancy</span>
-              <span class="text-zinc-600 hidden md:inline">·</span>
-              <span class="text-brand font-medium">Connected Business Solutions</span>
-            </div>
-          </div>
-        </div>
+        <div class="absolute inset-0 bg-[#070D10]/55" />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#070D10]/80 via-transparent to-[#070D10]/80" />
+        <div class="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#070D10]/40 via-transparent to-transparent" />
+        <div class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#070D10] via-[#070D10]/95 to-transparent" />
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] ambient-glow-emerald rounded-full pointer-events-none -z-10" />
       </div>
 
       <!-- Centered Hero Typography & Core CTA Area -->
-      <div class="relative z-10 container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-12 sm:pb-16 text-center my-auto">
+      <div class="relative z-10 container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 text-center my-auto">
         <!-- Eyebrow Pill -->
         <div
-          class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 backdrop-blur-md shadow-sm reveal-base delay-100"
+          class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 shadow-sm reveal-base delay-100"
           :class="{ 'is-revealed': isHeroRevealed }"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-brand" />
           <span class="font-medium text-brand text-xs">
-            Connected Business Solutions
+            Unified Retail &amp; Hospitality Software
           </span>
         </div>
 
-        <!-- Headline: Word-by-word reveal with italic emerald flourish -->
+        <!-- Headline: Word-by-word reveal with selective accent -->
         <WordReveal
-          text="Technology that&#10;moves business forward."
+          text="Software built for real&#10;business operations."
           as="h1"
-          highlight="forward"
+          highlight="operations."
           highlight-class="italic font-light text-brand"
           :base-delay-ms="200"
           :stagger-ms="55"
@@ -155,8 +130,8 @@ const scrollToContent = () => {
           class="mt-5 sm:mt-6 font-editorial text-lg sm:text-xl md:text-[1.45rem] lg:text-[1.55rem] text-zinc-200 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed text-pretty font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] reveal-base delay-500"
           :class="{ 'is-revealed': isHeroRevealed }"
         >
-          KavoraX builds connected business solutions that help organisations operate smarter,
-          serve customers better and scale with confidence.
+          KavoraX delivers high-speed counter POS, kitchen display routing, live inventory control,
+          and multi-branch management across India and the GCC.
         </p>
 
         <!-- Dual CTAs -->
@@ -167,7 +142,7 @@ const scrollToContent = () => {
           <NuxtLink to="/demo" class="w-full sm:w-auto">
             <Button
               size="lg"
-              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-9 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.45)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.65)] transition-all duration-300 group"
+              class="w-full sm:w-auto bg-brand text-black font-semibold hover:bg-brand/90 px-9 py-6 text-base rounded-md shadow-[0_0_28px_-4px_rgba(16,185,129,0.45)] hover:shadow-[0_0_36px_0px_rgba(16,185,129,0.65)] transition-colors duration-200 group"
             >
               <span>Book a Demo</span>
               <ArrowRight class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -178,7 +153,7 @@ const scrollToContent = () => {
             <Button
               variant="outline"
               size="lg"
-              class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.09] text-white px-8 py-6 text-base rounded-md backdrop-blur-md transition-all duration-200 group"
+              class="w-full sm:w-auto border-white/20 bg-black/40 hover:bg-white/[0.09] text-white px-8 py-6 text-base rounded-md transition-colors duration-200 group"
             >
               <span>Explore Our Solutions</span>
               <ArrowUpRight
@@ -196,7 +171,7 @@ const scrollToContent = () => {
       >
         <button
           type="button"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/50 hover:bg-black/75 hover:border-brand/40 backdrop-blur-md font-ui text-xs text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand/50 group"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/50 hover:bg-black/75 hover:border-brand/40 font-ui text-xs text-zinc-400 hover:text-white transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand/50 group"
           aria-label="Scroll to enterprise capabilities"
           @click="scrollToContent"
         >
@@ -210,22 +185,17 @@ const scrollToContent = () => {
     <section
       id="enterprise-capabilities"
       ref="capRef"
-      class="relative z-10 pt-4 pb-16 sm:pb-20 border-b border-white/[0.08] bg-[#070D10] bg-technical-grid"
+      class="relative z-10 pt-4 pb-12 sm:pb-14 border-b border-white/[0.08] bg-transparent"
     >
       <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Visual Architecture System Stage -->
         <div
-          class="relative rounded-2xl border border-white/[0.09] bg-[#0c131d]/90 p-6 sm:p-8 md:p-10 overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)] mb-8 reveal-base"
+          class="relative rounded-2xl border border-white/[0.09] bg-[#0c131d]/90 p-5 sm:p-7 md:p-8 overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)] mb-6 reveal-base"
           :class="{ 'is-revealed': isCapRevealed }"
         >
-          <!-- Corner Crosshairs -->
-          <div class="absolute top-3 left-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute top-3 right-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 left-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
-          <div class="absolute bottom-3 right-3 z-30 font-mono text-xs text-brand/60 select-none pointer-events-none" aria-hidden="true">+</div>
 
           <!-- Section Label & Architecture Indicator -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-6 mb-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-4 mb-6">
             <div class="space-y-1">
               <div class="flex items-center gap-2">
                 <span class="h-1.5 w-1.5 rounded-full bg-brand" />
@@ -327,11 +297,8 @@ const scrollToContent = () => {
           <div
             v-for="(cap, cIdx) in enterpriseCapabilities"
             :key="cap.id"
-            class="rounded-xl border border-white/[0.08] bg-[#0c131d]/85 p-6 flex flex-col justify-between h-full hover:border-brand/40 hover:bg-[#0e1622] transition-all duration-300 group relative reveal-base"
-            :class="[
-              isCapRevealed ? 'is-revealed' : '',
-              cIdx === 0 ? 'delay-100' : cIdx === 1 ? 'delay-200' : 'delay-300'
-            ]"
+            class="rounded-xl border border-white/[0.08] bg-[#0c131d]/85 p-6 flex flex-col justify-between h-full hover:border-brand/40 hover:bg-[#0e1622] transition-colors duration-200 group relative reveal-base"
+            :class="[ isCapRevealed ? 'is-revealed' : '', cIdx === 0 ? 'delay-100' : cIdx === 1 ? 'delay-200' : 'delay-300' ]"
           >
             <div class="space-y-3">
               <div class="flex items-center justify-between">

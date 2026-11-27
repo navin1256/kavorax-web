@@ -34,11 +34,11 @@ const commitments = [
   <section
     id="brand-statement"
     ref="sectionRef"
-    class="py-24 md:py-36 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+    class="py-14 md:py-20 bg-[#080c10] bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Atmospheric Emerald Glow -->
     <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-brand/[0.04] blur-[160px] rounded-full pointer-events-none"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] ambient-glow-emerald rounded-full pointer-events-none -z-10"
       aria-hidden="true"
     />
 
@@ -55,9 +55,9 @@ const commitments = [
       <!-- Editorial Brand Quote with Scroll-Progress Stream Reveal -->
       <div class="max-w-5xl mx-auto text-center space-y-8 mb-20">
         <ScrollTextReveal
-          text="“We believe enterprise technology should empower organisations to operate with absolute clarity, interconnect critical operations, and scale with unwavering durability.”"
+          text="“We believe business software should empower teams to operate with clear workflows, unified data, and dependable day-to-day resilience.”"
           as="blockquote"
-          highlight="clarity"
+          highlight="workflows"
           highlight-class="italic font-light text-brand"
           :start-offset="0.88"
           :end-offset="0.32"
@@ -74,21 +74,18 @@ const commitments = [
 
       <!-- Principles Ledger -->
       <div
-        class="rounded-2xl border border-white/10 bg-[#0c131e]/90 backdrop-blur-xl p-6 sm:p-8 md:p-12 font-ui divide-y divide-white/[0.08] reveal-base delay-300"
+        class="rounded-2xl border border-white/10 bg-[#0c131e]/90 p-6 sm:p-8 md:p-12 font-ui divide-y divide-white/[0.08] reveal-base delay-300"
         :class="{ 'is-revealed': isRevealed }"
       >
         <div
           v-for="(item, idx) in commitments"
           :key="item.title"
           class="py-8 first:pt-0 last:pb-0 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start group reveal-base"
-          :class="[
-            isRevealed ? 'is-revealed' : '',
-            idx === 0 ? 'delay-200' : idx === 1 ? 'delay-300' : 'delay-400'
-          ]"
+          :class="[ isRevealed ? 'is-revealed' : '', idx === 0 ? 'delay-200' : idx === 1 ? 'delay-300' : 'delay-400' ]"
         >
           <!-- Left: Icon -->
           <div class="lg:col-span-3 flex items-center gap-4">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#111a26] border border-white/10 text-brand group-hover:scale-105 group-hover:border-brand/40 transition-all">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#111a26] border border-white/10 text-brand group-hover:scale-105 group-hover:border-brand/40 transition-colors">
               <component :is="item.icon" class="h-5 w-5" />
             </div>
             <div class="font-ui text-xs text-brand font-medium">

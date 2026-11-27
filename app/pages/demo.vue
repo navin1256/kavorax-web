@@ -35,7 +35,7 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#0b0f14] text-white">
+  <div class="min-h-screen bg-transparent text-white">
     <!-- Hero Section -->
     <DemoHero />
 

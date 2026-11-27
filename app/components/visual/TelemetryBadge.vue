@@ -20,7 +20,7 @@ const dotColors = {
 
 <template>
   <span
-    class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#0e1622]/90 px-2.5 py-1 font-mono text-[11px] text-zinc-300 shadow-sm backdrop-blur-sm"
+    class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#0e1622]/90 px-2.5 py-1 font-mono text-[11px] text-zinc-300 shadow-sm"
   >
     <span
       :class="['h-1.5 w-1.5 rounded-full shrink-0', dotColors[props.status], props.status === 'active' ? 'animate-pulse-subtle' : '']"

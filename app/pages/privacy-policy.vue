@@ -16,7 +16,7 @@ useHead({
 </script>
 
 <template>
-  <div class="relative bg-[#080c10] bg-technical-grid text-zinc-300 min-h-screen py-24 md:py-32 overflow-x-hidden selection:bg-brand selection:text-black">
+  <div class="relative bg-transparent text-zinc-300 min-h-screen pt-24 pb-14 md:pt-28 md:pb-20 overflow-x-hidden selection:bg-brand selection:text-black">
     <div class="container mx-auto max-w-4xl px-6 md:px-8 relative z-10">
       <!-- Breadcrumb Navigation -->
       <nav class="flex items-center gap-2 mb-6 font-sans text-xs text-zinc-400" aria-label="Breadcrumb">
@@ -45,10 +45,10 @@ useHead({
       </div>
 
       <!-- Divider Line -->
-      <div class="w-full h-px bg-white/[0.08] mb-12"></div>
+      <div class="w-full h-px bg-white/[0.08] mb-8"></div>
 
       <!-- Policy Content Sections -->
-      <div class="space-y-12 font-sans text-sm sm:text-base leading-relaxed text-zinc-300">
+      <div class="space-y-8 font-sans text-sm sm:text-base leading-relaxed text-zinc-300">
         <section class="space-y-4">
           <h2 class="font-editorial text-2xl sm:text-3xl text-white font-normal">1. Scope &amp; Commitment</h2>
           <p class="leading-relaxed text-zinc-400">
@@ -75,8 +75,8 @@ useHead({
             <li class="flex items-start gap-2.5">
               <span class="text-brand mt-1.5 shrink-0">•</span>
               <div>
-                <strong class="text-brand font-medium">Store Operational Telemetry:</strong>
-                <span class="text-zinc-400"> Anonymized transaction throughput, cashier shift logs, recipe depletion rates, and terminal hardware diagnostic states.</span>
+                <strong class="text-brand font-medium">Store Operational Records:</strong>
+                <span class="text-zinc-400"> Transaction volume summaries, cashier shift logs, recipe stock deductions, and local hardware status reports.</span>
               </div>
             </li>
             <li class="flex items-start gap-2.5">
