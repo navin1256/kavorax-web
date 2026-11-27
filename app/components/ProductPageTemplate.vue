@@ -18,14 +18,14 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-6 flex flex-col items-start text-left">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-4">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse"></span>
-              <span class="text-emerald-400 text-xs sm:text-[13px] font-medium tracking-normal font-sans">{{ module.name }}</span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand/10 border border-brand/30 mb-4">
+              <span class="w-2 h-2 rounded-full bg-brand shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse"></span>
+              <span class="text-brand text-xs font-semibold tracking-wider uppercase font-sans">{{ module.name }}</span>
             </div>
-            <h1 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-normal tracking-[-0.03em] text-white leading-[1.08] mb-4">
+            <h1 class="font-editorial text-4xl md:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1] mb-4">
               {{ module.headline }}
             </h1>
-            <p class="font-sans text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-xl mb-6">
+            <p class="font-sans text-base md:text-lg text-zinc-400 max-w-xl mb-6 leading-relaxed">
               {{ module.subline }}
             </p>
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto mb-6">

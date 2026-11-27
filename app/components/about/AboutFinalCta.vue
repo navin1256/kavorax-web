@@ -14,7 +14,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
   <section
     id="about-cta"
     ref="sectionRef"
-    class="py-12 md:py-16 bg-transparent bg-technical-grid relative overflow-hidden"
+    class="py-12 md:py-16 bg-[#070b0f] bg-technical-grid relative overflow-hidden"
   >
     <!-- Background Ambient Glow -->
     <div
@@ -24,7 +24,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl group reveal-base transition-editorial duration-700"
+        class="rounded-3xl border border-white/10 bg-[#0c141e] p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl group reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Chapter Label -->
@@ -36,13 +36,14 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
         <WordReveal
           text="Let's Build Better Operations Together."
           as="h2"
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
+          :italic-words="['Operations']"
           :delay="120"
         />
 
         <!-- Supporting Copy -->
         <p
-          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
+          class="mt-6 font-ui text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
         >
           Explore how connected business solutions could support your organisation's needs.
         </p>
@@ -98,4 +99,3 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
     </div>
   </section>
 </template>
-

@@ -64,9 +64,10 @@ const values = [
         <WordReveal
           as="h2"
           text="Designed Around the Way Businesses Work."
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          :italic-words="['Businesses', 'Work.']"
+          class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
         />
-        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl">
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl font-normal">
           Enterprise software should reduce complexity rather than create it. KavoraX solutions are
           crafted around real-world business dynamics to deliver tangible, sustainable operational
           value.

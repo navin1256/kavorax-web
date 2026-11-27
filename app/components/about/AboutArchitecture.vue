@@ -101,11 +101,12 @@ const selectDimension = (id: string) => {
         <WordReveal
           text="A Unified Operational Architecture."
           as="h2"
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
+          :italic-words="['Architecture.']"
           :delay="100"
         />
 
-        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
+        <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
           When operations, systems, data, and governance function as unified elements, organisations
           achieve greater resilience. KavoraX aligns these four dimensions into one cohesive
           operational model.

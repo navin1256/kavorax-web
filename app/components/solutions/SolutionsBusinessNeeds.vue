@@ -81,10 +81,10 @@ const storytellingPairs: SolutionCard[] = [
         :class="{ 'is-revealed': isHeaderRevealed }"
       >
         <ChapterLabel label="Common Business Challenges" />
-        <h2 class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white">
+        <h2 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight">
           Technology Should Work Around Your Business
         </h2>
-        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
           As operations scale, standalone systems create communication silos and manual bottlenecks. We contrast these core operational friction points with connected architectural solutions.
         </p>
       </div>

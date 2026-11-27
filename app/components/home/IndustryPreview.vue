@@ -76,10 +76,10 @@ const industries = [
       >
         <div class="max-w-3xl space-y-4">
           <ChapterLabel label="Industries We Serve" />
-          <h2 class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white">
+          <h2 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
             Specialized solutions for your industry.
           </h2>
-          <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
+          <p class="font-editorial text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal">
             Every sector has distinct operational workflows, customer touchpoints, and compliance requirements.
           </p>
         </div>
@@ -133,7 +133,7 @@ const industries = [
                     :class="selectedIndex === index ? 'bg-brand shadow-[0_0_6px_#10b981]' : 'bg-transparent'"
                   />
                 </div>
-                <h3 class="text-lg sm:text-xl font-semibold text-white mt-1 not-italic">
+                <h3 class="font-editorial text-xl font-semibold text-white mt-1">
                   {{ ind.title }}
                 </h3>
                 <p class="text-xs text-zinc-300 mt-1 leading-relaxed line-clamp-2 font-normal">
@@ -176,7 +176,7 @@ const industries = [
             </div>
 
             <div class="space-y-4 my-auto">
-              <h3 class="font-editorial text-2xl sm:text-3xl lg:text-[2.25rem] font-medium text-white leading-tight tracking-[-0.02em]">
+              <h3 class="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium text-white leading-tight">
                 {{ industries[selectedIndex]?.headline }}
               </h3>
 

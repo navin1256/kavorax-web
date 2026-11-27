@@ -16,7 +16,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
 <template>
   <section
     ref="sectionRef"
-    class="py-16 md:py-24 bg-transparent bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+    class="py-12 md:py-16 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Subtle Ambient Glow with Atmospheric Drift -->
     <div
@@ -27,7 +27,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <!-- Container Card with Progressive Reveal -->
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-2xl corner-crosshair group reveal-card transition-editorial duration-700"
+        class="rounded-3xl border border-white/10 bg-[#0c141e] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-xl group reveal-card transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Active Theory Corner Crosshairs -->
@@ -44,13 +44,14 @@ const { isRevealed } = useScrollReveal(sectionRef, {
         <WordReveal
           text="Let’s Move Your Business Forward."
           as="h2"
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
+          :italic-words="['Business Forward.']"
           :delay="120"
         />
 
-        <!-- Supporting text -->
+        <!-- Supporting text (Corrected to font-ui font-light) -->
         <p
-          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
+          class="mt-6 font-ui text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-light reveal-base transition-editorial duration-700 delay-200"
           :class="{ 'is-revealed': isRevealed }"
         >
           Start a conversation about your business goals and technology needs with our solutions team.

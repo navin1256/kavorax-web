@@ -67,9 +67,10 @@ const industries = [
           <WordReveal
             as="h2"
             text="Connected Across Operating Domains."
-            class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+            :italic-words="['Operating', 'Domains.']"
+            class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
           />
-          <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
+          <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
             Different sectors face distinct operational rhythms, data sensitivities, and compliance boundaries. Explore how connected architecture addresses industry-specific requirements.
           </p>
         </div>

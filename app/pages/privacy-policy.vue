@@ -33,7 +33,7 @@ useHead({
 
       <!-- Editorial Header -->
       <div class="mb-10">
-        <h1 class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-normal leading-[1.14] tracking-[-0.025em] text-white mb-4">
+        <h1 class="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-normal tracking-tight leading-[1.08] mb-4">
           Privacy Policy
         </h1>
         <p class="font-sans text-sm sm:text-base text-zinc-400 leading-relaxed font-normal mb-2">
@@ -50,18 +50,18 @@ useHead({
       <!-- Policy Content Sections -->
       <div class="space-y-8 font-sans text-sm sm:text-base leading-relaxed text-zinc-300">
         <section class="space-y-4">
-          <h2 class="font-editorial text-xl sm:text-2xl md:text-[1.75rem] font-normal leading-[1.2] tracking-[-0.02em] text-white">1. Scope &amp; Commitment</h2>
-          <p class="text-sm sm:text-base font-normal leading-[1.65] text-white/70">
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-normal">1. Scope &amp; Commitment</h2>
+          <p class="leading-relaxed text-zinc-400">
             At <strong class="text-white font-medium">KavoraX Global Private Limited</strong> ("KavoraX", "we", "our"), protecting the privacy, commercial confidentiality, and data autonomy of our venue partners and their customers is fundamental to our software engineering standards.
           </p>
-          <p class="text-sm sm:text-base font-normal leading-[1.65] text-white/70">
+          <p class="leading-relaxed text-zinc-400">
             This Privacy Policy explains our practices regarding information collected through the KavoraX software ecosystem, including our point-of-sale terminals, handheld mobile devices, kitchen displays, web portals, and public digital ordering links.
           </p>
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-xl sm:text-2xl md:text-[1.75rem] font-normal leading-[1.2] tracking-[-0.02em] text-white">2. Information We Process</h2>
-          <p class="text-sm sm:text-base font-normal leading-[1.65] text-white/70">
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-normal">2. Information We Process</h2>
+          <p class="leading-relaxed text-zinc-400">
             In providing business operations software, we process information categorized under:
           </p>
           <ul class="space-y-3 pl-2 text-zinc-400">
@@ -90,21 +90,21 @@ useHead({
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-xl sm:text-2xl md:text-[1.75rem] font-normal leading-[1.2] tracking-[-0.02em] text-white">3. Data Ownership &amp; Non-Monetization Pledge</h2>
-          <p class="text-sm sm:text-base font-normal leading-[1.65] text-white/70">
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-normal">3. Data Ownership &amp; Non-Monetization Pledge</h2>
+          <p class="leading-relaxed text-zinc-400">
             Your venue data belongs exclusively to you. <strong class="text-white font-semibold">KavoraX does not sell, rent, broker, or monetize venue transaction histories or customer phone lists to third-party data aggregators or advertising networks.</strong>
           </p>
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-xl sm:text-2xl md:text-[1.75rem] font-normal leading-[1.2] tracking-[-0.02em] text-white">4. Security &amp; Encryption Standards</h2>
-          <p class="text-sm sm:text-base font-normal leading-[1.65] text-white/70">
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-normal">4. Security &amp; Encryption Standards</h2>
+          <p class="leading-relaxed text-zinc-400">
             All client-to-cloud communications are encrypted in transit using industry-standard TLS 1.3 cryptography. Offline local databases on certified KavoraX terminals use AES-256 encrypted local storage to safeguard cash drawer and customer records during off-grid operations.
           </p>
         </section>
 
         <section class="space-y-4">
-          <h2 class="font-editorial text-xl sm:text-2xl md:text-[1.75rem] font-normal leading-[1.2] tracking-[-0.02em] text-white">5. Contact Information</h2>
+          <h2 class="font-editorial text-2xl sm:text-3xl text-white font-normal">5. Contact Information</h2>
           <div class="p-6 md:p-8 rounded-2xl bg-[#0e1620] border border-white/10 space-y-3 text-zinc-300">
             <h3 class="text-white font-semibold text-base">Data Protection &amp; Privacy Office</h3>
             <p class="text-sm">
@@ -121,5 +121,3 @@ useHead({
     </div>
   </div>
 </template>
-
-

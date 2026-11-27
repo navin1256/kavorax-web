@@ -144,9 +144,10 @@ const modules: ModuleCard[] = [
         <WordReveal
           as="h2"
           text="Complete Product Suite for Retail & Hospitality."
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          :italic-words="['Retail', '&', 'Hospitality.']"
+          class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight"
         />
-        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
+        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
           Explore all 10 specialized KavoraX modules. Each operates autonomously offline and connects seamlessly into our unified cloud backend.
         </p>
       </div>

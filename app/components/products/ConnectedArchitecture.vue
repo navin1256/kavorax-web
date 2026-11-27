@@ -76,10 +76,11 @@ const nodes = [
         <WordReveal
           as="h2"
           text="One Connected Foundation. Multiple Business Possibilities."
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          :italic-words="['Multiple', 'Business', 'Possibilities.']"
+          class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
         />
         <p
-          class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
+          class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto font-normal"
         >
           Rather than functioning as isolated products, KavoraX solutions share a common operational
           fabric—enabling organizations to deploy what they need today and connect additional

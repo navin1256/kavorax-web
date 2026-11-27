@@ -51,7 +51,7 @@ const { isRevealed, targetRef } = useScrollReveal({ threshold: 0.12 })
             <span>Tailored Implementation</span>
           </div>
 
-          <h2 class="font-editorial text-2xl sm:text-3xl md:text-[2.25rem] font-medium leading-[1.15] tracking-[-0.02em] text-white">
+          <h2 class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium text-white leading-[1.08]">
             Solutions that adapt to how you work.
           </h2>
 

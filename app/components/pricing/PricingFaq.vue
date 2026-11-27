@@ -58,13 +58,13 @@ const faqs = [
         <WordReveal
           text="Frequently Asked Questions"
           as="h2"
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          class="font-editorial text-3xl sm:text-5xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
           :delay="120"
           :threshold="0.1"
         />
 
         <p
-          class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75"
+          class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed reveal-paragraph transition-editorial duration-700 delay-300"
           :class="{ 'is-revealed': isRevealed }"
         >
           Common inquiries regarding KavoraX solution models, product evaluations, and consultation

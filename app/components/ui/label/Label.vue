@@ -13,7 +13,7 @@ const props = defineProps<{
     :for="props.for"
     :class="
       cn(
-        'font-ui text-sm font-medium text-zinc-200 peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+        'font-ui text-xs font-semibold uppercase tracking-wider text-zinc-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
         props.class
       )
     "

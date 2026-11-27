@@ -13,7 +13,7 @@ const { isRevealed } = useScrollReveal(finalCtaRef, { threshold: 0.12 })
 <template>
   <section
     ref="finalCtaRef"
-    class="py-16 md:py-24 bg-transparent bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
+    class="py-12 md:py-16 bg-transparent border-t border-white/[0.08] relative overflow-hidden"
     :class="{ 'is-revealed': isRevealed }"
   >
     <!-- Cinematic Ambient Depth Lighting -->
@@ -28,7 +28,7 @@ const { isRevealed } = useScrollReveal(finalCtaRef, { threshold: 0.12 })
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl reveal-card transition-editorial duration-700"
+        class="rounded-3xl border border-white/[0.1] bg-[#0c141e] p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl reveal-card transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Corner Crosshairs inspired by Active Theory -->
@@ -42,14 +42,15 @@ const { isRevealed } = useScrollReveal(finalCtaRef, { threshold: 0.12 })
         <WordReveal
           text="Ready to Explore Connected Solutions for Your Organization?"
           as="h2"
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white max-w-3xl mx-auto"
+          class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance-editorial max-w-3xl mx-auto"
+          :italic-words="['Connected', 'Solutions', 'for', 'Your', 'Organization?']"
           :delay="120"
           :threshold="0.12"
         />
 
         <!-- Supporting Copy -->
         <p
-          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
+          class="mt-6 font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed reveal-paragraph transition-editorial duration-700 delay-300"
           :class="{ 'is-revealed': isRevealed }"
         >
           Connect with our team to discuss your operational objectives, system dependencies, and
@@ -100,4 +101,3 @@ const { isRevealed } = useScrollReveal(finalCtaRef, { threshold: 0.12 })
     </div>
   </section>
 </template>
-

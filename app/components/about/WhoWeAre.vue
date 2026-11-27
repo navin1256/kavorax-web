@@ -52,27 +52,28 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
           <WordReveal
             text="Technology with business at its core."
             as="h2"
-            class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+            class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.12]"
+            :italic-words="['business', 'at', 'its', 'core.']"
             :delay="100"
           />
 
           <div class="space-y-6">
-            <div class="border-l-2 border-emerald-500/40 pl-6">
+            <div class="border-l-2 border-brand/40 pl-6">
               <ScrollTextReveal
                 text="Modern enterprises frequently struggle with fragmented software landscapes where critical workflows, operational telemetry, and cross-departmental handoffs remain trapped in disconnected tools."
                 as="blockquote"
-                class="font-ui text-base sm:text-lg leading-[1.65] text-white/75 not-italic"
+                class="font-editorial text-xl sm:text-2xl leading-relaxed italic"
                 :highlight="['fragmented', 'software', 'landscapes', 'disconnected', 'tools.']"
                 :start-offset="0.88"
                 :end-offset="0.32"
               />
             </div>
-            <p class="font-ui text-sm sm:text-[15px] text-white/70 font-normal leading-[1.65]">
+            <p class="font-ui text-base sm:text-lg text-zinc-300 font-normal leading-relaxed">
               KavoraX Global Private Limited develops enterprise technological systems engineered to
               help organisations operate smarter, serve customers better, and scale with sustainable
               confidence. We bridge operational divides without requiring disruptive overhauls.
             </p>
-            <p class="font-ui text-sm sm:text-[15px] text-white/70 font-normal leading-[1.65]">
+            <p class="font-ui text-base text-zinc-400 leading-relaxed">
               By aligning technical architecture directly with pragmatic operational objectives, KavoraX
               delivers solutions that improve process visibility, reinforce governance, and establish
               resilient foundations for growth.

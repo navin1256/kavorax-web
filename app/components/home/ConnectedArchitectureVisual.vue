@@ -103,14 +103,14 @@ const currentLayer = computed(() => {
             text="How connected systems function in unison."
             as="h2"
             highlight="unison."
-            highlight-class="not-italic font-semibold text-emerald-400"
+            highlight-class="italic font-light text-brand"
             :threshold="0.12"
             :base-delay-ms="100"
             :stagger-ms="55"
-            class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white mt-4"
+            class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mt-4"
           />
         </div>
-        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-md">
+        <p class="font-ui text-base sm:text-lg text-zinc-300 max-w-md leading-relaxed font-normal">
           KavoraX architecture connects your tools, workflows, and data into a synchronized system engineered for business growth and stability.
         </p>
       </div>

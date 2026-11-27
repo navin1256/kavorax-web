@@ -34,10 +34,10 @@ const scrollToComparison = () => {
         <div class="lg:col-span-7 space-y-7">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] px-4 py-1.5 text-xs sm:text-[13px] font-ui text-emerald-400 font-medium tracking-normal reveal-base transition-editorial duration-700 delay-150"
+            class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-150"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-subtle" />
+            <span class="flex h-1.5 w-1.5 rounded-full bg-brand animate-pulse-subtle" />
             <span>Pricing &amp; Plans</span>
           </div>
 
@@ -45,7 +45,7 @@ const scrollToComparison = () => {
           <WordReveal
             text="Transparent Plans Built Around Your Business."
             as="h1"
-            class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
+            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance max-w-full break-words"
             :italic-words="['Business.']"
             :delay="240"
             :immediate="true"
@@ -53,7 +53,7 @@ const scrollToComparison = () => {
 
           <!-- Hero Supporting Copy -->
           <p
-            class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl reveal-base transition-editorial duration-700 delay-500"
+            class="font-ui text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             Predictable modular pricing with zero hidden fees. Scale smoothly from a single

@@ -412,7 +412,7 @@ const handleReset = () => {
                   <span
                     v-if="errors.fullName"
                     id="fullName-error"
-                    class="text-xs text-red-400 font-mono"
+                    class="text-[11px] text-red-400 font-mono"
                     role="alert"
                   >
                     {{ errors.fullName }}
@@ -439,7 +439,7 @@ const handleReset = () => {
                   <span
                     v-if="errors.workEmail"
                     id="workEmail-error"
-                    class="text-xs text-red-400 font-mono"
+                    class="text-[11px] text-red-400 font-mono"
                     role="alert"
                   >
                     {{ errors.workEmail }}
@@ -468,7 +468,7 @@ const handleReset = () => {
                     <span
                       v-if="errors.companyName"
                       id="companyName-error"
-                      class="text-xs text-red-400 font-mono"
+                      class="text-[11px] text-red-400 font-mono"
                       role="alert"
                     >
                       {{ errors.companyName }}
@@ -496,7 +496,7 @@ const handleReset = () => {
                     <span
                       v-if="errors.jobTitle"
                       id="jobTitle-error"
-                      class="text-xs text-red-400 font-mono"
+                      class="text-[11px] text-red-400 font-mono"
                       role="alert"
                     >
                       {{ errors.jobTitle }}
@@ -524,7 +524,7 @@ const handleReset = () => {
                   <span
                     v-if="errors.industry"
                     id="industry-error"
-                    class="text-xs text-red-400 font-mono"
+                    class="text-[11px] text-red-400 font-mono"
                     role="alert"
                   >
                     {{ errors.industry }}
@@ -534,7 +534,7 @@ const handleReset = () => {
                   <select
                     id="industry"
                     v-model="formData.industry"
-                    :class="[ 'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm sm:text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none', formData.industry ? 'text-white' : 'text-zinc-500', errors.industry ? 'border-red-500/50 focus-visible:ring-red-500' : '' ]"
+                    :class="[ 'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none', formData.industry ? 'text-white' : 'text-zinc-500', errors.industry ? 'border-red-500/50 focus-visible:ring-red-500' : '' ]"
                     :aria-invalid="!!errors.industry"
                     :aria-describedby="errors.industry ? 'industry-error' : undefined"
                     @change="validateField('industry')"
@@ -575,7 +575,7 @@ const handleReset = () => {
                   <span
                     v-if="errors.areaOfInterest"
                     id="areaOfInterest-error"
-                    class="text-xs text-red-400 font-mono"
+                    class="text-[11px] text-red-400 font-mono"
                     role="alert"
                   >
                     {{ errors.areaOfInterest }}
@@ -585,7 +585,7 @@ const handleReset = () => {
                   <select
                     id="areaOfInterest"
                     v-model="formData.areaOfInterest"
-                    :class="[ 'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm sm:text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none', formData.areaOfInterest ? 'text-white' : 'text-zinc-500', errors.areaOfInterest ? 'border-red-500/50 focus-visible:ring-red-500' : '' ]"
+                    :class="[ 'flex h-11 w-full rounded-md border border-white/10 bg-[#0c121a] px-3.5 py-2 font-ui text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/60 cursor-pointer appearance-none', formData.areaOfInterest ? 'text-white' : 'text-zinc-500', errors.areaOfInterest ? 'border-red-500/50 focus-visible:ring-red-500' : '' ]"
                     :aria-invalid="!!errors.areaOfInterest"
                     :aria-describedby="errors.areaOfInterest ? 'areaOfInterest-error' : undefined"
                     @change="validateField('areaOfInterest')"
@@ -626,7 +626,7 @@ const handleReset = () => {
                   <span
                     v-if="errors.businessChallenge"
                     id="businessChallenge-error"
-                    class="text-xs text-red-400 font-mono"
+                    class="text-[11px] text-red-400 font-mono"
                     role="alert"
                   >
                     {{ errors.businessChallenge }}
@@ -654,7 +654,7 @@ const handleReset = () => {
                 <span
                   v-if="errors.turnstile"
                   id="turnstile-error"
-                  class="text-xs text-red-400 font-mono flex items-center gap-1.5"
+                  class="text-[11px] text-red-400 font-mono flex items-center gap-1.5"
                   role="alert"
                 >
                   <AlertCircle class="h-3 w-3 shrink-0" />
@@ -689,4 +689,3 @@ const handleReset = () => {
     </div>
   </section>
 </template>
-

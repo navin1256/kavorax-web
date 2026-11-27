@@ -56,16 +56,16 @@ const channels = [
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header with ChapterLabel -->
       <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-ui text-xs text-zinc-400 reveal-base transition-editorial duration-700"
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08] mb-16 font-mono text-xs text-zinc-400 reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <ChapterLabel label="Direct Contact Channels" />
-        <div class="flex items-center gap-4 text-xs text-zinc-400">
-          <span class="px-2.5 py-0.5 rounded-full bg-white/[0.03] border border-white/10 text-zinc-300">
-            Official Advisory
+        <div class="flex items-center gap-4 text-[10px] text-zinc-400">
+          <span class="px-2 py-0.5 rounded bg-white/[0.03] border border-white/10 text-zinc-300">
+            OFFICIAL ADVISORY
           </span>
           <span class="text-zinc-600 hidden sm:inline">|</span>
-          <span class="hidden sm:inline font-mono text-xs">Direct Channel</span>
+          <span class="hidden sm:inline font-mono">AUTHENTIC DIRECT REACH</span>
         </div>
       </div>
 
@@ -75,12 +75,13 @@ const channels = [
         <WordReveal
           text="Verified Channels for Enterprise Dialogue."
           as="h2"
-          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
+          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
+          :italic-words="['Enterprise Dialogue.']"
           :delay="120"
         />
-        <!-- Subtitle -->
+        <!-- Subtitle Corrected to font-ui font-light -->
         <p
-          class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 reveal-base transition-editorial duration-700 delay-200"
+          class="font-ui text-xl sm:text-2xl text-zinc-300 leading-relaxed font-light reveal-base transition-editorial duration-700 delay-200"
           :class="{ 'is-revealed': isRevealed }"
         >
           Select the channel that best matches your timeline, preferred communication style, and

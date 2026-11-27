@@ -25,14 +25,14 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
 
         <!-- Headline -->
         <h2
-          class="font-editorial text-2xl sm:text-3xl md:text-[2.25rem] font-medium leading-[1.2] tracking-[-0.015em] text-white"
+          class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white mb-4"
         >
           Let’s Explore <span class="italic font-light text-brand">What’s Possible.</span>
         </h2>
 
         <!-- Supporting text -->
         <p
-          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
+          class="font-ui text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed"
         >
           Start a conversation about your business needs and goals.
         </p>
