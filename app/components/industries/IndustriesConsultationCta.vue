@@ -45,15 +45,14 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.1 })
         <WordReveal
           text="Let's Explore What Your Industry Needs Next."
           as="h2"
-          class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance-editorial max-w-3xl mx-auto"
-          :italic-words="['Industry', 'Needs', 'Next.']"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white max-w-3xl mx-auto"
           :delay="120"
           :threshold="0.18"
         />
 
         <!-- Supporting Copy (Exact requested text) -->
         <p
-          class="mt-6 font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed reveal-paragraph transition-editorial duration-700 delay-300"
+          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
           :class="{ 'is-revealed': isRevealed }"
         >
           Tell us about your organisation and priorities. The KavoraX team can help you explore

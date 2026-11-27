@@ -44,8 +44,7 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaCardRef, { threshold: 0
         <WordReveal
           as="h2"
           text="Let's Build a More Connected Business."
-          :italic-words="['Connected', 'Business.']"
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-[1.08] text-balance-editorial max-w-3xl mx-auto"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white max-w-3xl mx-auto"
         />
 
         <!-- Supporting Copy -->

@@ -37,16 +37,16 @@ const { isRevealed } = useScrollReveal(ctaRef, { threshold: 0.15 })
           text="Ready to move your business forward?"
           as="h2"
           highlight="forward"
-          highlight-class="italic font-light text-brand"
+          highlight-class="not-italic font-bold text-emerald-400"
           :threshold="0.15"
           :base-delay-ms="180"
           :stagger-ms="55"
-          class="text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-medium tracking-tight text-white leading-[1.08] max-w-3xl mx-auto text-balance"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white max-w-3xl mx-auto text-balance"
         />
 
         <!-- Subheading -->
         <p
-          class="mt-6 font-ui text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal reveal-base delay-250"
+          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto reveal-base delay-250"
           :class="{ 'is-revealed': isRevealed }"
         >
           Schedule a walkthrough with our specialists to explore our connected solutions, system integrations, and implementation roadmap.

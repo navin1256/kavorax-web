@@ -20,10 +20,10 @@ const isHeroMounted = ref(true)
         <div class="lg:col-span-6 xl:col-span-7 space-y-6">
           <!-- Subtle Eyebrow Label -->
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-xs font-ui text-brand font-medium reveal-base transition-editorial duration-700 delay-75"
+            class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] px-4 py-1.5 text-xs sm:text-[13px] font-ui text-emerald-400 font-medium tracking-normal reveal-base transition-editorial duration-700 delay-75"
             :class="{ 'is-revealed': isHeroMounted }"
           >
-            <span class="flex h-2 w-2 rounded-full bg-brand" />
+            <span class="flex h-2 w-2 rounded-full bg-emerald-400" />
             <span>Schedule a Demo</span>
           </div>
 
@@ -31,15 +31,14 @@ const isHeroMounted = ref(true)
           <WordReveal
             text="See What Better-Connected Operations Look Like."
             as="h1"
-            class="font-editorial text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white leading-[1.08] text-balance max-w-full break-words"
-            :italic-words="['Operations']"
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.14] tracking-[-0.025em] not-italic text-white max-w-full break-words"
             :delay="240"
             :immediate="true"
           />
 
-          <!-- Hero Supporting Text: Restored to Cormorant serif (font-editorial) per approved reference design -->
+          <!-- Hero Supporting Text -->
           <p
-            class="font-editorial text-xl sm:text-2xl text-zinc-300 max-w-xl leading-relaxed font-normal reveal-base transition-editorial duration-700 delay-500"
+            class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-xl reveal-base transition-editorial duration-700 delay-500"
             :class="{ 'is-revealed': isHeroMounted }"
           >
             Tell us a little about your business and what you want to achieve. We’ll use that context

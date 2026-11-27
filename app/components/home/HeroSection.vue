@@ -104,30 +104,30 @@ const scrollToContent = () => {
       <div class="relative z-10 container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 text-center my-auto">
         <!-- Eyebrow Pill -->
         <div
-          class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-black/60 px-4 py-1.5 text-xs font-ui tracking-wide text-zinc-300 shadow-sm reveal-base delay-100"
+          class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-black/60 px-4 py-1.5 text-xs sm:text-[13px] font-ui tracking-normal text-zinc-300 shadow-sm reveal-base delay-100"
           :class="{ 'is-revealed': isHeroRevealed }"
         >
-          <span class="h-1.5 w-1.5 rounded-full bg-brand" />
-          <span class="font-medium text-brand text-xs">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span class="font-medium text-emerald-400">
             Unified Retail &amp; Hospitality Software
           </span>
         </div>
 
-        <!-- Headline: Word-by-word reveal with selective accent -->
+        <!-- Headline: Clean modern sans-serif, bold, upright -->
         <WordReveal
           text="Software built for real&#10;business operations."
           as="h1"
           highlight="operations."
-          highlight-class="italic font-light text-brand"
+          highlight-class="not-italic font-bold text-emerald-400"
           :base-delay-ms="200"
           :stagger-ms="55"
           :immediate="true"
-          class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-normal tracking-[-0.025em] text-white leading-[1.08] max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.14] tracking-[-0.025em] not-italic text-white max-w-4xl mx-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]"
         />
 
         <!-- Supporting Text -->
         <p
-          class="mt-5 sm:mt-6 font-editorial text-lg sm:text-xl md:text-[1.45rem] lg:text-[1.55rem] text-zinc-200 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed text-pretty font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] reveal-base delay-500"
+          class="mt-5 sm:mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl sm:max-w-3xl mx-auto text-pretty drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] reveal-base delay-500"
           :class="{ 'is-revealed': isHeroRevealed }"
         >
           KavoraX delivers high-speed counter POS, kitchen display routing, live inventory control,

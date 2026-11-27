@@ -66,13 +66,12 @@ const approachSteps = [
         <WordReveal
           text="How we structure pricing around your business requirements."
           as="h2"
-          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial"
-          :italic-words="['requirements.']"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
           :delay="120"
           :threshold="0.12"
         />
         <p
-          class="font-ui text-lg sm:text-xl text-zinc-300 leading-relaxed max-w-2xl reveal-paragraph transition-editorial duration-700 delay-300"
+          class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl"
           :class="{ 'is-revealed': isRevealed }"
         >
           Rather than imposing rigid pricing tiers on varied enterprise architectures, KavoraX

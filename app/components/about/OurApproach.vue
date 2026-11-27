@@ -51,11 +51,10 @@ const { isRevealed: isPhase3Revealed, targetRef: phase3Ref } = useScrollReveal({
         <WordReveal
           text="Connected thinking. Practical solutions."
           as="h2"
-          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-          :italic-words="['Practical', 'solutions.']"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
           :delay="100"
         />
-        <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
+        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
           Meaningful technological progress requires understanding business realities first.
           Our approach connects workflows, information, and people to build clarity without unnecessary complexity.
         </p>

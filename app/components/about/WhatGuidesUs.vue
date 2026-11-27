@@ -97,11 +97,10 @@ const principles = [
         <WordReveal
           text="What guides us: Engineering principles."
           as="h2"
-          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight"
-          :italic-words="['principles.']"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
           :delay="100"
         />
-        <p class="font-editorial text-xl sm:text-2xl text-zinc-300 leading-relaxed">
+        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
           Four foundational principles inform our engineering decisions, client collaborations,
           and long-term architectural standards.
         </p>

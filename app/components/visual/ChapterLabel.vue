@@ -12,9 +12,9 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="inline-flex items-center gap-2 font-ui text-xs tracking-wide">
-    <span class="flex h-2 w-2 rounded-full bg-brand animate-pulse-subtle shrink-0" aria-hidden="true" />
-    <span class="font-medium text-brand">
+  <div class="inline-flex items-center gap-2 font-ui text-xs sm:text-[13px] tracking-normal">
+    <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse-subtle shrink-0" aria-hidden="true" />
+    <span class="font-medium text-emerald-400">
       {{ label }}
     </span>
     <span v-if="sublabel" class="hidden sm:inline text-zinc-400 font-normal">

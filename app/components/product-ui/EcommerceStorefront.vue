@@ -32,7 +32,7 @@ const webOrders = [
           </div>
           <div>
             <div class="text-xs font-semibold text-white">Branded Web Storefront</div>
-            <div class="text-[11px] text-zinc-400">order.kavorax.com/store · Single catalog with counter POS</div>
+            <div class="text-xs text-zinc-400">order.kavorax.com/store · Single catalog with counter POS</div>
           </div>
         </div>
         <span class="text-xs text-zinc-300 font-mono">18 Active SKUs</span>
@@ -40,7 +40,7 @@ const webOrders = [
 
       <!-- Orders Pipeline -->
       <div class="space-y-2">
-        <div class="text-[11px] font-medium text-zinc-400 uppercase tracking-wider px-1">Recent Web Orders</div>
+        <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider px-1">Recent Web Orders</div>
         <div
           v-for="order in webOrders"
           :key="order.id"
@@ -50,13 +50,13 @@ const webOrders = [
             <Package class="h-3.5 w-3.5 text-brand shrink-0" />
             <div>
               <div class="font-semibold text-white">{{ order.id }} · {{ order.customer }}</div>
-              <div class="text-[11px] text-zinc-400">{{ order.items }}</div>
+              <div class="text-xs text-zinc-400">{{ order.items }}</div>
             </div>
           </div>
 
           <div class="flex items-center justify-between sm:justify-end gap-3 shrink-0">
             <span class="font-semibold text-white">{{ order.total }}</span>
-            <span class="px-2 py-0.5 rounded text-[10px] bg-brand/10 text-brand border border-brand/20">
+            <span class="px-2 py-0.5 rounded text-xs bg-brand/10 text-brand border border-brand/20">
               {{ order.status }}
             </span>
           </div>
@@ -65,4 +65,5 @@ const webOrders = [
     </div>
   </div>
 </template>
+
 

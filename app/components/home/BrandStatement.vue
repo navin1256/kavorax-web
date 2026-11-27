@@ -58,14 +58,14 @@ const commitments = [
           text="“We believe business software should empower teams to operate with clear workflows, unified data, and dependable day-to-day resilience.”"
           as="blockquote"
           highlight="workflows"
-          highlight-class="italic font-light text-brand"
+          highlight-class="not-italic font-semibold text-emerald-400"
           :start-offset="0.88"
           :end-offset="0.32"
-          class="text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.1] tracking-tight"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
         />
 
         <p
-          class="font-ui text-base sm:text-lg text-zinc-300 max-w-3xl mx-auto leading-relaxed font-normal reveal-base delay-200"
+          class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-3xl mx-auto reveal-base delay-200"
           :class="{ 'is-revealed': isRevealed }"
         >
           KavoraX Global Private Limited builds dependable, connected technology solutions that transform operational complexity into clarity and momentum.

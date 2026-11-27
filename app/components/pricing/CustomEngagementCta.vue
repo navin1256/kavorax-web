@@ -38,15 +38,14 @@ const { isRevealed } = useScrollReveal(customCtaRef, { threshold: 0.12 })
         <WordReveal
           text="Let's Discuss the Right Approach for Your Business."
           as="h2"
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-normal tracking-[-0.03em] text-white leading-tight text-balance-editorial max-w-3xl mx-auto"
-          :italic-words="['Right', 'Approach', 'for', 'Your', 'Business.']"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white max-w-3xl mx-auto"
           :delay="120"
           :threshold="0.12"
         />
 
         <!-- Supporting Copy -->
         <p
-          class="mt-6 font-ui text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed reveal-paragraph transition-editorial duration-700 delay-300"
+          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
           :class="{ 'is-revealed': isRevealed }"
         >
           Share your priorities with KavoraX so the team can discuss relevant solutions and next

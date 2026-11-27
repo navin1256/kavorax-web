@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   as: 'blockquote',
   highlight: '',
   italicWords: '',
-  highlightClass: 'italic font-light text-brand',
+  highlightClass: 'not-italic font-semibold text-emerald-400',
   startOffset: 0.85,
   endOffset: 0.35,
   class: ''

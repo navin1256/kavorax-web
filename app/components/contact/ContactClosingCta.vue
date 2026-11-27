@@ -44,14 +44,13 @@ const { isRevealed } = useScrollReveal(sectionRef, {
         <WordReveal
           text="Let’s Move Your Business Forward."
           as="h2"
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-          :italic-words="['Business Forward.']"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
           :delay="120"
         />
 
-        <!-- Supporting text (Corrected to font-ui font-light) -->
+        <!-- Supporting text -->
         <p
-          class="mt-6 font-ui text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-light reveal-base transition-editorial duration-700 delay-200"
+          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
           :class="{ 'is-revealed': isRevealed }"
         >
           Start a conversation about your business goals and technology needs with our solutions team.

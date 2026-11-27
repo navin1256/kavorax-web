@@ -40,12 +40,11 @@ const steps = [
           Process Guidance
         </div>
         <h2
-          class="font-editorial text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
         >
-          What to Expect from
-          <span class="italic font-light text-brand">the Walkthrough</span>.
+          What to Expect from the Walkthrough.
         </h2>
-        <p class="font-ui text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
+        <p class="font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75">
           Our demonstration sessions are designed to be focused, practical, and aligned with your
           team's specific store workflows and software requirements.
         </p>

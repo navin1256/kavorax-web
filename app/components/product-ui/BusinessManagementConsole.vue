@@ -36,7 +36,7 @@ const recentExpenses = [
     <!-- Active Staff & Attendance -->
     <div class="p-4 space-y-4">
       <div class="space-y-2">
-        <div class="flex items-center justify-between text-[11px] font-medium text-zinc-400 uppercase tracking-wider px-1">
+        <div class="flex items-center justify-between text-xs font-medium text-zinc-400 uppercase tracking-wider px-1">
           <span>Active Shift Attendance</span>
           <span class="text-brand">100% On-Time Clock-in</span>
         </div>
@@ -51,10 +51,10 @@ const recentExpenses = [
             </div>
             <div>
               <div class="font-semibold text-white">{{ s.name }}</div>
-              <div class="text-[11px] text-zinc-400">{{ s.role }} · Clock-in: {{ s.clockIn }}</div>
+              <div class="text-xs text-zinc-400">{{ s.role }} · Clock-in: {{ s.clockIn }}</div>
             </div>
           </div>
-          <span class="px-2 py-0.5 rounded text-[10px] bg-brand/10 text-brand border border-brand/20">
+          <span class="px-2 py-0.5 rounded text-xs bg-brand/10 text-brand border border-brand/20">
             {{ s.status }}
           </span>
         </div>
@@ -62,7 +62,7 @@ const recentExpenses = [
 
       <!-- Petty Cash / Daily Expense Log -->
       <div class="space-y-2 pt-2 border-t border-white/[0.06]">
-        <div class="text-[11px] font-medium text-zinc-400 uppercase tracking-wider px-1">
+        <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider px-1">
           Today's Approved Expenses
         </div>
         <div
@@ -72,7 +72,7 @@ const recentExpenses = [
         >
           <div class="text-zinc-300">
             <div>{{ exp.item }}</div>
-            <div class="text-[10px] text-zinc-500">{{ exp.category }}</div>
+            <div class="text-xs text-zinc-500">{{ exp.category }}</div>
           </div>
           <div class="flex items-center gap-2">
             <span class="font-semibold text-white">{{ exp.amount }}</span>
@@ -83,4 +83,5 @@ const recentExpenses = [
     </div>
   </div>
 </template>
+
 

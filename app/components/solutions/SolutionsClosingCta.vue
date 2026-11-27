@@ -42,13 +42,12 @@ const { isRevealed: isCtaRevealed } = useScrollReveal(ctaRef, { threshold: 0.12 
         <WordReveal
           as="h2"
           text="Let’s Find the Right Way Forward."
-          :italic-words="['Right', 'Way', 'Forward.']"
-          class="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-normal tracking-[-0.03em] text-white leading-[1.05] text-balance-editorial max-w-3xl mx-auto"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white max-w-3xl mx-auto"
         />
 
-        <!-- Supporting text (Standardized to Inter font-ui) -->
+        <!-- Supporting text -->
         <p
-          class="mt-6 font-ui text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
+          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
         >
           Tell us about your business priorities and the challenges you want to address.
         </p>

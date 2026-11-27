@@ -36,14 +36,13 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
         <WordReveal
           text="Let's Build Better Operations Together."
           as="h2"
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
-          :italic-words="['Operations']"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
           :delay="120"
         />
 
         <!-- Supporting Copy -->
         <p
-          class="mt-6 font-ui text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal"
+          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
         >
           Explore how connected business solutions could support your organisation's needs.
         </p>

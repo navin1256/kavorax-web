@@ -18,22 +18,21 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
       >
         <!-- Tag -->
         <div
-          class="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/[0.06] px-3.5 py-1 text-xs font-ui text-brand font-medium mb-6"
+          class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] px-3.5 py-1 text-xs font-ui text-emerald-400 font-medium tracking-normal mb-6"
         >
-          <span>DIRECT ADVISORY</span>
+          <span>Direct Advisory</span>
         </div>
 
-        <!-- Headline (Exact requested copy) -->
+        <!-- Headline -->
         <h2
-          class="font-editorial text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight"
+          class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
         >
-          Let’s Explore
-          <span class="italic font-light text-brand">What’s Possible</span>.
+          Let’s Explore What’s Possible.
         </h2>
 
-        <!-- Supporting text (Exact requested copy) -->
+        <!-- Supporting text -->
         <p
-          class="mt-6 font-editorial text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto leading-relaxed"
+          class="mt-6 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 max-w-2xl mx-auto"
         >
           Start a conversation about your business needs and goals.
         </p>

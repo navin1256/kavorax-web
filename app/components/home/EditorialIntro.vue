@@ -59,14 +59,14 @@ const principles = [
             text="The modern enterprise cannot afford fragmented systems. We architect unified technologies that connect people, data and physical operations in synchronized motion."
             as="h2"
             :highlight="['synchronized', 'motion.']"
-            highlight-class="italic font-light text-brand"
+            highlight-class="not-italic font-semibold text-emerald-400"
             :start-offset="0.88"
             :end-offset="0.32"
-            class="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white leading-[1.08] tracking-[-0.02em] text-balance"
+            class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold text-white leading-[1.2] tracking-[-0.02em] not-italic text-balance"
           />
 
           <div
-            class="border-l-2 border-brand/40 pl-5 sm:pl-6 py-1 space-y-4 font-editorial text-lg sm:text-xl md:text-2xl text-zinc-300 leading-relaxed reveal-paragraph delay-200"
+            class="border-l-2 border-emerald-500/40 pl-5 sm:pl-6 py-1 space-y-4 font-ui text-base sm:text-lg font-normal leading-[1.65] text-white/75 reveal-paragraph delay-200"
             :class="{ 'is-revealed': isRevealed }"
           >
             <p>
@@ -75,7 +75,7 @@ const principles = [
           </div>
 
           <p
-            class="font-ui text-base text-zinc-300 leading-relaxed max-w-xl font-normal reveal-paragraph delay-300"
+            class="font-ui text-sm sm:text-[15px] font-normal leading-[1.65] text-white/70 max-w-xl reveal-paragraph delay-300"
             :class="{ 'is-revealed': isRevealed }"
           >
             We close those gaps permanently. By unifying data pipelines, automating cross-functional workflows, and providing real-time operational clarity, KavoraX transforms disconnected operations into a synchronized enterprise.

@@ -457,7 +457,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                   <!-- Full Name -->
                   <div class="space-y-2">
                     <div class="flex items-center justify-between">
-                      <Label for="fullName" class="text-xs font-medium text-zinc-200">
+                      <Label for="fullName" class="text-sm font-medium text-zinc-200">
                         Full Name <span class="text-brand font-semibold">*</span>
                       </Label>
                     </div>
@@ -467,7 +467,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                         v-model="formData.fullName"
                         type="text"
                         placeholder="e.g. Rohan Sharma"
-                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
+                        class="h-12 text-sm sm:text-base bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
                         :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.fullName }"
                         :aria-invalid="!!errors.fullName"
                         :aria-describedby="errors.fullName ? 'fullName-error' : undefined"
@@ -489,7 +489,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                   <!-- Work Email -->
                   <div class="space-y-2">
                     <div class="flex items-center justify-between">
-                      <Label for="workEmail" class="text-xs font-medium text-zinc-200">
+                      <Label for="workEmail" class="text-sm font-medium text-zinc-200">
                         Work Email <span class="text-brand font-semibold">*</span>
                       </Label>
                     </div>
@@ -499,7 +499,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                         v-model="formData.workEmail"
                         type="email"
                         placeholder="e.g. rohan.sharma@company.in"
-                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
+                        class="h-12 text-sm sm:text-base bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
                         :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.workEmail }"
                         :aria-invalid="!!errors.workEmail"
                         :aria-describedby="errors.workEmail ? 'workEmail-error' : undefined"
@@ -530,7 +530,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                   <!-- Company Name (Optional) -->
                   <div class="space-y-2">
                     <div class="flex items-center justify-between">
-                      <Label for="companyName" class="text-xs font-medium text-zinc-200">
+                      <Label for="companyName" class="text-sm font-medium text-zinc-200">
                         Company Name
                         <span class="text-zinc-500 font-mono text-[10px] ml-1">(Optional)</span>
                       </Label>
@@ -541,7 +541,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                         v-model="formData.companyName"
                         type="text"
                         placeholder="e.g. Spice Route Hospitality"
-                        class="h-12 text-sm bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
+                        class="h-12 text-sm sm:text-base bg-[#090e16] border-white/15 text-white placeholder:text-zinc-500 rounded-lg focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c141e] focus-visible:border-brand transition-colors"
                         :class="{ 'border-red-500/70 focus-visible:ring-red-500': errors.companyName }"
                         :aria-invalid="!!errors.companyName"
                         :aria-describedby="errors.companyName ? 'companyName-error' : undefined"
@@ -563,7 +563,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
                   <!-- Inquiry Type (Required Dropdown) -->
                   <div class="space-y-2">
                     <div class="flex items-center justify-between">
-                      <Label for="inquiryType" class="text-xs font-medium text-zinc-200">
+                      <Label for="inquiryType" class="text-sm font-medium text-zinc-200">
                         Inquiry Type <span class="text-brand font-semibold">*</span>
                       </Label>
                     </div>
@@ -616,7 +616,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
 
                 <div class="space-y-2">
                   <div class="flex items-center justify-between">
-                    <Label for="message" class="text-xs font-medium text-zinc-200">
+                    <Label for="message" class="text-sm font-medium text-zinc-200">
                       Message <span class="text-brand font-semibold">*</span>
                     </Label>
                   </div>
@@ -700,3 +700,4 @@ const { isRevealed } = useScrollReveal(sectionRef, {
     </div>
   </section>
 </template>
+
