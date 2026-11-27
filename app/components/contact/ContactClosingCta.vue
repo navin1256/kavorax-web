@@ -16,7 +16,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
 <template>
   <section
     ref="sectionRef"
-    class="py-12 md:py-16 bg-[#080c10] border-t border-white/[0.08] relative overflow-hidden"
+    class="py-16 md:py-24 bg-transparent bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Subtle Ambient Glow with Atmospheric Drift -->
     <div
@@ -27,7 +27,7 @@ const { isRevealed } = useScrollReveal(sectionRef, {
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <!-- Container Card with Progressive Reveal -->
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-xl group reveal-card transition-editorial duration-700"
+        class="rounded-3xl border border-white/10 bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-2xl corner-crosshair group reveal-card transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Active Theory Corner Crosshairs -->

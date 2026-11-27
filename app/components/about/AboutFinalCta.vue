@@ -14,7 +14,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
   <section
     id="about-cta"
     ref="sectionRef"
-    class="py-12 md:py-16 bg-[#070b0f] bg-technical-grid relative overflow-hidden"
+    class="py-12 md:py-16 bg-transparent bg-technical-grid relative overflow-hidden"
   >
     <!-- Background Ambient Glow -->
     <div
@@ -24,7 +24,7 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/10 bg-[#0c141e] p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl group reveal-base transition-editorial duration-700"
+        class="rounded-3xl border border-white/10 bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden shadow-2xl group reveal-base transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Chapter Label -->
@@ -98,3 +98,4 @@ const { isRevealed } = useScrollReveal(sectionRef, { threshold: 0.15 })
     </div>
   </section>
 </template>
+

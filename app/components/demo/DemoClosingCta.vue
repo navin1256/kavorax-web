@@ -5,7 +5,7 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
 
 <template>
   <section
-    class="py-12 md:py-16 bg-[#080c10] border-t border-white/[0.06] relative overflow-hidden"
+    class="py-16 md:py-24 bg-transparent bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
   >
     <!-- Subtle Ambient Glow -->
     <div
@@ -14,7 +14,7 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-2xl border border-white/[0.08] bg-[#0c141e] p-8 sm:p-14 text-center relative overflow-hidden shadow-xl"
+        class="rounded-2xl border border-white/10 bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl corner-crosshair"
       >
         <!-- Tag -->
         <div
@@ -27,7 +27,7 @@ import { MessageSquare, ArrowRight } from 'lucide-vue-next'
         <h2
           class="text-2xl sm:text-3xl md:text-[2.25rem] font-semibold leading-[1.2] tracking-[-0.02em] not-italic text-white"
         >
-          Let’s Explore What’s Possible.
+          Let’s Explore <span class="text-emerald-400">What’s Possible.</span>
         </h2>
 
         <!-- Supporting text -->

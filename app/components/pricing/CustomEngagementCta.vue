@@ -13,7 +13,7 @@ const { isRevealed } = useScrollReveal(customCtaRef, { threshold: 0.12 })
 <template>
   <section
     ref="customCtaRef"
-    class="py-12 md:py-16 bg-transparent border-t border-white/[0.08] relative overflow-hidden"
+    class="py-16 md:py-24 bg-transparent bg-technical-grid border-t border-white/[0.08] relative overflow-hidden"
     :class="{ 'is-revealed': isRevealed }"
   >
     <!-- Ambient emerald backlight glow -->
@@ -24,7 +24,7 @@ const { isRevealed } = useScrollReveal(customCtaRef, { threshold: 0.12 })
 
     <div class="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <div
-        class="rounded-3xl border border-white/[0.1] bg-[#0c141e] p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-xl reveal-card transition-editorial duration-700"
+        class="rounded-3xl border border-white/[0.1] bg-[#0c141e]/40 backdrop-blur-md bg-technical-grid p-8 sm:p-14 lg:p-16 text-center relative overflow-hidden shadow-xl reveal-card transition-editorial duration-700"
         :class="{ 'is-revealed': isRevealed }"
       >
         <!-- Corner Crosshairs inspired by Active Theory -->
@@ -96,3 +96,4 @@ const { isRevealed } = useScrollReveal(customCtaRef, { threshold: 0.12 })
     </div>
   </section>
 </template>
+

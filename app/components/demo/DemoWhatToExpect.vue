@@ -91,23 +91,6 @@ const steps = [
           </div>
         </div>
       </div>
-
-      <!-- Trust & Purpose Reassurance Strip (Section 4.D) -->
-      <div
-        class="mt-12 rounded-xl border border-white/[0.07] bg-[#090e15] p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-ui text-xs text-zinc-400"
-      >
-        <div class="flex items-start sm:items-center gap-3">
-          <div class="h-2 w-2 rounded-full bg-brand shrink-0 mt-1 sm:mt-0" />
-          <p class="leading-relaxed">
-            <span class="text-white font-medium">Clear, Respectful Dialogue:</span> These points
-            serve as general process guidance to ensure your time is spent purposefully. We focus on
-            practical technical context without aggressive sales sequences.
-          </p>
-        </div>
-        <span class="font-mono text-[11px] text-zinc-500 shrink-0">
-          KavoraX Global Advisory
-        </span>
-      </div>
     </div>
   </section>
 </template>
